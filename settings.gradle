@@ -1,0 +1,1 @@
+include ':podkast-app', ':podkast-service'
