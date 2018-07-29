@@ -54,11 +54,11 @@ class PodcastTypeAdapterTest {
                     Artwork("https://is4-ssl.mzstatic.com/image/thumb/Music127/v4/d0/e6/5f/d0e65f81-c2cf-7f59-38e4-6abcfab7e38a/source/100x100bb.jpg", 100, 100),
                     Artwork("https://is4-ssl.mzstatic.com/image/thumb/Music127/v4/d0/e6/5f/d0e65f81-c2cf-7f59-38e4-6abcfab7e38a/source/600x600bb.jpg", 600, 600)
             ),
-            primaryGenre = Genre(1303, "Comedy", null),
+            primaryGenre = Genre(1303, "Comedy"),
             genreList = listOf(
-                    Genre(1303, "Comedy", null),
-                    Genre(1450, "Podcasting", null),
-                    Genre(1324, "Society & Culture", null)
+                    Genre(1303, "Comedy"),
+                    Genre(1450, "Podcasting"),
+                    Genre(1324, "Society & Culture")
             ),
             explicit = true
     )
