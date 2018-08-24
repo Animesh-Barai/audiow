@@ -11,14 +11,12 @@ import org.junit.Test
 
 class PodcastTypeAdapterTest {
 
-    private val adapter = PodcastTypeAdapter()
-    private val jsonAdapter = PodcastJsonTypeAdapter()
 
     @Test
     fun fromJson() {
         val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = jsonAdapter.fromJson(json)!!
-        val actual = adapter.fromJson(podcastJson)
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!
+        val actual = PodcastTypeAdapter.fromJson(podcastJson)
         val expected = getExpectedPodcast()
 
         assertEquals(expected, actual)
@@ -27,9 +25,9 @@ class PodcastTypeAdapterTest {
     @Test
     fun fromJson_whenTrackExplicitness_isCleaned() {
         val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = jsonAdapter.fromJson(json)!!.copy(trackExplicitness = "cleaned")
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!.copy(trackExplicitness = "cleaned")
         val expected = getExpectedPodcast().copy(explicit = false)
-        val actual = adapter.fromJson(podcastJson)
+        val actual = PodcastTypeAdapter.fromJson(podcastJson)
 
         assertEquals(expected, actual)
     }
@@ -37,9 +35,9 @@ class PodcastTypeAdapterTest {
     @Test
     fun fromJson_whenTrackExplicitness_isNotExplicit() {
         val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = jsonAdapter.fromJson(json)!!.copy(trackExplicitness = "notExplicit")
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!.copy(trackExplicitness = "notExplicit")
         val expected = getExpectedPodcast().copy(explicit = false)
-        val actual = adapter.fromJson(podcastJson)
+        val actual = PodcastTypeAdapter.fromJson(podcastJson)
 
         assertEquals(expected, actual)
     }

@@ -8,7 +8,7 @@ import org.junit.Test
 
 class PodcastJsonTypeAdapterTest {
 
-    private val adapter = PodcastJsonTypeAdapter()
+    private val adapter = PodcastJsonTypeAdapter
 
     @Test
     fun fromJson() {
@@ -32,7 +32,6 @@ class PodcastJsonTypeAdapterTest {
                 trackCount = 300,
                 country = "USA",
                 primaryGenreName = "Comedy",
-                contentAdvisoryRating = "Explicit",
                 genreIds = listOf(1303, 26, 1450, 1324),
                 genres = listOf("Comedy", "Podcasts", "Podcasting", "Society & Culture"),
                 artworkList = listOf(

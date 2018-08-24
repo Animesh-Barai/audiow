@@ -5,7 +5,7 @@ import ismaeldivita.podkast.service.model.Artwork
 internal data class PodcastJson(
         val wrapperType: String,
         val kind: String,
-        val artistId: Int,
+        val artistId: Int?,
         val collectionId: Int,
         val trackId: Int,
         val artistName: String,
@@ -19,7 +19,6 @@ internal data class PodcastJson(
         val trackExplicitness: String,
         val trackCount: Int,
         val country: String,
-        val contentAdvisoryRating: String,
         val primaryGenreName: String,
         val genreIds: List<Int>,
         val genres: List<String>,

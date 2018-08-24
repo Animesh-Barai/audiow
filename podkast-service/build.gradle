@@ -8,14 +8,19 @@ dependencies {
         moshiVersion = '1.6.0'
     }
 
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
+    // Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
 
+    // Test
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }

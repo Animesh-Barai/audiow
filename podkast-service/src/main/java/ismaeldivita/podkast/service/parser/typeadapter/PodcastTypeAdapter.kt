@@ -5,7 +5,10 @@ import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.model.internal.PodcastJson
 
-internal class PodcastTypeAdapter {
+internal object PodcastTypeAdapter {
+
+    @FromJson
+    fun fromJson(json: List<PodcastJson>): List<Podcast> = json.map(::fromJson)
 
     @FromJson
     fun fromJson(json: PodcastJson): Podcast = with(json) {
