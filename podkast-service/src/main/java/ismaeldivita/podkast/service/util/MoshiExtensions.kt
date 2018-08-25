@@ -4,5 +4,3 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 internal inline fun <reified T> Moshi.adapter(): JsonAdapter<T> = this.adapter(T::class.java)
-
-internal fun Moshi.Builder.add(vararg adapters: Any) = adapters.forEach { add(it) }.let { this }

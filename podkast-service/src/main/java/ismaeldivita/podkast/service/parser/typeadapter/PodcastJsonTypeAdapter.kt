@@ -7,7 +7,7 @@ import ismaeldivita.podkast.service.model.Artwork
 import ismaeldivita.podkast.service.model.internal.PodcastJson
 import ismaeldivita.podkast.service.util.adapter
 
-internal class PodcastJsonTypeAdapter {
+internal object PodcastJsonTypeAdapter {
 
     private val moshi by lazy { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
 

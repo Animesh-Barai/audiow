@@ -5,7 +5,10 @@ import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.model.internal.PodcastJson
 
-internal class PodcastTypeAdapter {
+internal object PodcastTypeAdapter {
+
+    @FromJson
+    fun fromJson(json: List<PodcastJson>): List<Podcast> = json.map(::fromJson)
 
     @FromJson
     fun fromJson(json: PodcastJson): Podcast = with(json) {
@@ -30,7 +33,7 @@ internal class PodcastTypeAdapter {
                 // All podcasts have this genre, which represent the Podcast category,
                 // so to avoid redundancy we're filtering this
                 .filter { it.first != 26 }
-                .map { Genre(it.first, it.second, null) }
+                .map { Genre(it.first, it.second) }
     }
 
     private fun getExplicit(json: PodcastJson): Boolean =
