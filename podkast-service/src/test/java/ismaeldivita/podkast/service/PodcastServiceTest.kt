@@ -17,6 +17,7 @@ class PodcastServiceTest {
 
         service.search()
                 .test()
+                .assertValue { it.size == 50 }
                 .assertNoErrors()
     }
 }
