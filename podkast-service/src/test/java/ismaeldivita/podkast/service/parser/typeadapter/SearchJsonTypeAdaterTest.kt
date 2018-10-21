@@ -1,6 +1,6 @@
 package ismaeldivita.podkast.service.parser.typeadapter
 
-import ismaeldivita.podkast.service.model.internal.SearchJson
+import ismaeldivita.podkast.service.parser.typeadapter.model.SearchJson
 import ismaeldivita.podkast.service.parser.MoshiProvider
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import ismaeldivita.podkast.service.util.adapter
@@ -12,7 +12,7 @@ class SearchJsonTypeAdaterTest {
     @Test
     fun fromJson() {
         val json = IOUtils.fileToString("/json/search/search.json")
-        val searchJson = MoshiProvider.instance.adapter<SearchJson>().fromJson(json)!!
+        val searchJson = MoshiProvider.instanceWithAdapters.adapter<SearchJson>().fromJson(json)!!
         val actual = SearchJsonTypeAdater.fromJson(searchJson)
         val expected = PodcastTypeAdapter.fromJson(searchJson.copy().results)
 

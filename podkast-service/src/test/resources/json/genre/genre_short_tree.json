@@ -1,0 +1,69 @@
+{
+  "26": {
+    "name": "Podcasts",
+    "id": "26",
+    "url": "https://itunes.apple.com/us/genre/podcasts/id26?mt=2",
+    "rssUrls": {
+      "topVideoPodcastEpisodes": "https://itunes.apple.com/us/rss/topvideopodcastepisodes/genre=26/json",
+      "topAudioPodcasts": "https://itunes.apple.com/us/rss/topaudiopodcasts/genre=26/json",
+      "topVideoPodcasts": "https://itunes.apple.com/us/rss/topvideopodcasts/genre=26/json",
+      "topPodcasts": "https://itunes.apple.com/us/rss/toppodcasts/genre=26/json",
+      "topAudioPodcastEpisodes": "https://itunes.apple.com/us/rss/topaudiopodcastepisodes/genre=26/json",
+      "topPodcastEpisodes": "https://itunes.apple.com/us/rss/toppodcastepisodes/genre=26/json"
+    },
+    "chartUrls": {
+      "videoPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=VideoPodcastEpisodes",
+      "podcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=Podcasts",
+      "audioPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=AudioPodcastEpisodes",
+      "audioPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=AudioPodcasts",
+      "podcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=PodcastEpisodes",
+      "videoPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=26&name=VideoPodcasts"
+    },
+    "subgenres": {
+      "1301": {
+        "name": "Arts",
+        "id": "1301",
+        "url": "https://itunes.apple.com/us/genre/podcasts-arts/id1301?mt=2",
+        "rssUrls": {
+          "topVideoPodcastEpisodes": "https://itunes.apple.com/us/rss/topvideopodcastepisodes/genre=1301/json",
+          "topAudioPodcasts": "https://itunes.apple.com/us/rss/topaudiopodcasts/genre=1301/json",
+          "topVideoPodcasts": "https://itunes.apple.com/us/rss/topvideopodcasts/genre=1301/json",
+          "topPodcasts": "https://itunes.apple.com/us/rss/toppodcasts/genre=1301/json",
+          "topAudioPodcastEpisodes": "https://itunes.apple.com/us/rss/topaudiopodcastepisodes/genre=1301/json",
+          "topPodcastEpisodes": "https://itunes.apple.com/us/rss/toppodcastepisodes/genre=1301/json"
+        },
+        "chartUrls": {
+          "videoPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=VideoPodcastEpisodes",
+          "podcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=Podcasts",
+          "audioPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=AudioPodcastEpisodes",
+          "audioPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=AudioPodcasts",
+          "podcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=PodcastEpisodes",
+          "videoPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1301&name=VideoPodcasts"
+        },
+        "subgenres": {}
+      },
+      "1321": {
+        "name": "Business",
+        "id": "1321",
+        "url": "https://itunes.apple.com/us/genre/podcasts-business/id1321?mt=2",
+        "rssUrls": {
+          "topVideoPodcastEpisodes": "https://itunes.apple.com/us/rss/topvideopodcastepisodes/genre=1321/json",
+          "topAudioPodcasts": "https://itunes.apple.com/us/rss/topaudiopodcasts/genre=1321/json",
+          "topVideoPodcasts": "https://itunes.apple.com/us/rss/topvideopodcasts/genre=1321/json",
+          "topPodcasts": "https://itunes.apple.com/us/rss/toppodcasts/genre=1321/json",
+          "topAudioPodcastEpisodes": "https://itunes.apple.com/us/rss/topaudiopodcastepisodes/genre=1321/json",
+          "topPodcastEpisodes": "https://itunes.apple.com/us/rss/toppodcastepisodes/genre=1321/json"
+        },
+        "chartUrls": {
+          "videoPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=VideoPodcastEpisodes",
+          "podcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=Podcasts",
+          "audioPodcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=AudioPodcastEpisodes",
+          "audioPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=AudioPodcasts",
+          "podcastEpisodes": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=PodcastEpisodes",
+          "videoPodcasts": "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/charts?cc=us&g=1321&name=VideoPodcasts"
+        },
+        "subgenres": {}
+      }
+    }
+  }
+}

@@ -1,32 +1,32 @@
 package ismaeldivita.podkast.service.parser.typeadapter
 
 import com.squareup.moshi.FromJson
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
-import ismaeldivita.podkast.service.model.internal.PodcastJson
+import ismaeldivita.podkast.service.parser.MoshiProvider
+import ismaeldivita.podkast.service.parser.typeadapter.model.PodcastJson
 import ismaeldivita.podkast.service.util.adapter
 
 internal object PodcastJsonTypeAdapter {
 
-    private val moshi by lazy { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
-
     @FromJson
-    fun fromJson(json: String): PodcastJson? =
-            moshi.adapter<PodcastJson>()
-                    .fromJson(json)
-                    ?.copy(artworkList = parseArtworkList(json))
+    fun fromJson(reader: JsonReader): PodcastJson {
+        @Suppress("UNCHECKED_CAST")
+        val jsonMap = reader.readJsonValue() as Map<String, Any>
 
-    private fun parseArtworkList(json: String): List<Artwork> {
-        val jsonMap = moshi.adapter<Map<String, Any>>().fromJson(json)
+        return MoshiProvider.instance
+                .adapter<PodcastJson>()
+                .fromJsonValue(jsonMap)!!
+                .copy(artworkList = parseArtworkList(jsonMap))
+    }
 
+    private fun parseArtworkList(jsonMap: Map<String, *>): List<Artwork> {
         return jsonMap
-                ?.filter { it.key.startsWith("artworkUrl", ignoreCase = true) }
-                ?.map {
+                .filter { it.key.startsWith("artworkUrl", ignoreCase = true) }
+                .map {
                     val size = it.key.split(Regex("(?=\\d*$)"), 2).component2().toInt()
                     Artwork(it.value as String, size, size)
                 }
-                ?: emptyList()
     }
 
 }

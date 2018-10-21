@@ -3,7 +3,7 @@ package ismaeldivita.podkast.service.parser.typeadapter
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.model.internal.PodcastJson
+import ismaeldivita.podkast.service.parser.typeadapter.model.PodcastJson
 
 internal object PodcastTypeAdapter {
 

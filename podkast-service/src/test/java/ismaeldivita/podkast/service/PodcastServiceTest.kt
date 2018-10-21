@@ -20,4 +20,18 @@ class PodcastServiceTest {
                 .assertValue { it.size == 50 }
                 .assertNoErrors()
     }
+
+    @Test
+    fun getGenreTree() {
+        val genreResponse = IOUtils.fileToString("/json/genre/genre_26.json")
+        mockWebServer.enqueue(MockResponse().setBody(genreResponse))
+
+        service.getGenreTree()
+                .test()
+                .assertValue {
+                    true
+                }
+                .assertNoErrors()
+
+    }
 }

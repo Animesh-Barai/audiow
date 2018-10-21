@@ -1,5 +1,8 @@
 package ismaeldivita.podkast.service.testhelper
 
+import okio.BufferedSource
+import okio.Okio
+
 object IOUtils {
 
     fun fileToString(path: String): String =
@@ -7,5 +10,8 @@ object IOUtils {
                     .bufferedReader()
                     .use { it.readText() }
 
+    fun fileToBufferedSource(path: String): BufferedSource =
+            Okio.source(javaClass.getResourceAsStream(path))
+                    .let { Okio.buffer(it) }
 }
 

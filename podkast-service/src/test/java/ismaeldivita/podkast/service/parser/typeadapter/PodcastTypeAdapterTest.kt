@@ -1,21 +1,20 @@
-package ismaeldivita.podkast.service.parser
+package ismaeldivita.podkast.service.parser.typeadapter
 
+import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.parser.typeadapter.PodcastJsonTypeAdapter
-import ismaeldivita.podkast.service.parser.typeadapter.PodcastTypeAdapter
 import ismaeldivita.podkast.service.testhelper.IOUtils
-import junit.framework.Assert.assertEquals
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class PodcastTypeAdapterTest {
 
-
     @Test
     fun fromJson() {
-        val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!
+        val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
+        val jsonReader = JsonReader.of(source)
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(jsonReader)!!
         val actual = PodcastTypeAdapter.fromJson(podcastJson)
         val expected = getExpectedPodcast()
 
@@ -24,8 +23,9 @@ class PodcastTypeAdapterTest {
 
     @Test
     fun fromJson_whenTrackExplicitness_isCleaned() {
-        val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!.copy(trackExplicitness = "cleaned")
+        val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
+        val jsonReader = JsonReader.of(source)
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(jsonReader)!!.copy(trackExplicitness = "cleaned")
         val expected = getExpectedPodcast().copy(explicit = false)
         val actual = PodcastTypeAdapter.fromJson(podcastJson)
 
@@ -34,8 +34,9 @@ class PodcastTypeAdapterTest {
 
     @Test
     fun fromJson_whenTrackExplicitness_isNotExplicit() {
-        val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val podcastJson = PodcastJsonTypeAdapter.fromJson(json)!!.copy(trackExplicitness = "notExplicit")
+        val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
+        val jsonReader  = JsonReader.of(source)
+        val podcastJson = PodcastJsonTypeAdapter.fromJson(jsonReader)!!.copy(trackExplicitness = "notExplicit")
         val expected = getExpectedPodcast().copy(explicit = false)
         val actual = PodcastTypeAdapter.fromJson(podcastJson)
 

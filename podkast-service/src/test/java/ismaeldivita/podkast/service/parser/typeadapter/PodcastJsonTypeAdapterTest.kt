@@ -1,9 +1,10 @@
 package ismaeldivita.podkast.service.parser.typeadapter
 
+import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
-import ismaeldivita.podkast.service.model.internal.PodcastJson
+import ismaeldivita.podkast.service.parser.typeadapter.model.PodcastJson
 import ismaeldivita.podkast.service.testhelper.IOUtils
-import junit.framework.Assert.assertEquals
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class PodcastJsonTypeAdapterTest {
@@ -12,8 +13,9 @@ class PodcastJsonTypeAdapterTest {
 
     @Test
     fun fromJson() {
-        val json = IOUtils.fileToString("/json/search/podcast_item.json")
-        val actual = adapter.fromJson(json)
+        val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
+        val jsonReader = JsonReader.of(source)
+        val actual = adapter.fromJson(jsonReader)
         val expected = PodcastJson(
                 wrapperType = "track",
                 kind = "podcast",

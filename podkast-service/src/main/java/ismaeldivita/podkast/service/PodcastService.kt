@@ -1,6 +1,7 @@
 package ismaeldivita.podkast.service
 
 import io.reactivex.Single
+import ismaeldivita.podkast.service.model.GenreTree
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.MoshiProvider
 import okhttp3.OkHttpClient
@@ -20,15 +21,15 @@ interface PodcastService {
             @Query("limit") limit: Int? = null
     ): Single<List<Podcast>>
 
-    @GET("WebObjects/MZStoreServices.woa/ws/genres")
-    fun getGenre(
-            @Query("id") genreId: String = "26",
+    @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
+    fun getGenreTree(
             @Query("cc") countryIso: String = "US"
-    ): Single<Any>
+    ): Single<GenreTree>
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
     }
+
     class Builder(
             var baseUrl: String = "https://itunes.apple.com/",
             var client: OkHttpClient = OkHttpClient()
@@ -37,7 +38,7 @@ interface PodcastService {
         fun build(): PodcastService = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
-                .addConverterFactory(MoshiConverterFactory.create(MoshiProvider.instance))
+                .addConverterFactory(MoshiConverterFactory.create(MoshiProvider.instanceWithAdapters))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(PodcastService::class.java)
