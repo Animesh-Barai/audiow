@@ -1,6 +1,7 @@
 package ismaeldivita.podkast.service
 
 import io.reactivex.Single
+import ismaeldivita.podkast.service.model.Episode
 import ismaeldivita.podkast.service.model.GenreTree
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.MoshiProvider
@@ -10,6 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface PodcastService {
 
@@ -25,6 +27,9 @@ interface PodcastService {
     fun getGenreTree(
             @Query("cc") countryIso: String = "US"
     ): Single<GenreTree>
+
+    @GET
+    fun getEpisodes(@Url feedUrl: String): Single<Episode>
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
