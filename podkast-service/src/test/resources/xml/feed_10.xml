@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rss xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:cc="http://web.resource.org/cc/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    version="2.0">
     <channel>
-        <atom:link href="http://joeroganexp.joerogan.libsynpro.com/rss" rel="self" type="application/rss+xml"/>
+        <atom:link
+            href="http://joeroganexp.joerogan.libsynpro.com/rss"
+            rel="self"
+            type="application/rss+xml" />
         <title>The Joe Rogan Experience</title>
         <pubDate>Mon, 22 Oct 2018 01:40:48 +0000</pubDate>
         <lastBuildDate>Mon, 22 Oct 2018 02:04:32 +0000</lastBuildDate>
@@ -17,7 +26,8 @@
             <![CDATA[The podcast of Comedian Joe Rogan..]]>
         </itunes:summary>
         <image>
-            <url>http://static.libsyn.com/p/assets/7/1/f/3/71f3014e14ef2722/JREiTunesImage2.jpg</url>
+            <url>http://static.libsyn.com/p/assets/7/1/f/3/71f3014e14ef2722/JREiTunesImage2.jpg
+            </url>
             <title>The Joe Rogan Experience</title>
             <link>
                 <![CDATA[http://blog.joerogan.net]]>
@@ -25,10 +35,11 @@
         </image>
         <itunes:author>Joe Rogan</itunes:author>
         <itunes:keywords>comedian,joe,monkey,redban,rogan,talking,ufc</itunes:keywords>
-        <itunes:category text="Comedy"/>
+        <itunes:category text="Comedy" />
         <itunes:category text="Society &amp; Culture"></itunes:category>
         <itunes:category text="Technology">
-            <itunes:category text="Podcasting"/></itunes:category>
+            <itunes:category text="Podcasting" />
+        </itunes:category>
         <itunes:image href="http://static.libsyn.com/p/assets/7/1/f/3/71f3014e14ef2722/JREiTunesImage2.jpg" />
         <itunes:explicit>yes</itunes:explicit>
         <itunes:owner>
@@ -63,10 +74,15 @@
             <content:encoded>
                 <![CDATA[Joe is joined by comedian Ari Shaffir to discuss some MMA/UFC history.]]>
             </content:encoded>
-            <enclosure length="205342375" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/mmashow046.mp3?dest-id=19997" />
+            <enclosure
+                length="205342375"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/mmashow046.mp3?dest-id=19997" />
             <itunes:duration>03:33:36</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,mma,show,joe,party,experience,ari,46,freak,rogan,shaffir,deathsquad,jre</itunes:keywords>
+            <itunes:keywords>
+                podcast,mma,show,joe,party,experience,ari,46,freak,rogan,shaffir,deathsquad,jre
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Joe is joined by comedian Ari Shaffir to discuss some MMA/UFC history.]]>
             </itunes:subtitle>
@@ -89,10 +105,15 @@
             <content:encoded>
                 <![CDATA[Joe is joined by heavyweight fighter Justin Wren & middleweight fighter Rafael Lovato Jr.]]>
             </content:encoded>
-            <enclosure length="128840879" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/mmashow045.mp3?dest-id=19997" />
+            <enclosure
+                length="128840879"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/mmashow045.mp3?dest-id=19997" />
             <itunes:duration>02:13:55</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,mma,show,jr,justin,joe,party,experience,lovato,rafael,freak,rogan,45,wren,deathsquad,jre</itunes:keywords>
+            <itunes:keywords>
+                podcast,mma,show,jr,justin,joe,party,experience,lovato,rafael,freak,rogan,45,wren,deathsquad,jre
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Joe is joined by heavyweight fighter Justin Wren & middleweight fighter Rafael Lovato Jr.]]>
             </itunes:subtitle>
@@ -115,10 +136,15 @@
             <content:encoded>
                 <![CDATA[Roseanne Barr is a comedian, actress, writer, television producer, director.]]>
             </content:encoded>
-            <enclosure length="136944146" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1184.mp3?dest-id=19997" />
+            <enclosure
+                length="136944146"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1184.mp3?dest-id=19997" />
             <itunes:duration>02:22:20</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,joe,party,experience,barr,roseanne,freak,rogan,deathsquad,jre,1183</itunes:keywords>
+            <itunes:keywords>
+                podcast,joe,party,experience,barr,roseanne,freak,rogan,deathsquad,jre,1183
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Roseanne Barr is a comedian, actress, writer, television producer, director.]]>
             </itunes:subtitle>
@@ -141,10 +167,15 @@
             <content:encoded>
                 <![CDATA[Andrew Santino is a stand up comedian and actor. You can also see him on PROPS presented by Yahoo Sports, with episodes every Wednesday - https://bit.ly/2NAfM1j]]>
             </content:encoded>
-            <enclosure length="167393268" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1183.mp3?dest-id=19997" />
+            <enclosure
+                length="167393268"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1183.mp3?dest-id=19997" />
             <itunes:duration>02:54:03</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,joe,party,experience,andrew,freak,rogan,santino,deathsquad,jre,1183</itunes:keywords>
+            <itunes:keywords>
+                podcast,joe,party,experience,andrew,freak,rogan,santino,deathsquad,jre,1183
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Andrew Santino is a stand up comedian and actor. You can also see him on PROPS presented by Yahoo Sports, with episodes every Wednesday - https://bit.ly/2NAfM1j]]>
             </itunes:subtitle>
@@ -167,10 +198,15 @@
             <content:encoded>
                 <![CDATA[Nick Kroll is an actor, comedian, writer, and producer. Check out the new season of his animated series "Big Mouth" available now on Netflix.]]>
             </content:encoded>
-            <enclosure length="144970865" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1182.mp3?dest-id=19997" />
+            <enclosure
+                length="144970865"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1182.mp3?dest-id=19997" />
             <itunes:duration>02:30:42</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,big,joe,nick,party,experience,mouth,freak,rogan,kroll,deathsquad,jre,1182</itunes:keywords>
+            <itunes:keywords>
+                podcast,big,joe,nick,party,experience,mouth,freak,rogan,kroll,deathsquad,jre,1182
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Nick Kroll is an actor, comedian, writer, and producer. Check out the new season of his animated series "Big Mouth" available now on Netflix.]]>
             </itunes:subtitle>
@@ -193,10 +229,15 @@
             <content:encoded>
                 <![CDATA[Joe is joined by MMA coach & Brazilian jiu-jitsu practitioner, John Kavanagh, and performance nutrition specialist George Lockhart.]]>
             </content:encoded>
-            <enclosure length="126169304" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/mmashow044.mp3?dest-id=19997" />
+            <enclosure
+                length="126169304"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/mmashow044.mp3?dest-id=19997" />
             <itunes:duration>02:11:08</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,john,mma,show,joe,party,experience,george,freak,rogan,44,lockhart,kavanagh,deathsquad,jre</itunes:keywords>
+            <itunes:keywords>
+                podcast,john,mma,show,joe,party,experience,george,freak,rogan,44,lockhart,kavanagh,deathsquad,jre
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Joe is joined by MMA coach & Brazilian jiu-jitsu practitioner, John Kavanagh, and performance nutrition specialist George Lockhart.]]>
             </itunes:subtitle>
@@ -219,10 +260,15 @@
             <content:encoded>
                 <![CDATA[John Dudley is a pro archer and host of “Nock On TV.” Check out his podcast “Nock On” available on iTunes. Also check out https://freerangeamerican.us/ and #DoAwesomeShit]]>
             </content:encoded>
-            <enclosure length="104019222" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1181.mp3?dest-id=19997" />
+            <enclosure
+                length="104019222"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1181.mp3?dest-id=19997" />
             <itunes:duration>01:48:02</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,john,joe,party,experience,freak,dudley,rogan,deathsquad,jre,1181</itunes:keywords>
+            <itunes:keywords>
+                podcast,john,joe,party,experience,freak,dudley,rogan,deathsquad,jre,1181
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[John Dudley is a pro archer and host of “Nock On TV.” Check out his podcast “Nock On” available on iTunes. Also check out https://freerangeamerican.us/ and #DoAwesomeShit]]>
             </itunes:subtitle>
@@ -245,10 +291,14 @@
             <content:encoded>
                 <![CDATA[Everlast is a Grammy Award-winning American rapper, singer, and songwriter. His new project "Everlast presents Whitey Ford's House of Pain" is available now on streaming services and for purchase here: https://fanlink.to/wfhop]]>
             </content:encoded>
-            <enclosure length="141655549" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1180.mp3?dest-id=19997" />
+            <enclosure
+                length="141655549"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1180.mp3?dest-id=19997" />
             <itunes:duration>02:27:15</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,joe,party,experience,freak,rogan,everlast,deathsquad,jre,1180</itunes:keywords>
+            <itunes:keywords>podcast,joe,party,experience,freak,rogan,everlast,deathsquad,jre,1180
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Everlast is a Grammy Award-winning American rapper, singer, and songwriter. His new project "Everlast presents Whitey Ford's House of Pain" is available now on streaming services and for purchase here: https://fanlink.to/wfhop]]>
             </itunes:subtitle>
@@ -271,10 +321,15 @@
             <content:encoded>
                 <![CDATA[Nikki Glaser is an American stand-up comedian, podcast host, and television host. She is currently hosting "You Up with Nikki Glaser" on SiriusXM channel 95.]]>
             </content:encoded>
-            <enclosure length="169520492" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1179.mp3?dest-id=19997" />
+            <enclosure
+                length="169520492"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1179.mp3?dest-id=19997" />
             <itunes:duration>02:56:16</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,joe,party,experience,nikki,freak,rogan,glaser,deathsquad,jre,1179</itunes:keywords>
+            <itunes:keywords>
+                podcast,joe,party,experience,nikki,freak,rogan,glaser,deathsquad,jre,1179
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Nikki Glaser is an American stand-up comedian, podcast host, and television host. She is currently hosting "You Up with Nikki Glaser" on SiriusXM channel 95.]]>
             </itunes:subtitle>
@@ -297,10 +352,15 @@
             <content:encoded>
                 <![CDATA[Dr. Rhonda Patrick is a Ph.D in biomedical science and expert on nutritional health. Her podcasts and other videos can be found at http://FoundMyFitness.com]]>
             </content:encoded>
-            <enclosure length="169590061" type="audio/mpeg" url="http://traffic.libsyn.com/joeroganexp/p1178.mp3?dest-id=19997" />
+            <enclosure
+                length="169590061"
+                type="audio/mpeg"
+                url="http://traffic.libsyn.com/joeroganexp/p1178.mp3?dest-id=19997" />
             <itunes:duration>02:56:20</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
-            <itunes:keywords>podcast,joe,party,experience,rhonda,dr,patrick,freak,rogan,deathsquad,jre,1178</itunes:keywords>
+            <itunes:keywords>
+                podcast,joe,party,experience,rhonda,dr,patrick,freak,rogan,deathsquad,jre,1178
+            </itunes:keywords>
             <itunes:subtitle>
                 <![CDATA[Dr. Rhonda Patrick is a Ph.D in biomedical science and expert on nutritional health. Her podcasts and other videos can be found at http://FoundMyFitness.com]]>
             </itunes:subtitle>

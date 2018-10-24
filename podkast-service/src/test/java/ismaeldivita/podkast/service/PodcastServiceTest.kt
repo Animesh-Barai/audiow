@@ -35,8 +35,11 @@ class PodcastServiceTest {
         val episodeResponse = IOUtils.fileToString("/xml/feed_1.xml")
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
 
-        service.getEpisodes("")
+        service.getPodcast("")
                 .test()
+                .assertValue {
+                    it.title == "The Joe Rogan Experience"
+                }
                 .assertNoErrors()
     }
 }

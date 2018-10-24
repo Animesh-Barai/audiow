@@ -3,6 +3,7 @@ package ismaeldivita.podkast.service.parser
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import ismaeldivita.podkast.service.parser.json.Json
 import ismaeldivita.podkast.service.parser.json.MoshiProvider
+import ismaeldivita.podkast.service.parser.xml.TikXmlProvider
 import ismaeldivita.podkast.service.parser.xml.Xml
 import okhttp3.ResponseBody
 import retrofit2.Converter
@@ -13,7 +14,7 @@ import java.lang.reflect.Type
 internal class ConverterRouterFactory : Converter.Factory() {
 
     private val jsonConverter = MoshiConverterFactory.create(MoshiProvider.instanceWithAdapters)
-    private val xmlConverter = TikXmlConverterFactory.create()
+    private val xmlConverter = TikXmlConverterFactory.create(TikXmlProvider.instance)
 
     override fun responseBodyConverter(
             type: Type,
