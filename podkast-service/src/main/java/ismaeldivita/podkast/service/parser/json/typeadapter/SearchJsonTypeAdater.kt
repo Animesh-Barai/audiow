@@ -1,8 +1,8 @@
-package ismaeldivita.podkast.service.parser.typeadapter
+package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.parser.typeadapter.model.SearchJson
+import ismaeldivita.podkast.service.parser.json.typeadapter.model.SearchJson
 
 internal object SearchJsonTypeAdater {
 

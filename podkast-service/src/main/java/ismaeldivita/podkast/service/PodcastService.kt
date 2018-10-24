@@ -4,18 +4,21 @@ import io.reactivex.Single
 import ismaeldivita.podkast.service.model.Episode
 import ismaeldivita.podkast.service.model.GenreTree
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.parser.MoshiProvider
+import ismaeldivita.podkast.service.parser.ConverterRouterFactory
+import ismaeldivita.podkast.service.parser.json.Json
+import ismaeldivita.podkast.service.parser.xml.Xml
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface PodcastService {
 
     @GET("search?media=podcast&entity=podcast")
+    @Json
     fun search(
             @Query("term") searchTerm: String = "podcast",
             @Query("country") countryIso: String = "US",
@@ -24,11 +27,14 @@ interface PodcastService {
     ): Single<List<Podcast>>
 
     @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
+    @Json
     fun getGenreTree(
             @Query("cc") countryIso: String = "US"
     ): Single<GenreTree>
 
     @GET
+    @Xml
+    @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
     fun getEpisodes(@Url feedUrl: String): Single<Episode>
 
     companion object {
@@ -43,7 +49,7 @@ interface PodcastService {
         fun build(): PodcastService = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
-                .addConverterFactory(MoshiConverterFactory.create(MoshiProvider.instanceWithAdapters))
+                .addConverterFactory(ConverterRouterFactory())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(PodcastService::class.java)

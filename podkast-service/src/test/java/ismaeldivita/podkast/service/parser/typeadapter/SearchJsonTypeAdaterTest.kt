@@ -1,7 +1,9 @@
 package ismaeldivita.podkast.service.parser.typeadapter
 
-import ismaeldivita.podkast.service.parser.typeadapter.model.SearchJson
-import ismaeldivita.podkast.service.parser.MoshiProvider
+import ismaeldivita.podkast.service.parser.json.typeadapter.model.SearchJson
+import ismaeldivita.podkast.service.parser.json.MoshiProvider
+import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastTypeAdapter
+import ismaeldivita.podkast.service.parser.json.typeadapter.SearchJsonTypeAdater
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import ismaeldivita.podkast.service.util.adapter
 import org.junit.Assert.assertEquals

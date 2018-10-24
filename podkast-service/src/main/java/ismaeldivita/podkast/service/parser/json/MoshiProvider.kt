@@ -1,11 +1,11 @@
-package ismaeldivita.podkast.service.parser
+package ismaeldivita.podkast.service.parser.json
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import ismaeldivita.podkast.service.parser.typeadapter.GenreTreeTypeAdapter
-import ismaeldivita.podkast.service.parser.typeadapter.PodcastJsonTypeAdapter
-import ismaeldivita.podkast.service.parser.typeadapter.PodcastTypeAdapter
-import ismaeldivita.podkast.service.parser.typeadapter.SearchJsonTypeAdater
+import ismaeldivita.podkast.service.parser.json.typeadapter.GenreTreeTypeAdapter
+import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastJsonTypeAdapter
+import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastTypeAdapter
+import ismaeldivita.podkast.service.parser.json.typeadapter.SearchJsonTypeAdater
 
 internal object MoshiProvider {
 

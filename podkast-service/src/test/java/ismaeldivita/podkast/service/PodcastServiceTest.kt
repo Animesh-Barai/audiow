@@ -18,7 +18,6 @@ class PodcastServiceTest {
         service.search()
                 .test()
                 .assertValue { it.size == 50 }
-                .assertNoErrors()
     }
 
     @Test
@@ -28,10 +27,16 @@ class PodcastServiceTest {
 
         service.getGenreTree()
                 .test()
-                .assertValue {
-                    true
-                }
-                .assertNoErrors()
+                .assertValue { it.count() == 68 }
+    }
 
+    @Test
+    fun getEpisodes() {
+        val episodeResponse = IOUtils.fileToString("/xml/feed_1.xml")
+        mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
+
+        service.getEpisodes("")
+                .test()
+                .assertNoErrors()
     }
 }

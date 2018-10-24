@@ -1,14 +1,14 @@
-package ismaeldivita.podkast.service.parser.typeadapter
+package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.parser.typeadapter.model.PodcastJson
+import ismaeldivita.podkast.service.parser.json.typeadapter.model.PodcastJson
 
 internal object PodcastTypeAdapter {
 
     @FromJson
-    fun fromJson(json: List<PodcastJson>): List<Podcast> = json.map(::fromJson)
+    fun fromJson(json: List<PodcastJson>): List<Podcast> = json.map(PodcastTypeAdapter::fromJson)
 
     @FromJson
     fun fromJson(json: PodcastJson): Podcast = with(json) {

@@ -2,7 +2,8 @@ package ismaeldivita.podkast.service.parser.typeadapter
 
 import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
-import ismaeldivita.podkast.service.parser.typeadapter.model.PodcastJson
+import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastJsonTypeAdapter
+import ismaeldivita.podkast.service.parser.json.typeadapter.model.PodcastJson
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import junit.framework.TestCase.assertEquals
 import org.junit.Test

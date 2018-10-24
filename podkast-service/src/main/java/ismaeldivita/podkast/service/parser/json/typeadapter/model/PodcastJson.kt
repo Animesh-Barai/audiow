@@ -1,4 +1,4 @@
-package ismaeldivita.podkast.service.parser.typeadapter.model
+package ismaeldivita.podkast.service.parser.json.typeadapter.model
 
 import ismaeldivita.podkast.service.model.Artwork
 
