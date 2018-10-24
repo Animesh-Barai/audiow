@@ -4,13 +4,19 @@ import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
-@Xml(name = "channel")
+@Xml
 internal class PodcastXml {
 
     @PropertyElement
     lateinit var title: String
 
-    @Element
+    @PropertyElement
+    var description: String? = null
+
+    @PropertyElement
+    var summary: String? = null
+
+    @Element(name = "item")
     lateinit var episodesXml: List<EpisodeXml>
 }
 

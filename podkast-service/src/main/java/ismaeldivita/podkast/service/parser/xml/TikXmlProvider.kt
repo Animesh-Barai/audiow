@@ -4,7 +4,7 @@ import com.tickaroo.tikxml.TikXml
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.xml.typeadapter.PodcastTypeAdapter
 
-object TikXmlProvider {
+internal object TikXmlProvider {
 
     val instance: TikXml by lazy {
         TikXml.Builder()

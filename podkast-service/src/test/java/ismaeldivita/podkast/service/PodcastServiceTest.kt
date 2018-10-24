@@ -22,7 +22,7 @@ class PodcastServiceTest {
 
     @Test
     fun getGenreTree() {
-        val genreResponse = IOUtils.fileToString("/json/genre/genre_26.json")
+        val genreResponse = IOUtils.fileToString("/json/genre/genre_68.json")
         mockWebServer.enqueue(MockResponse().setBody(genreResponse))
 
         service.getGenreTree()
@@ -32,14 +32,13 @@ class PodcastServiceTest {
 
     @Test
     fun getEpisodes() {
-        val episodeResponse = IOUtils.fileToString("/xml/feed_1.xml")
+        val episodeResponse = IOUtils.fileToString("/xml/feed_10.xml")
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
-
         service.getPodcast("")
                 .test()
                 .assertValue {
-                    it.title == "The Joe Rogan Experience"
+                    it.title.isNotEmpty() && it.episodes.size == 10
                 }
-                .assertNoErrors()
     }
+
 }

@@ -6,7 +6,7 @@ import com.tickaroo.tikxml.annotation.Xml
 @Xml(name = "rss" )
 internal class RssXml {
 
-    @Element
+    @Element(name = "channel")
     lateinit var podcast: PodcastXml
 
 }
