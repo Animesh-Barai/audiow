@@ -11,6 +11,9 @@ internal class PodcastXml {
     lateinit var title: String
 
     @PropertyElement
+    lateinit var language: String
+
+    @PropertyElement
     var description: String? = null
 
     @PropertyElement

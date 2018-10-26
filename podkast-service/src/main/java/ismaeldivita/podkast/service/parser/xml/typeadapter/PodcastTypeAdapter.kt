@@ -8,6 +8,8 @@ import ismaeldivita.podkast.service.model.Episode
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.xml.model.EpisodeXml
 import ismaeldivita.podkast.service.parser.xml.model.RssXml
+import ismaeldivita.podkast.service.util.DateParser
+
 
 internal class PodcastTypeAdapter : TypeAdapter<Podcast> {
 
@@ -26,6 +28,7 @@ internal class PodcastTypeAdapter : TypeAdapter<Podcast> {
         return Podcast(
                 title = rss.podcast.title,
                 description = rss.podcast.description ?: rss.podcast.summary.orEmpty(),
+                languageIso639 = rss.podcast.language,
                 episodes = mapEpisodes(rss.podcast.episodesXml)
         )
     }
@@ -38,8 +41,9 @@ internal class PodcastTypeAdapter : TypeAdapter<Podcast> {
                         audioFileUrl = it.audioFile.url,
                         duration = it.duration,
                         isExplicit = it.explicit,
-                        publicationDate = it.pubDate,
+                        publicationDate = DateParser.parseRFC822(it.pubDate),
                         coverImageUrl = it.coverUrl
                 )
             }
+
 }

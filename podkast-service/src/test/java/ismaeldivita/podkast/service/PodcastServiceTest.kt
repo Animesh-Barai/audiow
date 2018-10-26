@@ -3,12 +3,18 @@ package ismaeldivita.podkast.service
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.junit.After
 import org.junit.Test
 
 class PodcastServiceTest {
 
     private val mockWebServer = MockWebServer()
     private val service = PodcastService.build { baseUrl = mockWebServer.url("").toString() }
+
+    @After
+    fun tearDown(){
+        mockWebServer.close()
+    }
 
     @Test
     fun search() {
