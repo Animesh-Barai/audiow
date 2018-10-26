@@ -4,7 +4,7 @@ import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
 import ismaeldivita.podkast.service.parser.json.MoshiProvider
-import ismaeldivita.podkast.service.parser.json.typeadapter.model.PodcastJson
+import ismaeldivita.podkast.service.parser.json.model.PodcastJson
 import ismaeldivita.podkast.service.util.adapter
 
 internal object PodcastJsonTypeAdapter {

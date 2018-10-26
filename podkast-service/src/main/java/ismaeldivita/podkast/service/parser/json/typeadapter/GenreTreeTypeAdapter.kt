@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.GenreNode
 import ismaeldivita.podkast.service.model.GenreTree
-import ismaeldivita.podkast.service.parser.json.typeadapter.model.GenreNodeJson
+import ismaeldivita.podkast.service.parser.json.model.GenreNodeJson
 import ismaeldivita.podkast.service.parser.json.MoshiProvider
 import ismaeldivita.podkast.service.util.parse
 

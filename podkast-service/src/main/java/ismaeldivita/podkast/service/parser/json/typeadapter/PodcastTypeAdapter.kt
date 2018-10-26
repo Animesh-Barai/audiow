@@ -3,7 +3,7 @@ package ismaeldivita.podkast.service.parser.json.typeadapter
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.PodcastSketch
-import ismaeldivita.podkast.service.parser.json.typeadapter.model.PodcastJson
+import ismaeldivita.podkast.service.parser.json.model.PodcastJson
 
 internal object PodcastTypeAdapter {
 
@@ -23,15 +23,15 @@ internal object PodcastTypeAdapter {
         )
     }
 
-    private fun getPrimaryGenre(json: PodcastJson): Genre? = with(json) {
+    private fun getPrimaryGenre(json: PodcastJson): Genre = with(json) {
         getGenreList(this)
-                .firstOrNull { it.name.compareTo(primaryGenreName, ignoreCase = true) == 0 }
+                .first { it.name.compareTo(primaryGenreName, ignoreCase = true) == 0 }
     }
 
     private fun getGenreList(json: PodcastJson): List<Genre> = with(json) {
         genreIds.zip(genres)
                 // All podcasts have this genre, which represent the Podcast category,
-                // so to avoid redundancy we're filtering this
+                // so to avoid redundancy we're filtering this category
                 .filter { it.first != 26 }
                 .map { Genre(it.first, it.second) }
     }

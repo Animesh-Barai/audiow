@@ -1,6 +1,6 @@
 package ismaeldivita.podkast.service.parser.typeadapter
 
-import ismaeldivita.podkast.service.parser.json.typeadapter.model.SearchJson
+import ismaeldivita.podkast.service.parser.json.model.SearchJson
 import ismaeldivita.podkast.service.parser.json.MoshiProvider
 import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastTypeAdapter
 import ismaeldivita.podkast.service.parser.json.typeadapter.SearchJsonTypeAdater

@@ -1,4 +1,4 @@
-package ismaeldivita.podkast.service.parser.json.typeadapter.model
+package ismaeldivita.podkast.service.parser.json.model
 
 internal data class GenreNodeJson(
         val id: Int,
