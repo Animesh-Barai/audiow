@@ -1,10 +1,7 @@
 package ismaeldivita.podkast
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import java.time.Duration
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
