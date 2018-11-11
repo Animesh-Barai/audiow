@@ -3,6 +3,7 @@ buildscript {
         kotlinVersion = '1.2.71'
         junitVersion = '4.12'
         mockWebServerVersion = '3.9.0'
+        daggerVersion = '2.16'
     }
 
     repositories {
