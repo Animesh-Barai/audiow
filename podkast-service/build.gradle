@@ -20,6 +20,7 @@ dependencies {
     // Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
 
     //TikXml
     implementation "com.tickaroo.tikxml:retrofit-converter:$tikXmlVersion"

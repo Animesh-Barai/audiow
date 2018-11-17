@@ -2,12 +2,11 @@ package ismaeldivita.podkast.service
 
 import io.reactivex.Single
 import ismaeldivita.podkast.service.model.GenreTree
+import ismaeldivita.podkast.service.model.PodcastDetail
 import ismaeldivita.podkast.service.model.Podcast
-import ismaeldivita.podkast.service.model.PodcastSketch
 import ismaeldivita.podkast.service.parser.ConverterRouterFactory
 import ismaeldivita.podkast.service.parser.json.Json
 import ismaeldivita.podkast.service.parser.xml.Xml
-import ismaeldivita.podkast.service.parser.xml.model.RssXml
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -25,7 +24,7 @@ interface PodcastService {
             @Query("country") countryIso: String = "US",
             @Query("genreId") filterByGenreId: Int? = null,
             @Query("limit") limit: Int? = null
-    ): Single<List<PodcastSketch>>
+    ): Single<List<Podcast>>
 
     @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
     @Json
@@ -36,7 +35,7 @@ interface PodcastService {
     @GET
     @Xml
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
-    fun getPodcast(@Url rssUrl: String): Single<Podcast>
+    fun getPodcast(@Url rssUrl: String): Single<PodcastDetail>
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()

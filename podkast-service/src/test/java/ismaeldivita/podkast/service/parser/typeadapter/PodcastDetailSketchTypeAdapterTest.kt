@@ -3,14 +3,14 @@ package ismaeldivita.podkast.service.parser.typeadapter
 import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
 import ismaeldivita.podkast.service.model.Genre
-import ismaeldivita.podkast.service.model.PodcastSketch
+import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastJsonTypeAdapter
 import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastTypeAdapter
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
-class PodcastSketchTypeAdapterTest {
+class PodcastDetailSketchTypeAdapterTest {
 
     @Test
     fun fromJson() {
@@ -45,7 +45,7 @@ class PodcastSketchTypeAdapterTest {
         assertEquals(expected, actual)
     }
 
-    private fun getExpectedPodcast() = PodcastSketch(
+    private fun getExpectedPodcast() = Podcast(
             title = "The Joe Rogan Experience",
             artistName = "Joe Rogan",
             rssUrl = "http://joeroganexp.joerogan.libsynpro.com/rss",

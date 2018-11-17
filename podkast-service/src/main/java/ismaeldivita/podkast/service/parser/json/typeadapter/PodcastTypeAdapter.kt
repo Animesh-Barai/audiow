@@ -2,17 +2,17 @@ package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Genre
-import ismaeldivita.podkast.service.model.PodcastSketch
+import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.json.model.PodcastJson
 
 internal object PodcastTypeAdapter {
 
     @FromJson
-    fun fromJson(json: List<PodcastJson>): List<PodcastSketch> = json.map(PodcastTypeAdapter::fromJson)
+    fun fromJson(json: List<PodcastJson>): List<Podcast> = json.map(PodcastTypeAdapter::fromJson)
 
     @FromJson
-    fun fromJson(json: PodcastJson): PodcastSketch = with(json) {
-        PodcastSketch(
+    fun fromJson(json: PodcastJson): Podcast = with(json) {
+        Podcast(
                 title = trackName,
                 artistName = artistName,
                 rssUrl = feedUrl,
@@ -30,7 +30,7 @@ internal object PodcastTypeAdapter {
 
     private fun getGenreList(json: PodcastJson): List<Genre> = with(json) {
         genreIds.zip(genres)
-                // All podcasts have this genre, which represent the Podcast category,
+                // All podcasts have this genre, which represent the PodcastDetail category,
                 // so to avoid redundancy we're filtering this category
                 .filter { it.first != 26 }
                 .map { Genre(it.first, it.second) }

@@ -5,31 +5,30 @@ import com.tickaroo.tikxml.XmlReader
 import com.tickaroo.tikxml.XmlWriter
 import com.tickaroo.tikxml.typeadapter.TypeAdapter
 import ismaeldivita.podkast.service.model.Episode
-import ismaeldivita.podkast.service.model.Podcast
+import ismaeldivita.podkast.service.model.PodcastDetail
 import ismaeldivita.podkast.service.parser.xml.model.EpisodeXml
 import ismaeldivita.podkast.service.parser.xml.model.RssXml
 import ismaeldivita.podkast.service.util.DateParser
 
 
-internal class PodcastTypeAdapter : TypeAdapter<Podcast> {
+internal class PodcastDetailTypeAdapter : TypeAdapter<PodcastDetail> {
 
     override fun toXml(
             writer: XmlWriter,
             config: TikXmlConfig,
-            value: Podcast,
+            value: PodcastDetail,
             overridingXmlElementTagName: String
     ) = throw NotImplementedError()
 
 
-    override fun fromXml(reader: XmlReader, config: TikXmlConfig): Podcast {
+    override fun fromXml(reader: XmlReader, config: TikXmlConfig): PodcastDetail {
         val adapter = config.getTypeAdapter(RssXml::class.java)
         val rss = adapter.fromXml(reader, config)
 
-        return Podcast(
-                title = rss.podcast.title,
-                description = rss.podcast.description ?: rss.podcast.summary.orEmpty(),
-                languageIso639 = rss.podcast.language,
-                episodes = mapEpisodes(rss.podcast.episodesXml)
+        return PodcastDetail(
+                description = rss.podcastDetail.description ?: rss.podcastDetail.summary.orEmpty(),
+                languageIso639 = rss.podcastDetail.language,
+                episodes = mapEpisodes(rss.podcastDetail.episodesXml)
         )
     }
 

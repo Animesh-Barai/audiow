@@ -8,7 +8,7 @@ import ismaeldivita.podkast.service.testhelper.IOUtils
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
-class PodcastSketchJsonTypeAdapterTest {
+class PodcastDetailSketchJsonTypeAdapterTest {
 
     private val adapter = PodcastJsonTypeAdapter
 

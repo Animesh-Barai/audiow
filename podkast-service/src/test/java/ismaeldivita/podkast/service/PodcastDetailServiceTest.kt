@@ -6,7 +6,7 @@ import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Test
 
-class PodcastServiceTest {
+class PodcastDetailServiceTest {
 
     private val mockWebServer = MockWebServer()
     private val service = PodcastService.build { baseUrl = mockWebServer.url("").toString() }
@@ -42,9 +42,7 @@ class PodcastServiceTest {
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
         service.getPodcast("")
                 .test()
-                .assertValue {
-                    it.title.isNotEmpty() && it.episodes.size == 10
-                }
+                .assertValue { it.episodes.size == 10 }
     }
 
 }
