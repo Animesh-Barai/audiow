@@ -28,8 +28,10 @@ dependencies {
     implementation "com.tickaroo.tikxml:core:$tikXmlVersion"
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
 
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
+
     // Test
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
-
 }
