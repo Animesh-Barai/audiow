@@ -1,14 +1,13 @@
-package ismaeldivita.podkast.service.parser.typeadapter
+package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Artwork
-import ismaeldivita.podkast.service.parser.json.typeadapter.PodcastJsonTypeAdapter
 import ismaeldivita.podkast.service.parser.json.model.PodcastJson
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
-class PodcastDetailSketchJsonTypeAdapterTest {
+class PodcastJsonTypeAdapterTest {
 
     private val adapter = PodcastJsonTypeAdapter
 

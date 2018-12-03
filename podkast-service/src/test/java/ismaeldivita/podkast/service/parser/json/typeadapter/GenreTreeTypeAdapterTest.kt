@@ -1,10 +1,9 @@
-package ismaeldivita.podkast.service.parser.typeadapter
+package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.JsonReader
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.GenreDetail
 import ismaeldivita.podkast.service.model.GenreTree
-import ismaeldivita.podkast.service.parser.json.typeadapter.GenreTreeTypeAdapter
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import org.junit.Test
 

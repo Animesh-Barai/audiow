@@ -13,6 +13,7 @@ internal object PodcastTypeAdapter {
     @FromJson
     fun fromJson(json: PodcastJson): Podcast = with(json) {
         Podcast(
+                id = trackId,
                 title = trackName,
                 artistName = artistName,
                 rssUrl = feedUrl,
@@ -30,7 +31,7 @@ internal object PodcastTypeAdapter {
 
     private fun getGenreList(json: PodcastJson): List<Genre> = with(json) {
         genreIds.zip(genres)
-                // All podcasts have this genre, which represent the PodcastDetail category,
+                // All podcasts have this genre, which represent the Podcast category,
                 // so to avoid redundancy we're filtering this category
                 .filter { it.first != 26 }
                 .map { Genre(it.first, it.second) }
