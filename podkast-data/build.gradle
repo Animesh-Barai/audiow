@@ -25,10 +25,12 @@ android {
 }
 
 dependencies {
-
     ext {
-        roomVersion = '2.1.0-alpha02'
+        roomVersion = '2.1.0-alpha03'
     }
+
+    implementation project(':podkast-service')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // Room
@@ -41,13 +43,12 @@ dependencies {
 
     // Test
     testImplementation 'junit:junit:4.12'
-
-    androidTestImplementation 'androidx.test:core:1.0.0'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation "androidx.test.ext:junit:1.0.0"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-
+    androidTestImplementation "androidx.test:core:$androidTest"
+    androidTestImplementation "androidx.test:runner:$androidTest"
+    androidTestImplementation "androidx.test.ext:junit:$androidTest"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidEspresso"
 }
+
 repositories {
     mavenCentral()
 }

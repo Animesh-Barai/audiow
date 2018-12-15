@@ -2,6 +2,7 @@ package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.FromJson
 import ismaeldivita.podkast.service.model.Genre
+import ismaeldivita.podkast.service.model.GenreTree.Companion.ROOT_GENRE_ID
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.json.model.PodcastJson
 
@@ -33,7 +34,7 @@ internal object PodcastTypeAdapter {
         genreIds.zip(genres)
                 // All podcasts have this genre, which represent the Podcast category,
                 // so to avoid redundancy we're filtering this category
-                .filter { it.first != 26 }
+                .filter { it.first != ROOT_GENRE_ID }
                 .map { Genre(it.first, it.second) }
     }
 

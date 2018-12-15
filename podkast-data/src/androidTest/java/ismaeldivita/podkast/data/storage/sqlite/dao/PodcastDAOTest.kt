@@ -4,8 +4,10 @@ import android.database.sqlite.SQLiteConstraintException
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import ismaeldivita.podkast.data.storage.sqlite.PodcastDatabase
-import ismaeldivita.podkast.data.storage.sqlite.entity.GenreDB
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastWrapperDB
+import ismaeldivita.podkast.data.storage.sqlite.entity.GenreEntity
+import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastArtworkEntity
+import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastEntity
+import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastWrapperEntity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -21,11 +23,11 @@ class PodcastDAOTest {
 
     @Test
     fun writeThenRead() {
-        val podcastWrapperDB = PodcastWrapperDB(
-                PodcastWrapperDB.PodcastDB(2, "Title", "Artist", "rssUrl", false),
+        val podcastWrapperDB = PodcastWrapperEntity(
+                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 listOf(
-                        PodcastWrapperDB.PodcastArtworkDB(0, "url", 10, 10, 2),
-                        PodcastWrapperDB.PodcastArtworkDB(0, "url", 11, 11, 2)
+                        PodcastArtworkEntity(0, "url", 10, 10, 2),
+                        PodcastArtworkEntity(0, "url", 11, 11, 2)
                 ),
                 emptyList()
         )
@@ -38,20 +40,20 @@ class PodcastDAOTest {
     @Test
     fun whenReplacePodcastShouldCleanArtworkList() {
         val initialArtwork = listOf(
-                PodcastWrapperDB.PodcastArtworkDB(0, "url", 10, 10, 2),
-                PodcastWrapperDB.PodcastArtworkDB(0, "url", 11, 11, 2)
+                PodcastArtworkEntity(0, "url", 10, 10, 2),
+                PodcastArtworkEntity(0, "url", 11, 11, 2)
         )
         val updatedArtwork = listOf(
-                PodcastWrapperDB.PodcastArtworkDB(0, "url2", 10, 10, 2),
-                PodcastWrapperDB.PodcastArtworkDB(0, "url2", 11, 11, 2)
+                PodcastArtworkEntity(0, "url2", 10, 10, 2),
+                PodcastArtworkEntity(0, "url2", 11, 11, 2)
         )
-        val podcastWrapperDB = PodcastWrapperDB(
-                PodcastWrapperDB.PodcastDB(2, "Title", "Artist", "rssUrl", false),
+        val podcastWrapperDB = PodcastWrapperEntity(
+                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 emptyList(),
                 emptyList()
         )
 
-        fun insertPodcastAndAssertArtwork(artworkList: List<PodcastWrapperDB.PodcastArtworkDB>) {
+        fun insertPodcastAndAssertArtwork(artworkList: List<PodcastArtworkEntity>) {
             podcastDAO.podcastWrapperTransaction(podcastWrapperDB.copy(artworkList = artworkList))
             podcastDAO.getAll().blockingGet().first().run {
                 assertEquals(podcastWrapperDB.copy(artworkList = artworkList), this)
@@ -63,8 +65,8 @@ class PodcastDAOTest {
 
     @Test(expected = SQLiteConstraintException::class)
     fun whenInsertWithoutGenreShouldCrashWithForeignKeyError() {
-        val podcastWrapperDB = PodcastWrapperDB(
-                PodcastWrapperDB.PodcastDB(2, "Title", "Artist", "rssUrl", false),
+        val podcastWrapperDB = PodcastWrapperEntity(
+                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 emptyList(),
                 listOf(1)
         )
@@ -73,15 +75,15 @@ class PodcastDAOTest {
 
     @Test
     fun writeThenReadWithGenre() {
-        val podcastWrapperDB = PodcastWrapperDB(
-                PodcastWrapperDB.PodcastDB(2, "Title", "Artist", "rssUrl", false),
+        val podcastWrapperDB = PodcastWrapperEntity(
+                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 listOf(
-                        PodcastWrapperDB.PodcastArtworkDB(0, "url", 10, 10, 2),
-                        PodcastWrapperDB.PodcastArtworkDB(0, "url", 11, 11, 2)
+                        PodcastArtworkEntity(0, "url", 10, 10, 2),
+                        PodcastArtworkEntity(0, "url", 11, 11, 2)
                 ),
                 listOf(1)
         )
-        genreDAO.insert(GenreDB(1, "Genre"))
+        genreDAO.insert(GenreEntity(1, "Genre", ""))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
         podcastDAO.getAll().blockingGet().first().run {
             assertEquals(podcastWrapperDB, this)

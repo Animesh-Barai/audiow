@@ -4,6 +4,12 @@ import java.util.*
 
 class GenreTree(val root: Genre) : Iterable<Genre> {
 
+    companion object {
+        const val ROOT_GENRE_ID = 26
+    }
+
+    constructor(list: List<Genre>) : this(list.first { it.id == ROOT_GENRE_ID })
+
     override fun iterator() = object : AbstractIterator<Genre>() {
         val nodes = buildList(root)
 

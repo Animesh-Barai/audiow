@@ -4,15 +4,15 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import ismaeldivita.podkast.data.storage.sqlite.dao.GenreDAO
 import ismaeldivita.podkast.data.storage.sqlite.dao.PodcastDAO
-import ismaeldivita.podkast.data.storage.sqlite.entity.GenreDB
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastWrapperDB
+import ismaeldivita.podkast.data.storage.sqlite.entity.*
 
 @Database(
         entities = [
-            PodcastWrapperDB.PodcastDB::class,
-            PodcastWrapperDB.PodcastArtworkDB::class,
-            PodcastWrapperDB.PodcastGenreDB::class,
-            GenreDB::class
+            PodcastEntity::class,
+            PodcastArtworkEntity::class,
+            PodcastAndGenreMapEntity::class,
+            GenreEntity::class,
+            SubGenreEntity::class
         ],
         version = 1,
         exportSchema = false
