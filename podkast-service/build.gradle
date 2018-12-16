@@ -34,5 +34,4 @@ dependencies {
     // Test
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
-
 }
