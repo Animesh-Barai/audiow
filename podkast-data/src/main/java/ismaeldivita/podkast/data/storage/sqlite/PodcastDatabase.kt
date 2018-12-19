@@ -19,6 +19,10 @@ import ismaeldivita.podkast.data.storage.sqlite.entity.*
 )
 internal abstract class PodcastDatabase : RoomDatabase() {
 
+    companion object {
+        const val DATABASE_FILE_NAME = "PODCAST"
+    }
+
     abstract fun genreDAO(): GenreDAO
 
     abstract fun podcastDAO(): PodcastDAO

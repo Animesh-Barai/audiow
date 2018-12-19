@@ -22,9 +22,14 @@ android {
 }
 
 dependencies {
+    implementation project(':podkast-data')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:1.0.2"
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

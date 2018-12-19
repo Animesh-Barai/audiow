@@ -31,6 +31,10 @@ dependencies {
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
     // Test
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
