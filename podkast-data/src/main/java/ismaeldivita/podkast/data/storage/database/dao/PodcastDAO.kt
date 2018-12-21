@@ -1,11 +1,11 @@
-package ismaeldivita.podkast.data.storage.sqlite.dao
+package ismaeldivita.podkast.data.storage.database.dao
 
 import androidx.room.*
 import io.reactivex.Single
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastAndGenreMapEntity
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastArtworkEntity
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastEntity
-import ismaeldivita.podkast.data.storage.sqlite.entity.PodcastWrapperEntity
+import ismaeldivita.podkast.data.storage.database.entity.PodcastAndGenreMapEntity
+import ismaeldivita.podkast.data.storage.database.entity.PodcastArtworkEntity
+import ismaeldivita.podkast.data.storage.database.entity.PodcastEntity
+import ismaeldivita.podkast.data.storage.database.entity.PodcastWrapperEntity
 
 @Dao
 internal abstract class PodcastDAO {

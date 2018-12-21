@@ -5,8 +5,8 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import ismaeldivita.podkast.data.R
-import ismaeldivita.podkast.data.storage.sqlite.dao.GenreDAO
-import ismaeldivita.podkast.data.storage.sqlite.entity.GenreWithSubGenre
+import ismaeldivita.podkast.data.storage.database.dao.GenreDAO
+import ismaeldivita.podkast.data.storage.database.entity.GenreWithSubGenre
 import ismaeldivita.podkast.service.PodcastService
 import ismaeldivita.podkast.service.model.Genre
 import ismaeldivita.podkast.service.model.GenreDetail

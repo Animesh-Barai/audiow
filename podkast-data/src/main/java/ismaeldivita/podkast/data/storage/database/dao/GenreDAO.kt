@@ -1,8 +1,8 @@
-package ismaeldivita.podkast.data.storage.sqlite.dao
+package ismaeldivita.podkast.data.storage.database.dao
 
 import androidx.room.*
 import io.reactivex.Single
-import ismaeldivita.podkast.data.storage.sqlite.entity.*
+import ismaeldivita.podkast.data.storage.database.entity.*
 import ismaeldivita.podkast.service.model.Genre
 
 @Dao

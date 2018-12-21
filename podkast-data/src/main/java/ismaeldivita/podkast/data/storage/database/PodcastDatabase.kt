@@ -1,10 +1,10 @@
-package ismaeldivita.podkast.data.storage.sqlite
+package ismaeldivita.podkast.data.storage.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ismaeldivita.podkast.data.storage.sqlite.dao.GenreDAO
-import ismaeldivita.podkast.data.storage.sqlite.dao.PodcastDAO
-import ismaeldivita.podkast.data.storage.sqlite.entity.*
+import ismaeldivita.podkast.data.storage.database.dao.GenreDAO
+import ismaeldivita.podkast.data.storage.database.dao.PodcastDAO
+import ismaeldivita.podkast.data.storage.database.entity.*
 
 @Database(
         entities = [

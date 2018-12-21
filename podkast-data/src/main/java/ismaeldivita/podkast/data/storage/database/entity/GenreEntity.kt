@@ -1,4 +1,4 @@
-package ismaeldivita.podkast.data.storage.sqlite.entity
+package ismaeldivita.podkast.data.storage.database.entity
 
 import androidx.room.*
 

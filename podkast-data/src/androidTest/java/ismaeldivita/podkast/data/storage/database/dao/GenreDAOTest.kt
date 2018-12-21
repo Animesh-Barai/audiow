@@ -1,10 +1,10 @@
-package ismaeldivita.podkast.data.storage.sqlite.dao
+package ismaeldivita.podkast.data.storage.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import ismaeldivita.podkast.data.storage.sqlite.PodcastDatabase
-import ismaeldivita.podkast.data.storage.sqlite.entity.GenreEntity
-import ismaeldivita.podkast.data.storage.sqlite.entity.SubGenreEntity
+import ismaeldivita.podkast.data.storage.database.PodcastDatabase
+import ismaeldivita.podkast.data.storage.database.entity.GenreEntity
+import ismaeldivita.podkast.data.storage.database.entity.SubGenreEntity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
