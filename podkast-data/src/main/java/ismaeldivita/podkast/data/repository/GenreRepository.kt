@@ -1,7 +1,6 @@
 package ismaeldivita.podkast.data.repository
 
 import android.content.res.Resources
-import android.util.Log
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -20,8 +19,6 @@ internal class GenreRepository @Inject constructor(
         private val resources: Resources
 ) : Repository<Genre> {
 
-    private val countryIso by lazy { resources.getString(R.string.country_iso) }
-
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
@@ -32,7 +29,7 @@ internal class GenreRepository @Inject constructor(
             genreDAO.getAllWithSubGenres()
                     .flatMap { genreEntities ->
                         if (genreEntities.isEmpty()) {
-                            service.getGenreTree(countryIso)
+                            service.getGenreTree(resources.getString(R.string.country_iso))
                                     .map { it.toList() }
                                     .flatMap { updateCache(it) }
                         } else {

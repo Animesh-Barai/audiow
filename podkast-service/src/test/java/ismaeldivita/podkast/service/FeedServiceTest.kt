@@ -6,7 +6,7 @@ import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Test
 
-class PodcastDetailServiceTest {
+class FeedServiceTest {
 
     private val mockWebServer = MockWebServer()
     private val service = PodcastService.build { baseUrl = mockWebServer.url("").toString() }

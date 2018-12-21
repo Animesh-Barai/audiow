@@ -11,7 +11,7 @@ import ismaeldivita.podkast.service.parser.xml.model.RssXml
 import ismaeldivita.podkast.service.util.DateParser
 
 
-internal class PodcastDetailTypeAdapter : TypeAdapter<Feed> {
+internal class FeedTypeAdapter : TypeAdapter<Feed> {
 
     override fun toXml(
             writer: XmlWriter,
@@ -26,9 +26,9 @@ internal class PodcastDetailTypeAdapter : TypeAdapter<Feed> {
         val rss = adapter.fromXml(reader, config)
 
         return Feed(
-                description = rss.podcastDetail.description ?: rss.podcastDetail.summary.orEmpty(),
-                languageIso639 = rss.podcastDetail.language,
-                episodes = mapEpisodes(rss.podcastDetail.episodesXml)
+                description = rss.feed.description ?: rss.feed.summary.orEmpty(),
+                languageIso639 = rss.feed.language,
+                episodes = mapEpisodes(rss.feed.episodesXml)
         )
     }
 

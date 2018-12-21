@@ -16,9 +16,11 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         repository.getAll()
                 .subscribeOn(Schedulers.io())
                 .subscribe({ Log.i("DEBUG_X", it.toString()) }, {})
+
     }
 
 }

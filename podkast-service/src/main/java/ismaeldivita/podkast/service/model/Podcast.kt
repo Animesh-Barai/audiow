@@ -8,6 +8,5 @@ data class Podcast(
         val artworkList: List<Artwork>,
         val primaryGenre: Genre,
         val genreList: List<Genre>,
-        val explicit: Boolean,
-        val detail: PodcastDetail? = null
+        val explicit: Boolean
 )

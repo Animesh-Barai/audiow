@@ -2,7 +2,7 @@ package ismaeldivita.podkast.service
 
 import io.reactivex.Single
 import ismaeldivita.podkast.service.model.GenreTree
-import ismaeldivita.podkast.service.model.PodcastDetail
+import ismaeldivita.podkast.service.model.Feed
 import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.ConverterRouterFactory
 import ismaeldivita.podkast.service.parser.json.Json
@@ -35,7 +35,7 @@ interface PodcastService {
     @GET
     @Xml
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
-    fun getPodcast(@Url rssUrl: String): Single<PodcastDetail>
+    fun getPodcast(@Url rssUrl: String): Single<Feed>
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
