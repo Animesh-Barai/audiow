@@ -6,4 +6,7 @@ interface Preferences {
 
     fun <T> write(key: PreferencesKey, value: T)
 
+    fun remove(key: PreferencesKey)
+
+    fun clean()
 }

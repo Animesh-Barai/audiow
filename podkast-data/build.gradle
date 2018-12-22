@@ -27,6 +27,7 @@ android {
 dependencies {
     ext {
         roomVersion = '2.1.0-alpha03'
+        mmkvVersion = '1.0.15'
     }
 
     api project(':podkast-service')
@@ -37,6 +38,9 @@ dependencies {
     api "androidx.room:room-runtime:$roomVersion"
     api "androidx.room:room-rxjava2:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+
+    // MMKV
+    implementation "com.tencent:mmkv:$mmkvVersion"
 
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
