@@ -1,5 +1,9 @@
 buildscript {
     ext {
+        defaultCompileSdkVersion = 28
+        defaultMinSdkVersion = 22
+        defaultTargetSdkVersion = 28
+
         kotlinVersion = '1.2.71'
         junitVersion = '4.12'
         mockWebServerVersion = '3.9.0'
