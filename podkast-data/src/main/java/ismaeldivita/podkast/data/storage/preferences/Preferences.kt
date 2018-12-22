@@ -2,11 +2,12 @@ package ismaeldivita.podkast.data.storage.preferences
 
 interface Preferences {
 
-    fun <T> read(key: PreferencesKey): T?
+    fun <T : Any> read(value: PreferenceValue<T>): T?
 
-    fun <T> write(key: PreferencesKey, value: T)
+    fun <T : Any> write(key: PreferenceValue<T>, value: T)
 
-    fun remove(key: PreferencesKey)
+    fun remove(key: PreferenceValue<*>)
 
     fun clean()
+
 }

@@ -29,8 +29,8 @@ dependencies {
         roomVersion = '2.1.0-alpha03'
         mmkvVersion = '1.0.15'
     }
-
     api project(':podkast-service')
+    api project(':podkast-common')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 

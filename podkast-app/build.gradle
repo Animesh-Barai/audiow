@@ -23,23 +23,19 @@ android {
 
 dependencies {
     implementation project(':podkast-data')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
-
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
-
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
     testImplementation "junit:junit:$junitVersion"
-
     androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation "androidx.test.ext:junit:1.0.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation project(':podkast-common')
 }
