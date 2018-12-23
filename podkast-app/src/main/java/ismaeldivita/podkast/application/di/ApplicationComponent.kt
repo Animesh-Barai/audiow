@@ -5,6 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ismaeldivita.podkast.application.PodkastApplication
 import ismaeldivita.podkast.data.DataModule
+import ismaeldivita.podkast.screen.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
@@ -13,7 +14,8 @@ import javax.inject.Singleton
             AndroidSupportInjectionModule::class,
             ActivityBindingModule::class,
             ApplicationModule::class,
-            DataModule::class
+            DataModule::class,
+            ViewModelModule::class
         ]
 )
 interface ApplicationComponent : AndroidInjector<PodkastApplication> {

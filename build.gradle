@@ -9,6 +9,7 @@ buildscript {
         mockWebServerVersion = '3.9.0'
         daggerVersion = '2.16'
         rxVersion = '2.2.4'
+        androidLifecycle = '2.0.0'
         androidTest = '1.1.0'
         androidEspresso = '3.1.1'
     }
