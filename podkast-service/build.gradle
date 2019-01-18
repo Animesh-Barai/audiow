@@ -9,11 +9,7 @@ android {
     defaultConfig {
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -24,12 +20,6 @@ android {
     }
 }
 dependencies {
-
-    ext {
-        retrofitVersion = '2.4.0'
-        moshiVersion = '1.7.0'
-        tikXmlVersion = '0.8.13'
-    }
     implementation project(':podkast-core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
@@ -38,6 +28,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
     // Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
@@ -59,5 +53,5 @@ dependencies {
 
     // Test
     testImplementation "junit:junit:$junitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 }

@@ -25,9 +25,6 @@ android {
 }
 
 dependencies {
-    ext {
-        androidEmojiVersion = "28.0.0"
-    }
     implementation project(':podkast-data')
     implementation project(':podkast-core')
 
@@ -36,7 +33,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidLifecycle"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    implementation "com.android.support:support-emoji:$androidEmojiVersion"
 
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
@@ -50,8 +46,8 @@ dependencies {
     // Test
     testImplementation "junit:junit:$junitVersion"
 
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-
+    androidTestImplementation "androidx.test:core:$androidTest"
+    androidTestImplementation "androidx.test:runner:$androidTest"
+    androidTestImplementation "androidx.test.ext:junit:$androidTest"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidEspresso"
 }
