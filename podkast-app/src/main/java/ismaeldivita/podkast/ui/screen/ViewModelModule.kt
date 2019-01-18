@@ -10,14 +10,14 @@ import ismaeldivita.podkast.application.di.viewmodel.ViewModelKey
 import ismaeldivita.podkast.ui.screen.setup.SetupViewModel
 
 @Module
-abstract class ViewModelModule {
+interface ViewModelModule {
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap
     @ViewModelKey(SetupViewModel::class)
-    internal abstract fun postListViewModel(viewModel: SetupViewModel): ViewModel
+    fun postListViewModel(viewModel: SetupViewModel): ViewModel
 
 }
