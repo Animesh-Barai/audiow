@@ -2,7 +2,7 @@ package ismaeldivita.podkast.data.storage.preferences.mmkv
 
 import android.app.Application
 import com.tencent.mmkv.MMKV
-import ismaeldivita.podkast.common.android.ApplicationInitializer
+import ismaeldivita.podkast.core.android.ApplicationInitializer
 
 class MmkvInitiliazer : ApplicationInitializer {
 

@@ -30,6 +30,7 @@ dependencies {
         moshiVersion = '1.7.0'
         tikXmlVersion = '0.8.13'
     }
+    implementation project(':podkast-core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 

@@ -3,7 +3,7 @@ package ismaeldivita.podkast.application
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import ismaeldivita.podkast.application.di.DaggerApplicationComponent
-import ismaeldivita.podkast.common.android.ApplicationInitializer
+import ismaeldivita.podkast.core.android.ApplicationInitializer
 import javax.inject.Inject
 
 class PodkastApplication : DaggerApplication() {

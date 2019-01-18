@@ -4,7 +4,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ismaeldivita.podkast.application.PodkastApplication
-import ismaeldivita.podkast.common.CoreModule
+import ismaeldivita.podkast.core.CoreModule
 import ismaeldivita.podkast.data.DataModule
 import ismaeldivita.podkast.ui.screen.ViewModelModule
 import javax.inject.Singleton

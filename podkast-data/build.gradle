@@ -30,7 +30,7 @@ dependencies {
         mmkvVersion = '1.0.15'
     }
     api project(':podkast-service')
-    api project(':podkast-common')
+    implementation project(':podkast-core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 

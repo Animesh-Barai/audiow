@@ -29,7 +29,7 @@ dependencies {
         androidEmojiVersion = "28.0.0"
     }
     implementation project(':podkast-data')
-    implementation project(':podkast-common')
+    implementation project(':podkast-core')
 
     // Android
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
