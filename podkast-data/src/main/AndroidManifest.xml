@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ismaeldivita.podkast.data" />
+<manifest package="ismaeldivita.podkast.data" />
