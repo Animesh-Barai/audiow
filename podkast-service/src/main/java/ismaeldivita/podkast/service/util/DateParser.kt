@@ -1,5 +1,6 @@
 package ismaeldivita.podkast.service.util
 
+import timber.log.Timber
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
@@ -7,10 +8,10 @@ import java.util.*
 object DateParser {
 
     private val RFC822_MASKS = arrayOf(
-            "EEE, dd MMM yy HH:mm:ss z",
-            "EEE, dd MMM yy HH:mm z",
-            "dd MMM yy HH:mm:ss z",
-            "dd MMM yy HH:mm z"
+        "EEE, dd MMM yy HH:mm:ss z",
+        "EEE, dd MMM yy HH:mm z",
+        "dd MMM yy HH:mm:ss z",
+        "dd MMM yy HH:mm z"
     )
 
     fun parseRFC822(date: String, locale: Locale = Locale.US): Date? {
@@ -31,7 +32,7 @@ object DateParser {
             }
             i++
         }
-        // TODO Log error events when date is null
+        if (parsedDate == null) Timber.e("Failed to parse RFC822 ($date) as Date")
         return parsedDate
     }
 

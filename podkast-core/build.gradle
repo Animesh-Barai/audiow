@@ -24,7 +24,7 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    implementation "com.jakewharton.timber:timber:$timberVersion"
+    api "com.jakewharton.timber:timber:$timberVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

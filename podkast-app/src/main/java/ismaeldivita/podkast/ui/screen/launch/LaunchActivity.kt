@@ -5,7 +5,6 @@ import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity
 import ismaeldivita.podkast.MainActivity
 import ismaeldivita.podkast.data.interactor.setup.DataSetupInteractor
-import ismaeldivita.podkast.ui.screen.setup.SetupActivity
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -24,7 +23,7 @@ class LaunchActivity : DaggerAppCompatActivity() {
                     if (it) {
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
-                        startActivity(Intent(this, SetupActivity::class.java))
+                        startActivity(Intent(this, MainActivity::class.java))
                     }
                 }, {})
     }

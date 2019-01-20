@@ -1,7 +1,6 @@
 package ismaeldivita.podkast
 
 import android.os.Bundle
-import android.util.Log
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.schedulers.Schedulers
 import ismaeldivita.podkast.data.repository.Repository
@@ -19,7 +18,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         repository.getAll()
                 .subscribeOn(Schedulers.io())
-                .subscribe({ Log.i("DEBUG_X", it.toString()) }, {})
+                .subscribe({}, {})
 
     }
 

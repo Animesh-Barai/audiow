@@ -4,13 +4,13 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
 import ismaeldivita.podkast.core.android.ApplicationInitializer
-import ismaeldivita.podkast.core.monitoring.log.LoggerInitializer
+import ismaeldivita.podkast.core.monitoring.log.LogInitializer
 
 @Module
 abstract class MonitoringModule {
 
     @Binds
     @IntoSet
-    internal abstract fun bindLogInitializer(initializer: LoggerInitializer): ApplicationInitializer
+    internal abstract fun bindLogInitializer(initializer: LogInitializer): ApplicationInitializer
 
 }
