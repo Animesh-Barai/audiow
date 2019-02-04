@@ -7,7 +7,7 @@ import ismaeldivita.podkast.core.android.ApplicationInitializer
 import ismaeldivita.podkast.core.monitoring.log.LogInitializer
 
 @Module
-abstract class MonitoringModule {
+internal abstract class MonitoringModule {
 
     @Binds
     @IntoSet

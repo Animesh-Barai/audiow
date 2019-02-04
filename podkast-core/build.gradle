@@ -22,13 +22,17 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+    // Monitoring
     api "com.jakewharton.timber:timber:$timberVersion"
 
+    // Rx
+    api "io.reactivex.rxjava2:rxjava:$rxVersion"
+
     // Dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    api "com.google.dagger:dagger:$daggerVersion"
+    api "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 

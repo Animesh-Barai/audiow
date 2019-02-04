@@ -32,7 +32,7 @@ object DateParser {
             }
             i++
         }
-        if (parsedDate == null) Timber.e("Failed to parse RFC822 ($date) as Date")
+        if (parsedDate == null) Timber.e("Failed to parse RFC822 to Date")
         return parsedDate
     }
 

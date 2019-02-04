@@ -22,8 +22,6 @@ android {
 dependencies {
     implementation project(':podkast-core')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
@@ -43,9 +41,6 @@ dependencies {
     implementation "com.tickaroo.tikxml:annotation:$tikXmlVersion"
     implementation "com.tickaroo.tikxml:core:$tikXmlVersion"
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
-
-    // Rx
-    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

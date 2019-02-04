@@ -1,9 +1,12 @@
 package ismaeldivita.podkast.data.repository
 
 import android.content.res.Resources
+import android.text.format.DateUtils
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import ismaeldivita.podkast.core.reactivex.GlobalCompositeDisposable
 import ismaeldivita.podkast.core.util.time.TimeProvider
 import ismaeldivita.podkast.data.R
 import ismaeldivita.podkast.data.storage.database.dao.GenreDAO
@@ -20,18 +23,24 @@ internal class GenreRepository @Inject constructor(
     private val service: PodcastService,
     private val resources: Resources,
     private val preferences: Preferences,
-    private val timeProvider: TimeProvider
+    private val timeProvider: TimeProvider,
+    @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
 ) : Repository<Genre> {
 
-    private companion object {
-        private const val GENRE_LAST_UPDATE_KEY = "genre_last_update"
+    companion object {
+        val LAST_DATABASE_UPDATE_KEY = Preferences.Key("genre_last_update", Long::class)
+        const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 
-    override fun getById(id: Int): Maybe<Genre> = throw UnsupportedOperationException()
+    override fun getById(id: Int): Maybe<Genre> = getAll().flatMapMaybe { list ->
+        list.firstOrNull { it.id == id }?.let { Maybe.just(it) } ?: Maybe.empty()
+    }
+
+    override fun clear(): Completable = Completable.fromCallable { genreDAO.deleteAll() }
 
     override fun getAll(): Single<List<Genre>> =
         genreDAO.getAllWithSubGenres()
@@ -39,19 +48,20 @@ internal class GenreRepository @Inject constructor(
                 if (genreEntities.isEmpty()) {
                     fetchFromRemote()
                 } else {
+                    updateCache()
                     Single.just(GenreTree(mapEntitiesToGenre(genreEntities)).toList())
                 }
             }
 
-    override fun clear(): Completable = Completable.fromCallable { genreDAO.deleteAll() }
 
     private fun fetchFromRemote(): Single<List<Genre>> =
         service.getGenreTree(resources.getString(R.string.country_iso))
-            .flatMap { updateCache(it.toList()) }
+            .flatMap { updateDatabase(it.toList()) }
 
-    private fun updateCache(genreList: List<Genre>): Single<List<Genre>> =
+    private fun updateDatabase(genreList: List<Genre>): Single<List<Genre>> =
         Completable.fromCallable {
             genreDAO.genreTransaction(genreList)
+            preferences.write(LAST_DATABASE_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
         }.toSingleDefault(genreList)
 
     private fun mapEntitiesToGenre(
@@ -71,4 +81,18 @@ internal class GenreRepository @Inject constructor(
             )
         }
         .toList()
+
+    private fun updateCache() {
+        val lastUpdate = preferences.read(LAST_DATABASE_UPDATE_KEY) ?: 0
+        val cacheDuration = timeProvider.getCurrentTimeMillis() - lastUpdate
+
+        if (cacheDuration >= CACHE_TTL) {
+            fetchFromRemote()
+                .ignoreElement()
+                .onErrorComplete()
+                .subscribe()
+                .let(globalDisposable::add)
+        }
+    }
+
 }

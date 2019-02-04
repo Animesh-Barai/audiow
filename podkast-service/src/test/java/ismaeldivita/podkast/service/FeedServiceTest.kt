@@ -12,7 +12,7 @@ class FeedServiceTest {
     private val service = PodcastService.build { baseUrl = mockWebServer.url("").toString() }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         mockWebServer.close()
     }
 
@@ -22,8 +22,8 @@ class FeedServiceTest {
         mockWebServer.enqueue(MockResponse().setBody(searchResponse))
 
         service.search()
-                .test()
-                .assertValue { it.size == 50 }
+            .test()
+            .assertValue { it.size == 50 }
     }
 
     @Test
@@ -32,8 +32,8 @@ class FeedServiceTest {
         mockWebServer.enqueue(MockResponse().setBody(genreResponse))
 
         service.getGenreTree()
-                .test()
-                .assertValue { it.count() == 68 }
+            .test()
+            .assertValue { it.count() == 68 }
     }
 
     @Test
@@ -41,8 +41,8 @@ class FeedServiceTest {
         val episodeResponse = IOUtils.fileToString("/xml/feed_10.xml")
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
         service.getPodcast("")
-                .test()
-                .assertValue { it.episodes.size == 10 }
+            .test()
+            .assertValue { it.episodes.size == 10 }
     }
 
 }

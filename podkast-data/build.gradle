@@ -24,8 +24,6 @@ dependencies {
     api project(':podkast-service')
     implementation project(':podkast-core')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-
     // Room
     api "androidx.room:room-runtime:$roomVersion"
     api "androidx.room:room-rxjava2:$roomVersion"
@@ -33,9 +31,6 @@ dependencies {
 
     // MMKV
     implementation "com.tencent:mmkv:$mmkvVersion"
-
-    // Rx
-    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

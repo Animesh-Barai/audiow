@@ -9,16 +9,13 @@ import ismaeldivita.podkast.service.model.Genre
 internal abstract class GenreDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insert(genre: GenreEntity)
+    abstract fun insert(genre: GenreEntity): Long
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insert(genreList: List<GenreEntity>)
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun update(genre: GenreEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun insertSubGenre(subGenreEntity: SubGenreEntity)
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insertSubGenre(subGenreEntityList: List<SubGenreEntity>)
 
     @Query("SELECT * FROM GENRE WHERE id=:id")
     abstract fun findById(id: Int): Single<GenreEntity>
@@ -36,13 +33,25 @@ internal abstract class GenreDAO {
     abstract fun deleteAll()
 
     @Transaction
+    open fun upsert(entity: GenreEntity) {
+        val id = insert(entity)
+        if (id == -1L) {
+            update(entity)
+        }
+    }
+
+    @Transaction
     open fun genreTransaction(genreList: List<Genre>) {
-        insert(genreList.map { GenreEntity(it.id, it.name, it.detail!!.topPodcastsUrl) })
-        insertSubGenre(genreList.map { genre ->
-            genre.detail!!.subgenres.map {
-                SubGenreEntity(genre.id, it.id)
+        genreList
+            .map { GenreEntity(it.id, it.name, it.detail!!.topPodcastsUrl) }
+            .forEach(::upsert)
+
+        genreList
+            .map { genre ->
+                genre.detail!!.subgenres.map { SubGenreEntity(genre.id, it.id) }
             }
-        }.flatten())
+            .flatten()
+            .forEach(::insertSubGenre)
     }
 
 }
