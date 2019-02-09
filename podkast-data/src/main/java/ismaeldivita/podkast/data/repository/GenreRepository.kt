@@ -6,7 +6,8 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import ismaeldivita.podkast.core.reactivex.GlobalCompositeDisposable
+import ismaeldivita.podkast.core.monitoring.log.Logger
+import ismaeldivita.podkast.core.util.reactivex.GlobalCompositeDisposable
 import ismaeldivita.podkast.core.util.time.TimeProvider
 import ismaeldivita.podkast.data.R
 import ismaeldivita.podkast.data.storage.database.dao.GenreDAO

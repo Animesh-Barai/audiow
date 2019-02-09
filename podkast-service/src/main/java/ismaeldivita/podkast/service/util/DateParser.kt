@@ -1,11 +1,12 @@
 package ismaeldivita.podkast.service.util
 
-import timber.log.Timber
+import ismaeldivita.podkast.core.monitoring.log.Logger
+import ismaeldivita.podkast.core.util.replaceLastOccurrence
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 
-object DateParser {
+internal object DateParser {
 
     private val RFC822_MASKS = arrayOf(
         "EEE, dd MMM yy HH:mm:ss z",
@@ -32,7 +33,7 @@ object DateParser {
             }
             i++
         }
-        if (parsedDate == null) Timber.e("Failed to parse RFC822 to Date")
+        if (parsedDate == null) Logger.e("Failed to parse RFC822 to Date", mapOf("value" to date))
         return parsedDate
     }
 

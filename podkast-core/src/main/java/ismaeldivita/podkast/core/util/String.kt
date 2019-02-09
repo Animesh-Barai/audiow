@@ -1,4 +1,4 @@
-package ismaeldivita.podkast.service.util
+package ismaeldivita.podkast.core.util
 
 fun String.replaceLastOccurrence(target: String, replacement: String): String {
     val lastIndexOfTarget = lastIndexOf(target)

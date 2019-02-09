@@ -1,10 +1,11 @@
 package ismaeldivita.podkast.service.client
 
 import ismaeldivita.podkast.service.BuildConfig
+import ismaeldivita.podkast.core.monitoring.log.Logger
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.*
-import timber.log.Timber
+import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
+import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -24,8 +25,8 @@ internal class ClientFactory @Inject constructor() {
         .build()
 
     private fun getLoggingInterceptor(): HttpLoggingInterceptor {
-        val logLevel = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
-        return HttpLoggingInterceptor(Logger { Timber.d(it) }).apply { level = logLevel }
+        val logLevel = if (BuildConfig.DEBUG) BASIC else NONE
+        return HttpLoggingInterceptor { Logger.d(it) }.apply { level = logLevel }
     }
 
 }

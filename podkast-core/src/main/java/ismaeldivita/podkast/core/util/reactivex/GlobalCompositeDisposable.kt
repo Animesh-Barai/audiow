@@ -1,4 +1,4 @@
-package ismaeldivita.podkast.core.reactivex
+package ismaeldivita.podkast.core.util.reactivex
 
 import javax.inject.Qualifier
 

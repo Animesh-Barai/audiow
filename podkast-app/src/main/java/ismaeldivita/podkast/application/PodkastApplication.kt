@@ -4,6 +4,8 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import ismaeldivita.podkast.application.di.DaggerApplicationComponent
 import ismaeldivita.podkast.core.android.ApplicationInitializer
+import ismaeldivita.podkast.core.monitoring.log.Logger
+//import ismaeldivita.podkast.core.monitoring.log.Logger
 import javax.inject.Inject
 
 class PodkastApplication : DaggerApplication() {

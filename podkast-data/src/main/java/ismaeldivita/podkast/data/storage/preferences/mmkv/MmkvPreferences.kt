@@ -4,7 +4,7 @@ import com.tencent.mmkv.MMKV
 import ismaeldivita.podkast.data.storage.preferences.Preferences
 import javax.inject.Inject
 
-class MmkvPreferences @Inject constructor(): Preferences {
+internal class MmkvPreferences @Inject constructor(): Preferences {
 
     private val mmkv by lazy { MMKV.defaultMMKV() }
 
