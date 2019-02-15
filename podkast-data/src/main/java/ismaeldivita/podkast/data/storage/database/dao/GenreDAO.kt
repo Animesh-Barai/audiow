@@ -1,21 +1,23 @@
 package ismaeldivita.podkast.data.storage.database.dao
 
+import androidx.annotation.VisibleForTesting
 import androidx.room.*
 import io.reactivex.Single
 import ismaeldivita.podkast.data.storage.database.entity.*
-import ismaeldivita.podkast.service.model.Genre
 
 @Dao
 internal abstract class GenreDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insert(genre: GenreEntity): Long
+    @VisibleForTesting
+    protected abstract fun insert(genre: GenreEntity): Long
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun update(genre: GenreEntity)
+    protected abstract fun update(genre: GenreEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insertSubGenre(subGenreEntity: SubGenreEntity)
+    @VisibleForTesting
+    protected abstract fun insertSubGenre(subGenreEntity: SubGenreEntity)
 
     @Query("SELECT * FROM GENRE WHERE id=:id")
     abstract fun findById(id: Int): Single<GenreEntity>
@@ -41,17 +43,12 @@ internal abstract class GenreDAO {
     }
 
     @Transaction
-    open fun genreTransaction(genreList: List<Genre>) {
-        genreList
-            .map { GenreEntity(it.id, it.name, it.detail!!.topPodcastsUrl) }
-            .forEach(::upsert)
-
-        genreList
-            .map { genre ->
-                genre.detail!!.subgenres.map { SubGenreEntity(genre.id, it.id) }
-            }
-            .flatten()
-            .forEach(::insertSubGenre)
+    open fun genreTransaction(
+        genreEntityList: List<GenreEntity>,
+        subGenreEntityList: List<SubGenreEntity>
+    ) {
+        genreEntityList.forEach(::upsert)
+        subGenreEntityList.forEach(::insertSubGenre)
     }
 
 }

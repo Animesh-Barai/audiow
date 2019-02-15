@@ -6,12 +6,13 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import ismaeldivita.podkast.core.monitoring.log.Logger
 import ismaeldivita.podkast.core.util.reactivex.GlobalCompositeDisposable
 import ismaeldivita.podkast.core.util.time.TimeProvider
 import ismaeldivita.podkast.data.R
 import ismaeldivita.podkast.data.storage.database.dao.GenreDAO
+import ismaeldivita.podkast.data.storage.database.entity.GenreEntity
 import ismaeldivita.podkast.data.storage.database.entity.GenreWithSubGenre
+import ismaeldivita.podkast.data.storage.database.entity.SubGenreEntity
 import ismaeldivita.podkast.data.storage.preferences.Preferences
 import ismaeldivita.podkast.service.PodcastService
 import ismaeldivita.podkast.service.model.Genre
@@ -35,8 +36,10 @@ internal class GenreRepository @Inject constructor(
 
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()
 
+    // TODO handle the case when GENRE was saved on CACHE but then deleted on webservice
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 
+    // TODO bump room to got native maybe support
     override fun getById(id: Int): Maybe<Genre> = getAll().flatMapMaybe { list ->
         list.firstOrNull { it.id == id }?.let { Maybe.just(it) } ?: Maybe.empty()
     }
@@ -61,7 +64,18 @@ internal class GenreRepository @Inject constructor(
 
     private fun updateDatabase(genreList: List<Genre>): Single<List<Genre>> =
         Completable.fromCallable {
-            genreDAO.genreTransaction(genreList)
+            genreDAO.genreTransaction(
+                genreEntityList = genreList.map {
+                    GenreEntity(
+                        it.id,
+                        it.name,
+                        it.detail!!.topPodcastsUrl
+                    )
+                },
+                subGenreEntityList = genreList.map { genre ->
+                    genre.detail!!.subgenres.map { SubGenreEntity(genre.id, it.id) }
+                }.flatten()
+            )
             preferences.write(LAST_DATABASE_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
         }.toSingleDefault(genreList)
 
