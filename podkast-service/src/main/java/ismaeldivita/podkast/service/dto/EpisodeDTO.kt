@@ -1,8 +1,8 @@
-package ismaeldivita.podkast.service.model
+package ismaeldivita.podkast.service.dto
 
 import java.util.*
 
-data class Episode(
+data class EpisodeDTO(
         val title: String,
         val description: String,
         val audioFileUrl: String,

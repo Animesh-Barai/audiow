@@ -1,6 +1,6 @@
 package ismaeldivita.podkast.service.parser.json.model
 
-import ismaeldivita.podkast.service.model.Artwork
+import ismaeldivita.podkast.service.dto.ArtworkDTO
 
 internal data class PodcastJson(
         val wrapperType: String,
@@ -22,5 +22,5 @@ internal data class PodcastJson(
         val primaryGenreName: String,
         val genreIds: List<Int>,
         val genres: List<String>,
-        val artworkList: List<Artwork> = emptyList()
+        val artworkList: List<ArtworkDTO> = emptyList()
 )

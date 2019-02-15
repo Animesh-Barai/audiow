@@ -1,9 +1,9 @@
 package ismaeldivita.podkast.service.parser.json.typeadapter
 
 import com.squareup.moshi.JsonReader
-import ismaeldivita.podkast.service.model.Genre
-import ismaeldivita.podkast.service.model.GenreDetail
-import ismaeldivita.podkast.service.model.GenreTree
+import ismaeldivita.podkast.service.dto.GenreDTO
+import ismaeldivita.podkast.service.dto.GenreDetailDTO
+import ismaeldivita.podkast.service.dto.GenreDTOTree
 import ismaeldivita.podkast.service.testhelper.IOUtils
 import org.junit.Test
 
@@ -18,15 +18,15 @@ class GenreTreeTypeAdapterTest {
         val source = IOUtils.fileToBufferedSource("/json/genre/genre_short_tree.json")
         val jsonReader = JsonReader.of(source)
         val actual = adapter.fromJson(jsonReader)
-        val expected = GenreTree(
-                Genre(id = 26, name = "Podcasts", detail = GenreDetail(
+        val expected = GenreDTOTree(
+                GenreDTO(id = 26, name = "Podcasts", detail = GenreDetailDTO(
                         subgenres = listOf(
-                                Genre(id = 1301, name = "Arts", detail = GenreDetail(
+                                GenreDTO(id = 1301, name = "Arts", detail = GenreDetailDTO(
                                         subgenres = emptyList(),
                                         topPodcastsUrl = "https://itunes.apple.com/us/rss/" +
                                                 "toppodcasts/genre=1301/json"
                                 )),
-                                Genre(id = 1321, name = "Business", detail = GenreDetail(
+                                GenreDTO(id = 1321, name = "Business", detail = GenreDetailDTO(
                                         subgenres = emptyList(),
                                         topPodcastsUrl = "https://itunes.apple.com/us/rss/" +
                                                 "toppodcasts/genre=1321/json"))

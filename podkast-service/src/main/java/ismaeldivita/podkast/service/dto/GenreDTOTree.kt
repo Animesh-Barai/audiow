@@ -1,19 +1,20 @@
-package ismaeldivita.podkast.service.model
+package ismaeldivita.podkast.service.dto
 
 import java.util.*
 
-class GenreTree(val root: Genre) : Iterable<Genre> {
+// TODO create a abstract tree and move to core
+class GenreDTOTree(val root: GenreDTO) : Iterable<GenreDTO> {
 
     companion object {
         const val ROOT_GENRE_ID = 26
     }
 
-    constructor(list: List<Genre>) : this(list.first { it.id == ROOT_GENRE_ID })
+    constructor(list: List<GenreDTO>) : this(list.first { it.id == ROOT_GENRE_ID })
 
-    override fun iterator() = object : AbstractIterator<Genre>() {
+    override fun iterator() = object : AbstractIterator<GenreDTO>() {
         val nodes = buildList(root)
 
-        fun buildList(node: Genre): LinkedList<Genre> =
+        fun buildList(node: GenreDTO): LinkedList<GenreDTO> =
                 if (node.detail?.subgenres.orEmpty().isEmpty()) {
                     LinkedList(listOf(node))
                 } else {
@@ -29,7 +30,7 @@ class GenreTree(val root: Genre) : Iterable<Genre> {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as GenreTree
+        other as GenreDTOTree
 
         if (root != other.root) return false
 
@@ -41,7 +42,7 @@ class GenreTree(val root: Genre) : Iterable<Genre> {
     }
 
     override fun toString(): String {
-        return "GenreTree(root=$root)"
+        return "GenreDTOTree(root=$root)"
     }
 
 }
