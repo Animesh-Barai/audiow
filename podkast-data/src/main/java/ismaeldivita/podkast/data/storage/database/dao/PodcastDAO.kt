@@ -15,13 +15,13 @@ internal abstract class PodcastDAO {
     abstract fun getAll(): Single<List<PodcastWrapperEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertPodcast(podcast: PodcastEntity)
+    protected abstract fun insertPodcast(podcast: PodcastEntity)
 
     @Insert
-    abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
+    protected abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
 
     @Insert
-    abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
+    protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
 
     @Transaction
     open fun podcastWrapperTransaction(podcast: PodcastWrapperEntity) {
