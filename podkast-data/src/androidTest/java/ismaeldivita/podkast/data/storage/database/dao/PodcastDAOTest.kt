@@ -83,7 +83,7 @@ class PodcastDAOTest {
                 ),
                 listOf(1)
         )
-        genreDAO.upsert(GenreEntity(1, "GenreDTO", ""))
+        genreDAO.upsert(GenreEntity(1, "Genre", ""))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
         podcastDAO.getAll().blockingGet().first().run {
             assertEquals(podcastWrapperDB, this)

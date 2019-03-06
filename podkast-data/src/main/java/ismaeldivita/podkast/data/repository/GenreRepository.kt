@@ -15,9 +15,9 @@ import ismaeldivita.podkast.data.storage.database.entity.GenreWithSubGenre
 import ismaeldivita.podkast.data.storage.database.entity.SubGenreEntity
 import ismaeldivita.podkast.data.storage.preferences.Preferences
 import ismaeldivita.podkast.service.PodcastService
-import ismaeldivita.podkast.service.dto.GenreDTO
-import ismaeldivita.podkast.service.dto.GenreDetailDTO
-import ismaeldivita.podkast.service.dto.GenreDTOTree
+import ismaeldivita.podkast.service.model.Genre
+import ismaeldivita.podkast.service.model.GenreDetail
+import ismaeldivita.podkast.service.model.GenreTree
 import javax.inject.Inject
 
 internal class GenreRepository @Inject constructor(
@@ -27,42 +27,42 @@ internal class GenreRepository @Inject constructor(
     private val preferences: Preferences,
     private val timeProvider: TimeProvider,
     @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
-) : Repository<GenreDTO> {
+) : Repository<Genre> {
 
     companion object {
         val LAST_DATABASE_UPDATE_KEY = Preferences.Key("genre_last_update", Long::class)
         const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
-    override fun add(element: GenreDTO): Completable = throw UnsupportedOperationException()
+    override fun add(element: Genre): Completable = throw UnsupportedOperationException()
 
     // TODO handle the case when GENRE was saved on CACHE but then deleted on webservice
-    override fun remove(element: GenreDTO): Completable = throw UnsupportedOperationException()
+    override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 
     // TODO bump room to got native maybe support
-    override fun getById(id: Int): Maybe<GenreDTO> = getAll().flatMapMaybe { list ->
+    override fun getById(id: Int): Maybe<Genre> = getAll().flatMapMaybe { list ->
         list.firstOrNull { it.id == id }?.let { Maybe.just(it) } ?: Maybe.empty()
     }
 
     override fun clear(): Completable = Completable.fromCallable { genreDAO.deleteAll() }
 
-    override fun getAll(): Single<List<GenreDTO>> =
+    override fun getAll(): Single<List<Genre>> =
         genreDAO.getAllWithSubGenres()
             .flatMap { genreEntities ->
                 if (genreEntities.isEmpty()) {
                     fetchFromRemote()
                 } else {
                     updateCache()
-                    Single.just(GenreDTOTree(mapEntitiesToGenre(genreEntities)).toList())
+                    Single.just(GenreTree(mapEntitiesToGenre(genreEntities)).toList())
                 }
             }
 
 
-    private fun fetchFromRemote(): Single<List<GenreDTO>> =
+    private fun fetchFromRemote(): Single<List<Genre>> =
         service.getGenreTree(resources.getString(R.string.country_iso))
             .flatMap { updateDatabase(it.toList()) }
 
-    private fun updateDatabase(genreList: List<GenreDTO>): Single<List<GenreDTO>> =
+    private fun updateDatabase(genreList: List<Genre>): Single<List<Genre>> =
         Completable.fromCallable {
             genreDAO.genreTransaction(
                 genreEntityList = genreList.map {
@@ -81,15 +81,15 @@ internal class GenreRepository @Inject constructor(
 
     private fun mapEntitiesToGenre(
         entities: List<GenreWithSubGenre>,
-        filteredIds: List<Int> = listOf(GenreDTOTree.ROOT_GENRE_ID)
-    ): List<GenreDTO> = entities
+        filteredIds: List<Int> = listOf(GenreTree.ROOT_GENRE_ID)
+    ): List<Genre> = entities
         .asSequence()
         .filter { filteredIds.contains(it.genre.id) }
         .map {
-            GenreDTO(
+            Genre(
                 it.genre.id,
                 it.genre.name,
-                GenreDetailDTO(
+                GenreDetail(
                     mapEntitiesToGenre(entities, it.subGenreIds),
                     it.genre.topPodcastsUrl
                 )

@@ -1,6 +1,6 @@
-package ismaeldivita.podkast.service.dto
+package ismaeldivita.podkast.service.model
 
-data class ArtworkDTO(
+data class Artwork(
         val url: String,
         val width: Int,
         val height: Int

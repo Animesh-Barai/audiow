@@ -1,9 +1,9 @@
 package ismaeldivita.podkast.service
 
 import io.reactivex.Single
-import ismaeldivita.podkast.service.dto.GenreDTOTree
-import ismaeldivita.podkast.service.dto.FeedDTO
-import ismaeldivita.podkast.service.dto.PodcastDTO
+import ismaeldivita.podkast.service.model.GenreTree
+import ismaeldivita.podkast.service.model.Feed
+import ismaeldivita.podkast.service.model.Podcast
 import ismaeldivita.podkast.service.parser.ConverterRouterFactory
 import ismaeldivita.podkast.service.parser.json.Json
 import ismaeldivita.podkast.service.parser.xml.Xml
@@ -24,18 +24,18 @@ interface PodcastService {
             @Query("country") countryIso: String = "US",
             @Query("genreId") filterByGenreId: Int? = null,
             @Query("limit") limit: Int? = null
-    ): Single<List<PodcastDTO>>
+    ): Single<List<Podcast>>
 
     @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
     @Json
     fun getGenreTree(
             @Query("cc") countryIso: String = "US"
-    ): Single<GenreDTOTree>
+    ): Single<GenreTree>
 
     @GET
     @Xml
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
-    fun getPodcast(@Url rssUrl: String): Single<FeedDTO>
+    fun getPodcast(@Url rssUrl: String): Single<Feed>
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
