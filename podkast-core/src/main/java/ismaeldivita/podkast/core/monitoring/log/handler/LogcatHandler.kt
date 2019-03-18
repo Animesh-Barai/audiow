@@ -3,7 +3,7 @@ package ismaeldivita.podkast.core.monitoring.log.handler
 import android.util.Log
 import ismaeldivita.podkast.core.monitoring.log.Logger
 import ismaeldivita.podkast.core.monitoring.log.Logger.Level.*
-import ismaeldivita.podkast.core.util.exhaustive
+import ismaeldivita.podkast.core.util.standart.exhaustive
 import javax.inject.Inject
 
 internal class LogcatHandler @Inject constructor(): Logger.Handler {

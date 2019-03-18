@@ -17,15 +17,15 @@ class GenreDAOTest {
 
     @Test
     fun writeThenRead() {
-        val genre = GenreEntity(1, "Genre-Test", "http://test.com")
+        val genre = GenreEntity(1, "ItunesGenre-Test", "http://test.com")
         genreDAO.upsert(genre)
         assertEquals(genre, genreDAO.getAll().blockingGet().first())
     }
 
     @Test
     fun writeThenRead_withRelation() {
-        val parent = GenreEntity(1, "Genre-Parent", "http://test.com")
-        val child = GenreEntity(2, "Genre-Child", "http://test.com")
+        val parent = GenreEntity(1, "ItunesGenre-Parent", "http://test.com")
+        val child = GenreEntity(2, "ItunesGenre-Child", "http://test.com")
         val subGenreEntity = SubGenreEntity(parent.id, child.id)
 
         genreDAO.genreTransaction(listOf(parent, child), listOf(subGenreEntity))

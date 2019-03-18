@@ -3,23 +3,23 @@ package ismaeldivita.podkast.data.repository
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import ismaeldivita.podkast.service.model.Podcast
+import ismaeldivita.podkast.service.itunes.model.ItunesPodcast
 
-class PodcastRepository : Repository<Podcast> {
+class PodcastRepository : Repository<ItunesPodcast> {
 
-    override fun add(element: Podcast): Completable {
+    override fun add(element: ItunesPodcast): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getAll(): Single<List<Podcast>> {
+    override fun getAll(): Single<List<ItunesPodcast>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getById(id: Int): Maybe<Podcast> {
+    override fun getById(id: Int): Maybe<ItunesPodcast> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun remove(element: Podcast): Completable {
+    override fun remove(element: ItunesPodcast): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

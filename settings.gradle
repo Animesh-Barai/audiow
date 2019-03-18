@@ -1,1 +1,1 @@
-include ':podkast-app', ':podkast-service', ':podkast-data', ':podkast-core'
+include ':podkast-app', ':podkast-service-itunes', ':podkast-data', ':podkast-core'

@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-    api project(':podkast-service')
+    api project(':podkast-service-itunes')
     implementation project(':podkast-core')
 
     // Room
