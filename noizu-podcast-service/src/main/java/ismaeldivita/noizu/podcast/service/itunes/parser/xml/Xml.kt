@@ -1,0 +1,3 @@
+package ismaeldivita.noizu.podcast.service.itunes.parser.xml
+
+internal annotation class Xml

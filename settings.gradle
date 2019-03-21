@@ -1,1 +1,4 @@
-include ':podkast-app', ':podkast-service-itunes', ':podkast-data', ':podkast-core'
+include ':noizu-app'
+include ':noizu-core'
+include ':noizu-podcast-service'
+include ':noizu-podcast-data'
