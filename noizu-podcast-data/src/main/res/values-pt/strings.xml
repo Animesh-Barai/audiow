@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!--
-        Used to fetch the genre list definition. To make the UI consistent with the language we
-        are only using the supported countries.
-    -->
-    <string name="country_iso">BR</string>
-</resources>

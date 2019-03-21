@@ -1,0 +1,3 @@
+package ismaeldivita.audioma.podcast.data.repository
+
+class GenreRepositoryTest

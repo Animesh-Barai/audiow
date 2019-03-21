@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name" translatable="false">data</string>
-
-    <!--
-        Used to fetch the genre list definition. To make the UI consistent with the language we
-        are only using the supported countries.
-    -->
-    <string name="country_iso">US</string>
-</resources>

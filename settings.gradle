@@ -1,4 +1,4 @@
-include ':noizu-app'
-include ':noizu-core'
-include ':noizu-podcast-service'
-include ':noizu-podcast-data'
+include ':audioma-app'
+include ':audioma-core'
+include ':audioma-podcast-service'
+include ':audioma-podcast-data'
