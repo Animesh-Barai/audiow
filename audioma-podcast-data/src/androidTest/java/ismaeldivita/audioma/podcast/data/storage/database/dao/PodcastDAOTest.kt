@@ -22,7 +22,7 @@ class PodcastDAOTest {
     private val genreDAO = database.genreDAO()
 
     @Test
-    fun writeThenRead() {
+    fun write_then_read() {
         val podcastWrapperDB = PodcastWrapperEntity(
                 PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 listOf(
@@ -38,7 +38,7 @@ class PodcastDAOTest {
     }
 
     @Test
-    fun whenReplacePodcastShouldCleanArtworkList() {
+    fun when_replace_podcast_should_clean_ArtworkList() {
         val initialArtwork = listOf(
                 PodcastArtworkEntity(0, "url", 10, 10, 2),
                 PodcastArtworkEntity(0, "url", 11, 11, 2)
@@ -64,7 +64,7 @@ class PodcastDAOTest {
     }
 
     @Test(expected = SQLiteConstraintException::class)
-    fun whenInsertWithoutGenreShouldCrashWithForeignKeyError() {
+    fun when_insert_without_genre_should_crash_with_ForeignKeyError() {
         val podcastWrapperDB = PodcastWrapperEntity(
                 PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 emptyList(),
@@ -74,7 +74,7 @@ class PodcastDAOTest {
     }
 
     @Test
-    fun writeThenReadWithGenre() {
+    fun write_then_read_with_Genre() {
         val podcastWrapperDB = PodcastWrapperEntity(
                 PodcastEntity(2, "Title", "Artist", "rssUrl", false),
                 listOf(

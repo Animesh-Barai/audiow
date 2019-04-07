@@ -11,9 +11,8 @@ import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.R
 import ismaeldivita.audioma.podcast.data.model.Genre
-import ismaeldivita.audioma.podcast.data.repository.mapper.toDomain
-import ismaeldivita.audioma.podcast.data.repository.mapper.toEntity
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
+import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.SubGenreEntity
 import ismaeldivita.audioma.podcast.data.storage.preferences.Preferences
 import ismaeldivita.audioma.podcast.service.itunes.ItunesService
@@ -92,5 +91,17 @@ internal class GenreRepository @Inject constructor(
                 .let(globalDisposable::add)
         }
     }
+
+    private fun ItunesGenre.toEntity() = GenreEntity(
+        id = id,
+        name = name,
+        topPodcastsUrl = topPodcastsUrl
+    )
+
+    private fun GenreEntity.toDomain() = Genre(
+        id = id,
+        name = name,
+        topPodcastUrl = topPodcastsUrl
+    )
 
 }

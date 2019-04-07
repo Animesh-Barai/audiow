@@ -16,7 +16,7 @@ abstract class PreferencesTest {
     }
 
     @Test
-    fun writeThenRead() {
+    fun write_then_read() {
         val value = "Lorem Ipsum"
         val key = Preferences.Key("test_key", String::class)
 

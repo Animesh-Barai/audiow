@@ -22,15 +22,12 @@ android {
 }
 
 dependencies {
+
+    api "com.jakewharton.threetenabp:threetenabp:$threetenabp"
+    api "io.reactivex.rxjava2:rxjava:$rxVersion"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp"
-
-    // Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
-
-    // Rx
-    implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

@@ -23,7 +23,7 @@ class PodcastTypeAdapterTest {
     }
 
     @Test
-    fun fromJson_whenTrackExplicitness_isCleaned() {
+    fun fromJson_when_track_explicitness_isCleaned() {
         val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
         val jsonReader = JsonReader.of(source)
         val podcastJson =
@@ -35,7 +35,7 @@ class PodcastTypeAdapterTest {
     }
 
     @Test
-    fun fromJson_whenTrackExplicitness_isNotExplicit() {
+    fun fromJson_when_track_explicitness_isNotExplicit() {
         val source = IOUtils.fileToBufferedSource("/json/search/podcast_item.json")
         val jsonReader = JsonReader.of(source)
         val podcastJson =
