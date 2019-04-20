@@ -1,6 +1,5 @@
 package ismaeldivita.audioma.podcast.data.interactor.setup
 
-import androidx.test.filters.LargeTest
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
@@ -16,12 +15,6 @@ class BuildGenreTreeTest {
 
     private val dao = mock<GenreDAO>()
     private val interactor = BuildGenreTree(dao)
-
-    @Test
-    @LargeTest
-    fun repeat(){
-        repeat(1000) { given_connected_nodes_should_build_the_tree() }
-    }
 
     @Test
     fun given_connected_nodes_should_build_the_tree() {

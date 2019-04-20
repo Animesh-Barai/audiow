@@ -2,12 +2,13 @@ package ismaeldivita.audioma.podcast.data.repository
 
 import dagger.Binds
 import dagger.Module
+import ismaeldivita.audioma.core.data.Repository
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 import javax.inject.Singleton
 
 @Module
-internal abstract class RepositoryModule {
+internal abstract class PodcastRepositoryModule {
 
     @Binds
     @Singleton

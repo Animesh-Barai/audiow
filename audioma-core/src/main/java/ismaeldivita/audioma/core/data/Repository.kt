@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.repository
+package ismaeldivita.audioma.core.data
 
 import io.reactivex.Completable
 import io.reactivex.Maybe

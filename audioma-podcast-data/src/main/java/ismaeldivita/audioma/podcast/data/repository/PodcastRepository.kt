@@ -3,6 +3,7 @@ package ismaeldivita.audioma.podcast.data.repository
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import ismaeldivita.audioma.core.data.Repository
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 
 class PodcastRepository : Repository<ItunesPodcast> {

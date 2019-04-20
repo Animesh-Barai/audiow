@@ -6,7 +6,7 @@ import io.reactivex.schedulers.Schedulers
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.data.model.Genre
-import ismaeldivita.audioma.podcast.data.repository.Repository
+import ismaeldivita.audioma.core.data.Repository
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
