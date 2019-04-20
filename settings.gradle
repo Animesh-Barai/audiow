@@ -1,4 +1,6 @@
-include ':audioma-app'
-include ':audioma-core'
-include ':audioma-podcast-service'
-include ':audioma-podcast-data'
+include ':audioma_app'
+include ':audioma_core'
+
+include ':audioma_podcast'
+include ':audioma_podcast_service'
+include ':audioma_podcast_data'
