@@ -21,9 +21,5 @@ android {
 }
 
 dependencies {
-    api project(':audioma_podcast_data')
-
-    // Dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    api "com.google.android.material:material:$materialDesign"
 }

@@ -25,6 +25,7 @@ android {
 
 dependencies {
     implementation project(':audioma_core')
+    implementation project(':audioma_design')
     implementation project(':audioma_podcast')
 
     // Android

@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.core.util.reactivex
+package ismaeldivita.audioma.core.util.reactive
 
 import javax.inject.Qualifier
 

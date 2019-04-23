@@ -1,10 +1,10 @@
-package ismaeldivita.audioma.application.di
+package ismaeldivita.audioma.app.application.di
 
 import android.app.Application
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
-import ismaeldivita.audioma.application.PodkastApplication
+import ismaeldivita.audioma.app.application.PodkastApplication
 import javax.inject.Singleton
 
 @Module

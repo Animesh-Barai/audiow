@@ -22,10 +22,15 @@ android {
 }
 
 dependencies {
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    api "androidx.core:core-ktx:$kotlinKtx"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidLifecycle"
+    api "com.github.hadilq.liveevent:liveevent:$liveEvent"
 
     api "com.jakewharton.threetenabp:threetenabp:$threetenabp"
     api "io.reactivex.rxjava2:rxjava:$rxVersion"
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     implementation "com.squareup.moshi:moshi:$moshiVersion"
 

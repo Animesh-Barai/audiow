@@ -7,7 +7,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import ismaeldivita.audioma.core.data.Repository
-import ismaeldivita.audioma.core.util.reactivex.GlobalCompositeDisposable
+import ismaeldivita.audioma.core.util.reactive.GlobalCompositeDisposable
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.R

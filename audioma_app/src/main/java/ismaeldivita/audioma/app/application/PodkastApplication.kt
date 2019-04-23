@@ -1,8 +1,8 @@
-package ismaeldivita.audioma.application
+package ismaeldivita.audioma.app.application
 
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
-import ismaeldivita.audioma.application.di.DaggerApplicationComponent
+import ismaeldivita.audioma.app.application.di.DaggerApplicationComponent
 import ismaeldivita.audioma.core.android.ApplicationInitializer
 import javax.inject.Inject
 
