@@ -10,8 +10,6 @@ interface Repository<T> {
 
     fun getAll(): Single<List<T>>
 
-    fun getById(id: Int): Maybe<T>
-
     fun remove(element: T): Completable
 
     fun clear(): Completable

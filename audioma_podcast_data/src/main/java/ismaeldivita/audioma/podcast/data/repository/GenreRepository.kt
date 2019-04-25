@@ -15,7 +15,7 @@ import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.SubGenreEntity
-import ismaeldivita.audioma.podcast.data.storage.preferences.Preferences
+import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.podcast.service.itunes.ItunesService
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
 import javax.inject.Inject
@@ -37,10 +37,6 @@ internal class GenreRepository @Inject constructor(
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
-
-    override fun getById(id: Int): Maybe<Genre> = getAll().flatMapMaybe { list ->
-        list.firstOrNull { it.id == id }?.let { Maybe.just(it) } ?: Maybe.empty()
-    }
 
     override fun clear(): Completable = Completable.fromCallable { genreDAO.deleteAll() }
 

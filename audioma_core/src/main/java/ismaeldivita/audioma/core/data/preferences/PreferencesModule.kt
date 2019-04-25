@@ -1,11 +1,11 @@
-package ismaeldivita.audioma.podcast.data.storage.preferences
+package ismaeldivita.audioma.core.data.preferences
 
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
 import ismaeldivita.audioma.core.android.ApplicationInitializer
-import ismaeldivita.audioma.podcast.data.storage.preferences.mmkv.MmkvInitiliazer
-import ismaeldivita.audioma.podcast.data.storage.preferences.mmkv.MmkvPreferences
+import ismaeldivita.audioma.core.data.preferences.mmkv.MmkvInitiliazer
+import ismaeldivita.audioma.core.data.preferences.mmkv.MmkvPreferences
 import javax.inject.Singleton
 
 @Module

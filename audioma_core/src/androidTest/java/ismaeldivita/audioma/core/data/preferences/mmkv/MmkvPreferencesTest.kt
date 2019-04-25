@@ -1,8 +1,8 @@
-package ismaeldivita.audioma.podcast.data.storage.preferences.mmkv
+package ismaeldivita.audioma.core.data.preferences.mmkv
 
 import androidx.test.core.app.ApplicationProvider
 import com.tencent.mmkv.MMKV
-import ismaeldivita.audioma.podcast.data.storage.preferences.Preferences
+import ismaeldivita.audioma.core.data.preferences.Preferences
 
 class MmkvPreferencesTest : PreferencesTest() {
 

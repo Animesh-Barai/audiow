@@ -39,7 +39,6 @@ interface ItunesService {
     fun getPodcast(@Url rssUrl: String): Single<ItunesPodcastFeed>
 
     companion object {
-
         fun build(
             baseUrl: String = "https://itunes.apple.com/",
             client: OkHttpClient = OkHttpClient()

@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.storage.preferences.mmkv
+package ismaeldivita.audioma.core.data.preferences.mmkv
 
 import android.app.Application
 import com.tencent.mmkv.MMKV

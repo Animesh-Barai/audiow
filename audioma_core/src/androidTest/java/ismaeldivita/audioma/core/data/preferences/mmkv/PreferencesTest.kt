@@ -1,6 +1,6 @@
-package ismaeldivita.audioma.podcast.data.storage.preferences.mmkv
+package ismaeldivita.audioma.core.data.preferences.mmkv
 
-import ismaeldivita.audioma.podcast.data.storage.preferences.Preferences
+import ismaeldivita.audioma.core.data.preferences.Preferences
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

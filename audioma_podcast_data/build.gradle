@@ -29,8 +29,6 @@ dependencies {
     api "androidx.room:room-rxjava2:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    implementation "com.tencent:mmkv:$mmkvVersion"
-
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"

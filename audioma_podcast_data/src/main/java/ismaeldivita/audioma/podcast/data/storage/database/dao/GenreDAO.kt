@@ -2,6 +2,7 @@ package ismaeldivita.audioma.podcast.data.storage.database.dao
 
 import androidx.annotation.VisibleForTesting
 import androidx.room.*
+import io.reactivex.Maybe
 import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.*
 
@@ -20,7 +21,7 @@ internal abstract class GenreDAO {
     protected abstract fun insertSubGenre(subGenreEntity: SubGenreEntity)
 
     @Query("SELECT * FROM GENRE WHERE id=:id")
-    abstract fun findById(id: Int): Single<GenreEntity>
+    abstract fun findById(id: Int): Maybe<GenreEntity>
 
     @Query("SELECT * FROM GENRE WHERE id IN (:ids)")
     abstract fun findByIds(ids: List<Int>): Single<GenreEntity>

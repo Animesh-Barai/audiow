@@ -2,6 +2,7 @@ package ismaeldivita.audioma.core
 
 import dagger.Module
 import ismaeldivita.audioma.core.android.AndroidModule
+import ismaeldivita.audioma.core.data.preferences.PreferencesModule
 import ismaeldivita.audioma.core.monitoring.MonitoringModule
 import ismaeldivita.audioma.core.util.UtilModule
 import ismaeldivita.audioma.core.util.reactive.ReactiveModule
@@ -11,6 +12,7 @@ import ismaeldivita.audioma.core.util.reactive.ReactiveModule
         AndroidModule::class,
         MonitoringModule::class,
         ReactiveModule::class,
+        PreferencesModule::class,
         UtilModule::class
     ]
 )

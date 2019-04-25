@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.storage.preferences
+package ismaeldivita.audioma.core.data.preferences
 
 import kotlin.reflect.KClass
 

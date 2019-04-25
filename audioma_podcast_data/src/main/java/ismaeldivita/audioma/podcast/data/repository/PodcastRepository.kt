@@ -16,10 +16,6 @@ class PodcastRepository : Repository<ItunesPodcast> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getById(id: Int): Maybe<ItunesPodcast> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun remove(element: ItunesPodcast): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
