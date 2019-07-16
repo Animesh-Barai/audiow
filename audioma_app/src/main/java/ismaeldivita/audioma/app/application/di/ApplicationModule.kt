@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
-import ismaeldivita.audioma.app.application.PodkastApplication
+import ismaeldivita.audioma.app.application.AudiomaApplication
 import javax.inject.Singleton
 
 @Module
@@ -12,7 +12,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApplication(application: PodkastApplication): Application = application
+    fun provideApplication(application: AudiomaApplication): Application = application
 
     @Provides
     @Singleton
