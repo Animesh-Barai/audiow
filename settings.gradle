@@ -1,4 +1,4 @@
-include ':audioma_app', ':audioma_design'
+include ':audioma_app', ':audioma_design', ':audioma_home'
 include ':audioma_core'
 
 include ':audioma_podcast'
