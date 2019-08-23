@@ -1,6 +1,7 @@
-include ':audioma_app', ':audioma_design', ':audioma_home'
-include ':audioma_core'
+include ':application'
+include ':core'
+include ':design'
 
-include ':audioma_podcast'
-include ':audioma_podcast_service'
-include ':audioma_podcast_data'
+include ':podcast:podcast_feature'
+include ':podcast:podcast_service'
+include ':podcast:podcast_data'
