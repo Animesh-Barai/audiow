@@ -5,7 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ismaeldivita.audioma.app.application.AudiomaApplication
 import ismaeldivita.audioma.core.CoreModule
-import ismaeldivita.audioma.podcast.PodcastModule
+import ismaeldivita.audioma.podcast.feature.PodcastModule
 import javax.inject.Singleton
 
 @Singleton

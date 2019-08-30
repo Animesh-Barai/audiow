@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ismaeldivita.audioma.app.screens.main.MainActivity"
-            android:theme="@style/Theme.MaterialComponents"/>
+        <activity android:name="ismaeldivita.audioma.app.screens.main.PlayerActivity"
+            android:theme="@style/MainActivity"/>
 
     </application>
 

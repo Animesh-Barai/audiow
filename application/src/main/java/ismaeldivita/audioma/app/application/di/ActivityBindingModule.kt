@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ismaeldivita.audioma.app.screens.launch.LaunchActivity
 import ismaeldivita.audioma.app.screens.launch.LaunchModule
-import ismaeldivita.audioma.app.screens.main.MainActivity
+import ismaeldivita.audioma.app.screens.main.PlayerActivity
 
 @Module
 abstract class ActivityBindingModule {
@@ -13,5 +13,5 @@ abstract class ActivityBindingModule {
     abstract fun bindLaunch(): LaunchActivity
 
     @ContributesAndroidInjector
-    abstract fun bindMain(): MainActivity
+    abstract fun bindMain(): PlayerActivity
 }
