@@ -8,24 +8,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:orientation="vertical"/>
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:elevation="8dp"
-        android:padding="8dp"
-        android:background="#FFF"
-        android:orientation="vertical">
-
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/mocked_player" />
-
-        <com.ismaeldivita.chipnavigation.ChipNavigationBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cnb_menuResource="@menu/main_bottom_menu"
-            app:cnb_orientationMode="horizontal" />
-
-    </LinearLayout>
+        app:cnb_addBottomInset="true"
+        app:cnb_menuResource="@menu/main_bottom_menu"
+        app:cnb_orientationMode="horizontal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
