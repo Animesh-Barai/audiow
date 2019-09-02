@@ -147,7 +147,7 @@
             android:id="@+id/player"
             layout="@layout/mocked_player"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:elevation="8dp"
             app:behavior_hideable="false"
             app:layout_behavior="ismaeldivita.audioma.app.screens.main.player.PlayerBehavior"

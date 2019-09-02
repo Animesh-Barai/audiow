@@ -28,7 +28,6 @@ class PlayerActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         DataBindingUtil.setContentView<ViewDataBinding>(this, R.layout.activity_main)
-
         bottomMenu.doOnPreDraw {
             peekHeight = bottomMenu.height + playerHeight
             peekHeightWithoutMenu = if (bottomMenu.paddingBottom > 0) {

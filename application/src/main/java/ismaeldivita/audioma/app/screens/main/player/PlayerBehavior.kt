@@ -2,6 +2,7 @@ package ismaeldivita.audioma.app.screens.main.player
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -17,10 +18,14 @@ internal class PlayerBehavior(
         enterAnimationDuration = 400
         exitAnimationDuration = 400
         listener = {
+            Log.i("BOTTOM_SHEET", it.toString())
             if (it == STATE_SCROLLED_DOWN) {
                 state = STATE_COLLAPSED
             }
         }
+    }
+    init {
+        isFitToContents = false
     }
 
     override fun onLayoutChild(
