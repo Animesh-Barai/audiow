@@ -17,7 +17,7 @@
         <RelativeLayout
             android:id="@+id/mini_player"
             android:layout_width="match_parent"
-            android:layout_height="200px"
+            android:layout_height="250px"
             android:padding="8dp">
 
             <ImageView

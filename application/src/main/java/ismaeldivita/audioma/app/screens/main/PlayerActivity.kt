@@ -22,7 +22,7 @@ class PlayerActivity : DaggerAppCompatActivity() {
 
     private var peekHeight: Int = 0
     private var peekHeightWithoutMenu: Int = 0
-    private var playerHeight: Int = 200
+    private var playerHeight: Int = 250
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +88,8 @@ class PlayerActivity : DaggerAppCompatActivity() {
                 hideMenu()
             }
         }
+
+        player.setOnClickListener {  }
     }
 
     private fun hideMenu() = menuBehavior.slideDown(bottomMenu)

@@ -2,8 +2,6 @@ package ismaeldivita.audioma.app.screens.main.player
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
