@@ -13,7 +13,7 @@ buildscript {
         androidLifecycle = '2.0.0'
         liveEvent = '1.0.1'
         kotlinKtx = '1.0.1'
-        materialDesign = '1.1.0-alpha05'
+        materialDesign = '1.1.0-alpha09'
         chipNavigationBar = '1.1.0'
 
         daggerVersion = '2.24'
