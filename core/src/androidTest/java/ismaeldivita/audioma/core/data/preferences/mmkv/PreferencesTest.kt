@@ -18,7 +18,7 @@ abstract class PreferencesTest {
     @Test
     fun write_then_read() {
         val value = "Lorem Ipsum"
-        val key = Preferences.Key("test_key", String::class)
+        val key = Preferences.Key.String("test_key")
 
         preferences.write(key, value)
 
@@ -28,9 +28,9 @@ abstract class PreferencesTest {
     @Test
     fun remove() {
         val value = "Lorem Ipsum"
-        val key = Preferences.Key("test_key", String::class)
+        val key = Preferences.Key.String("test_key")
         val value2 = "Lorem Ipsum 2"
-        val key2 = Preferences.Key("test_key2", String::class)
+        val key2 = Preferences.Key.String("test_key2")
 
         preferences.write(key, value)
         preferences.write(key2, value2)
@@ -43,9 +43,9 @@ abstract class PreferencesTest {
     @Test
     fun clean() {
         val value = "Lorem Ipsum"
-        val key = Preferences.Key("test_key", String::class)
+        val key = Preferences.Key.String("test_key")
         val value2 = "Lorem Ipsum 2"
-        val key2 = Preferences.Key("test_key2", String::class)
+        val key2 = Preferences.Key.String("test_key2")
 
         preferences.write(key, value)
         preferences.write(key2, value2)

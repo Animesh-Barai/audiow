@@ -1,7 +1,5 @@
 package ismaeldivita.audioma.core.data.preferences
 
-import kotlin.reflect.KClass
-
 interface Preferences {
 
     fun <T : Any> read(key: Key<T>): T?
@@ -12,6 +10,14 @@ interface Preferences {
 
     fun clean()
 
-    data class Key<T : Any>(val keyValue: String, val type: KClass<T>)
+    sealed class Key<T : Any> {
+
+        abstract val identifier: kotlin.String
+
+        data class Long(override val identifier: kotlin.String) : Key<kotlin.Long>()
+        data class Int(override val identifier: kotlin.String) : Key<kotlin.Int>()
+        data class String(override val identifier: kotlin.String) : Key<kotlin.String>()
+        data class Boolean(override val identifier: kotlin.String) : Key<kotlin.Boolean>()
+    }
 
 }

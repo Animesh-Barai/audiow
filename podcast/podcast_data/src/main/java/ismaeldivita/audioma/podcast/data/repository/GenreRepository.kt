@@ -30,7 +30,7 @@ internal class GenreRepository @Inject constructor(
 ) : Repository<Genre> {
 
     companion object {
-        val LAST_DATABASE_UPDATE_KEY = Preferences.Key("genre_last_update", Long::class)
+        val LAST_DATABASE_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
         const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
