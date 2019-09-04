@@ -4,8 +4,7 @@ import com.tencent.mmkv.MMKV
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import javax.inject.Inject
 
-internal class MmkvPreferences @Inject constructor():
-    Preferences {
+internal class MmkvPreferences @Inject constructor() : Preferences {
 
     private val mmkv by lazy { MMKV.defaultMMKV() }
 
