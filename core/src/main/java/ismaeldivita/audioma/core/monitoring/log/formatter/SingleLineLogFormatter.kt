@@ -11,6 +11,6 @@ internal class SingleLineLogFormatter @Inject constructor() : Logger.Formatter {
         properties: Map<String, Any>,
         level: Logger.Level,
         metadata: Metadata
-    ): String = "${metadata.origin} -> $message"
+    ): String = "${metadata.origin} $message"
 
 }
