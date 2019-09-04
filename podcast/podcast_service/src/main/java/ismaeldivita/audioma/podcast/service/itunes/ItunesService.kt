@@ -36,7 +36,7 @@ interface ItunesService {
     @GET
     @Xml
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
-    fun getPodcast(@Url rssUrl: String): Single<ItunesPodcastFeed>
+    fun getPodcastFeed(@Url rssUrl: String): Single<ItunesPodcastFeed>
 
     companion object {
         fun build(
