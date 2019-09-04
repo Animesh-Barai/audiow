@@ -2,6 +2,7 @@ package ismaeldivita.audioma.podcast.data.storage.database.dao
 
 import androidx.annotation.VisibleForTesting
 import androidx.room.*
+import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.*
@@ -33,7 +34,7 @@ internal abstract class GenreDAO {
     abstract fun getAllWithSubGenres(): Single<List<GenreWithSubGenre>>
 
     @Query("DELETE FROM GENRE")
-    abstract fun deleteAll()
+    abstract fun deleteAll() : Completable
 
     @Transaction
     open fun upsert(entity: GenreEntity) {

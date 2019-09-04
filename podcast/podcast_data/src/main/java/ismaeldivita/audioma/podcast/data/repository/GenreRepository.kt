@@ -38,7 +38,7 @@ internal class GenreRepository @Inject constructor(
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 
-    override fun clear(): Completable = Completable.fromCallable { genreDAO.deleteAll() }
+    override fun clear(): Completable = genreDAO.deleteAll()
 
     override fun getAll(): Single<List<Genre>> =
         genreDAO.getAll()

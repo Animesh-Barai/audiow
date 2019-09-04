@@ -1,6 +1,7 @@
 package ismaeldivita.audioma.podcast.data.storage.database.dao
 
 import androidx.room.*
+import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastAndGenreMapEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastArtworkEntity
@@ -22,6 +23,9 @@ internal abstract class PodcastDAO {
 
     @Insert
     protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
+
+    @Query("DELETE FROM PODCAST")
+    abstract fun deleteAll() : Completable
 
     @Transaction
     open fun podcastWrapperTransaction(podcast: PodcastWrapperEntity) {
