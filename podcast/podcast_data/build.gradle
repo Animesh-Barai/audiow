@@ -6,6 +6,10 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion defaultCompileSdkVersion
 
+    androidExtensions {
+        experimental = true
+    }
+
     defaultConfig {
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion

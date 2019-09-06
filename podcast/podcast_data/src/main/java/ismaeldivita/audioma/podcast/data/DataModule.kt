@@ -5,13 +5,13 @@ import dagger.Module
 import dagger.multibindings.IntoSet
 import ismaeldivita.audioma.core.android.LaunchInitializer
 import ismaeldivita.audioma.podcast.data.initializer.PodcastDataInitializer
-import ismaeldivita.audioma.podcast.data.repository.PodcastRepositoryModule
+import ismaeldivita.audioma.podcast.data.repository.RepositoryModule
 import ismaeldivita.audioma.podcast.data.storage.database.DatabaseModule
 import ismaeldivita.audioma.podcast.service.itunes.ItunesServiceModule
 
 @Module(includes = [
     DatabaseModule::class,
-    PodcastRepositoryModule::class,
+    RepositoryModule::class,
     ItunesServiceModule::class
 ])
 abstract class DataModule {

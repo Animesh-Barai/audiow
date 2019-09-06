@@ -1,5 +1,9 @@
 package ismaeldivita.audioma.podcast.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Podcast(
     val id: Int,
     val title: String,
@@ -9,4 +13,4 @@ data class Podcast(
     val primaryGenre: Genre,
     val genreList: List<Genre>,
     val explicit: Boolean
-)
+) : Parcelable

@@ -3,42 +3,53 @@ package ismaeldivita.audioma.podcast.data.storage.database.entity
 import androidx.room.*
 
 internal data class PodcastWrapperEntity(
-        @Embedded val podcast: PodcastEntity,
+    @Embedded val podcast: PodcastEntity,
 
-        @Relation(parentColumn = "id", entityColumn = "podcastIdFk")
-        val artworkList: List<PodcastArtworkEntity>,
+    @Relation(parentColumn = "id", entityColumn = "podcastIdFk")
+    val artworkList: List<PodcastArtworkEntity>,
 
-        @Relation(
-                parentColumn = "id",
-                entityColumn = "podcastId",
-                entity = PodcastAndGenreMapEntity::class,
-                projection = ["genreId"]
-        )
-        val genreIds: List<Int>
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "podcastId",
+        entity = PodcastAndGenreMapEntity::class,
+        projection = ["genreId"]
+    )
+    val genreIds: List<Int>
 )
 
-@Entity(tableName = "PODCAST")
+@Entity(
+    tableName = "PODCAST",
+    foreignKeys = [(ForeignKey(
+        entity = GenreEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["primaryGenre"],
+        onDelete = ForeignKey.CASCADE
+    ))]
+)
 internal data class PodcastEntity(
-        @PrimaryKey val id: Int,
-        val title: String,
-        val artistName: String,
-        val rssUrl: String,
-        val explicit: Boolean
+    @PrimaryKey val id: Int,
+    val title: String,
+    val artistName: String,
+    val primaryGenre: Int,
+    val rssUrl: String,
+    val explicit: Boolean
 )
 
-@Entity(tableName = "PODCAST_ARTWORK",
-        foreignKeys = [(ForeignKey(
-                entity = PodcastEntity::class,
-                parentColumns = ["id"],
-                childColumns = ["podcastIdFk"],
-                onDelete = ForeignKey.CASCADE
-        ))])
+@Entity(
+    tableName = "PODCAST_ARTWORK",
+    foreignKeys = [(ForeignKey(
+        entity = PodcastEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["podcastIdFk"],
+        onDelete = ForeignKey.CASCADE
+    ))]
+)
 internal data class PodcastArtworkEntity(
-        @PrimaryKey(autoGenerate = true) val id: Int,
-        val url: String,
-        val width: Int,
-        val height: Int,
-        val podcastIdFk: Int
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val url: String,
+    val width: Int,
+    val height: Int,
+    val podcastIdFk: Int
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -63,18 +74,22 @@ internal data class PodcastArtworkEntity(
     }
 }
 
-@Entity(tableName = "PODCAST_GENRE",
-        primaryKeys = ["podcastId", "genreId"],
-        foreignKeys = [ForeignKey(entity = PodcastEntity::class,
-                parentColumns = ["id"],
-                childColumns = ["podcastId"],
-                onDelete = ForeignKey.CASCADE
-        ), ForeignKey(entity = GenreEntity::class,
-                parentColumns = ["id"],
-                childColumns = ["genreId"],
-                onDelete = ForeignKey.CASCADE
-        )])
+@Entity(
+    tableName = "PODCAST_GENRE",
+    primaryKeys = ["podcastId", "genreId"],
+    foreignKeys = [ForeignKey(
+        entity = PodcastEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["podcastId"],
+        onDelete = ForeignKey.CASCADE
+    ), ForeignKey(
+        entity = GenreEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["genreId"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 internal data class PodcastAndGenreMapEntity(
-        val podcastId: Int,
-        val genreId: Int
+    val podcastId: Int,
+    val genreId: Int
 )

@@ -14,8 +14,8 @@ import org.junit.Test
 class PodcastDAOTest {
 
     private val database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            PodcastDatabase::class.java
+        ApplicationProvider.getApplicationContext(),
+        PodcastDatabase::class.java
     ).build()
 
     private val podcastDAO = database.podcastDAO()
@@ -24,13 +24,14 @@ class PodcastDAOTest {
     @Test
     fun write_then_read() {
         val podcastWrapperDB = PodcastWrapperEntity(
-                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
-                listOf(
-                        PodcastArtworkEntity(0, "url", 10, 10, 2),
-                        PodcastArtworkEntity(0, "url", 11, 11, 2)
-                ),
-                emptyList()
+            PodcastEntity(2, "Title", "Artist", 1, "rssUrl", false),
+            listOf(
+                PodcastArtworkEntity(0, "url", 10, 10, 2),
+                PodcastArtworkEntity(0, "url", 11, 11, 2)
+            ),
+            emptyList()
         )
+        genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
         podcastDAO.getAll().blockingGet().first().run {
             assertEquals(podcastWrapperDB, this)
@@ -40,17 +41,17 @@ class PodcastDAOTest {
     @Test
     fun when_replace_podcast_should_clean_ArtworkList() {
         val initialArtwork = listOf(
-                PodcastArtworkEntity(0, "url", 10, 10, 2),
-                PodcastArtworkEntity(0, "url", 11, 11, 2)
+            PodcastArtworkEntity(0, "url", 10, 10, 2),
+            PodcastArtworkEntity(0, "url", 11, 11, 2)
         )
         val updatedArtwork = listOf(
-                PodcastArtworkEntity(0, "url2", 10, 10, 2),
-                PodcastArtworkEntity(0, "url2", 11, 11, 2)
+            PodcastArtworkEntity(0, "url2", 10, 10, 2),
+            PodcastArtworkEntity(0, "url2", 11, 11, 2)
         )
         val podcastWrapperDB = PodcastWrapperEntity(
-                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
-                emptyList(),
-                emptyList()
+            PodcastEntity(2, "Title", "Artist", 1, "rssUrl", false),
+            emptyList(),
+            emptyList()
         )
 
         fun insertPodcastAndAssertArtwork(artworkList: List<PodcastArtworkEntity>) {
@@ -59,6 +60,7 @@ class PodcastDAOTest {
                 assertEquals(podcastWrapperDB.copy(artworkList = artworkList), this)
             }
         }
+        genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
         insertPodcastAndAssertArtwork(initialArtwork)
         insertPodcastAndAssertArtwork(updatedArtwork)
     }
@@ -66,9 +68,9 @@ class PodcastDAOTest {
     @Test(expected = SQLiteConstraintException::class)
     fun when_insert_without_genre_should_crash_with_ForeignKeyError() {
         val podcastWrapperDB = PodcastWrapperEntity(
-                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
-                emptyList(),
-                listOf(1)
+            PodcastEntity(2, "Title", "Artist", 1, "rssUrl", false),
+            emptyList(),
+            listOf(1)
         )
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
     }
@@ -76,12 +78,12 @@ class PodcastDAOTest {
     @Test
     fun write_then_read_with_Genre() {
         val podcastWrapperDB = PodcastWrapperEntity(
-                PodcastEntity(2, "Title", "Artist", "rssUrl", false),
-                listOf(
-                        PodcastArtworkEntity(0, "url", 10, 10, 2),
-                        PodcastArtworkEntity(0, "url", 11, 11, 2)
-                ),
-                listOf(1)
+            PodcastEntity(2, "Title", "Artist", 1, "rssUrl", false),
+            listOf(
+                PodcastArtworkEntity(0, "url", 10, 10, 2),
+                PodcastArtworkEntity(0, "url", 11, 11, 2)
+            ),
+            listOf(1)
         )
         genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)

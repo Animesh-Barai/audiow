@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.core.data
+package ismaeldivita.audioma.core.data.repository
 
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -9,6 +9,8 @@ interface Repository<T> {
     fun add(element: T): Completable
 
     fun getAll(): Single<List<T>>
+
+    fun findById(id: Any): Maybe<T>
 
     fun remove(element: T): Completable
 

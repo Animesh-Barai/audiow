@@ -1,19 +1,22 @@
 package ismaeldivita.audioma.podcast.data.interactor.genre
 
 import io.reactivex.Single
-import ismaeldivita.audioma.core.interactor.Interactor
+import io.reactivex.rxkotlin.Singles
+import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreWithSubGenre
 import javax.inject.Inject
 
-internal class BuildGenreTree @Inject constructor(
-    val genreDAO: GenreDAO
-) : Interactor<List<Genre>, Single<Tree<Genre>>> {
+internal class GetGenreTreeImpl @Inject constructor(
+    private val dao: GenreDAO,
+    private val repository: Repository<Genre>
+) : GetGenreTree {
 
-    override fun invoke(params: List<Genre>): Single<Tree<Genre>> =
-        genreDAO.getAllWithSubGenres().map { buildTree(params, it) }
+    override fun invoke(param: Unit): Single<Tree<Genre>> =
+        Singles.zip(repository.getAll(), dao.getAllWithSubGenres())
+            .map { (genreList, relation) -> buildTree(genreList, relation) }
 
     private fun buildTree(genreList: List<Genre>, relation: List<GenreWithSubGenre>): Tree<Genre> {
         val genreIds = genreList.map { it.id }
