@@ -3,7 +3,7 @@ package ismaeldivita.audioma.podcast.service.itunes
 import io.reactivex.Single
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
+import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastDetails
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 import ismaeldivita.audioma.podcast.service.itunes.parser.ConverterRouterFactory
 import ismaeldivita.audioma.podcast.service.itunes.parser.json.Json
@@ -36,7 +36,7 @@ interface ItunesService {
     @GET
     @Xml
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
-    fun getPodcastFeed(@Url rssUrl: String): Single<ItunesPodcastFeed>
+    fun getPodcastDetail(@Url rssUrl: String): Single<ItunesPodcastDetails>
 
     companion object {
         fun build(

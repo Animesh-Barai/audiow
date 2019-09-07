@@ -5,7 +5,7 @@ import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
-internal class FeedXml {
+internal class DetailXml {
 
     @PropertyElement
     lateinit var title: String

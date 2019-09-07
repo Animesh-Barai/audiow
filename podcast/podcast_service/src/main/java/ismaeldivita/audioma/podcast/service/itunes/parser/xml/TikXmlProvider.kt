@@ -1,8 +1,8 @@
 package ismaeldivita.audioma.podcast.service.itunes.parser.xml
 
 import com.tickaroo.tikxml.TikXml
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
-import ismaeldivita.audioma.podcast.service.itunes.parser.xml.typeadapter.FeedTypeAdapter
+import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastDetails
+import ismaeldivita.audioma.podcast.service.itunes.parser.xml.typeadapter.DetailsTypeAdapter
 
 internal object TikXmlProvider {
 
@@ -10,8 +10,8 @@ internal object TikXmlProvider {
         TikXml.Builder()
                 .exceptionOnUnreadXml(false)
                 .addTypeAdapter(
-                    ItunesPodcastFeed::class.java,
-                    FeedTypeAdapter()
+                    ItunesPodcastDetails::class.java,
+                    DetailsTypeAdapter()
                 )
                 .build()
     }

@@ -5,30 +5,30 @@ import com.tickaroo.tikxml.XmlReader
 import com.tickaroo.tikxml.XmlWriter
 import com.tickaroo.tikxml.typeadapter.TypeAdapter
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastEpisode
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
+import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastDetails
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.EpisodeXml
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.RssXml
 import ismaeldivita.audioma.podcast.service.util.DateParser
 
 
-internal class FeedTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
+internal class DetailsTypeAdapter : TypeAdapter<ItunesPodcastDetails> {
 
     override fun toXml(
         writer: XmlWriter,
         config: TikXmlConfig,
-        value: ItunesPodcastFeed,
+        value: ItunesPodcastDetails,
         overridingXmlElementTagName: String
     ) = throw NotImplementedError()
 
 
-    override fun fromXml(reader: XmlReader, config: TikXmlConfig): ItunesPodcastFeed {
+    override fun fromXml(reader: XmlReader, config: TikXmlConfig): ItunesPodcastDetails {
         val adapter = config.getTypeAdapter(RssXml::class.java)
         val rss = adapter.fromXml(reader, config)
 
-        return ItunesPodcastFeed(
-            description = rss.feed.description ?: rss.feed.summary.orEmpty(),
-            languageIso639 = rss.feed.language,
-            episodes = mapEpisodes(rss.feed.episodesXml)
+        return ItunesPodcastDetails(
+            description = rss.detail.description ?: rss.detail.summary.orEmpty(),
+            languageIso639 = rss.detail.language,
+            episodes = mapEpisodes(rss.detail.episodesXml)
         )
     }
 

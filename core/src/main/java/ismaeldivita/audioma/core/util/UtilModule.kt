@@ -10,7 +10,7 @@ import ismaeldivita.audioma.core.util.time.TimeProvider
 import javax.inject.Singleton
 
 @Module
-class UtilModule {
+internal class UtilModule {
 
     @Provides
     @Reusable

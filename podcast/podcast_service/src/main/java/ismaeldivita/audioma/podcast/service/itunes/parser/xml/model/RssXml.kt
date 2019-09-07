@@ -7,7 +7,7 @@ import com.tickaroo.tikxml.annotation.Xml
 internal class RssXml {
 
     @Element(name = "channel")
-    lateinit var feed: FeedXml
+    lateinit var detail: DetailXml
 
 }
 
