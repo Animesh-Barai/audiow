@@ -5,8 +5,7 @@ import androidx.room.*
 @Entity(tableName = "GENRE")
 internal data class GenreEntity(
         @PrimaryKey val id: Int,
-        val name: String,
-        val topPodcastsUrl: String
+        val name: String
 )
 
 @Entity(tableName = "SUB_GENRE",

@@ -98,14 +98,12 @@ internal class GenreRepository @Inject constructor(
 
     private fun ItunesGenre.toEntity() = GenreEntity(
         id = id,
-        name = name,
-        topPodcastsUrl = topPodcastsUrl
+        name = name
     )
 
     private fun GenreEntity.toDomain() = Genre(
         id = id,
-        name = name,
-        topPodcastUrl = topPodcastsUrl
+        name = name
     )
 
 }
