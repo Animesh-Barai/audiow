@@ -40,7 +40,7 @@ class ItunesServiceTest {
     fun getEpisodes() {
         val episodeResponse = IOUtils.fileToString("/xml/feed_10.xml")
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
-        service.getPodcastDetail("")
+        service.getPodcastRss("")
             .test()
             .assertValue { it.episodes.size == 10 }
     }

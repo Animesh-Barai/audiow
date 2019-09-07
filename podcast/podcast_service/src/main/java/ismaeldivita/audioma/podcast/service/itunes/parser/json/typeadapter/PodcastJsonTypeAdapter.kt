@@ -15,25 +15,26 @@ internal object PodcastJsonTypeAdapter {
         val jsonMap = reader.readJsonValue() as Map<String, Any>
 
         return MoshiProvider.instance
-                .adapter<PodcastJson>()
-                .fromJsonValue(jsonMap)!!
-                .copy(artworkList = parseArtworkList(
+            .adapter<PodcastJson>()
+            .fromJsonValue(jsonMap)!!
+            .copy(
+                artworkList = parseArtworkList(
                     jsonMap
                 )
-                )
+            )
     }
 
     private fun parseArtworkList(jsonMap: Map<String, *>): List<ItunesArtwork> {
         return jsonMap
-                .filter { it.key.startsWith("artworkUrl", ignoreCase = true) }
-                .map {
-                    val size = it.key.split(Regex("(?=\\d*$)"), 2).component2().toInt()
-                    ItunesArtwork(
-                        it.value as String,
-                        size,
-                        size
-                    )
-                }
+            .filter { it.key.startsWith("artworkUrl", ignoreCase = true) }
+            .map {
+                val size = it.key.split(Regex("(?=\\d*$)"), 2).component2().toInt()
+                ItunesArtwork(
+                    it.value as String,
+                    size,
+                    size
+                )
+            }
     }
 
 }
