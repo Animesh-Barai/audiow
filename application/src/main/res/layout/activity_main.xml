@@ -3,14 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF"
-        android:orientation="vertical"/>
+        android:background="#FFF">
+
+        <fragment
+            android:id="@+id/feed_fragment"
+            android:name="ismaeldivita.audioma.podcast.feature.ui.feed.PodcastFeedFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:layout_width="match_parent"

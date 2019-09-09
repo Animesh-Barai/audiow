@@ -29,13 +29,14 @@ internal class GenreRepository @Inject constructor(
     private val schedulers: SchedulersProvider,
     @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
 ) : Repository<Genre> {
-
     companion object {
         val LAST_DATABASE_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
         const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()
+
+    override fun addAll(elements: List<Genre>): Completable = throw UnsupportedOperationException()
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 

@@ -29,6 +29,9 @@ internal class PodcastRepository @Inject constructor(
             .subscribeOn(schedulers.io())
     }
 
+    override fun addAll(elements: List<Podcast>): Completable =
+        throw UnsupportedOperationException()
+
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
         .subscribeOn(schedulers.io())
 
@@ -38,7 +41,7 @@ internal class PodcastRepository @Inject constructor(
 
     override fun getAll(): Single<List<Podcast>> = genreRepository.getAll()
         .flatMap { genreList ->
-            dao.getAll().map { podcasts-> podcasts.map { it.toDomain(genreList) } }
+            dao.getAll().map { podcasts -> podcasts.map { it.toDomain(genreList) } }
         }.subscribeOn(schedulers.io())
 
     override fun clear(): Completable = dao.deleteAll()

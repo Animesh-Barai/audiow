@@ -15,8 +15,8 @@ import retrofit2.http.*
 
 interface ItunesService {
 
-    @GET("search?media=podcast&entity=podcast")
     @Json
+    @GET("search?media=podcast&entity=podcast")
     fun search(
         @Query("term") searchTerm: String = "podcast",
         @Query("country") countryIso: String = "US",
@@ -24,14 +24,29 @@ interface ItunesService {
         @Query("limit") limit: Int? = null
     ): Single<List<ItunesPodcast>>
 
-    @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
     @Json
+    @GET("search?media=podcast&entity=podcast&term=podcast")
+    fun getFeedByGenre(
+        @Query("country") countryIso: String = "US",
+        @Query("genreId") genreId: Int,
+        @Query("limit") limit: Int? = null
+    ): Single<List<ItunesPodcast>>
+
+    @Json
+    @GET("search?media=podcast&entity=podcast&term=podcast&genreId=$ROOT_GENRE_ID")
+    fun getFeedByCountry(
+        @Query("country") countryIso: String = "US",
+        @Query("limit") limit: Int? = null
+    ): Single<List<ItunesPodcast>>
+
+    @Json
+    @GET("WebObjects/MZStoreServices.woa/ws/genres?id=26")
     fun getGenreTree(
         @Query("cc") countryIso: String = "US"
     ): Single<Tree<ItunesGenre>>
 
-    @GET
     @Xml
+    @GET
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
     fun getPodcastRss(
         @Url rssUrl: String,
@@ -40,6 +55,8 @@ interface ItunesService {
     ): Single<ItunesPodcastRss>
 
     companion object {
+        const val ROOT_GENRE_ID = 26
+
         fun build(
             baseUrl: String = "https://itunes.apple.com/",
             client: OkHttpClient = OkHttpClient()
