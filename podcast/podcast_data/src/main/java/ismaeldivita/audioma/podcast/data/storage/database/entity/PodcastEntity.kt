@@ -19,12 +19,12 @@ internal data class PodcastWrapperEntity(
 
 @Entity(
     tableName = "PODCAST",
-    foreignKeys = [(ForeignKey(
+    foreignKeys = [ForeignKey(
         entity = GenreEntity::class,
         parentColumns = ["id"],
         childColumns = ["primaryGenre"],
         onDelete = ForeignKey.CASCADE
-    ))]
+    )]
 )
 internal data class PodcastEntity(
     @PrimaryKey val id: Int,
@@ -37,12 +37,12 @@ internal data class PodcastEntity(
 
 @Entity(
     tableName = "PODCAST_ARTWORK",
-    foreignKeys = [(ForeignKey(
+    foreignKeys = [ForeignKey(
         entity = PodcastEntity::class,
         parentColumns = ["id"],
         childColumns = ["podcastIdFk"],
         onDelete = ForeignKey.CASCADE
-    ))]
+    )]
 )
 internal data class PodcastArtworkEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,

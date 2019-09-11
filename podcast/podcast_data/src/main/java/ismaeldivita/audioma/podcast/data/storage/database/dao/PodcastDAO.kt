@@ -12,7 +12,6 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastWrapperE
 @Dao
 internal abstract class PodcastDAO {
 
-    @Transaction
     @Query("SELECT * FROM PODCAST")
     abstract fun getAll(): Single<List<PodcastWrapperEntity>>
 
