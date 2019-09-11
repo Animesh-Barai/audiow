@@ -6,6 +6,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
+import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
 import ismaeldivita.audioma.podcast.data.model.FeedSection
@@ -33,20 +34,25 @@ internal class FeedRepository(
         TODO()
     }
 
-    override fun getAll(): Single<List<FeedSection>> {
-        TODO()
-//        if (cacheExpired()) {
-//            getFeed()
-//        } else {
-//
-//        }
-    }
+    override fun getAll(): Single<List<FeedSection>> =
+        if (cacheExpired()) {
+            getFeed()
+                .flatMap { updateDatabase(it) }
+                .onErrorResumeNext(getCache())
+        } else {
+            getCache()
+        }
+
 
     override fun clear(): Completable {
         TODO()
     }
 
-    private fun getFeedFromDatabase(): Single<List<FeedSection>> {
+    private fun getCache(): Single<List<FeedSection>> {
+        TODO()
+    }
+
+    private fun updateDatabase(feed: List<FeedSection>): Single<List<FeedSection>> {
         TODO()
     }
 

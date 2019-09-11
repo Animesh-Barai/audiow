@@ -1,8 +1,13 @@
 package ismaeldivita.audioma.podcast.data.storage.database.entity
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
+
+internal data class FeedGenreSectionWrapperEntity(
+    @Embedded val section: FeedGenreSectionEntity,
+
+    @Relation(parentColumn = "genreId", entityColumn = "genreSectionId")
+    val podcasts: List<FeedGenreSectionPodcastsEntity>
+)
 
 @Entity(
     tableName = "FEED_GENRE_SECTION",
