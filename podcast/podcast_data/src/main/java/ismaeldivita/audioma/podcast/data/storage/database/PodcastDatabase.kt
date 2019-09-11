@@ -14,8 +14,7 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.*
         PodcastAndGenreMapEntity::class,
         GenreEntity::class,
         SubGenreEntity::class,
-        FeedGenreSectionEntity::class,
-        FeedGenreSectionPodcastsEntity::class
+        FeedGenreSectionEntity::class
     ],
     version = 1,
     exportSchema = false

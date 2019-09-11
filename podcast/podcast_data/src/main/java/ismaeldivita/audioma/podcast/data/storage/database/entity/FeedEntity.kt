@@ -2,7 +2,6 @@ package ismaeldivita.audioma.podcast.data.storage.database.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "FEED_GENRE_SECTION",
@@ -11,29 +10,15 @@ import androidx.room.PrimaryKey
         parentColumns = ["id"],
         childColumns = ["genreId"],
         onDelete = ForeignKey.CASCADE
-    )]
-)
-internal data class FeedGenreSectionEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val genreId: Int
-)
-
-@Entity(
-    tableName = "FEED_GENRE_SECTION_PODCASTS",
-    foreignKeys = [ForeignKey(
-        entity = FeedGenreSectionEntity::class,
-        parentColumns = ["id"],
-        childColumns = ["genreSectionId"],
-        onDelete = ForeignKey.CASCADE
-    ),ForeignKey(
+    ), ForeignKey(
         entity = PodcastEntity::class,
         parentColumns = ["id"],
         childColumns = ["podcastId"],
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    primaryKeys = ["genreId", "podcastId"]
 )
-internal data class FeedGenreSectionPodcastsEntity(
-    val genreSectionId: Int,
+internal data class FeedGenreSectionEntity(
+    val genreId: Int,
     val podcastId: Int
 )

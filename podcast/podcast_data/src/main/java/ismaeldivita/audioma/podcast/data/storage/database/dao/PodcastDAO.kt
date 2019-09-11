@@ -25,7 +25,7 @@ internal abstract class PodcastDAO {
     protected abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
 
     @Query("DELETE FROM PODCAST_ARTWORK WHERE podcastIdFk = :podcastId")
-    abstract fun deleteAllArtworkList(podcastId: Int)
+    protected abstract fun deleteAllArtworkList(podcastId: Int)
 
     @Insert
     protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
