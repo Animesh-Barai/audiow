@@ -31,7 +31,7 @@ internal class GenreRepository @Inject constructor(
 ) : Repository<Genre> {
 
     companion object {
-        val LAST_DATABASE_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
+        val LAST_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
         const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
@@ -80,12 +80,12 @@ internal class GenreRepository @Inject constructor(
                 genreEntityList = genreListEntity,
                 subGenreEntityList = subGenreEntityList
             )
-            preferences.write(LAST_DATABASE_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
+            preferences.write(LAST_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
         }.toSingleDefault(genreListEntity.map { it.toDomain() })
     }
 
     private fun updateCache() {
-        val lastUpdate = preferences.read(LAST_DATABASE_UPDATE_KEY) ?: 0
+        val lastUpdate = preferences.read(LAST_UPDATE_KEY) ?: 0
         val cacheDuration = timeProvider.getCurrentTimeMillis() - lastUpdate
 
         if (cacheDuration >= CACHE_TTL) {
@@ -98,14 +98,7 @@ internal class GenreRepository @Inject constructor(
         }
     }
 
-    private fun ItunesGenre.toEntity() = GenreEntity(
-        id = id,
-        name = name
-    )
+    private fun ItunesGenre.toEntity() = GenreEntity(id = id, name = name)
 
-    private fun GenreEntity.toDomain() = Genre(
-        id = id,
-        name = name
-    )
-
+    private fun GenreEntity.toDomain() = Genre(id = id, name = name)
 }
