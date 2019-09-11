@@ -25,7 +25,7 @@ internal class PodcastRepository @Inject constructor(
             artworkList = element.toArtworkEntityList(),
             genreIds = element.genreList.map { it.id }
         )
-        return Completable.fromCallable { dao.podcastWrapperTransaction(podcastWrapper) }
+        return Completable.fromCallable { dao.upsertPodcastWrapperTransaction(podcastWrapper) }
             .subscribeOn(schedulers.io())
     }
 

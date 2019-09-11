@@ -16,14 +16,23 @@ internal abstract class PodcastDAO {
     @Query("SELECT * FROM PODCAST")
     abstract fun getAll(): Single<List<PodcastWrapperEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    protected abstract fun insertPodcast(podcast: PodcastEntity)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    protected abstract fun insert(podcast: PodcastEntity): Long
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    protected abstract fun update(podcast: PodcastEntity)
 
     @Insert
     protected abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
 
+    @Query("DELETE FROM PODCAST_ARTWORK WHERE podcastIdFk = :podcastId")
+    abstract fun deleteAllArtworkList(podcastId: Int)
+
     @Insert
     protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
+
+    @Query("DELETE FROM PODCAST_GENRE WHERE podcastId = :podcastId")
+    abstract fun deleteAllGenresRelation(podcastId: Int)
 
     @Query("SELECT * FROM PODCAST WHERE id=:id")
     abstract fun findById(id: Int): Maybe<PodcastWrapperEntity>
@@ -35,9 +44,21 @@ internal abstract class PodcastDAO {
     abstract fun delete(model: PodcastEntity): Completable
 
     @Transaction
-    open fun podcastWrapperTransaction(podcast: PodcastWrapperEntity) {
-        insertPodcast(podcast.podcast)
+    open fun upsert(entity: PodcastEntity) {
+        val id = insert(entity)
+        if (id == -1L) {
+            update(entity)
+        }
+    }
+
+    @Transaction
+    open fun upsertPodcastWrapperTransaction(podcast: PodcastWrapperEntity) {
+        upsert(podcast.podcast)
+
+        deleteAllArtworkList(podcast.podcast.id)
         insertArtworkList(podcast.artworkList)
+
+        deleteAllGenresRelation(podcast.podcast.id)
         insertPodcastGenre(podcast.genreIds.map {
             PodcastAndGenreMapEntity(podcast.podcast.id, it)
         })
