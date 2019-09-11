@@ -10,13 +10,15 @@ import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreWithSubGenre
+import ismaeldivita.audioma.podcast.data.util.TestSchedulerProvider
 import org.junit.Test
 
 class GetGenreTreeImplTest {
 
     private val dao = mock<GenreDAO>()
     private val repository = mock<Repository<Genre>>()
-    private val interactor: GetGenreTree = GetGenreTreeImpl(dao, repository)
+    private val scheduler = TestSchedulerProvider()
+    private val interactor: GetGenreTree = GetGenreTreeImpl(dao, repository, scheduler)
 
     @Test
     fun given_connected_nodes_should_build_the_tree() {
@@ -67,13 +69,13 @@ class GetGenreTreeImplTest {
             .assertError(GetGenreTreeImpl.RootNotFoundException)
     }
 
-    private fun givenGenreList(vararg ids: Int) = ids.map { Genre(it, "$it", "") }
+    private fun givenGenreList(vararg ids: Int) = ids.map { Genre(it, "$it") }
         .let { whenever(repository.getAll()).doReturn(Single.just(it)) }
 
     private fun givenRelation(vararg relations: Pair<Int, List<Int>>) =
         relations.map {
             GenreWithSubGenre(
-                genre = GenreEntity(id = it.first, name = "", topPodcastsUrl = ""),
+                genre = GenreEntity(id = it.first, name = ""),
                 subGenreIds = it.second
             )
         }.let { whenever(dao.getAllWithSubGenres()).doReturn(Single.just(it)) }

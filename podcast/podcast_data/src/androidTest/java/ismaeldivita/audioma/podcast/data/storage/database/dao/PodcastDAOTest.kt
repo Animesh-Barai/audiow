@@ -31,7 +31,7 @@ class PodcastDAOTest {
             ),
             emptyList()
         )
-        genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
+        genreDAO.upsert(GenreEntity(1, "ItunesGenre"))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
         podcastDAO.getAll().blockingGet().first().run {
             assertEquals(podcastWrapperDB, this)
@@ -60,7 +60,7 @@ class PodcastDAOTest {
                 assertEquals(podcastWrapperDB.copy(artworkList = artworkList), this)
             }
         }
-        genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
+        genreDAO.upsert(GenreEntity(1, "ItunesGenre"))
         insertPodcastAndAssertArtwork(initialArtwork)
         insertPodcastAndAssertArtwork(updatedArtwork)
     }
@@ -85,7 +85,7 @@ class PodcastDAOTest {
             ),
             listOf(1)
         )
-        genreDAO.upsert(GenreEntity(1, "ItunesGenre", ""))
+        genreDAO.upsert(GenreEntity(1, "ItunesGenre"))
         podcastDAO.podcastWrapperTransaction(podcastWrapperDB)
         podcastDAO.getAll().blockingGet().first().run {
             assertEquals(podcastWrapperDB, this)

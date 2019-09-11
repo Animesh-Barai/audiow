@@ -3,8 +3,9 @@ package ismaeldivita.audioma.podcast.data.interactor.feed
 import io.reactivex.Single
 import ismaeldivita.audioma.core.interactor.Interactor
 import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenres
+import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredCountry
+import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenres
 import ismaeldivita.audioma.podcast.data.model.Artwork
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.data.model.Genre
@@ -42,7 +43,8 @@ internal class GetPreferredFeedGenreSectionsImpl @Inject constructor(
                             preferredGenre,
                             podcasts.map { it.toDomain(genres) })
                     }
-            }.toList()
+            }
+            .toList()
     }
 
     private fun ItunesPodcast.toDomain(genres: List<Genre>) = Podcast(

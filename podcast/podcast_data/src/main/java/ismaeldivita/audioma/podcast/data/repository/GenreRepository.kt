@@ -29,6 +29,7 @@ internal class GenreRepository @Inject constructor(
     private val schedulers: SchedulersProvider,
     @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
 ) : Repository<Genre> {
+
     companion object {
         val LAST_DATABASE_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
         const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
