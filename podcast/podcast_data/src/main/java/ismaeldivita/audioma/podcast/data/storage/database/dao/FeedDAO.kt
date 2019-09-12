@@ -19,7 +19,7 @@ internal abstract class FeedDAO {
     abstract fun getAllGenreSections(): Single<List<FeedGenreSectionWrapperEntity>>
 
     @Query("DELETE FROM FEED_GENRE_SECTION")
-    protected abstract fun deleteAllGenreSection()
+    abstract fun deleteAllGenreSection()
 
     @Transaction
     open fun insertGenreSection(

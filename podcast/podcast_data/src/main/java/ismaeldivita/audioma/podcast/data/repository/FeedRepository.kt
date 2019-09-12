@@ -10,11 +10,17 @@ import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
 import ismaeldivita.audioma.podcast.data.model.FeedSection
+import ismaeldivita.audioma.podcast.data.model.Genre
+import ismaeldivita.audioma.podcast.data.model.Podcast
+import ismaeldivita.audioma.podcast.data.repository.helper.GetGenreSectionsCache
 import ismaeldivita.audioma.podcast.data.storage.database.dao.FeedDAO
 
 internal class FeedRepository(
     private val getFeed: GetFeed,
     private val feedDAO: FeedDAO,
+    private val genreRepository: Repository<Genre>,
+    private val podcastRepository: Repository<Podcast>,
+    private val getGenreSectionsCache: GetGenreSectionsCache,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider
 ) : Repository<FeedSection> {
@@ -27,6 +33,9 @@ internal class FeedRepository(
     override fun add(element: FeedSection): Completable = throw UnsupportedOperationException()
 
     override fun findById(id: Any): Maybe<FeedSection> = throw UnsupportedOperationException()
+
+    override fun findByIds(vararg ids: Any): Single<List<FeedSection>> =
+        throw UnsupportedOperationException()
 
     override fun remove(element: FeedSection): Completable = throw UnsupportedOperationException()
 
@@ -43,13 +52,20 @@ internal class FeedRepository(
             getCache()
         }
 
-
-    override fun clear(): Completable {
-        TODO()
-    }
+    override fun clear(): Completable = Completable.fromCallable { feedDAO.deleteAllGenreSection() }
 
     private fun getCache(): Single<List<FeedSection>> {
-        TODO()
+        val dummyFeedProvider = Single.just(listOf<Pair<Int, FeedSection>>(-1 to FeedSection.Foo))
+
+        return Single.merge(
+            getGenreSectionsCache(),
+            dummyFeedProvider
+        ).toList()
+            .map { sectionsList ->
+                sectionsList.flatten()
+                    .sortedBy { (order, _) -> order }
+                    .map { it.second }
+            }
     }
 
     private fun updateDatabase(feed: List<FeedSection>): Single<List<FeedSection>> {

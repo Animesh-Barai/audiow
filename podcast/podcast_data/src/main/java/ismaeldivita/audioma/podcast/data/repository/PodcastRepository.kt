@@ -35,9 +35,18 @@ internal class PodcastRepository @Inject constructor(
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
         .subscribeOn(schedulers.io())
 
-    override fun findById(id: Any) = genreRepository.getAll()
-        .flatMapMaybe { genreList -> dao.findById(id as Int).map { it.toDomain(genreList) } }
-        .subscribeOn(schedulers.io())
+    override fun findById(id: Any) =
+        genreRepository.getAll()
+            .flatMapMaybe { genreList -> dao.findById(id as Int).map { it.toDomain(genreList) } }
+            .subscribeOn(schedulers.io())
+
+    override fun findByIds(vararg ids: Any): Single<List<Podcast>> =
+        genreRepository.getAll()
+            .flatMap { genreList ->
+                dao.findByIds(ids.map { it as Int })
+                    .map { it.map { podcast -> podcast.toDomain(genreList) } }
+            }
+            .subscribeOn(schedulers.io())
 
     override fun getAll(): Single<List<Podcast>> = genreRepository.getAll()
         .flatMap { genreList ->

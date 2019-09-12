@@ -25,7 +25,7 @@ internal abstract class GenreDAO {
     abstract fun findById(id: Int): Maybe<GenreEntity>
 
     @Query("SELECT * FROM GENRE WHERE id IN (:ids)")
-    abstract fun findByIds(ids: List<Int>): Single<GenreEntity>
+    abstract fun findByIds(ids: List<Int>): Single<List<GenreEntity>>
 
     @Query("SELECT * FROM GENRE")
     abstract fun getAll(): Single<List<GenreEntity>>

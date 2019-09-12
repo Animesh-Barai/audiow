@@ -36,6 +36,9 @@ internal abstract class PodcastDAO {
     @Query("SELECT * FROM PODCAST WHERE id=:id")
     abstract fun findById(id: Int): Maybe<PodcastWrapperEntity>
 
+    @Query("SELECT * FROM PODCAST WHERE id IN (:ids)")
+    abstract fun findByIds(ids: List<Int>): Single<List<PodcastWrapperEntity>>
+
     @Query("DELETE FROM PODCAST")
     abstract fun deleteAll(): Completable
 

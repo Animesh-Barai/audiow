@@ -47,9 +47,13 @@ internal class GenreRepository @Inject constructor(
         .map { it.toDomain() }
         .subscribeOn(schedulers.io())
 
+    override fun findByIds(vararg ids: Any): Single<List<Genre>> =
+        dao.findByIds(ids.map { it as Int })
+            .map { genres -> genres.map { it.toDomain() } }
+            .subscribeOn(schedulers.io())
+
     override fun getAll(): Single<List<Genre>> =
         dao.getAll()
-            .subscribeOn(schedulers.io())
             .flatMap { genreEntities ->
                 if (genreEntities.isEmpty()) {
                     fetchFromRemote()
@@ -57,7 +61,8 @@ internal class GenreRepository @Inject constructor(
                     updateCache()
                     Single.just(genreEntities.map { it.toDomain() })
                 }
-            }
+            }.subscribeOn(schedulers.io())
+
 
     private fun fetchFromRemote(): Single<List<Genre>> =
         service.getGenreTree(resources.getString(R.string.country_iso))

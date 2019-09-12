@@ -14,6 +14,8 @@ interface Repository<T> {
 
     fun findById(id: Any): Maybe<T>
 
+    fun findByIds(vararg ids: Any): Single<List<T>>
+
     fun remove(element: T): Completable
 
     fun clear(): Completable
