@@ -47,7 +47,7 @@ internal class GenreRepository @Inject constructor(
         .map { it.toDomain() }
         .subscribeOn(schedulers.io())
 
-    override fun findByIds(vararg ids: Any): Single<List<Genre>> =
+    override fun findByIds(ids: List<Any>): Single<List<Genre>> =
         dao.findByIds(ids.map { it as Int })
             .map { genres -> genres.map { it.toDomain() } }
             .subscribeOn(schedulers.io())

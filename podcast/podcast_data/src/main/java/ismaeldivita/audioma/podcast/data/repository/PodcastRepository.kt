@@ -19,18 +19,15 @@ internal class PodcastRepository @Inject constructor(
     private val schedulers: SchedulersProvider
 ) : Repository<Podcast> {
 
-    override fun add(element: Podcast): Completable {
-        val podcastWrapper = PodcastWrapperEntity(
-            podcast = element.toEntity(),
-            artworkList = element.toArtworkEntityList(),
-            genreIds = element.genreList.map { it.id }
-        )
-        return Completable.fromCallable { dao.upsertPodcastWrapperTransaction(podcastWrapper) }
-            .subscribeOn(schedulers.io())
-    }
+    override fun add(element: Podcast): Completable =
+        Completable.fromCallable {
+            dao.upsertPodcastWrapperTransaction(element.toWrapperEntity())
+        }.subscribeOn(schedulers.io())
 
     override fun addAll(elements: List<Podcast>): Completable =
-        throw UnsupportedOperationException()
+        Completable.fromCallable {
+            dao.upsertPodcastWrapperTransaction(elements.map { it.toWrapperEntity() })
+        }.subscribeOn(schedulers.io())
 
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
         .subscribeOn(schedulers.io())
@@ -40,7 +37,7 @@ internal class PodcastRepository @Inject constructor(
             .flatMapMaybe { genreList -> dao.findById(id as Int).map { it.toDomain(genreList) } }
             .subscribeOn(schedulers.io())
 
-    override fun findByIds(vararg ids: Any): Single<List<Podcast>> =
+    override fun findByIds(ids: List<Any>): Single<List<Podcast>> =
         genreRepository.getAll()
             .flatMap { genreList ->
                 dao.findByIds(ids.map { it as Int })
@@ -83,5 +80,11 @@ internal class PodcastRepository @Inject constructor(
             podcastIdFk = id
         )
     }
+
+    private fun Podcast.toWrapperEntity() = PodcastWrapperEntity(
+        podcast = toEntity(),
+        artworkList = toArtworkEntityList(),
+        genreIds = genreList.map { it.id }
+    )
 
 }

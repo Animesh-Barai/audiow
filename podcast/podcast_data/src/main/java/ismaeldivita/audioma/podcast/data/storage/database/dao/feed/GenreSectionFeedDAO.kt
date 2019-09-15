@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.storage.database.dao
+package ismaeldivita.audioma.podcast.data.storage.database.dao.feed
 
 import androidx.room.*
 import io.reactivex.Single
@@ -7,13 +7,13 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectio
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionWrapperEntity
 
 @Dao
-internal abstract class FeedDAO {
+internal abstract class GenreSectionFeedDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insert(entity: FeedGenreSectionEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    protected abstract fun insertAll(entities: List<FeedGenreSectionPodcastsEntity>)
+    protected abstract fun insertAllPodcasts(entities: List<FeedGenreSectionPodcastsEntity>)
 
     @Query("SELECT * FROM FEED_GENRE_SECTION")
     abstract fun getAllGenreSections(): Single<List<FeedGenreSectionWrapperEntity>>
@@ -22,14 +22,14 @@ internal abstract class FeedDAO {
     abstract fun deleteAllGenreSection()
 
     @Transaction
-    open fun insertGenreSection(
-        sections: HashMap<FeedGenreSectionEntity, List<FeedGenreSectionPodcastsEntity>>
+    open fun insertGenreSections(
+        sections: Map<FeedGenreSectionEntity, List<FeedGenreSectionPodcastsEntity>>
     ) {
         deleteAllGenreSection()
 
         sections.forEach {
             insert(it.key)
-            insertAll(it.value)
+            insertAllPodcasts(it.value)
         }
     }
 }

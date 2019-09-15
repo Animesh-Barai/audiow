@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import dagger.android.support.DaggerFragment
-import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
+import ismaeldivita.audioma.core.data.repository.Repository
+import ismaeldivita.audioma.core.monitoring.log.Logger
+import ismaeldivita.audioma.podcast.data.model.FeedSection
 import javax.inject.Inject
 
 class PodcastFeedFragment : DaggerFragment() {
 
     @Inject
-    lateinit var getFeed: GetFeed
+    lateinit var repository: Repository<FeedSection>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +24,15 @@ class PodcastFeedFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getFeed().subscribe()
+
+        repository
+            .getAll()
+            .doOnSuccess {
+                Logger.i(it.toString())
+            }
+            .doOnError {
+                Logger.i(it.toString())
+            }
+            .subscribe()
     }
 }

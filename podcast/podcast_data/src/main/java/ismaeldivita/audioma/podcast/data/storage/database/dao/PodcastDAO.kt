@@ -66,4 +66,8 @@ internal abstract class PodcastDAO {
         })
     }
 
+    @Transaction
+    open fun upsertPodcastWrapperTransaction(podcasts: List<PodcastWrapperEntity>) {
+        podcasts.forEach(::upsertPodcastWrapperTransaction)
+    }
 }
