@@ -6,11 +6,11 @@ import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import javax.inject.Inject
 
-interface FetchFeed : Interactor<Unit, Single<List<FeedSection>>>
+interface GetFeed : Interactor<Unit, Single<List<FeedSection>>>
 
-internal class FetchFeedImpl @Inject constructor(
-    private val genreSectionsFeed: GetPreferredFeedGenreSections
-) : FetchFeed {
+internal class GetFeedImpl @Inject constructor(
+    private val genreSectionsFeed: GeFeedPreferredGenreSections
+) : GetFeed {
 
     override fun invoke(param: Unit): Single<List<FeedSection>> {
         return genreSectionsFeed()

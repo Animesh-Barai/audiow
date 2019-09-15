@@ -8,12 +8,12 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.core.util.time.TimeProvider
-import ismaeldivita.audioma.podcast.data.interactor.feed.FetchFeed
+import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import javax.inject.Inject
 
 internal class FeedRepository @Inject constructor(
-    private val fetchFeed: FetchFeed,
+    private val getFeed: GetFeed,
     private val genreSectionsCacheHelper: GenreSectionsCacheHelper,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider,
@@ -37,8 +37,11 @@ internal class FeedRepository @Inject constructor(
 
     override fun getAll(): Single<List<FeedSection>> =
         if (cacheExpired()) {
-            fetchFeed()
+            getFeed()
                 .flatMap { addAll(it).toSingleDefault(it) }
+                .doOnSuccess {
+                    preferences.write(LAST_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
+                }
                 .onErrorResumeNext { error ->
                     getCache().flatMap {
                         if (it.isEmpty()) Single.error(error) else Single.just((it))

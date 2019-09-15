@@ -3,7 +3,6 @@ package ismaeldivita.audioma.podcast.data.interactor.feed
 import io.reactivex.Single
 import ismaeldivita.audioma.core.interactor.Interactor
 import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredCountry
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenres
 import ismaeldivita.audioma.podcast.data.model.Artwork
@@ -15,14 +14,14 @@ import ismaeldivita.audioma.podcast.service.itunes.ItunesService
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 import javax.inject.Inject
 
-interface GetPreferredFeedGenreSections : Interactor<Unit, Single<List<FeedSection.GenreSection>>>
+interface GeFeedPreferredGenreSections : Interactor<Unit, Single<List<FeedSection.GenreSection>>>
 
 internal class GetPreferredFeedGenreSectionsImpl @Inject constructor(
     private val getPreferredGenres: GetPreferredGenres,
     private val getPreferredCountry: GetPreferredCountry,
     private val genreRepository: GenreRepository,
     private val itunesService: ItunesService
-) : GetPreferredFeedGenreSections {
+) : GeFeedPreferredGenreSections {
 
     override fun invoke(p: Unit): Single<List<FeedSection.GenreSection>> {
         val genreCache = genreRepository.getAll().cache()
