@@ -11,6 +11,9 @@ import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastArtworkEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastWrapperEntity
+import ismaeldivita.audioma.podcast.data.util.toDomain
+import ismaeldivita.audioma.podcast.data.util.toEntity
+import ismaeldivita.audioma.podcast.data.util.toWrapperEntity
 import javax.inject.Inject
 
 internal class PodcastRepository @Inject constructor(
@@ -51,40 +54,5 @@ internal class PodcastRepository @Inject constructor(
         }.subscribeOn(schedulers.io())
 
     override fun clear(): Completable = dao.deleteAll()
-
-    private fun PodcastWrapperEntity.toDomain(genreList: List<Genre>) = Podcast(
-        id = podcast.id,
-        title = podcast.title,
-        artistName = podcast.artistName,
-        rssUrl = podcast.rssUrl,
-        artworkList = artworkList.map { Artwork(it.url, it.width, it.height) },
-        primaryGenre = genreList.first { it.id == podcast.primaryGenre },
-        genreList = genreList.filter { genreIds.contains(it.id) },
-        explicit = podcast.explicit
-    )
-
-    private fun Podcast.toEntity() = PodcastEntity(
-        id = id,
-        title = title,
-        artistName = artistName,
-        primaryGenre = primaryGenre.id,
-        rssUrl = rssUrl,
-        explicit = explicit
-    )
-
-    private fun Podcast.toArtworkEntityList() = artworkList.map {
-        PodcastArtworkEntity(
-            url = it.url,
-            width = it.width,
-            height = it.height,
-            podcastIdFk = id
-        )
-    }
-
-    private fun Podcast.toWrapperEntity() = PodcastWrapperEntity(
-        podcast = toEntity(),
-        artworkList = toArtworkEntityList(),
-        genreIds = genreList.map { it.id }
-    )
 
 }

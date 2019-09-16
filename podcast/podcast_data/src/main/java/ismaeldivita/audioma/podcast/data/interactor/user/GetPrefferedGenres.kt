@@ -8,6 +8,9 @@ import ismaeldivita.audioma.podcast.data.interactor.genre.GetGenreTree
 import ismaeldivita.audioma.podcast.data.model.Genre
 import javax.inject.Inject
 
+/**
+ *  Return a list of genre order by the user preference and usage
+ */
 interface GetPreferredGenres : Interactor<Unit, Single<List<Genre>>>
 
 internal class GetPreferredGenresImpl @Inject constructor(
@@ -15,13 +18,13 @@ internal class GetPreferredGenresImpl @Inject constructor(
 ) : GetPreferredGenres {
 
     /**
-     * This should based on user preferences and usage but for now lets take the first
-     * 4 leafs from the tree
+     * This should be based on user preferences and usage but for now lets take random
+     * leafs from the tree
      */
     override fun invoke(param: Unit): Single<List<Genre>> =
         getGenreTree().map { tree ->
             tree.filter { node -> node.children.isEmpty() }
                 .map { it.value }
-                .take(4)
+                .shuffled()
         }.doOnSuccess { genres -> Logger.d(genres.map { it.name }.toString()) }
 }

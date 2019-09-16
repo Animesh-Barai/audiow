@@ -2,12 +2,14 @@ package ismaeldivita.audioma.podcast.data.interactor
 
 import dagger.Binds
 import dagger.Module
-import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
+import ismaeldivita.audioma.podcast.data.interactor.feed.*
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeedImpl
-import ismaeldivita.audioma.podcast.data.interactor.feed.GeFeedPreferredGenreSections
-import ismaeldivita.audioma.podcast.data.interactor.feed.GetPreferredFeedGenreSectionsImpl
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredFeedGenrePodcastsImpl
 import ismaeldivita.audioma.podcast.data.interactor.genre.GetGenreTree
 import ismaeldivita.audioma.podcast.data.interactor.genre.GetGenreTreeImpl
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPreferredGenrePodcasts
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPodcasts
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPodcastsImpl
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredCountry
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredCountryImpl
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenres
@@ -20,7 +22,10 @@ internal interface InteractorModule {
     fun bindGetFeed(p: GetFeedImpl): GetFeed
 
     @Binds
-    fun bindFeedGenreSections(p: GetPreferredFeedGenreSectionsImpl): GeFeedPreferredGenreSections
+    fun bindFeedGenreSections(p: GetPreferredFeedGenrePodcastsImpl): GetTopPreferredGenrePodcasts
+
+    @Binds
+    fun bindGetTopPodcasts(p: GetTopPodcastsImpl): GetTopPodcasts
 
     @Binds
     fun bindGetGenreTree(p: GetGenreTreeImpl): GetGenreTree

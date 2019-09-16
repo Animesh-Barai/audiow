@@ -16,6 +16,8 @@ import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.SubGenreEntity
+import ismaeldivita.audioma.podcast.data.util.toDomain
+import ismaeldivita.audioma.podcast.data.util.toEntity
 import ismaeldivita.audioma.podcast.service.itunes.ItunesService
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
 import javax.inject.Inject
@@ -103,7 +105,5 @@ internal class GenreRepository @Inject constructor(
         }
     }
 
-    private fun ItunesGenre.toEntity() = GenreEntity(id = id, name = name)
 
-    private fun GenreEntity.toDomain() = Genre(id = id, name = name)
 }
