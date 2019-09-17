@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 internal class FeedRepository @Inject constructor(
     private val getFeed: GetFeed,
-    private val cacheHelpers: Set<FeedCacheHelper>,
+    private val cacheHelpers: Set<@JvmSuppressWildcards FeedCacheHelper>,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider
 ) : Repository<FeedSection> {

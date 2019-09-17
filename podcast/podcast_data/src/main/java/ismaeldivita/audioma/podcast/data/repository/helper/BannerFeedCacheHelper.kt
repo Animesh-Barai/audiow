@@ -17,9 +17,9 @@ internal class BannerFeedCacheHelper @Inject constructor(
     override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
         bannerDAO.getAll()
             .flatMap { banners ->
-                podcastRepository.findByIds(banners.map { banner ->
-                    banner.podcasts.map { it.podcastId }
-                }).map { podcasts ->
+                podcastRepository.findByIds(
+                    banners.map { banner -> banner.podcasts.map { it.podcastId } }.flatten()
+                ).map { podcasts ->
                     banners.map { banner ->
                         val bannerPodcasts = podcasts.filter {
                             banner.podcasts.map { podcast -> podcast.podcastId }.contains(it.id)

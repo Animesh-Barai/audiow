@@ -7,6 +7,8 @@ import dagger.Provides
 import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedGenreSectionDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
+import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedBannerDAO
+import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedHighlightDAO
 import javax.inject.Singleton
 
 @Module
@@ -30,6 +32,14 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
-    internal fun provideFeedDao(database: PodcastDatabase): FeedGenreSectionDAO = database.feedGenreSection()
+    internal fun provideFeedGenreDao(database: PodcastDatabase): FeedGenreSectionDAO = database.feedGenreSection()
+
+    @Provides
+    @Singleton
+    internal fun provideFeedBannerDao(database: PodcastDatabase): FeedBannerDAO = database.feedBanner()
+
+    @Provides
+    @Singleton
+    internal fun provideFeedHighlightDao(database: PodcastDatabase): FeedHighlightDAO = database.feedHighlight()
 
 }
