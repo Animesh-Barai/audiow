@@ -15,14 +15,12 @@ interface GetGenreTree : Interactor<Unit, Single<Tree<Genre>>>
 
 internal class GetGenreTreeImpl @Inject constructor(
     private val dao: GenreDAO,
-    private val repository: Repository<Genre>,
-    private val scheduler: SchedulersProvider
+    private val repository: Repository<Genre>
 ) : GetGenreTree {
 
     override fun invoke(param: Unit): Single<Tree<Genre>> =
         Singles.zip(repository.getAll(), dao.getAllWithSubGenres())
             .map { (genreList, relation) -> buildTree(genreList, relation) }
-            .subscribeOn(scheduler.io())
 
     private fun buildTree(genreList: List<Genre>, relation: List<GenreWithSubGenre>): Tree<Genre> {
         val genreIds = genreList.map { it.id }

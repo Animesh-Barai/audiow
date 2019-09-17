@@ -18,27 +18,24 @@ import javax.inject.Inject
 
 internal class PodcastRepository @Inject constructor(
     private val dao: PodcastDAO,
-    private val genreRepository: Repository<Genre>,
-    private val schedulers: SchedulersProvider
+    private val genreRepository: Repository<Genre>
 ) : Repository<Podcast> {
 
     override fun add(element: Podcast): Completable =
         Completable.fromCallable {
             dao.upsertPodcastWrapperTransaction(element.toWrapperEntity())
-        }.subscribeOn(schedulers.io())
+        }
 
     override fun addAll(elements: List<Podcast>): Completable =
         Completable.fromCallable {
             dao.upsertPodcastWrapperTransaction(elements.map { it.toWrapperEntity() })
-        }.subscribeOn(schedulers.io())
+        }
 
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
-        .subscribeOn(schedulers.io())
 
     override fun findById(id: Any) =
         genreRepository.getAll()
             .flatMapMaybe { genreList -> dao.findById(id as Long).map { it.toDomain(genreList) } }
-            .subscribeOn(schedulers.io())
 
     override fun findByIds(ids: List<Any>): Single<List<Podcast>> =
         genreRepository.getAll()
@@ -46,12 +43,11 @@ internal class PodcastRepository @Inject constructor(
                 dao.findByIds(ids.map { it as Long })
                     .map { it.map { podcast -> podcast.toDomain(genreList) } }
             }
-            .subscribeOn(schedulers.io())
 
     override fun getAll(): Single<List<Podcast>> = genreRepository.getAll()
         .flatMap { genreList ->
             dao.getAll().map { podcasts -> podcasts.map { it.toDomain(genreList) } }
-        }.subscribeOn(schedulers.io())
+        }
 
     override fun clear(): Completable = dao.deleteAll()
 

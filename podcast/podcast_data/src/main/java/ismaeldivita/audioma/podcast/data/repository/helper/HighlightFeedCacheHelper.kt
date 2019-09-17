@@ -3,7 +3,6 @@ package ismaeldivita.audioma.podcast.data.repository.helper
 import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedHighlightDAO
@@ -12,8 +11,7 @@ import javax.inject.Inject
 
 internal class HighlightFeedCacheHelper @Inject constructor(
     private val highlightDAO: FeedHighlightDAO,
-    private val podcastRepository: Repository<Podcast>,
-    private val schedulersProvider: SchedulersProvider
+    private val podcastRepository: Repository<Podcast>
 ) : FeedCacheHelper {
 
     override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
@@ -26,7 +24,7 @@ internal class HighlightFeedCacheHelper @Inject constructor(
                             order to FeedSection.Highlight(podcast)
                         }
                     }
-            }.subscribeOn(schedulersProvider.io())
+            }
 
     override fun addAll(elements: List<FeedSection>): Completable {
         val highlights = elements.mapIndexed { index, section -> index to section }
@@ -36,9 +34,9 @@ internal class HighlightFeedCacheHelper @Inject constructor(
         return podcastRepository.addAll(highlights.map { it.second.podcast })
             .andThen(highlightDAO.insertAll(highlights.map { (order, highlight) ->
                 FeedHighlightEntity(id = highlight.podcast.id, order = order)
-            })).subscribeOn(schedulersProvider.io())
+            }))
     }
 
-    override fun delete() = highlightDAO.deleteAll().subscribeOn(schedulersProvider.io())
+    override fun delete() = highlightDAO.deleteAll()
 
 }

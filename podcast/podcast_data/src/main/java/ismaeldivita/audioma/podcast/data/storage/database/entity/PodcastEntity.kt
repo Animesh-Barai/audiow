@@ -50,7 +50,29 @@ internal data class PodcastArtworkEntity(
     val width: Int,
     val height: Int,
     val podcastIdFk: Long
-)
+){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as PodcastArtworkEntity
+
+        if (url != other.url) return false
+        if (width != other.width) return false
+        if (height != other.height) return false
+        if (podcastIdFk != other.podcastIdFk) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = url.hashCode()
+        result = 31 * result + width
+        result = 31 * result + height
+        result = 31 * result + podcastIdFk.hashCode()
+        return result
+    }
+}
 
 @Entity(
     tableName = "PODCAST_GENRE",

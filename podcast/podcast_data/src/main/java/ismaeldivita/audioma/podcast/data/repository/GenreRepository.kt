@@ -28,7 +28,6 @@ internal class GenreRepository @Inject constructor(
     private val resources: Resources,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider,
-    private val schedulers: SchedulersProvider,
     @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
 ) : Repository<Genre> {
 
@@ -43,16 +42,14 @@ internal class GenreRepository @Inject constructor(
 
     override fun remove(element: Genre): Completable = throw UnsupportedOperationException()
 
-    override fun clear(): Completable = dao.deleteAll().subscribeOn(schedulers.io())
+    override fun clear(): Completable = dao.deleteAll()
 
     override fun findById(id: Any) = dao.findById(id as Long)
         .map { it.toDomain() }
-        .subscribeOn(schedulers.io())
 
     override fun findByIds(ids: List<Any>): Single<List<Genre>> =
         dao.findByIds(ids.map { it as Long })
             .map { genres -> genres.map { it.toDomain() } }
-            .subscribeOn(schedulers.io())
 
     override fun getAll(): Single<List<Genre>> =
         dao.getAll()
@@ -63,7 +60,7 @@ internal class GenreRepository @Inject constructor(
                     updateCache()
                     Single.just(genreEntities.map { it.toDomain() })
                 }
-            }.subscribeOn(schedulers.io())
+            }
 
 
     private fun fetchFromRemote(): Single<List<Genre>> =
@@ -99,7 +96,6 @@ internal class GenreRepository @Inject constructor(
             fetchFromRemote()
                 .ignoreElement()
                 .onErrorComplete()
-                .subscribeOn(schedulers.io())
                 .subscribe()
                 .let(globalDisposable::add)
         }

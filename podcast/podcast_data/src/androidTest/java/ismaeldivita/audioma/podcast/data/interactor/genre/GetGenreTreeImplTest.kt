@@ -17,17 +17,16 @@ class GetGenreTreeImplTest {
 
     private val dao = mock<GenreDAO>()
     private val repository = mock<Repository<Genre>>()
-    private val scheduler = TestSchedulerProvider()
-    private val interactor: GetGenreTree = GetGenreTreeImpl(dao, repository, scheduler)
+    private val interactor: GetGenreTree = GetGenreTreeImpl(dao, repository)
 
     @Test
     fun given_connected_nodes_should_build_the_tree() {
         givenGenreList(1, 2, 3, 4)
         givenRelation(
-            1 to listOf(2, 3),
-            2 to emptyList(),
-            3 to listOf(4),
-            4 to emptyList()
+            1L to listOf(2L, 3L),
+            2L to emptyList(),
+            3L to listOf(4L),
+            4L to emptyList()
         )
 
         interactor()
@@ -39,9 +38,9 @@ class GetGenreTreeImplTest {
     fun given_disconnected_nodes_should_be_ignored() {
         givenGenreList(1, 2, 3, 4)
         givenRelation(
-            1 to listOf(2, 3),
-            2 to emptyList(),
-            3 to emptyList()
+            1L to listOf(2L, 3L),
+            2L to emptyList(),
+            3L to emptyList()
         )
 
         interactor()
@@ -52,7 +51,7 @@ class GetGenreTreeImplTest {
     @Test
     fun given_two_root_nodes_should_fail() {
         givenGenreList(1, 2, 3, 4)
-        givenRelation(1 to listOf(2), 3 to listOf(4), 4 to emptyList())
+        givenRelation(1L to listOf(2L), 3L to listOf(4L), 4L to emptyList())
 
         interactor()
             .test()
@@ -69,10 +68,10 @@ class GetGenreTreeImplTest {
             .assertError(GetGenreTreeImpl.RootNotFoundException)
     }
 
-    private fun givenGenreList(vararg ids: Int) = ids.map { Genre(it, "$it") }
+    private fun givenGenreList(vararg ids: Long) = ids.map { Genre(it, "$it") }
         .let { whenever(repository.getAll()).doReturn(Single.just(it)) }
 
-    private fun givenRelation(vararg relations: Pair<Int, List<Int>>) =
+    private fun givenRelation(vararg relations: Pair<Long, List<Long>>) =
         relations.map {
             GenreWithSubGenre(
                 genre = GenreEntity(id = it.first, name = ""),

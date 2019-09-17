@@ -11,13 +11,12 @@ import javax.inject.Inject
 
 internal class BannerFeedCacheHelper @Inject constructor(
     private val bannerDAO: FeedBannerDAO,
-    private val podcastRepository: Repository<Podcast>,
-    private val schedulersProvider: SchedulersProvider
+    private val podcastRepository: Repository<Podcast>
 ) : FeedCacheHelper {
 
     override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
         bannerDAO.getAll()
-            .flatMap<List<Pair<Int, FeedSection>>> { banners ->
+            .flatMap { banners ->
                 podcastRepository.findByIds(banners.map { banner ->
                     banner.podcasts.map { it.podcastId }
                 }).map { podcasts ->
@@ -28,7 +27,7 @@ internal class BannerFeedCacheHelper @Inject constructor(
                         banner.banner.order to FeedSection.Banner(bannerPodcasts)
                     }
                 }
-            }.subscribeOn(schedulersProvider.io())
+            }
 
     override fun addAll(elements: List<FeedSection>): Completable {
         val banners = elements.mapIndexed { index, section -> index to section }
@@ -43,5 +42,5 @@ internal class BannerFeedCacheHelper @Inject constructor(
             })
     }
 
-    override fun delete() = bannerDAO.deleteAll().subscribeOn(schedulersProvider.io())
+    override fun delete() = bannerDAO.deleteAll()
 }

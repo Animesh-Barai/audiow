@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import dagger.android.support.DaggerFragment
+import io.reactivex.schedulers.Schedulers
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.data.model.FeedSection
@@ -27,6 +28,7 @@ class PodcastFeedFragment : DaggerFragment() {
 
         repository
             .getAll()
+            .subscribeOn(Schedulers.io())
             .doOnSuccess {
                 Logger.i(it.toString())
             }

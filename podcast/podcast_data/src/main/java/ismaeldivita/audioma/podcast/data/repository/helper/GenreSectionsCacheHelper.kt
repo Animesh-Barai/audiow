@@ -18,15 +18,12 @@ import javax.inject.Inject
 internal class GenreSectionsCacheHelper @Inject constructor(
     private val feedGenreSectionDAO: FeedGenreSectionDAO,
     private val genreRepository: GenreRepository,
-    private val podcastRepository: Repository<Podcast>,
-    private val schedulersProvider: SchedulersProvider
+    private val podcastRepository: Repository<Podcast>
 ) : FeedCacheHelper {
 
     override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
         feedGenreSectionDAO.getAllGenreSections()
-            .flatMap<List<Pair<Int, FeedSection>>> {
-                mapToFeedSection(it)
-            }.subscribeOn(schedulersProvider.io())
+            .flatMap { mapToFeedSection(it) }
 
     override fun addAll(elements: List<FeedSection>): Completable {
         val genreSections = elements.mapIndexed { index, section -> index to section }
@@ -52,11 +49,12 @@ internal class GenreSectionsCacheHelper @Inject constructor(
             }
 
         return podcastRepository.addAll(podcasts)
-            .andThen(Completable.fromCallable { feedGenreSectionDAO.insertGenreSections(entities) })
-            .subscribeOn(schedulersProvider.io())
+            .andThen(Completable.fromCallable {
+                feedGenreSectionDAO.insertGenreSections(entities)
+            })
     }
 
-    override fun delete() = feedGenreSectionDAO.deleteAll().subscribeOn(schedulersProvider.io())
+    override fun delete() = feedGenreSectionDAO.deleteAll()
 
     private fun mapToFeedSection(sections: List<FeedGenreSectionWrapperEntity>) = Singles.zip(
         getGenres(sections),
