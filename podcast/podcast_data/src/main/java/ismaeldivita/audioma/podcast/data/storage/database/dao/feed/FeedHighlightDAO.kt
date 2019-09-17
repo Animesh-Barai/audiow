@@ -12,7 +12,7 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedHighli
 internal abstract class FeedHighlightDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(entitie: FeedHighlightEntity): Completable
+    abstract fun insert(entity: FeedHighlightEntity): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAll(entities: List<FeedHighlightEntity>): Completable

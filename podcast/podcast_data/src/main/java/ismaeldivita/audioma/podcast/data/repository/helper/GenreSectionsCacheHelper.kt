@@ -1,14 +1,14 @@
-package ismaeldivita.audioma.podcast.data.repository.feed
+package ismaeldivita.audioma.podcast.data.repository.helper
 
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
+import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.repository.GenreRepository
-import ismaeldivita.audioma.podcast.data.repository.PodcastRepository
 import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedGenreSectionDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
@@ -18,17 +18,17 @@ import javax.inject.Inject
 internal class GenreSectionsCacheHelper @Inject constructor(
     private val feedGenreSectionDAO: FeedGenreSectionDAO,
     private val genreRepository: GenreRepository,
-    private val podcastRepository: PodcastRepository,
+    private val podcastRepository: Repository<Podcast>,
     private val schedulersProvider: SchedulersProvider
-) {
+) : FeedCacheHelper {
 
-    fun getAll(): Single<List<Pair<Int, FeedSection>>> =
+    override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
         feedGenreSectionDAO.getAllGenreSections()
             .flatMap<List<Pair<Int, FeedSection>>> {
                 mapToFeedSection(it)
             }.subscribeOn(schedulersProvider.io())
 
-    fun addAll(elements: List<FeedSection>): Completable {
+    override fun addAll(elements: List<FeedSection>): Completable {
         val genreSections = elements.mapIndexed { index, section -> index to section }
             .filter { (_, section) -> section is FeedSection.GenreSection }
             .map { (order, section) -> order to section as FeedSection.GenreSection }
@@ -56,8 +56,7 @@ internal class GenreSectionsCacheHelper @Inject constructor(
             .subscribeOn(schedulersProvider.io())
     }
 
-    fun delete() = Completable.fromCallable { feedGenreSectionDAO.deleteAllGenreSection() }
-        .subscribeOn(schedulersProvider.io())
+    override fun delete() = feedGenreSectionDAO.deleteAll().subscribeOn(schedulersProvider.io())
 
     private fun mapToFeedSection(sections: List<FeedGenreSectionWrapperEntity>) = Singles.zip(
         getGenres(sections),

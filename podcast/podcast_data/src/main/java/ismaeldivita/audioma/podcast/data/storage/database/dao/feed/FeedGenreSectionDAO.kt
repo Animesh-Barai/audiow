@@ -1,6 +1,7 @@
 package ismaeldivita.audioma.podcast.data.storage.database.dao.feed
 
 import androidx.room.*
+import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
@@ -19,14 +20,12 @@ internal abstract class FeedGenreSectionDAO {
     abstract fun getAllGenreSections(): Single<List<FeedGenreSectionWrapperEntity>>
 
     @Query("DELETE FROM FEED_GENRE_SECTION")
-    abstract fun deleteAllGenreSection()
+    abstract fun deleteAll(): Completable
 
     @Transaction
     open fun insertGenreSections(
         sections: Map<FeedGenreSectionEntity, List<FeedGenreSectionPodcastsEntity>>
     ) {
-        deleteAllGenreSection()
-
         sections.forEach {
             insert(it.key)
             insertAllPodcasts(it.value)

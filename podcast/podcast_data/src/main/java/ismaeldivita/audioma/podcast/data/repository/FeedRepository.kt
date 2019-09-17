@@ -1,8 +1,9 @@
-package ismaeldivita.audioma.podcast.data.repository.feed
+package ismaeldivita.audioma.podcast.data.repository
 
 import android.text.format.DateUtils
 import io.reactivex.Completable
 import io.reactivex.Single
+import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.interactor.invoke
@@ -10,14 +11,15 @@ import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
 import ismaeldivita.audioma.podcast.data.model.FeedSection
+import ismaeldivita.audioma.podcast.data.repository.helper.FeedCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.helper.GenreSectionsCacheHelper
 import javax.inject.Inject
 
 internal class FeedRepository @Inject constructor(
     private val getFeed: GetFeed,
-    private val genreSectionsCacheHelper: GenreSectionsCacheHelper,
+    private val cacheHelpers: Set<FeedCacheHelper>,
     private val preferences: Preferences,
-    private val timeProvider: TimeProvider,
-    private val schedulersProvider: SchedulersProvider
+    private val timeProvider: TimeProvider
 ) : Repository<FeedSection> {
 
     companion object {
@@ -33,7 +35,8 @@ internal class FeedRepository @Inject constructor(
 
     override fun remove(element: FeedSection) = throw UnsupportedOperationException()
 
-    override fun addAll(elements: List<FeedSection>) = genreSectionsCacheHelper.addAll(elements)
+    override fun addAll(elements: List<FeedSection>) =
+        Completable.merge(cacheHelpers.map { it.addAll(elements) })
 
     override fun getAll(): Single<List<FeedSection>> =
         if (cacheExpired()) {
@@ -47,23 +50,20 @@ internal class FeedRepository @Inject constructor(
                         if (it.isEmpty()) Single.error(error) else Single.just((it))
                     }
                 }
-                .subscribeOn(schedulersProvider.io())
         } else {
-            getCache().subscribeOn(schedulersProvider.io())
+            getCache()
         }
 
-    override fun clear(): Completable = Completable.fromCallable {
-        genreSectionsCacheHelper.delete()
-    }
+    override fun clear(): Completable = Completable.merge(cacheHelpers.map { it.delete() })
 
     private fun getCache(): Single<List<FeedSection>> =
-        genreSectionsCacheHelper.getAll()
-            .map { sectionsList ->
-                sectionsList
-                    .sortedBy { (order, _) -> order }
+        Single.merge(cacheHelpers.map { it.getAll() })
+            .toList()
+            .map { cache ->
+                cache.flatten()
+                    .sortedBy { it.first }
                     .map { it.second }
             }
-
 
     private fun cacheExpired(): Boolean {
         val lastUpdate = preferences.read(LAST_UPDATE_KEY) ?: 0
