@@ -1,6 +1,8 @@
-package ismaeldivita.audioma.podcast.data.storage.database.entity
+package ismaeldivita.audioma.podcast.data.storage.database.entity.feed
 
 import androidx.room.*
+import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 
 internal data class FeedGenreSectionWrapperEntity(
     @Embedded val section: FeedGenreSectionEntity,

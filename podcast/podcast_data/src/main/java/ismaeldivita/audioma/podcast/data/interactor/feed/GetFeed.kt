@@ -33,10 +33,11 @@ internal class GetFeedImpl @Inject constructor(
             }
 
             /**
-             * Manually building a feed with the banner and a highlight after every 2
-             * genre sections.
+             * For now we are manually building a feed with the banner and a highlight after
+             * every 2 genre sections.
              *
-             * TODO improve this to work dynamically with a FeedConfigurationInput
+             * TODO improve this to work dynamically with a FeedConfigurationInput.
+             *  The configuration should be able to be replaced by RemoteConfig
              **/
             listOf(
                 banner,

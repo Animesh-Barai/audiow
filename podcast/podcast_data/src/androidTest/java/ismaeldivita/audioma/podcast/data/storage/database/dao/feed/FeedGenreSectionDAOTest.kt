@@ -4,10 +4,12 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import ismaeldivita.audioma.podcast.data.storage.database.PodcastDatabase
 import ismaeldivita.audioma.podcast.data.storage.database.entity.*
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class GenreSectionFeedDAOTest {
+class FeedGenreSectionDAOTest {
 
     private val database = Room.inMemoryDatabaseBuilder(
         ApplicationProvider.getApplicationContext(),
@@ -30,7 +32,15 @@ class GenreSectionFeedDAOTest {
             listOf(1)
         )
         val genreSectionFeed = mapOf(
-            FeedGenreSectionEntity(1, 1) to listOf(FeedGenreSectionPodcastsEntity(2, 1))
+            FeedGenreSectionEntity(
+                1,
+                1
+            ) to listOf(
+                FeedGenreSectionPodcastsEntity(
+                    2,
+                    1
+                )
+            )
         )
         genreDAO.upsert(genre)
         podcastDAO.upsertPodcastWrapperTransaction(podcast)

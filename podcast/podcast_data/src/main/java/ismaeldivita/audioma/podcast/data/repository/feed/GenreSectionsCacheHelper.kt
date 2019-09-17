@@ -9,21 +9,21 @@ import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.repository.GenreRepository
 import ismaeldivita.audioma.podcast.data.repository.PodcastRepository
-import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.GenreSectionFeedDAO
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionPodcastsEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionWrapperEntity
+import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedGenreSectionDAO
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionWrapperEntity
 import javax.inject.Inject
 
 internal class GenreSectionsCacheHelper @Inject constructor(
-    private val genreSectionFeedDAO: GenreSectionFeedDAO,
+    private val feedGenreSectionDAO: FeedGenreSectionDAO,
     private val genreRepository: GenreRepository,
     private val podcastRepository: PodcastRepository,
     private val schedulersProvider: SchedulersProvider
 ) {
 
     fun getAll(): Single<List<Pair<Int, FeedSection>>> =
-        genreSectionFeedDAO.getAllGenreSections()
+        feedGenreSectionDAO.getAllGenreSections()
             .flatMap<List<Pair<Int, FeedSection>>> {
                 mapToFeedSection(it)
             }.subscribeOn(schedulersProvider.io())
@@ -37,19 +37,26 @@ internal class GenreSectionsCacheHelper @Inject constructor(
 
         val entities = genreSections
             .associate { (order, section) ->
-                val sectionEntity = FeedGenreSectionEntity(section.genre.id, order)
+                val sectionEntity =
+                    FeedGenreSectionEntity(
+                        section.genre.id,
+                        order
+                    )
                 val podcastSectionList = section.podcasts.map { podcast ->
-                    FeedGenreSectionPodcastsEntity(podcast.id, sectionEntity.genreId)
+                    FeedGenreSectionPodcastsEntity(
+                        podcast.id,
+                        sectionEntity.genreId
+                    )
                 }
                 sectionEntity to podcastSectionList
             }
 
         return podcastRepository.addAll(podcasts)
-            .andThen(Completable.fromCallable { genreSectionFeedDAO.insertGenreSections(entities) })
+            .andThen(Completable.fromCallable { feedGenreSectionDAO.insertGenreSections(entities) })
             .subscribeOn(schedulersProvider.io())
     }
 
-    fun delete() = Completable.fromCallable { genreSectionFeedDAO.deleteAllGenreSection() }
+    fun delete() = Completable.fromCallable { feedGenreSectionDAO.deleteAllGenreSection() }
         .subscribeOn(schedulersProvider.io())
 
     private fun mapToFeedSection(sections: List<FeedGenreSectionWrapperEntity>) = Singles.zip(

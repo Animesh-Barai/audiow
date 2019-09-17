@@ -2,12 +2,12 @@ package ismaeldivita.audioma.podcast.data.storage.database.dao.feed
 
 import androidx.room.*
 import io.reactivex.Single
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionPodcastsEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedGenreSectionWrapperEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionWrapperEntity
 
 @Dao
-internal abstract class GenreSectionFeedDAO {
+internal abstract class FeedGenreSectionDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insert(entity: FeedGenreSectionEntity)
