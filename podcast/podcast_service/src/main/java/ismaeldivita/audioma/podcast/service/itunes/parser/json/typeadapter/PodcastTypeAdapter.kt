@@ -24,7 +24,7 @@ internal object PodcastTypeAdapter {
         )
     }
 
-    private fun getPrimaryGenreId(json: PodcastJson): Int =
+    private fun getPrimaryGenreId(json: PodcastJson): Long =
         json.genreIds
             .zip(json.genres)
             .first { it.second == json.primaryGenreName }

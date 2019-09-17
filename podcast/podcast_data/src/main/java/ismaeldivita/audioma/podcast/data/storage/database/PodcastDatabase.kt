@@ -5,6 +5,8 @@ import androidx.room.RoomDatabase
 import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedGenreSectionDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
+import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedBannerDAO
+import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedHighlightDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.*
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.*
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedBannerEntity
@@ -39,5 +41,9 @@ internal abstract class PodcastDatabase : RoomDatabase() {
     abstract fun podcastDAO(): PodcastDAO
 
     abstract fun feedGenreSection(): FeedGenreSectionDAO
+
+    abstract fun feedHighlight(): FeedHighlightDAO
+
+    abstract fun feedBanner(): FeedBannerDAO
 
 }

@@ -23,7 +23,7 @@ internal data class FeedGenreSectionWrapperEntity(
     ]
 )
 internal data class FeedGenreSectionEntity(
-    @PrimaryKey val genreId: Int,
+    @PrimaryKey val genreId: Long,
     val order: Int
 )
 
@@ -45,6 +45,6 @@ internal data class FeedGenreSectionEntity(
     ]
 )
 internal data class FeedGenreSectionPodcastsEntity(
-    val podcastId: Int,
-    val genreSectionId: Int
+    val podcastId: Long,
+    val genreSectionId: Long
 )

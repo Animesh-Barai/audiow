@@ -13,7 +13,7 @@ internal data class FeedBannerWrapperEntity(
 @Entity(tableName = "FEED_BANNER")
 internal data class FeedBannerEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long = 0,
     val order: Int
 )
 
@@ -35,6 +35,6 @@ internal data class FeedBannerEntity(
     ]
 )
 internal data class FeedBannerPodcastsEntity(
-    val bannerId: Int,
-    val podcastId: Int
+    val bannerId: Long,
+    val podcastId: Long
 )

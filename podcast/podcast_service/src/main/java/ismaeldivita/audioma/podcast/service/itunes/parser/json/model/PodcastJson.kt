@@ -7,7 +7,7 @@ internal data class PodcastJson(
         val kind: String,
         val artistId: Int?,
         val collectionId: Int,
-        val trackId: Int,
+        val trackId: Long,
         val artistName: String,
         val collectionName: String,
         val trackName: String,
@@ -20,7 +20,7 @@ internal data class PodcastJson(
         val trackCount: Int,
         val country: String,
         val primaryGenreName: String,
-        val genreIds: List<Int>,
+        val genreIds: List<Long>,
         val genres: List<String>,
         val artworkList: List<ItunesArtwork> = emptyList()
 )

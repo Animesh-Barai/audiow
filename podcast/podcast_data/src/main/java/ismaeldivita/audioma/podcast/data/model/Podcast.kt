@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Podcast(
-    val id: Int,
+    val id: Long,
     val title: String,
     val artistName: String,
     val rssUrl: String,

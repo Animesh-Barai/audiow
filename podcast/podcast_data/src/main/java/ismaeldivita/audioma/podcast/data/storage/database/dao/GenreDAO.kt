@@ -22,10 +22,10 @@ internal abstract class GenreDAO {
     protected abstract fun insertSubGenre(subGenreEntity: SubGenreEntity)
 
     @Query("SELECT * FROM GENRE WHERE id=:id")
-    abstract fun findById(id: Int): Maybe<GenreEntity>
+    abstract fun findById(id: Long): Maybe<GenreEntity>
 
     @Query("SELECT * FROM GENRE WHERE id IN (:ids)")
-    abstract fun findByIds(ids: List<Int>): Single<List<GenreEntity>>
+    abstract fun findByIds(ids: List<Long>): Single<List<GenreEntity>>
 
     @Query("SELECT * FROM GENRE")
     abstract fun getAll(): Single<List<GenreEntity>>

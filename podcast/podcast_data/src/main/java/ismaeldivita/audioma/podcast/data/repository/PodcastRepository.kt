@@ -37,13 +37,13 @@ internal class PodcastRepository @Inject constructor(
 
     override fun findById(id: Any) =
         genreRepository.getAll()
-            .flatMapMaybe { genreList -> dao.findById(id as Int).map { it.toDomain(genreList) } }
+            .flatMapMaybe { genreList -> dao.findById(id as Long).map { it.toDomain(genreList) } }
             .subscribeOn(schedulers.io())
 
     override fun findByIds(ids: List<Any>): Single<List<Podcast>> =
         genreRepository.getAll()
             .flatMap { genreList ->
-                dao.findByIds(ids.map { it as Int })
+                dao.findByIds(ids.map { it as Long })
                     .map { it.map { podcast -> podcast.toDomain(genreList) } }
             }
             .subscribeOn(schedulers.io())

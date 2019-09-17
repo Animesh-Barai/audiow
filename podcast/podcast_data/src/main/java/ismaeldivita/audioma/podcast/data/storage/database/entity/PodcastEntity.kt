@@ -14,7 +14,7 @@ internal data class PodcastWrapperEntity(
         entity = PodcastAndGenreMapEntity::class,
         projection = ["genreId"]
     )
-    val genreIds: List<Int>
+    val genreIds: List<Long>
 )
 
 @Entity(
@@ -27,10 +27,10 @@ internal data class PodcastWrapperEntity(
     )]
 )
 internal data class PodcastEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: Long,
     val title: String,
     val artistName: String,
-    val primaryGenre: Int,
+    val primaryGenre: Long,
     val rssUrl: String,
     val explicit: Boolean
 )
@@ -45,34 +45,12 @@ internal data class PodcastEntity(
     )]
 )
 internal data class PodcastArtworkEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val url: String,
     val width: Int,
     val height: Int,
-    val podcastIdFk: Int
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as PodcastArtworkEntity
-
-        if (url != other.url) return false
-        if (width != other.width) return false
-        if (height != other.height) return false
-        if (podcastIdFk != other.podcastIdFk) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = url.hashCode()
-        result = 31 * result + width
-        result = 31 * result + height
-        result = 31 * result + podcastIdFk
-        return result
-    }
-}
+    val podcastIdFk: Long
+)
 
 @Entity(
     tableName = "PODCAST_GENRE",
@@ -90,6 +68,6 @@ internal data class PodcastArtworkEntity(
     )]
 )
 internal data class PodcastAndGenreMapEntity(
-    val podcastId: Int,
-    val genreId: Int
+    val podcastId: Long,
+    val genreId: Long
 )

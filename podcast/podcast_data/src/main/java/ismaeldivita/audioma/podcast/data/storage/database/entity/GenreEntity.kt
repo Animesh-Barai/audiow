@@ -4,7 +4,7 @@ import androidx.room.*
 
 @Entity(tableName = "GENRE")
 internal data class GenreEntity(
-        @PrimaryKey val id: Int,
+        @PrimaryKey val id: Long,
         val name: String
 )
 
@@ -22,8 +22,8 @@ internal data class GenreEntity(
         ]
 )
 internal data class SubGenreEntity(
-        val genreId: Int,
-        val subGenreId: Int
+        val genreId: Long,
+        val subGenreId: Long
 )
 
 internal data class GenreWithSubGenre(
@@ -36,5 +36,5 @@ internal data class GenreWithSubGenre(
                 entity = SubGenreEntity::class,
                 projection = ["subGenreId"]
         )
-        val subGenreIds: List<Int>
+        val subGenreIds: List<Long>
 )

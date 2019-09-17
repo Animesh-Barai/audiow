@@ -45,12 +45,12 @@ internal class GenreRepository @Inject constructor(
 
     override fun clear(): Completable = dao.deleteAll().subscribeOn(schedulers.io())
 
-    override fun findById(id: Any) = dao.findById(id as Int)
+    override fun findById(id: Any) = dao.findById(id as Long)
         .map { it.toDomain() }
         .subscribeOn(schedulers.io())
 
     override fun findByIds(ids: List<Any>): Single<List<Genre>> =
-        dao.findByIds(ids.map { it as Int })
+        dao.findByIds(ids.map { it as Long })
             .map { genres -> genres.map { it.toDomain() } }
             .subscribeOn(schedulers.io())
 

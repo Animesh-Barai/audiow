@@ -20,7 +20,7 @@ interface ItunesService {
     fun search(
         @Query("term") searchTerm: String = "podcast",
         @Query("country") countryIso: String = "US",
-        @Query("genreId") filterByGenreId: Int? = null,
+        @Query("genreId") filterByGenreId: Long? = null,
         @Query("limit") limit: Int? = null
     ): Single<List<ItunesPodcast>>
 
@@ -28,7 +28,7 @@ interface ItunesService {
     @GET("search?media=podcast&entity=podcast&term=podcast")
     fun getFeedByGenre(
         @Query("country") countryIso: String = "US",
-        @Query("genreId") genreId: Int,
+        @Query("genreId") genreId: Long,
         @Query("limit") limit: Int? = null
     ): Single<List<ItunesPodcast>>
 
@@ -55,7 +55,7 @@ interface ItunesService {
     ): Single<ItunesPodcastRss>
 
     companion object {
-        const val ROOT_GENRE_ID = 26
+        const val ROOT_GENRE_ID: Long = 26
 
         fun build(
             baseUrl: String = "https://itunes.apple.com/",

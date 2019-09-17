@@ -25,19 +25,19 @@ internal abstract class PodcastDAO {
     protected abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
 
     @Query("DELETE FROM PODCAST_ARTWORK WHERE podcastIdFk = :podcastId")
-    protected abstract fun deleteAllArtworkList(podcastId: Int)
+    protected abstract fun deleteAllArtworkList(podcastId: Long)
 
     @Insert
     protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
 
     @Query("DELETE FROM PODCAST_GENRE WHERE podcastId = :podcastId")
-    abstract fun deleteAllGenresRelation(podcastId: Int)
+    abstract fun deleteAllGenresRelation(podcastId: Long)
 
     @Query("SELECT * FROM PODCAST WHERE id=:id")
-    abstract fun findById(id: Int): Maybe<PodcastWrapperEntity>
+    abstract fun findById(id: Long): Maybe<PodcastWrapperEntity>
 
     @Query("SELECT * FROM PODCAST WHERE id IN (:ids)")
-    abstract fun findByIds(ids: List<Int>): Single<List<PodcastWrapperEntity>>
+    abstract fun findByIds(ids: List<Long>): Single<List<PodcastWrapperEntity>>
 
     @Query("DELETE FROM PODCAST")
     abstract fun deleteAll(): Completable
