@@ -2,12 +2,12 @@ package ismaeldivita.audioma.podcast.feature.ui
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import ismaeldivita.audioma.podcast.feature.ui.feed.PodcastFeedFragment
+import ismaeldivita.audioma.podcast.feature.ui.discover.PodcastDiscoverFragment
 
 @Module
-internal interface BindingModule {
+internal abstract class BindingModule {
 
     @ContributesAndroidInjector
-    fun feedFragment(): PodcastFeedFragment
+    abstract fun bindDiscover(): PodcastDiscoverFragment
 
 }

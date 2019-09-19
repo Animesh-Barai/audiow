@@ -6,12 +6,12 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Singleton
-internal class ViewModelFactory @Inject constructor(
-        private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
+class ViewModelFactory<T : ViewModel> @Inject constructor(
+    private val viewModelProvider: Provider<T>
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>) = viewModels[modelClass]?.get() as T
-
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return viewModelProvider.get() as T
+    }
 }

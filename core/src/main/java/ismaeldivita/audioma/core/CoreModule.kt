@@ -16,4 +16,4 @@ import ismaeldivita.audioma.core.util.reactive.ReactiveModule
         UtilModule::class
     ]
 )
-interface CoreModule
+abstract class CoreModule

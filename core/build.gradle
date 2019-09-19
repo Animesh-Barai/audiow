@@ -23,6 +23,7 @@ android {
 
 dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    api "androidx.appcompat:appcompat:$appCompat"
 
     api "androidx.core:core-ktx:$kotlinKtx"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidLifecycle"

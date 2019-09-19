@@ -8,7 +8,7 @@ import ismaeldivita.audioma.core.android.viewmodel.ViewModelFactory
 @Module
 abstract class AndroidModule {
 
-    @Binds
-    internal abstract fun viewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+//    @Binds
+//    internal abstract fun viewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

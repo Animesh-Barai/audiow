@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.app.application.di
+package ismaeldivita.audioma.app.screens
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -7,7 +7,7 @@ import ismaeldivita.audioma.app.screens.launch.LaunchModule
 import ismaeldivita.audioma.app.screens.main.MainActivity
 
 @Module
-abstract class ActivityBindingModule {
+abstract class BindingModule {
 
     @ContributesAndroidInjector(modules = [LaunchModule::class])
     abstract fun bindLaunch(): LaunchActivity
