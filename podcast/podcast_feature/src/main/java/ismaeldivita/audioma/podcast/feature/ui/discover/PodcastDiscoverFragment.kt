@@ -17,9 +17,12 @@ import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFragmentDiscoverBinding
+import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
 import javax.inject.Inject
 
 class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
+
+    private val adapter =  FeedAdapter { viewModel.onAction(it) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,7 @@ class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
         )
 
         binding.lifecycleOwner = this
+        binding.feed.adapter = adapter
         binding.vm = viewModel
         return binding.root
     }

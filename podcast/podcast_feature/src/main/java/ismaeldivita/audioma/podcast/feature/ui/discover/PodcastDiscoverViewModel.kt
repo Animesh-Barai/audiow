@@ -7,6 +7,7 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.FeedSection
+import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
 import javax.inject.Inject
 
 class PodcastDiscoverViewModel @Inject constructor(
@@ -28,4 +29,8 @@ class PodcastDiscoverViewModel @Inject constructor(
             .registerDisposable()
     }
 
+
+    fun onAction(action: FeedAdapter.Action){
+
+    }
 }

@@ -5,10 +5,10 @@ import androidx.databinding.BindingAdapter
 import ismaeldivita.audioma.design.metrics.applySystemWindowsDesign
 
 @BindingAdapter(
-    "databinding:paddingLeftSystemWindowInsets",
-    "databinding:paddingTopSystemWindowInsets",
-    "databinding:paddingRightSystemWindowInsets",
-    "databinding:paddingBottomSystemWindowInsets",
+    "paddingLeftSystemWindowInsets",
+    "paddingTopSystemWindowInsets",
+    "paddingRightSystemWindowInsets",
+    "paddingBottomSystemWindowInsets",
     requireAll = false
 )
 fun applySystemWindowsDesign(
