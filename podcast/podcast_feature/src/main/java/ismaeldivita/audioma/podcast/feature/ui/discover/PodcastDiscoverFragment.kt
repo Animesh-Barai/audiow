@@ -20,7 +20,7 @@ import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFragmentDiscoverBi
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
 import javax.inject.Inject
 
-class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
+internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
 
     private val adapter =  FeedAdapter { viewModel.onAction(it) }
 

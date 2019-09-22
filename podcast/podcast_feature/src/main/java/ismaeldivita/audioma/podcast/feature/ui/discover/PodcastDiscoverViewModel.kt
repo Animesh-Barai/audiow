@@ -10,7 +10,7 @@ import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
 import javax.inject.Inject
 
-class PodcastDiscoverViewModel @Inject constructor(
+internal class PodcastDiscoverViewModel @Inject constructor(
     private val feedRepository: Repository<FeedSection>,
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {

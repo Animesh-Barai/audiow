@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="podcast"
+            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#CECECE"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/podcast_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{podcast.title}" />
+
+        <TextView
+            android:id="@+id/podcast_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{podcast.artistName}" />
+
+    </LinearLayout>
+
+</layout>
