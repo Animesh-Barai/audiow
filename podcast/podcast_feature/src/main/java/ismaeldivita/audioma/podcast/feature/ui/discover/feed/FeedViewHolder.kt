@@ -19,7 +19,7 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         init {
             with(binding.podcasts) {
-                adapter = GenreSectionAdapter()
+                adapter = GenreSectionAdapter().apply { setHasFixedSize(true) }
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
         }

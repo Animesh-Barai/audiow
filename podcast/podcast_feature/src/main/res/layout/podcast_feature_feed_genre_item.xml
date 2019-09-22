@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="ismaeldivita.audioma.design.databinding.TransformationType" />
 
         <variable
             name="podcast"
@@ -11,13 +14,20 @@
 
 
     <LinearLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="#CECECE"
+        android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
+            android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
+            app:load="@{podcast.getArtwork(400).url}"
+            app:loadCrossFade="@{true}"
+            app:loadPlaceholder="@{@drawable/ic_temp_placeholder}"
+            app:loadTransformation='@{ TransformationType.ROUNDED_CORNERS }'
+            app:loadTransformationRadius="@{@dimen/podcast_feature_feed_genre_section_item_cover_corner}" />
+
         <TextView
-            android:id="@+id/podcast_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -25,7 +35,6 @@
             android:text="@{podcast.title}" />
 
         <TextView
-            android:id="@+id/podcast_artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"

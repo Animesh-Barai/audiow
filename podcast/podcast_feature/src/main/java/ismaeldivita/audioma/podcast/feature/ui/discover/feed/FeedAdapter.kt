@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ismaeldivita.audioma.core.monitoring.log.Logger
+import ismaeldivita.audioma.core.util.standart.exhaustive
 import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.data.model.FeedSection
@@ -62,7 +63,7 @@ internal class FeedAdapter(
             vh is GenreViewHolder && item is GenreSection -> vh.binding.genreSection = item
             vh is HighlightViewHolder && item is Highlight -> vh.binding.highlight = item
             else -> Logger.e("View holder and feed item mismatched")
-        }
+        }.exhaustive
     }
 
     sealed class Action {

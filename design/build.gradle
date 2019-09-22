@@ -19,11 +19,21 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     dataBinding.enabled true
 }
 
 dependencies {
+    implementation project(":core")
+
     api "com.google.android.material:material:$materialDesign"
     api "androidx.constraintlayout:constraintlayout:$constraintLayout"
-
+    api "io.coil-kt:coil:$coil"
 }

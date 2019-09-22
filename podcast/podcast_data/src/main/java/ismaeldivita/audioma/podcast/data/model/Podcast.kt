@@ -13,4 +13,10 @@ data class Podcast(
     val primaryGenre: Genre,
     val genreList: List<Genre>,
     val explicit: Boolean
-) : Parcelable
+) : Parcelable {
+
+    fun getArtwork(minWidthInPx: Int = 0) = artworkList.firstOrNull {
+        it.width > minWidthInPx
+    } ?: artworkList.last()
+
+}
