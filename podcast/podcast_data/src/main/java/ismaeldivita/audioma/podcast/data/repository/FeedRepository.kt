@@ -41,7 +41,11 @@ internal class FeedRepository @Inject constructor(
     override fun getAll(): Single<List<FeedSection>> =
         if (cacheExpired()) {
             getFeed()
-                .flatMap { addAll(it).toSingleDefault(it) }
+                .flatMap {
+                    clear()
+                        .andThen( addAll(it))
+                        .toSingleDefault(it)
+                }
                 .doOnSuccess {
                     preferences.write(LAST_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
                 }
