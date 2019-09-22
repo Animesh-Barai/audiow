@@ -39,6 +39,8 @@ dependencies {
     // UI
     implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$chipNavigationBar"
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
+
     // Test
     testImplementation "junit:junit:$junitVersion"
 
