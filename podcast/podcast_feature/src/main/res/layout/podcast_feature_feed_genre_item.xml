@@ -4,14 +4,14 @@
 
     <data>
 
-        <import type="ismaeldivita.audioma.design.databinding.TransformationType" />
-
         <variable
             name="podcast"
             type="ismaeldivita.audioma.podcast.data.model.Podcast" />
 
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
     </data>
-
 
     <LinearLayout
         android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
@@ -21,16 +21,13 @@
         <ImageView
             android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
-            app:load="@{podcast.getArtwork(400).url}"
-            app:loadCrossFade="@{true}"
-            app:loadPlaceholder="@{@drawable/ic_temp_placeholder}"
-            app:loadTransformation='@{ TransformationType.ROUNDED_CORNERS }'
-            app:loadTransformationRadius="@{@dimen/podcast_feature_feed_genre_section_item_cover_corner}" />
+            app:imageLoader="@{imageLoader}"
+            app:load="@{podcast.artwork.url}" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:ellipsize="middle"
             android:maxLines="2"
             android:text="@{podcast.title}" />
 

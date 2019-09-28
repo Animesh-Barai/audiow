@@ -1,6 +1,7 @@
 package ismaeldivita.audioma.podcast.data.model
 
 import android.os.Parcelable
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -15,8 +16,7 @@ data class Podcast(
     val explicit: Boolean
 ) : Parcelable {
 
-    fun getArtwork(minWidthInPx: Int = 0) = artworkList.firstOrNull {
-        it.width > minWidthInPx
-    } ?: artworkList.last()
+    @IgnoredOnParcel
+    val artwork = artworkList.maxBy { it.height }!!
 
 }

@@ -4,13 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedGenreItemBinding
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.GenreSectionAdapter.ViewHolder
 
-class GenreSectionAdapter : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
+class GenreSectionAdapter(
+    private val imageLoader: RequestManager
+) : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
 
     private val podcasts: MutableList<Podcast> = mutableListOf()
 
@@ -37,5 +40,9 @@ class GenreSectionAdapter : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<
 
     inner class ViewHolder(
         val binding: PodcastFeatureFeedGenreItemBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+    ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.imageLoader = imageLoader
+        }
+    }
 }

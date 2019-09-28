@@ -4,27 +4,32 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.ListPreloader
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.standart.exhaustive
 import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.podcast.R
+import ismaeldivita.audioma.podcast.data.model.Artwork
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.data.model.FeedSection.*
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedViewHolder.*
-import java.lang.IllegalStateException
 
 internal class FeedAdapter(
+    private val imageLoader: RequestManager,
     private val callback: (Action) -> Unit
 ) : RecyclerView.Adapter<FeedViewHolder>(),
     BindableAdapter<List<FeedSection>> {
 
     private val feed: MutableList<FeedSection> = mutableListOf()
+    private var glidePreloader: RecyclerView.OnScrollListener? = null
 
     override fun setData(data: List<FeedSection>) {
         feed.clear()
-        feed.addAll(data)
+        feed.addAll(data.filterIsInstance<GenreSection>())
         notifyDataSetChanged()
     }
 
@@ -33,15 +38,18 @@ internal class FeedAdapter(
 
         return when (viewType) {
             R.layout.podcast_feature_feed_genre -> GenreViewHolder(
-                binding = DataBindingUtil.inflate(inflater, viewType, parent, false)
+                binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
+                imageLoader = imageLoader
             )
 
             R.layout.podcast_feature_feed_banner -> BannerViewHolder(
-                binding = DataBindingUtil.inflate(inflater, viewType, parent, false)
+                binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
+                imageLoader = imageLoader
             )
 
             R.layout.podcast_feature_feed_highlight -> HighlightViewHolder(
-                binding = DataBindingUtil.inflate(inflater, viewType, parent, false)
+                binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
+                imageLoader = imageLoader
             )
             else -> throw IllegalStateException("viewType not supported")
         }
@@ -66,9 +74,36 @@ internal class FeedAdapter(
         }.exhaustive
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        glidePreloader = RecyclerViewPreloader(
+            imageLoader,
+            ArtworkPreloadModelProvider(),
+            { artwork, _, _ -> intArrayOf(artwork.width, artwork.height) },
+            35
+        ).also(recyclerView::addOnScrollListener)
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        glidePreloader?.let(recyclerView::removeOnScrollListener)
+        super.onDetachedFromRecyclerView(recyclerView)
+    }
+
+    inner class ArtworkPreloadModelProvider : ListPreloader.PreloadModelProvider<Artwork> {
+
+        override fun getPreloadItems(position: Int): List<Artwork> {
+            return when (val item = feed[position]) {
+                is Banner -> item.podcasts.map { it.artwork }
+                is Highlight -> listOf(item.podcast.artwork)
+                is GenreSection -> item.podcasts.take(5).map { it.artwork }
+            }.exhaustive
+        }
+
+        override fun getPreloadRequestBuilder(item: Artwork) = imageLoader.load(item.url)
+
+    }
+
     sealed class Action {
         class PodcastSelected(podcast: Podcast) : Action()
-
         class GenreSelected(genre: Genre) : Action()
     }
 }

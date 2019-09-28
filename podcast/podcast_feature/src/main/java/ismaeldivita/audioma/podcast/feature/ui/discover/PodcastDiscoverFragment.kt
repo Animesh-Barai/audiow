@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import com.bumptech.glide.Glide
 import dagger.android.support.DaggerFragment
 import io.reactivex.schedulers.Schedulers
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
@@ -22,8 +23,6 @@ import javax.inject.Inject
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
 
-    private val adapter =  FeedAdapter { viewModel.onAction(it) }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +36,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
         )
 
         binding.lifecycleOwner = this
-        binding.feed.adapter = adapter
+        binding.feed.adapter = FeedAdapter(Glide.with(this)) { viewModel.onAction(it) }
         binding.vm = viewModel
         return binding.root
     }
