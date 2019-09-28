@@ -7,8 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFF">
+        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/feed_fragment"
@@ -23,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:visibility="gone"
         app:cnb_addBottomInset="true"
         app:cnb_menuResource="@menu/main_bottom_menu"
         app:cnb_orientationMode="horizontal" />

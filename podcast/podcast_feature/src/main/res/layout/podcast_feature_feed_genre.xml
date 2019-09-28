@@ -13,15 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#FAFAFA"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/genre_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/keyline_4"
             android:text="@{genreSection.genre.name}"
+            android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,8 +29,9 @@
             android:id="@+id/podcasts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/keyline_1"
+            android:layout_marginTop="@dimen/keyline_3"
             app:data="@{genreSection.podcasts}"
+            app:horizontalSpaceDecoration="@{@dimen/keyline_4}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/genre_title" />
 
