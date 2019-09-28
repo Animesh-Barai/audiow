@@ -21,8 +21,10 @@
         <ImageView
             android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
+            app:crossFade="@{true}"
             app:imageLoader="@{imageLoader}"
-            app:load="@{podcast.artwork.url}" />
+            app:load="@{podcast.artwork.url}"
+            app:radius="@{@dimen/podcast_feature_feed_genre_section_item_cover_radius}" />
 
         <TextView
             android:layout_width="match_parent"
