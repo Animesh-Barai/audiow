@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,22 +9,70 @@
             name="highlight"
             type="ismaeldivita.audioma.podcast.data.model.FeedSection.Highlight" />
 
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
     </data>
 
-
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="@dimen/podcast_feature_feed_highlight_height"
+        android:layout_marginStart="@dimen/screen_horizontal_padding"
+        android:layout_marginEnd="@dimen/screen_horizontal_padding"
+        android:background="@color/color_surface"
+        app:cardCornerRadius="@dimen/radius_default"
+        app:cardElevation="0dp">
 
-        <TextView
-            android:id="@+id/genre_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text='@{highlight.podcast.title +" - "+ highlight.podcast.artistName}'
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="@dimen/podcast_feature_feed_highlight_height"
+                android:layout_height="@dimen/podcast_feature_feed_highlight_height"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:load="@{highlight.podcast.artwork.url}"
+                tools:src="@drawable/sample" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
+                android:maxLines="2"
+                android:text="@{highlight.podcast.title}"
+                android:textAppearance="?textAppearanceSubtitle2"
+                app:layout_constraintBottom_toTopOf="@id/artist"
+                app:layout_constraintEnd_toStartOf="@id/cover"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Podcast Title" />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
+                android:maxLines="2"
+                android:text="@{highlight.podcast.artistName}"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cover"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="Artist" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </layout>

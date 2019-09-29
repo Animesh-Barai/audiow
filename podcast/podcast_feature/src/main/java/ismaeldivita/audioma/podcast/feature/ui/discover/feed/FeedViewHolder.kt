@@ -33,6 +33,10 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     class HighlightViewHolder(
         val binding: PodcastFeatureFeedHighlightBinding,
         override val imageLoader: RequestManager
-    ) : FeedViewHolder(binding.root)
+    ) : FeedViewHolder(binding.root) {
+        init {
+            binding.imageLoader = imageLoader
+        }
+    }
 
 }

@@ -29,7 +29,9 @@ internal class FeedAdapter(
 
     override fun setData(data: List<FeedSection>) {
         feed.clear()
-        feed.addAll(data.filterIsInstance<GenreSection>())
+        feed.addAll(data.filter {
+            it is GenreSection || it is Highlight
+        })
         notifyDataSetChanged()
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,10 +22,12 @@
         <ImageView
             android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
+            android:background="@color/color_surface"
             app:crossFade="@{true}"
             app:imageLoader="@{imageLoader}"
             app:load="@{podcast.artwork.url}"
-            app:radius="@{@dimen/podcast_feature_feed_genre_section_item_cover_radius}" />
+            app:radius="@{@dimen/radius_default}"
+            tools:src="@drawable/sample" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,7 +36,8 @@
             android:ellipsize="middle"
             android:maxLines="2"
             android:text="@{podcast.title}"
-            android:textAppearance="?textAppearanceSubtitle2" />
+            android:textAppearance="?textAppearanceSubtitle2"
+            tools:text="Podcast Title" />
 
         <TextView
             android:layout_width="match_parent"
@@ -42,7 +46,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{podcast.artistName}"
-            android:textAppearance="?textAppearanceCaption" />
+            android:textAppearance="?textAppearanceCaption"
+            tools:text="Artist Name" />
 
     </LinearLayout>
 
