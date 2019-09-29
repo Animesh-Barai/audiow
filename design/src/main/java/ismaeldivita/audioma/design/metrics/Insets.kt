@@ -1,8 +1,9 @@
 package ismaeldivita.audioma.design.metrics
 
+import android.graphics.Rect
 import android.view.View
 import android.view.WindowInsets
-import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 
 private fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
     val initialPadding = recordInitialPaddingForView(this)
@@ -22,7 +23,7 @@ private fun recordInitialPaddingForView(view: View) = InitialPadding(
     view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
 )
 
-private fun View.requestApplyInsetsWhenAttached() {
+fun View.requestApplyInsetsWhenAttached() {
     if (isAttachedToWindow) {
         requestApplyInsets()
     } else {
@@ -56,4 +57,46 @@ fun View.applySystemWindowsDesign(
             padding.bottom + bottom
         )
     }
+}
+
+fun RecyclerView.applySystemWindowsDecoration(
+    applyLeft: Boolean = false,
+    applyTop: Boolean = false,
+    applyRight: Boolean = false,
+    applyBottom: Boolean = false
+) {
+
+    var itemDecoration: RecyclerView.ItemDecoration? = null
+
+    setOnApplyWindowInsetsListener { _, insets ->
+        val left = if (applyLeft) insets.systemWindowInsetLeft else 0
+        val top = if (applyTop) insets.systemWindowInsetTop else 0
+        val right = if (applyRight) insets.systemWindowInsetRight else 0
+        val bottom = if (applyBottom) insets.systemWindowInsetBottom else 0
+
+        itemDecoration?.let(::removeItemDecoration)
+
+        itemDecoration = object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                val position = parent.getChildAdapterPosition(view)
+                val size = parent.adapter!!.itemCount
+
+                val rect = when (position) {
+                    0 -> Rect(left, top, 0, 0)
+                    size - 1 -> Rect(0, 0, right, bottom)
+                    else -> outRect
+                }
+                outRect.set(rect)
+            }
+        }.also(::addItemDecoration)
+
+        insets
+    }
+
+    requestApplyInsetsWhenAttached()
 }

@@ -1,12 +1,10 @@
 package ismaeldivita.audioma.design.databinding
 
 import android.graphics.Rect
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.InsetDrawable
-import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import ismaeldivita.audioma.design.metrics.applySystemWindowsDecoration
 
 
 interface BindableAdapter<T> {
@@ -68,5 +66,23 @@ fun horizontalSpaceDecoration(recyclerView: RecyclerView, space: Float) {
                 outRect.set(rect)
             }
         }
+    )
+}
+
+@BindingAdapter(
+    "horizontalSystemWindowInsetsDecoration",
+    "verticalSystemWindowInsetsDecoration",
+    requireAll = false
+)
+fun insetDecoration(
+    recyclerView: RecyclerView,
+    horizontal: Boolean,
+    vertical: Boolean
+) {
+    recyclerView.applySystemWindowsDecoration(
+        applyLeft = horizontal,
+        applyTop = vertical,
+        applyRight = horizontal,
+        applyBottom = vertical
     )
 }

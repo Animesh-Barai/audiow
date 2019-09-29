@@ -74,6 +74,10 @@ internal class FeedAdapter(
         }.exhaustive
     }
 
+    override fun onViewAttachedToWindow(holder: FeedViewHolder) {
+        holder.itemView.requestApplyInsets()
+    }
+
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         glidePreloader = RecyclerViewPreloader(
             imageLoader,
