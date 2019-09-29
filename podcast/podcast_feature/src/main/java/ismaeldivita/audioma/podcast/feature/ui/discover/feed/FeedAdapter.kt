@@ -24,6 +24,11 @@ internal class FeedAdapter(
 ) : RecyclerView.Adapter<FeedViewHolder>(),
     BindableAdapter<List<FeedSection>> {
 
+    sealed class Action {
+        class PodcastSelected(podcast: Podcast) : Action()
+        class GenreSelected(genre: Genre) : Action()
+    }
+
     private val feed: MutableList<FeedSection> = mutableListOf()
     private var glidePreloader: RecyclerView.OnScrollListener? = null
 
@@ -80,6 +85,9 @@ internal class FeedAdapter(
         holder.itemView.requestApplyInsets()
     }
 
+    /**
+     * Attach Glide preloader optimizer to [RecyclerView.OnScrollListener]
+     */
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         glidePreloader = RecyclerViewPreloader(
             imageLoader,
@@ -94,6 +102,14 @@ internal class FeedAdapter(
         super.onDetachedFromRecyclerView(recyclerView)
     }
 
+    /**
+     * This class will provide the list of images required by Glide to optimize the load
+     * to achieve smooth scrolls on the feed.
+     *
+     * Since there is a horizontal sublist in [GenreSection] we just need to pick a few images and not
+     * the entire list. Any further optimization for [GenreSection] should be
+     * in [GenreSectionAdapter]
+     */
     inner class ArtworkPreloadModelProvider : ListPreloader.PreloadModelProvider<Artwork> {
 
         override fun getPreloadItems(position: Int): List<Artwork> {
@@ -108,8 +124,4 @@ internal class FeedAdapter(
 
     }
 
-    sealed class Action {
-        class PodcastSelected(podcast: Podcast) : Action()
-        class GenreSelected(genre: Genre) : Action()
-    }
 }

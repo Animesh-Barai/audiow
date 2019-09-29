@@ -4,22 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
 import com.bumptech.glide.Glide
-import dagger.android.support.DaggerFragment
-import io.reactivex.schedulers.Schedulers
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
-import ismaeldivita.audioma.core.android.viewmodel.ViewModelFactory
-import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.podcast.R
-import ismaeldivita.audioma.podcast.data.model.FeedSection
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFragmentDiscoverBinding
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
-import javax.inject.Inject
+import javax.inject.Provider
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
 

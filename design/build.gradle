@@ -34,7 +34,9 @@ dependencies {
     implementation project(":core")
 
     api "com.google.android.material:material:$materialDesign"
+    api "com.google.android.material:material:$materialDesign"
     api "androidx.constraintlayout:constraintlayout:$constraintLayout"
+    api "androidx.palette:palette:$palette"
 
     api "com.github.bumptech.glide:glide:$glide"
     api("com.github.bumptech.glide:recyclerview-integration:$glide") {
