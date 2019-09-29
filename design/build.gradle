@@ -37,5 +37,7 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:$constraintLayout"
 
     api "com.github.bumptech.glide:glide:$glide"
-    api "com.github.bumptech.glide:recyclerview-integration:$glide"
+    api("com.github.bumptech.glide:recyclerview-integration:$glide") {
+        transitive = false
+    }
 }

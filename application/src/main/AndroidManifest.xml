@@ -15,7 +15,8 @@
 
         <activity
             android:name="ismaeldivita.audioma.app.screens.launch.LaunchActivity"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AudiomaTheme.Launcher">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
