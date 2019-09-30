@@ -12,9 +12,14 @@
         <variable
             name="imageLoader"
             type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="listener"
+            type="com.bumptech.glide.request.RequestListener" />
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/podcast_feature_feed_highlight_height"
         android:layout_marginStart="@dimen/screen_horizontal_padding"
@@ -35,6 +40,7 @@
                 app:imageLoader="@{imageLoader}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:listener="@{listener}"
                 app:load="@{highlight.podcast.artwork.url}"
                 tools:src="@drawable/sample" />
 
@@ -46,7 +52,7 @@
                 android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 android:maxLines="2"
                 android:text="@{highlight.podcast.title}"
-                android:textAppearance="?textAppearanceSubtitle2"
+                android:textAppearance="?textAppearanceHeadline6"
                 app:layout_constraintBottom_toTopOf="@id/artist"
                 app:layout_constraintEnd_toStartOf="@id/cover"
                 app:layout_constraintHorizontal_bias="0"
@@ -63,7 +69,7 @@
                 android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 android:maxLines="2"
                 android:text="@{highlight.podcast.artistName}"
-                android:textAppearance="?textAppearanceCaption"
+                android:textAppearance="?textAppearanceSubtitle1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cover"
                 app:layout_constraintHorizontal_bias="0"
