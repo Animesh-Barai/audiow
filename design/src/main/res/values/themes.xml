@@ -20,6 +20,9 @@
         <item name="colorOnSurface">@color/color_on_surface</item>
         <item name="colorOnError">@color/color_on_error</item>
 
+        <item name="android:ambientShadowAlpha">0.25</item>
+        <item name="android:spotShadowAlpha">0.25</item>
+
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/TextAppearance.MyTheme.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MyTheme.Headline2</item>

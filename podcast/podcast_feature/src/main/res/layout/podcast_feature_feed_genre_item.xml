@@ -33,21 +33,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyline_2"
-            android:ellipsize="middle"
-            android:maxLines="2"
-            android:text="@{podcast.title}"
-            android:textAppearance="?textAppearanceSubtitle2"
-            tools:text="Podcast Title" />
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="@{podcast.artistName}"
+            android:textAppearance="?textAppearanceOverline"
+            tools:text="Artist Name" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyline_2"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@{podcast.artistName}"
-            android:textAppearance="?textAppearanceCaption"
-            tools:text="Artist Name" />
+            android:ellipsize="middle"
+            android:maxLines="2"
+            android:lines="2"
+            android:text="@{podcast.title}"
+            android:textAppearance="?textAppearanceSubtitle2"
+            tools:text="Podcast Title" />
+
+
 
     </LinearLayout>
 
