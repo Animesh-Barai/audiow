@@ -2,6 +2,7 @@ package ismaeldivita.audioma.core.data.preferences.mmkv
 
 import com.tencent.mmkv.MMKV
 import ismaeldivita.audioma.core.data.preferences.Preferences
+import ismaeldivita.audioma.core.util.standart.exhaustive
 import javax.inject.Inject
 
 internal class MmkvPreferences @Inject constructor() : Preferences {
@@ -15,16 +16,16 @@ internal class MmkvPreferences @Inject constructor() : Preferences {
             is Preferences.Key.Boolean -> mmkv.decodeBool(key.identifier)
             is Preferences.Key.Int -> mmkv.decodeInt(key.identifier)
             is Preferences.Key.Long -> mmkv.decodeLong(key.identifier)
-        } as T?
+        }.exhaustive as T?
     }
 
     override fun <T : Any> write(key: Preferences.Key<T>, value: T) {
-        when (value) {
-            is String -> mmkv.encode(key.identifier, value)
-            is Boolean -> mmkv.encode(key.identifier, value)
-            is Int -> mmkv.encode(key.identifier, value)
-            is Long -> mmkv.encode(key.identifier, value)
-        }
+        when (key) {
+            is Preferences.Key.String -> mmkv.encode(key.identifier, value as String)
+            is Preferences.Key.Boolean -> mmkv.encode(key.identifier, value as Boolean)
+            is Preferences.Key.Int -> mmkv.encode(key.identifier, value as Int)
+            is Preferences.Key.Long -> mmkv.encode(key.identifier, value as Long)
+        }.exhaustive
     }
 
     override fun remove(key: Preferences.Key<*>) {
