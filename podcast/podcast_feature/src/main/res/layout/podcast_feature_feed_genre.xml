@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyline_3"
+            android:nestedScrollingEnabled="false"
             app:data="@{genreSection.podcasts}"
             app:horizontalSpaceDecoration="@{@dimen/screen_horizontal_padding}"
             app:horizontalSystemWindowInsetsDecoration="@{true}"

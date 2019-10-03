@@ -3,17 +3,16 @@ package ismaeldivita.audioma.podcast.data.interactor.feed
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.interactor.Interactor
-import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPreferredGenrePodcasts
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts
 import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPodcasts
-import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPreferredGenrePodcasts.*
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts.*
 import ismaeldivita.audioma.podcast.data.model.FeedSection
 import javax.inject.Inject
 
 interface GetFeed : Interactor<Unit, Single<List<FeedSection>>>
 
 internal class GetFeedImpl @Inject constructor(
-    private val genreSectionsFeed: GetTopPreferredGenrePodcasts,
+    private val genreSectionsFeed: GetPreferredGenrePodcasts,
     private val getTopPodcasts: GetTopPodcasts
 ) : GetFeed {
 
