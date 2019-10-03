@@ -24,6 +24,7 @@
         android:layout_gravity="bottom"
         android:background="@color/color_surface"
         android:elevation="28dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
         app:cnb_hideOnScroll="true"
         app:cnb_addBottomInset="true"
         app:cnb_menuResource="@menu/main_bottom_menu"
