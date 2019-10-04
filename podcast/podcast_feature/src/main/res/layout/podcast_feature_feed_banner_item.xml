@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="podcast"
+            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="listener"
+            type="com.bumptech.glide.request.RequestListener" />
+
+        <variable
+            name="size"
+            type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContainer"
+        android:layout_width="@{size, default = wrap_content}"
+        android:layout_height="match_parent"
+        android:background="@color/color_surface"
+        app:cardCornerRadius="@dimen/radius_default"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/color_surface"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:listener="@{listener}"
+                app:load="@{podcast.artwork.url}" />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{podcast.artistName}"
+                android:textAppearance="?textAppearanceOverline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintBottom_toTopOf="@id/title"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Artist" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{podcast.title}"
+                app:layout_constraintTop_toBottomOf="@id/artist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintHorizontal_bias="0"
+                tools:text="Podcast Title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

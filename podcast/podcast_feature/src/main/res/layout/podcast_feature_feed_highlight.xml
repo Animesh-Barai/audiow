@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="highlight"
-            type="ismaeldivita.audioma.podcast.data.model.FeedSection.Highlight" />
+            name="podcast"
+            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
 
         <variable
             name="imageLoader"
@@ -47,8 +47,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:listener="@{listener}"
-                    app:load="@{highlight.podcast.artwork.url}"
-                    tools:src="@drawable/sample" />
+                    app:load="@{podcast.artwork.url}" />
 
                 <TextView
                     android:id="@+id/artist"
@@ -58,7 +57,7 @@
                     android:layout_marginEnd="@dimen/keyline_4"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{highlight.podcast.artistName}"
+                    android:text="@{podcast.artistName}"
                     android:textAppearance="?textAppearanceOverline"
                     app:layout_constraintBottom_toTopOf="@id/title"
                     app:layout_constraintEnd_toStartOf="@id/cover"
@@ -76,7 +75,7 @@
                     android:layout_marginEnd="@dimen/keyline_4"
                     android:ellipsize="middle"
                     android:singleLine="true"
-                    android:text="@{highlight.podcast.title}"
+                    android:text="@{podcast.title}"
                     android:textAppearance="?textAppearanceSubtitle1"
                     app:layout_constraintBottom_toTopOf="@id/subscribe"
                     app:layout_constraintEnd_toStartOf="@id/cover"

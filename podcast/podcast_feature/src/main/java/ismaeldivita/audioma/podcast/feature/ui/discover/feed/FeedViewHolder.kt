@@ -24,7 +24,14 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     class BannerViewHolder(
         val binding: PodcastFeatureFeedBannerBinding,
         override val imageLoader: RequestManager
-    ) : FeedViewHolder(binding.root)
+    ) : FeedViewHolder(binding.root) {
+        init {
+            with(binding.podcasts) {
+                adapter = BannerAdapter(imageLoader).apply { setHasFixedSize(true) }
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            }
+        }
+    }
 
     class GenreViewHolder(
         val binding: PodcastFeatureFeedGenreBinding,

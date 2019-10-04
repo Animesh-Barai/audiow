@@ -34,9 +34,7 @@ internal class FeedAdapter(
 
     override fun setData(data: List<FeedSection>) {
         feed.clear()
-        feed.addAll(data.filter {
-            it is GenreSection || it is Highlight
-        })
+        feed.addAll(data)
         notifyDataSetChanged()
     }
 
@@ -76,7 +74,7 @@ internal class FeedAdapter(
         when {
             vh is BannerViewHolder && item is Banner -> vh.binding.banner = item
             vh is GenreViewHolder && item is GenreSection -> vh.binding.genreSection = item
-            vh is HighlightViewHolder && item is Highlight -> vh.binding.highlight = item
+            vh is HighlightViewHolder && item is Highlight -> vh.binding.podcast = item.podcast
             else -> Logger.e("View holder and feed item mismatched")
         }.exhaustive
     }

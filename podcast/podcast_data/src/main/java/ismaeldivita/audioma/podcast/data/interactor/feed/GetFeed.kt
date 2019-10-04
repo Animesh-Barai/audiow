@@ -18,13 +18,13 @@ internal class GetFeedImpl @Inject constructor(
 
     override fun invoke(param: Unit): Single<List<FeedSection>> {
         return Singles.zip(
-            getTopPodcasts(7),
+            getTopPodcasts(8),
             genreSectionsFeed(Input(count = 6, limit = 15))
         ) { topPodcasts, topPreferredGenresPodcasts ->
 
-            val banner = FeedSection.Banner(topPodcasts.take(4))
+            val banner = FeedSection.Banner(topPodcasts.take(5))
 
-            val highlights = topPodcasts.drop(4).map { FeedSection.Highlight(it) }
+            val highlights = topPodcasts.drop(5).map { FeedSection.Highlight(it) }
 
             /** Filter the top podcasts from the genre sections to avoid duplicated feed items */
             val filteredGenrePodcasts = topPreferredGenresPodcasts.map { (genre, podcasts) ->

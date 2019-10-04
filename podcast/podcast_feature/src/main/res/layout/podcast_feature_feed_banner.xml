@@ -11,19 +11,22 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/genre_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text='@{"Podcast Banner" + banner.podcasts.size() + " items"}'
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/podcasts"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:nestedScrollingEnabled="false"
+            app:data="@{banner.podcasts}"
+            app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"
+            app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
+            app:horizontalSystemWindowInsetsDecoration="@{true}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </layout>
