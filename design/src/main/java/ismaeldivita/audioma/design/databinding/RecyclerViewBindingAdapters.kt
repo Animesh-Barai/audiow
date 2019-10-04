@@ -46,8 +46,8 @@ fun verticalSpaceDecoration(recyclerView: RecyclerView, space: Float) {
     )
 }
 
-@BindingAdapter("horizontalSpaceDecoration")
-fun horizontalSpaceDecoration(recyclerView: RecyclerView, space: Float) {
+@BindingAdapter("horizontalSpaceDecoration_space", "horizontalSpaceDecoration_edge")
+fun horizontalSpaceDecoration(recyclerView: RecyclerView, space: Float, edge: Float) {
     recyclerView.addItemDecoration(
         object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
@@ -57,10 +57,13 @@ fun horizontalSpaceDecoration(recyclerView: RecyclerView, space: Float) {
                 state: RecyclerView.State
             ) {
                 val position = parent.getChildAdapterPosition(view)
+                val size = parent.adapter?.itemCount ?: 0
                 val spaceInt = space.toInt()
+                val edgeInt = edge.toInt()
 
                 val rect: Rect = when (position) {
-                    0 -> Rect(spaceInt, 0, spaceInt, 0)
+                    0 -> Rect(edgeInt, 0, spaceInt, 0)
+                    size - 1 -> Rect(0, 0, edgeInt, 0)
                     else -> Rect(0, 0, spaceInt, 0)
                 }
                 outRect.set(rect)

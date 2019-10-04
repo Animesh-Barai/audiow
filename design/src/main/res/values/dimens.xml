@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
+
     <dimen name="keyline_0">2dp</dimen>
     <dimen name="keyline_1">4dp</dimen>
     <dimen name="keyline_2">8dp</dimen>
     <dimen name="keyline_3">12dp</dimen>
     <dimen name="keyline_4">16dp</dimen>
     <dimen name="keyline_5">24dp</dimen>
+    <dimen name="keyline_6">32dp</dimen>
+    <dimen name="keyline_7">48dp</dimen>
+    <dimen name="keyline_8">64dp</dimen>
+
 
     <dimen name="screen_horizontal_padding">@dimen/keyline_4</dimen>
     <dimen name="screen_vertical_padding">@dimen/keyline_4</dimen>
-
-    <dimen name="component_label_horizontal_margin">@dimen/keyline_4</dimen>
 
     <dimen name="radius_default">4dp</dimen>
 
