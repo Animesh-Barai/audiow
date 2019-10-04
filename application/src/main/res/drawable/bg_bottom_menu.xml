@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/color_surface" />
+
+    <item android:gravity="top">
+        <shape>
+            <size android:height="1dp" />
+            <solid android:color="@color/color_elevation_divider" />
+        </shape>
+    </item>
+
+</layer-list>

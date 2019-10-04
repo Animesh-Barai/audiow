@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/color_surface"
+        android:background="@drawable/bg_bottom_menu"
         android:elevation="28dp"
         android:paddingStart="@dimen/screen_horizontal_padding"
         android:paddingEnd="@dimen/screen_horizontal_padding"
