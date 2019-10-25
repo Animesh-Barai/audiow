@@ -10,23 +10,15 @@
 
     </data>
 
-
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/podcasts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/podcasts"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:nestedScrollingEnabled="false"
-            app:data="@{banner.podcasts}"
-            app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"
-            app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
-            app:horizontalSystemWindowInsetsDecoration="@{true}" />
-
-
-    </FrameLayout>
+        android:layout_height="120dp"
+        android:nestedScrollingEnabled="false"
+        app:data="@{banner.podcasts}"
+        app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
+        app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"
+        app:horizontalSystemWindowInsetsDecoration="@{true}"
+        app:setHasFixedSize="@{true}" />
 
 </layout>

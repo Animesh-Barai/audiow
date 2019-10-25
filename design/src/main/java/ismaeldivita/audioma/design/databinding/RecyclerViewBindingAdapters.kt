@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ismaeldivita.audioma.design.metrics.applySystemWindowsDecoration
 
-
 interface BindableAdapter<T> {
     fun setData(data: T)
 }
@@ -21,6 +20,11 @@ fun <T> setData(recyclerView: RecyclerView, data: T?) {
     if (adapter is BindableAdapter<*>) {
         (adapter as BindableAdapter<T>).setData(data)
     }
+}
+
+@BindingAdapter("setHasFixedSize")
+fun setHasFixedSize(recyclerView: RecyclerView, isFixedSize: Boolean) {
+    recyclerView.setHasFixedSize(isFixedSize)
 }
 
 @BindingAdapter("verticalSpaceDecoration")

@@ -26,7 +26,7 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     ) : FeedViewHolder(binding.root) {
         init {
             with(binding.podcasts) {
-                adapter = BannerAdapter(imageLoader).apply { setHasFixedSize(true) }
+                adapter = BannerAdapter(imageLoader)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
         }
