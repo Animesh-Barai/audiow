@@ -13,7 +13,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/podcasts"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:nestedScrollingEnabled="false"
         app:data="@{banner.podcasts}"
         app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"

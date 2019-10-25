@@ -50,7 +50,7 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         override val imageLoader: RequestManager
     ) : FeedViewHolder(binding.root) {
 
-        data class HighlightViewHolderColorConfig(
+        data class HighlightViewData(
             @ColorInt val contrastColor: Int,
             @ColorInt val containerColor: Int,
             @ColorInt val rippleColor: Int
@@ -61,7 +61,7 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
             Palette.from(bitmap).generate { palette ->
                 palette?.getPreferredSwatch(itemView.context)?.let {
-                    binding.colorConfig = HighlightViewHolderColorConfig(
+                    binding.viewData = HighlightViewData(
                         contrastColor = it.titleTextColor,
                         containerColor = it.rgb,
                         rippleColor = it.titleTextColor.replaceAlpha(0.2f)
