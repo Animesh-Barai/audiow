@@ -91,7 +91,7 @@ internal class FeedAdapter(
             imageLoader,
             ArtworkPreloadModelProvider(),
             { artwork, _, _ -> intArrayOf(artwork.width, artwork.height) },
-            35
+            50
         ).also(recyclerView::addOnScrollListener)
     }
 
@@ -104,8 +104,8 @@ internal class FeedAdapter(
      * This class will provide the list of images required by Glide to optimize the load
      * to achieve smooth scrolls on the feed.
      *
-     * Since there is a horizontal sublist in [GenreSection] we just need to pick a few images and not
-     * the entire list. Any further optimization for [GenreSection] should be
+     * Since there is a horizontal sublist in [GenreSection] we just need to pick a few images and
+     * not the entire list. Any further optimization for [GenreSection] should be
      * in [GenreSectionAdapter]
      */
     inner class ArtworkPreloadModelProvider : ListPreloader.PreloadModelProvider<Artwork> {
@@ -114,7 +114,7 @@ internal class FeedAdapter(
             return when (val item = feed[position]) {
                 is Banner -> item.podcasts.map { it.artwork }
                 is Highlight -> listOf(item.podcast.artwork)
-                is GenreSection -> item.podcasts.take(5).map { it.artwork }
+                is GenreSection -> item.podcasts.take(6).map { it.artwork }
             }.exhaustive
         }
 

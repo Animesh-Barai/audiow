@@ -10,6 +10,10 @@
             type="ismaeldivita.audioma.podcast.data.model.Podcast" />
 
         <variable
+            name="colorConfig"
+            type="ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedViewHolder.HighlightViewHolder.HighlightViewHolderColorConfig" />
+
+        <variable
             name="imageLoader"
             type="com.bumptech.glide.RequestManager" />
 
@@ -27,27 +31,33 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardContainer"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/podcast_feature_feed_highlight_height"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
             android:background="@color/color_surface"
+            app:cardBackgroundColor="@{colorConfig.containerColor}"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/cover"
                     android:layout_width="@dimen/podcast_feature_feed_highlight_height"
                     android:layout_height="@dimen/podcast_feature_feed_highlight_height"
+                    android:layout_marginTop="@dimen/keyline_4"
+                    android:layout_marginEnd="@dimen/keyline_4"
+                    android:layout_marginBottom="@dimen/keyline_4"
                     app:crossFade="@{true}"
                     app:imageLoader="@{imageLoader}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:listener="@{listener}"
-                    app:load="@{podcast.artwork.url}" />
+                    app:load="@{podcast.artwork.url}"
+                    app:radius="@{@dimen/radius_default}" />
 
                 <TextView
                     android:id="@+id/artist"
@@ -59,6 +69,7 @@
                     android:singleLine="true"
                     android:text="@{podcast.artistName}"
                     android:textAppearance="?textAppearanceOverline"
+                    android:textColor="@{colorConfig.contrastColor}"
                     app:layout_constraintBottom_toTopOf="@id/title"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
@@ -73,10 +84,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/keyline_4"
                     android:layout_marginEnd="@dimen/keyline_4"
-                    android:ellipsize="middle"
+                    android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{podcast.title}"
-                    android:textAppearance="?textAppearanceSubtitle1"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="@{colorConfig.contrastColor}"
                     app:layout_constraintBottom_toTopOf="@id/subscribe"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
@@ -92,11 +104,12 @@
                     android:layout_marginStart="@dimen/keyline_4"
                     android:layout_marginBottom="@dimen/keyline_4"
                     android:text="subscribe"
+                    android:textColor="@{colorConfig.contrastColor, default=@color/color_on_surface}"
                     android:textSize="12sp"
-                    android:textColor="@color/color_on_surface"
-                    app:strokeColor="@color/color_on_surface"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:rippleColor="@{colorConfig.rippleColor}"
+                    app:strokeColor="@{colorConfig.contrastColor, default=@color/color_on_surface}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
