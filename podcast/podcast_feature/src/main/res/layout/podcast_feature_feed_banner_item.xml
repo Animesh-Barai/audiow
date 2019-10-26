@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@{viewData.containerColor == 0 ? @color/color_surface : viewData.containerColor }"
         app:cardCornerRadius="@dimen/radius_default"
-        app:cardUseCompatPadding="true"
         app:cardElevation="@dimen/elevation_surface">
 
         <androidx.constraintlayout.widget.ConstraintLayout
