@@ -22,7 +22,6 @@
         <ImageView
             android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
-            android:background="@color/color_surface"
             app:crossFade="@{true}"
             app:imageLoader="@{imageLoader}"
             app:load="@{podcast.artwork.url}"

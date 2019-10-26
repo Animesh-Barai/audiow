@@ -22,14 +22,14 @@
             type="com.bumptech.glide.request.RequestListener" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardContainer"
         android:layout_width="@dimen/podcast_feature_feed_banner_item_width"
         android:layout_height="wrap_content"
-        android:background="@color/color_surface"
-        app:cardBackgroundColor="@{viewData.containerColor}"
+        app:cardBackgroundColor="@{viewData.containerColor == 0 ? @color/color_surface : viewData.containerColor }"
         app:cardCornerRadius="@dimen/radius_default"
-        app:cardElevation="0dp">
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/elevation_surface">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,8 +39,8 @@
                 android:id="@+id/cover"
                 android:layout_width="@dimen/podcast_feature_feed_banner_item_cover"
                 android:layout_height="@dimen/podcast_feature_feed_banner_item_cover"
-                android:layout_marginTop="@dimen/keyline_4"
                 android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginTop="@dimen/keyline_4"
                 android:layout_marginBottom="@dimen/keyline_4"
                 app:crossFade="@{true}"
                 app:imageLoader="@{imageLoader}"
@@ -61,11 +61,11 @@
                 android:singleLine="true"
                 android:text="@{podcast.artistName}"
                 android:textAppearance="?textAppearanceOverline"
-                android:textColor="@{viewData.contrastColor}"
+                android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
                 app:layout_constraintBottom_toTopOf="@id/title"
-                app:layout_constraintStart_toEndOf="@id/cover"
-                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/cover"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Artist" />
@@ -80,15 +80,15 @@
                 android:maxLines="2"
                 android:text="@{podcast.title}"
                 android:textAppearance="?textAppearanceHeadline6"
-                android:textColor="@{viewData.contrastColor}"
-                app:layout_constraintStart_toEndOf="@id/cover"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/artist"
+                android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintTop_toBottomOf="@id/artist"
                 tools:text="Podcast Title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

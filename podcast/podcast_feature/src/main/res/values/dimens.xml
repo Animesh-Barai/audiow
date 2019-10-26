@@ -3,7 +3,7 @@
 
     <dimen name="podcast_feature_feed_genre_section_item_cover">100dp</dimen>
     <dimen name="podcast_feature_feed_banner_item_width">280dp</dimen>
-    <dimen name="podcast_feature_feed_banner_item_cover">80dp</dimen>
+    <dimen name="podcast_feature_feed_banner_item_cover">100dp</dimen>
     <dimen name="podcast_feature_feed_highlight_cover">140dp</dimen>
 
 </resources>
