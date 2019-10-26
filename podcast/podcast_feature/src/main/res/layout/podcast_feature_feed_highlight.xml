@@ -85,16 +85,34 @@
                     android:layout_marginStart="@dimen/keyline_4"
                     android:layout_marginEnd="@dimen/keyline_4"
                     android:ellipsize="end"
-                    android:maxLines="2"
+                    android:singleLine="true"
                     android:text="@{podcast.title}"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="@{viewData.contrastColor}"
-                    app:layout_constraintBottom_toTopOf="@id/subscribe"
+                    app:layout_constraintBottom_toTopOf="@id/genre"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/artist"
                     tools:text="Podcast Title" />
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/keyline_4"
+                    android:layout_marginEnd="@dimen/keyline_4"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{podcast.primaryGenre.name}"
+                    android:textAppearance="?textAppearanceSubtitle2"
+                    android:textColor="@{viewData.contrastColor}"
+                    app:layout_constraintBottom_toTopOf="@id/subscribe"
+                    app:layout_constraintEnd_toStartOf="@id/cover"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    tools:text="Podcast Genre" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/subscribe"

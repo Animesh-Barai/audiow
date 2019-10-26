@@ -9,7 +9,9 @@ fun Palette.getPreferredSwatch(context: Context): Swatch? {
 
     return if (isNightMode) {
         darkMutedSwatch ?: darkVibrantSwatch ?: lightMutedSwatch ?: lightVibrantSwatch
+        ?: dominantSwatch
     } else {
-        lightVibrantSwatch ?: lightMutedSwatch ?: vibrantSwatch ?: darkVibrantSwatch
+        lightMutedSwatch ?: lightVibrantSwatch ?: darkMutedSwatch ?: darkVibrantSwatch
+        ?: dominantSwatch
     }
 }
