@@ -21,7 +21,7 @@ import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedViewHolder.*
 internal class FeedAdapter(
     private val imageLoader: RequestManager,
     private val callback: (Action) -> Unit
-) : RecyclerView.Adapter<FeedViewHolder>(),
+) : RecyclerView.Adapter<FeedViewHolder<*>>(),
     BindableAdapter<List<FeedSection>> {
 
     sealed class Action {
@@ -34,11 +34,11 @@ internal class FeedAdapter(
 
     override fun setData(data: List<FeedSection>) {
         feed.clear()
-        feed.addAll(data)
+        feed.addAll(data + data + data)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder<*> {
         val inflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
@@ -68,7 +68,7 @@ internal class FeedAdapter(
         is GenreSection -> R.layout.podcast_feature_feed_genre
     }
 
-    override fun onBindViewHolder(vh: FeedViewHolder, position: Int) {
+    override fun onBindViewHolder(vh: FeedViewHolder<*>, position: Int) {
         val item = feed[position]
 
         when {
@@ -77,9 +77,11 @@ internal class FeedAdapter(
             vh is HighlightViewHolder && item is Highlight -> vh.binding.podcast = item.podcast
             else -> Logger.e("View holder and feed item mismatched")
         }.exhaustive
+
+        vh.binding.executePendingBindings()
     }
 
-    override fun onViewAttachedToWindow(holder: FeedViewHolder) {
+    override fun onViewAttachedToWindow(holder: FeedViewHolder<*>) {
         holder.itemView.requestApplyInsets()
     }
 

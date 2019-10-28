@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.core.graphics.drawable.toBitmap
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,14 +18,15 @@ import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedBannerBinding
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedGenreBinding
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedHighlightBinding
 
-sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.ViewHolder(view) {
 
     abstract val imageLoader: RequestManager
+    abstract val binding: T
 
     class BannerViewHolder(
-        val binding: PodcastFeatureFeedBannerBinding,
+        override val binding: PodcastFeatureFeedBannerBinding,
         override val imageLoader: RequestManager
-    ) : FeedViewHolder(binding.root) {
+    ) : FeedViewHolder<PodcastFeatureFeedBannerBinding>(binding.root) {
         init {
             with(binding.podcasts) {
                 adapter = BannerAdapter(imageLoader)
@@ -33,9 +36,9 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     class GenreViewHolder(
-        val binding: PodcastFeatureFeedGenreBinding,
+        override val binding: PodcastFeatureFeedGenreBinding,
         override val imageLoader: RequestManager
-    ) : FeedViewHolder(binding.root) {
+    ) : FeedViewHolder<PodcastFeatureFeedGenreBinding>(binding.root) {
 
         init {
             with(binding.podcasts) {
@@ -46,9 +49,9 @@ sealed class FeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     class HighlightViewHolder(
-        val binding: PodcastFeatureFeedHighlightBinding,
+        override val binding: PodcastFeatureFeedHighlightBinding,
         override val imageLoader: RequestManager
-    ) : FeedViewHolder(binding.root) {
+    ) : FeedViewHolder<PodcastFeatureFeedHighlightBinding>(binding.root) {
 
         data class HighlightViewData(
             @ColorInt val contrastColor: Int,

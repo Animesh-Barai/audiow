@@ -35,7 +35,10 @@ class GenreSectionAdapter(
     override fun getItemCount(): Int = podcasts.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.podcast = podcasts[position]
+        with(holder.binding) {
+            podcast = podcasts[position]
+            executePendingBindings()
+        }
     }
 
     inner class ViewHolder(

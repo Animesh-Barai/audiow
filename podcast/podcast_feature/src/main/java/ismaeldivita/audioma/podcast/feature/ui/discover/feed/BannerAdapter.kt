@@ -40,8 +40,11 @@ class BannerAdapter(
 
     override fun getItemCount(): Int = podcasts.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.podcast = podcasts[position]
+    override fun onBindViewHolder(vh: ViewHolder, position: Int) {
+        with(vh.binding) {
+            podcast = podcasts[position]
+            executePendingBindings()
+        }
     }
 
     data class BannerViewData(
