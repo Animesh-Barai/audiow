@@ -32,6 +32,9 @@ internal class FeedAdapter(
     private val feed: MutableList<FeedSection> = mutableListOf()
     private var glidePreloader: RecyclerView.OnScrollListener? = null
 
+    private val genreSharedPool = RecyclerView.RecycledViewPool()
+    private val bannerSharedPool = RecyclerView.RecycledViewPool()
+
     override fun setData(data: List<FeedSection>) {
         feed.clear()
         feed.addAll(data + data + data)
@@ -44,12 +47,14 @@ internal class FeedAdapter(
         return when (viewType) {
             R.layout.podcast_feature_feed_genre -> GenreViewHolder(
                 binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
-                imageLoader = imageLoader
+                imageLoader = imageLoader,
+                sharedPool = genreSharedPool
             )
 
             R.layout.podcast_feature_feed_banner -> BannerViewHolder(
                 binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
-                imageLoader = imageLoader
+                imageLoader = imageLoader,
+                sharedPool = bannerSharedPool
             )
 
             R.layout.podcast_feature_feed_highlight -> HighlightViewHolder(

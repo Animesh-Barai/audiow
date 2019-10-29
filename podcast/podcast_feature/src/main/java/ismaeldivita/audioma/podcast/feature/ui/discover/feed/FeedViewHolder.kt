@@ -26,13 +26,16 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
 
     class BannerViewHolder(
         override val binding: PodcastFeatureFeedBannerBinding,
-        override val imageLoader: RequestManager
+        override val imageLoader: RequestManager,
+        private val sharedPool: RecyclerView.RecycledViewPool
     ) : FeedViewHolder<PodcastFeatureFeedBannerBinding>(binding.root) {
         init {
             with(binding.podcasts) {
                 adapter = BannerAdapter(imageLoader)
-                layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
+                setRecycledViewPool(sharedPool)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    .apply {
+                        recycleChildrenOnDetach = true
                         isItemPrefetchEnabled = true
                         initialPrefetchItemCount = resources.getInteger(
                             R.integer.podcast_feature_feed_banner_prefetch_count
@@ -44,14 +47,18 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
 
     class GenreViewHolder(
         override val binding: PodcastFeatureFeedGenreBinding,
-        override val imageLoader: RequestManager
+        override val imageLoader: RequestManager,
+        private val sharedPool: RecyclerView.RecycledViewPool
     ) : FeedViewHolder<PodcastFeatureFeedGenreBinding>(binding.root) {
 
         init {
             with(binding.podcasts) {
                 adapter = GenreSectionAdapter(imageLoader).apply { setHasFixedSize(true) }
-                layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
+                setRecycledViewPool(sharedPool)
+
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    .apply {
+                        recycleChildrenOnDetach = true
                         isItemPrefetchEnabled = true
                         initialPrefetchItemCount = resources.getInteger(
                             R.integer.podcast_feature_feed_genre_prefetch_count

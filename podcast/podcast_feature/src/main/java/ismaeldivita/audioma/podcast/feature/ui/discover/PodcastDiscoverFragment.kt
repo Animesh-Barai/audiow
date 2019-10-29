@@ -10,7 +10,6 @@ import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFragmentDiscoverBinding
 import ismaeldivita.audioma.podcast.feature.ui.discover.feed.FeedAdapter
-import javax.inject.Provider
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
 
