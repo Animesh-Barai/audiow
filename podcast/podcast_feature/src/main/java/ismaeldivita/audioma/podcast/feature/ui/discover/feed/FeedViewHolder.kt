@@ -14,6 +14,7 @@ import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.design.ext.getPreferredSwatch
 import ismaeldivita.audioma.design.ext.onResourceReady
 import ismaeldivita.audioma.design.ext.replaceAlpha
+import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedBannerBinding
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedGenreBinding
 import ismaeldivita.audioma.podcast.databinding.PodcastFeatureFeedHighlightBinding
@@ -30,7 +31,13 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
         init {
             with(binding.podcasts) {
                 adapter = BannerAdapter(imageLoader)
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
+                        isItemPrefetchEnabled = true
+                        initialPrefetchItemCount = resources.getInteger(
+                            R.integer.podcast_feature_feed_banner_prefetch_count
+                        )
+                    }
             }
         }
     }
@@ -43,7 +50,13 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
         init {
             with(binding.podcasts) {
                 adapter = GenreSectionAdapter(imageLoader).apply { setHasFixedSize(true) }
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
+                        isItemPrefetchEnabled = true
+                        initialPrefetchItemCount = resources.getInteger(
+                            R.integer.podcast_feature_feed_genre_prefetch_count
+                        )
+                    }
             }
         }
     }
