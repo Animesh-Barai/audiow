@@ -53,7 +53,7 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
 
         init {
             with(binding.podcasts) {
-                adapter = GenreSectionAdapter(imageLoader).apply { setHasFixedSize(true) }
+                adapter = GenreSectionAdapter(imageLoader)
                 setRecycledViewPool(sharedPool)
 
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

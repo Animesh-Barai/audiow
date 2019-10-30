@@ -3,6 +3,7 @@ package ismaeldivita.audioma.podcast.feature.ui.discover.feed
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.design.databinding.BindableAdapter
@@ -18,9 +19,11 @@ class GenreSectionAdapter(
     private val podcasts: MutableList<Podcast> = mutableListOf()
 
     override fun setData(data: List<Podcast>) {
+        val diffCallback = PodcastDiffCallback(podcasts, data)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         podcasts.clear()
         podcasts.addAll(data)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
