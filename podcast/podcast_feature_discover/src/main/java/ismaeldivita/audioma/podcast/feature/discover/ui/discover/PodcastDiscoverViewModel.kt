@@ -16,16 +16,12 @@ internal class PodcastDiscoverViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val feed = MutableLiveData<List<FeedSection>>()
-    val text = MutableLiveData<String>()
 
     fun init() {
         feedRepository.getAll()
             .subscribeOn(schedulersProvider.io())
             .doOnSuccess { Logger.d(it.toString()) }
-            .subscribeBy {
-                feed.postValue(it)
-                text.postValue(it.toString())
-            }
+            .subscribeBy { feed.postValue(it) }
             .registerDisposable()
     }
 
