@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="podcast"
+            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
+            android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
+            app:cardBackgroundColor="?colorSurface"
+            app:cardCornerRadius="@dimen/radius_default"
+            app:cardElevation="@dimen/elevation_surface">
+
+            <ImageView
+                android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
+                android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:load="@{podcast.artwork.url}" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_2"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{podcast.artistName}"
+            android:textAppearance="?textAppearanceOverline"
+            tools:text="Artist Name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_2"
+            android:ellipsize="middle"
+            android:lines="2"
+            android:maxLines="2"
+            android:text="@{podcast.title}"
+            android:textAppearance="?textAppearanceSubtitle2"
+            tools:text="Podcast Title" />
+
+    </LinearLayout>
+
+</layout>

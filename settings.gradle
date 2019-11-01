@@ -2,6 +2,6 @@ include ':application'
 include ':core'
 include ':design'
 
-include ':podcast:podcast_feature'
 include ':podcast:podcast_service'
 include ':podcast:podcast_data'
+include ':podcast:podcast_feature_discover'

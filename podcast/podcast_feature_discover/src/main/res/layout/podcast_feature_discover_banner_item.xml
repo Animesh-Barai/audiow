@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="podcast"
+            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+
+        <variable
+            name="viewData"
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.BannerAdapter.BannerViewData" />
+
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="listener"
+            type="com.bumptech.glide.request.RequestListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContainer"
+        android:layout_width="@dimen/podcast_feature_discover_banner_item_width"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@{viewData.containerColor}"
+        app:cardCornerRadius="@dimen/radius_default"
+        app:cardElevation="@dimen/elevation_surface">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="@dimen/podcast_feature_discover_banner_item_cover"
+                android:layout_height="@dimen/podcast_feature_discover_banner_item_cover"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_4"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:listener="@{listener}"
+                app:load="@{podcast.artwork.url}"
+                app:radius="@{@dimen/radius_default}" />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{podcast.artistName}"
+                android:textAppearance="?textAppearanceOverline"
+                android:textColor="@{viewData.contrastColor}"
+                app:layout_constraintBottom_toTopOf="@id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Artist" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{podcast.title}"
+                android:textAppearance="?textAppearanceHeadline6"
+                android:textColor="@{viewData.contrastColor}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintTop_toBottomOf="@id/artist"
+                tools:text="Podcast Title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

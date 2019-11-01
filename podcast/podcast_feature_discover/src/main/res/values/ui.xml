@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="podcast_feature_discover_genre_prefetch_count">5</integer>
+    <integer name="podcast_feature_discover_banner_prefetch_count">3</integer>
+</resources>

@@ -6,7 +6,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ismaeldivita.audioma.app.application.AudiomaApplication
 import ismaeldivita.audioma.app.screens.BindingModule
 import ismaeldivita.audioma.core.CoreModule
-import ismaeldivita.audioma.podcast.feature.PodcastModule
+import ismaeldivita.audioma.podcast.feature.discover.PodcastDiscoverModule
 import javax.inject.Singleton
 
 @Singleton
@@ -16,7 +16,7 @@ import javax.inject.Singleton
         CoreModule::class,
         BindingModule::class,
         ApplicationModule::class,
-        PodcastModule::class
+        PodcastDiscoverModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<AudiomaApplication> {

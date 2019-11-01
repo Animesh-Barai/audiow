@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -7,11 +7,8 @@ android {
     compileSdkVersion defaultCompileSdkVersion
 
     defaultConfig {
-        applicationId "ismaeldivita.audioma"
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,8 +18,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     dataBinding.enabled true
+
+    resourcePrefix 'podcast_feature_discover_'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -33,24 +31,12 @@ android {
 dependencies {
     implementation project(':core')
     implementation project(':design')
-    implementation project(':podcast:podcast_feature_discover')
+    api project(':podcast:podcast_data')
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
-    // UI
-    implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$chipNavigationBar"
-
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
-
-    // Test
-    testImplementation "junit:junit:$junitVersion"
-
-    androidTestImplementation "androidx.test:core:$androidTest"
-    androidTestImplementation "androidx.test:runner:$androidTest"
-    androidTestImplementation "androidx.test.ext:junit:$androidTest"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidEspresso"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 }
