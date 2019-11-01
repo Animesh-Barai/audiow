@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.design.ext.getPreferredSwatch
+import ismaeldivita.audioma.design.ext.getThemeColor
 import ismaeldivita.audioma.design.ext.onResourceReady
 import ismaeldivita.audioma.podcast.R
 import ismaeldivita.audioma.podcast.data.model.Podcast
@@ -74,8 +75,15 @@ class BannerAdapter(
         }
 
         init {
-            binding.imageLoader = imageLoader
-            binding.listener = bitmapListener
+            val context = itemView.context
+            with(binding) {
+                imageLoader = this@BannerAdapter.imageLoader
+                listener = bitmapListener
+                viewData = BannerViewData(
+                    contrastColor = context.getThemeColor(R.attr.colorOnSurface),
+                    containerColor = context.getThemeColor(R.attr.colorSurface)
+                )
+            }
         }
     }
 }

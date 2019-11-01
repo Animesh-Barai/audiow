@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.design.ext.getPreferredSwatch
+import ismaeldivita.audioma.design.ext.getThemeColor
 import ismaeldivita.audioma.design.ext.onResourceReady
 import ismaeldivita.audioma.design.ext.replaceAlpha
 import ismaeldivita.audioma.podcast.R
@@ -94,8 +95,17 @@ sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.View
         }
 
         init {
-            binding.imageLoader = imageLoader
-            binding.listener = bitmapListener
+            val context = itemView.context
+
+            with(binding) {
+                imageLoader = this@HighlightViewHolder.imageLoader
+                listener = bitmapListener
+                viewData = HighlightViewData(
+                    contrastColor = context.getThemeColor(R.attr.colorOnSurface),
+                    containerColor = context.getThemeColor(R.attr.colorSurface),
+                    rippleColor = context.getThemeColor(R.attr.colorOnSurface)
+                )
+            }
         }
     }
 }

@@ -22,7 +22,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/podcast_feature_feed_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_feed_genre_section_item_cover"
-            app:cardBackgroundColor="@color/color_surface"
+            app:cardBackgroundColor="?colorSurface"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">
 

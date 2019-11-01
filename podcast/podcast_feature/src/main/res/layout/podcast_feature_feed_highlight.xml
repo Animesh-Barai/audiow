@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
-            app:cardBackgroundColor="@{viewData.containerColor == 0 ? @color/color_surface : viewData.containerColor }"
+            app:cardBackgroundColor="@{viewData.containerColor}"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">
 
@@ -70,7 +70,7 @@
                     android:singleLine="true"
                     android:text="@{podcast.artistName}"
                     android:textAppearance="?textAppearanceOverline"
-                    android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
+                    android:textColor="@{viewData.contrastColor}"
                     app:layout_constraintBottom_toTopOf="@id/title"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
@@ -89,7 +89,7 @@
                     android:singleLine="true"
                     android:text="@{podcast.title}"
                     android:textAppearance="?textAppearanceHeadline6"
-                    android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
+                    android:textColor="@{viewData.contrastColor}"
                     app:layout_constraintBottom_toTopOf="@id/genre"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
@@ -107,7 +107,7 @@
                     android:maxLines="1"
                     android:text="@{podcast.primaryGenre.name}"
                     android:textAppearance="?textAppearanceSubtitle2"
-                    android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
+                    android:textColor="@{viewData.contrastColor}"
                     app:layout_constraintBottom_toTopOf="@id/subscribe"
                     app:layout_constraintEnd_toStartOf="@id/cover"
                     app:layout_constraintHorizontal_bias="0"
@@ -122,13 +122,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/keyline_4"
                     android:layout_marginBottom="@dimen/keyline_4"
-                    android:strokeColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
-                    android:text="subscribe"
-                    android:textColor="@{viewData.contrastColor == 0 ? @color/color_on_surface : viewData.contrastColor }"
+                    android:strokeColor="@{viewData.contrastColor}"
+                    android:text="@string/podcast_feature_feed_subscribe"
+                    android:textColor="@{viewData.contrastColor}"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:rippleColor="@{viewData.rippleColor == 0 ? @color/color_on_surface : viewData.rippleColor }" />
+                    app:rippleColor="@{viewData.rippleColor}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
