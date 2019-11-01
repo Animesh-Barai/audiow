@@ -16,7 +16,7 @@ import ismaeldivita.audioma.podcast.service.itunes.ItunesServiceModule
     InteractorModule::class,
     ItunesServiceModule::class
 ])
-abstract class DataModule {
+abstract class PodcastDataModule {
 
     @Binds
     @IntoSet

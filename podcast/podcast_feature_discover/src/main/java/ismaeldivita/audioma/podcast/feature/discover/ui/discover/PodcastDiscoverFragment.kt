@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.podcast.feature.discover.R
-import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentDiscoverBinding
+import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
@@ -18,9 +18,9 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<PodcastFeatureDiscoverFragmentDiscoverBinding>(
+        val binding = DataBindingUtil.inflate<PodcastFeatureDiscoverFragmentBinding>(
             inflater,
-            R.layout.podcast_feature_discover_fragment_discover,
+            R.layout.podcast_feature_discover_fragment,
             container,
             false
         )
