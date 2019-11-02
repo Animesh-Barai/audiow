@@ -22,11 +22,27 @@
         app:paddingTopSystemWindowInsets="@{true}">
 
         <TextView
+            android:id="@+id/artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/screen_vertical_padding"
+            android:layout_marginStart="@dimen/screen_horizontal_padding"
+            android:layout_marginEnd="@dimen/screen_horizontal_padding"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{vm.podcast.artistName}"
+            android:textAppearance="?textAppearanceOverline"
+            app:layout_constraintEnd_toStartOf="@id/cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Artist name" />
+
+        <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
-            android:layout_marginTop="@dimen/screen_vertical_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
             android:ellipsize="end"
             android:maxLines="2"
@@ -34,24 +50,8 @@
             android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintEnd_toStartOf="@id/cover"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artist"
             tools:text="Podcast title" />
-
-        <TextView
-            android:id="@+id/artist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/screen_horizontal_padding"
-            android:layout_marginEnd="@dimen/screen_horizontal_padding"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
-            android:text="@{vm.podcast.artistName}"
-            android:textAppearance="?textAppearanceSubtitle1"
-            app:layout_constraintEnd_toStartOf="@id/cover"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            tools:text="Artist name" />
 
         <ImageView
             android:id="@+id/cover"
