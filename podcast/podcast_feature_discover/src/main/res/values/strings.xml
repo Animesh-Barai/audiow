@@ -1,3 +1,5 @@
 <resources>
     <string name="podcast_feature_discover_subscribe">subscribe</string>
+    <string name="podcast_feature_discover_subscribed">subscribed</string>
+    <string name="podcast_feature_discover_unsubscribe">unsubscribed</string>
 </resources>

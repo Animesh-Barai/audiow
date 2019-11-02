@@ -11,7 +11,7 @@
 
         <fragment
             android:id="@+id/feed_fragment"
-            android:name="ismaeldivita.audioma.podcast.feature.detail.ui.detail.PodcastDetailFragment"
+            android:name="ismaeldivita.audioma.podcast.feature.discover.ui.discover.PodcastDiscoverFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

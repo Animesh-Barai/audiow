@@ -115,7 +115,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title"
                     tools:text="Podcast Genre" />
 
-                <com.google.android.material.button.MaterialButton
+                <ismaeldivita.audioma.design.widget.ToggleButton
                     android:id="@+id/subscribe"
                     style="?materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
@@ -126,9 +126,14 @@
                     android:text="@string/podcast_feature_discover_subscribe"
                     android:textColor="@{viewData.contrastColor}"
                     android:textSize="12sp"
+                    app:checkedDrawable="@drawable/ic_check"
+                    app:checkedLabel="@string/podcast_feature_discover_subscribed"
+                    app:iconTint="@{viewData.contrastColor}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:rippleColor="@{viewData.rippleColor}" />
+                    app:rippleColor="@{viewData.rippleColor}"
+                    app:uncheckedDrawable="@drawable/ic_plus"
+                    app:uncheckedLabel="@string/podcast_feature_discover_subscribe" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
