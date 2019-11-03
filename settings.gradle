@@ -1,6 +1,7 @@
 include ':application'
 include ':core'
 include ':design'
+include ':localization'
 
 include ':podcast:podcast_service'
 include ':podcast:podcast_data'

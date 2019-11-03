@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="application_name" translatable="false">Audioma</string>
+    <string name="country_iso">US</string>
+
+    <!-- Common -->
+    <string name="confirmation">Confirmation</string>
+
+    <!-- Application -->
+    <string name="menu_podcasts">Podcasts</string>
+    <string name="menu_discover">Discover</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Podcast -->
+    <string name="podcast_subscribe">subscribe</string>
+    <string name="podcast_subscribed">subscribed</string>
+    <string name="podcast_unsubscribe_confirmation_action">unsubscribe</string>
+    <string name="podcast_unsubscribe_confirmation_message">Are you sure you want to unsubscribe?</string>
+
+</resources>

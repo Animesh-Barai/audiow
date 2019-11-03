@@ -26,6 +26,8 @@ android {
 }
 
 dependencies {
+    api project(":localization")
+
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     api "androidx.appcompat:appcompat:$appCompat"
 
@@ -55,5 +57,5 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidEspresso"
     androidTestImplementation "org.mockito:mockito-android:$mockito"
     androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$nhaarman"
-    
+
 }

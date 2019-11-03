@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Audioma</string>
-    <string name="title_audioma_podcast">Podcast</string>
-
-    <string name="menu_podcasts">Podcasts</string>
-    <string name="menu_discover">Discover</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_settings">Settings</string>
-</resources>
