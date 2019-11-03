@@ -25,8 +25,8 @@
             android:id="@+id/artist"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/screen_vertical_padding"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
+            android:layout_marginTop="@dimen/screen_vertical_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
             android:ellipsize="end"
             android:lines="1"
@@ -64,7 +64,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:load="@{vm.podcast.artwork.url}"
-            app:radius="@{@dimen/radius_default}" />
+            app:radius="@{@dimen/radius_default}"
+            tools:background="#FF00FF" />
+
+        <ismaeldivita.audioma.design.widget.ToggleButton
+            android:id="@+id/subscribe"
+            style="?materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_horizontal_padding"
+            android:layout_marginEnd="@dimen/keyline_4"
+            android:text="@string/podcast_subscribe"
+            android:textSize="12sp"
+            app:checkedDrawable="@drawable/ic_check"
+            app:checkedLabel="@string/podcast_subscribed"
+            app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
+            app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
+            app:layout_constraintBottom_toBottomOf="@id/cover"
+            app:layout_constraintEnd_toStartOf="@id/cover"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:uncheckedDrawable="@drawable/ic_bookmark"
+            app:uncheckedLabel="@string/podcast_subscribe" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -58,7 +58,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:listener="@{listener}"
                     app:load="@{podcast.artwork.url}"
-                    app:radius="@{@dimen/radius_default}" />
+                    app:radius="@{@dimen/radius_default}"
+                    tools:background="#FF00FF" />
 
                 <TextView
                     android:id="@+id/artist"
@@ -121,6 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/keyline_4"
+                    android:layout_marginEnd="@dimen/keyline_4"
                     android:layout_marginBottom="@dimen/keyline_4"
                     android:strokeColor="@{viewData.contrastColor}"
                     android:text="@string/podcast_subscribe"
@@ -132,6 +134,8 @@
                     app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
                     app:iconTint="@{viewData.contrastColor}"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cover"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:rippleColor="@{viewData.rippleColor}"
                     app:uncheckedDrawable="@drawable/ic_bookmark"
