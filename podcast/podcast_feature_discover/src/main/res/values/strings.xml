@@ -1,5 +1,6 @@
 <resources>
     <string name="podcast_feature_discover_subscribe">subscribe</string>
     <string name="podcast_feature_discover_subscribed">subscribed</string>
-    <string name="podcast_feature_discover_unsubscribe">unsubscribed</string>
+    <string name="podcast_feature_discover_unsubscribe_confirmation_action">unsubscribe</string>
+    <string name="podcast_feature_discover_unsubscribe_confirmation_message">Are you sure you want to unsubscribe?</string>
 </resources>
