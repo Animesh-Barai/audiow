@@ -6,19 +6,12 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <fragment
-            android:id="@+id/feed_fragment"
-            android:name="ismaeldivita.audioma.podcast.feature.detail.ui.detail.PodcastDetailFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </FrameLayout>
-
+        android:layout_height="match_parent"/>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

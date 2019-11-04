@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter
+import javax.inject.Inject
+import javax.inject.Provider
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
+
+    @Inject
+    internal lateinit var transactionProvider: Provider<FragmentTransaction>
 
     override fun onCreateView(
         inflater: LayoutInflater,

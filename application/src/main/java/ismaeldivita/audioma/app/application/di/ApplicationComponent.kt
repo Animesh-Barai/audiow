@@ -20,7 +20,6 @@ import javax.inject.Singleton
         ApplicationModule::class,
 
         PodcastDataModule::class,
-        PodcastDiscoverModule::class,
         PodcastDetailModule::class
     ]
 )
