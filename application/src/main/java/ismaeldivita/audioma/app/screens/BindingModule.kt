@@ -3,8 +3,8 @@ package ismaeldivita.audioma.app.screens
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ismaeldivita.audioma.app.screens.launch.LaunchActivity
-import ismaeldivita.audioma.app.screens.main.MainActivity
-import ismaeldivita.audioma.app.screens.main.MainModule
+import ismaeldivita.audioma.app.screens.main.HomeActivity
+import ismaeldivita.audioma.app.screens.main.HomeModule
 import ismaeldivita.audioma.core.android.di.PerActivity
 import ismaeldivita.audioma.podcast.feature.discover.PodcastDiscoverModule
 
@@ -15,6 +15,6 @@ abstract class BindingModule {
     abstract fun bindLaunch(): LaunchActivity
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [MainModule::class, PodcastDiscoverModule::class])
-    abstract fun bindMain(): MainActivity
+    @ContributesAndroidInjector(modules = [HomeModule::class, PodcastDiscoverModule::class])
+    abstract fun bindMain(): HomeActivity
 }

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ismaeldivita.audioma.app.screens.main.MainActivity"/>
+        <activity android:name="ismaeldivita.audioma.app.screens.main.HomeActivity"/>
 
     </application>
 

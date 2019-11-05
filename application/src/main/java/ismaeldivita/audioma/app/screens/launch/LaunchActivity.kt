@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
 import dagger.android.support.DaggerAppCompatActivity
-import ismaeldivita.audioma.app.screens.main.MainActivity
+import ismaeldivita.audioma.app.screens.main.HomeActivity
 import ismaeldivita.audioma.core.android.livedata.observe
 import ismaeldivita.audioma.core.android.viewmodel.ViewModelFactory
 import ismaeldivita.audioma.core.util.standart.exhaustive
@@ -28,7 +28,7 @@ class LaunchActivity : DaggerAppCompatActivity() {
             when (it) {
                 LaunchState.Initialized -> {
                     finish()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                 }
                 LaunchState.Loading -> { }
                 LaunchState.Error -> { }
