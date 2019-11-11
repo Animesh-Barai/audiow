@@ -12,7 +12,7 @@ buildscript {
         kotlinKtx = '1.1.0'
 
         materialDesign = '1.2.0-alpha01'
-        chipNavigationBar = '1.1.0'
+        chipNavigationBar = '1.1.2'
         constraintLayout = '2.0.0-beta3'
         palette = '1.0.0'
         glide = '4.9.0'
@@ -54,6 +54,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenLocal()
     }
 }
 
