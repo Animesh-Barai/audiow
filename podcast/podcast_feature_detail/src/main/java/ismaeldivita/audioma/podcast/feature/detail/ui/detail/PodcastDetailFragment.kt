@@ -44,7 +44,7 @@ class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.init()
+        viewModel.init(requireArguments().getLong(ARGUMENT_PODCAST_ID))
     }
 
 }

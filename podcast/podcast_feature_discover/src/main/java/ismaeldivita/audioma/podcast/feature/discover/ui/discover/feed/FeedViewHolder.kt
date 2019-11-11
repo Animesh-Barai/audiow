@@ -19,7 +19,8 @@ import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureD
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverGenreBinding
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverHighlightBinding
 
-internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.ViewHolder(view) {
+internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
+    RecyclerView.ViewHolder(view) {
 
     abstract val imageLoader: RequestManager
     abstract val binding: T
@@ -31,10 +32,7 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : Recycler
     ) : FeedViewHolder<PodcastFeatureDiscoverBannerBinding>(binding.root) {
         init {
             with(binding.podcasts) {
-                adapter =
-                    BannerAdapter(
-                        imageLoader
-                    )
+                adapter = BannerAdapter(imageLoader)
                 setRecycledViewPool(sharedPool)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     .apply {
@@ -56,12 +54,8 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : Recycler
 
         init {
             with(binding.podcasts) {
-                adapter =
-                    GenreSectionAdapter(
-                        imageLoader
-                    )
+                adapter = GenreSectionAdapter(imageLoader)
                 setRecycledViewPool(sharedPool)
-
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     .apply {
                         recycleChildrenOnDetach = true
@@ -76,7 +70,8 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : Recycler
 
     class HighlightViewHolder(
         override val binding: PodcastFeatureDiscoverHighlightBinding,
-        override val imageLoader: RequestManager
+        override val imageLoader: RequestManager,
+        private val callback: FeedAdapter.FeedCallback
     ) : FeedViewHolder<PodcastFeatureDiscoverHighlightBinding>(binding.root) {
 
         data class HighlightViewData(
@@ -105,13 +100,13 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : Recycler
 
             with(binding) {
                 imageLoader = this@HighlightViewHolder.imageLoader
+                callback = this@HighlightViewHolder.callback
                 listener = bitmapListener
-                viewData =
-                    HighlightViewData(
-                        contrastColor = context.getThemeColor(R.attr.colorOnSurface),
-                        containerColor = context.getThemeColor(R.attr.colorSurface),
-                        rippleColor = context.getThemeColor(R.attr.colorOnSurface)
-                    )
+                viewData = HighlightViewData(
+                    contrastColor = context.getThemeColor(R.attr.colorOnSurface),
+                    containerColor = context.getThemeColor(R.attr.colorSurface),
+                    rippleColor = context.getThemeColor(R.attr.colorOnSurface)
+                )
             }
         }
     }

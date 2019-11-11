@@ -21,13 +21,12 @@ import java.util.function.Function
 
 internal class FeedAdapter(
     private val imageLoader: RequestManager,
-    private val callback: (Action) -> Unit
+    private val callback: FeedCallback
 ) : RecyclerView.Adapter<FeedViewHolder<*>>(),
     BindableAdapter<List<FeedSection>> {
 
-    sealed class Action {
-        data class PodcastSelected(val podcast: Podcast) : Action()
-        data class GenreSelected(val genre: Genre) : Action()
+    interface FeedCallback {
+        fun onPodcastSelected(podcast: Podcast)
     }
 
     private val feed: MutableList<FeedSection> = mutableListOf()
@@ -60,7 +59,8 @@ internal class FeedAdapter(
 
             R.layout.podcast_feature_discover_highlight -> HighlightViewHolder(
                 binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
-                imageLoader = imageLoader
+                imageLoader = imageLoader,
+                callback = callback
             )
             else -> throw IllegalStateException("viewType not supported")
         }

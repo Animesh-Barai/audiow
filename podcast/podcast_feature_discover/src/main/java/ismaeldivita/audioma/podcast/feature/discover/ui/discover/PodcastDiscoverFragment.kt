@@ -5,19 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
-import ismaeldivita.audioma.core.util.standart.exhaustive
+import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter
 import javax.inject.Inject
-import javax.inject.Provider
 
-internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>() {
+internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>(),
+    FeedAdapter.FeedCallback {
 
     @Inject
     internal lateinit var fragmentTransactor: FragmentTransactor
@@ -35,7 +34,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
             container,
             false
         )
-        val adapter = FeedAdapter(Glide.with(this), ::onAdapterAction)
+        val adapter = FeedAdapter(Glide.with(this), this)
 
         with(binding) {
             lifecycleOwner = this@PodcastDiscoverFragment
@@ -51,12 +50,10 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
         viewModel.init()
     }
 
-    private fun onAdapterAction(action: FeedAdapter.Action) {
-        when (action) {
-            is FeedAdapter.Action.PodcastSelected -> {
-                fragmentTransactor.add(detailFactory.detail(action.podcast.id))
-            }
-            is FeedAdapter.Action.GenreSelected -> TODO()
-        }.exhaustive
+    override fun onPodcastSelected(podcast: Podcast) {
+        fragmentTransactor
+            .add(detailFactory.detail(podcast.id))
+            .addToBackStack(null)
+            .commit()
     }
 }

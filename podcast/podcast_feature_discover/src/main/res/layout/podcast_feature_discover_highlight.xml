@@ -20,6 +20,10 @@
         <variable
             name="listener"
             type="com.bumptech.glide.request.RequestListener" />
+
+        <variable
+            name="callback"
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter.FeedCallback" />
     </data>
 
     <FrameLayout
@@ -36,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
+            android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
             app:cardBackgroundColor="@{viewData.containerColor}"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">
