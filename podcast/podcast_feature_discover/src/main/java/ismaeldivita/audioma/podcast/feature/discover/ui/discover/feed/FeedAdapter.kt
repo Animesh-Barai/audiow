@@ -17,6 +17,7 @@ import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedViewHolder.*
+import java.util.function.Function
 
 internal class FeedAdapter(
     private val imageLoader: RequestManager,
@@ -25,8 +26,8 @@ internal class FeedAdapter(
     BindableAdapter<List<FeedSection>> {
 
     sealed class Action {
-        class PodcastSelected(podcast: Podcast) : Action()
-        class GenreSelected(genre: Genre) : Action()
+        data class PodcastSelected(val podcast: Podcast) : Action()
+        data class GenreSelected(val genre: Genre) : Action()
     }
 
     private val feed: MutableList<FeedSection> = mutableListOf()

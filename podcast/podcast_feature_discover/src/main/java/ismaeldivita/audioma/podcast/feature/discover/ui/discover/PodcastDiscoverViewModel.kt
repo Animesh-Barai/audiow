@@ -7,7 +7,7 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.FeedSection
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 internal class PodcastDiscoverViewModel @Inject constructor(
@@ -20,13 +20,9 @@ internal class PodcastDiscoverViewModel @Inject constructor(
     fun init() {
         feedRepository.getAll()
             .subscribeOn(schedulersProvider.io())
+            .delay(500, TimeUnit.MILLISECONDS, schedulersProvider.computation())
             .doOnSuccess { Logger.d(it.toString()) }
             .subscribeBy { feed.postValue(it) }
             .registerDisposable()
-    }
-
-
-    fun onAction(action: FeedAdapter.Action){
-
     }
 }

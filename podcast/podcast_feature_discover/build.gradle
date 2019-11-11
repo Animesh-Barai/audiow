@@ -32,6 +32,7 @@ dependencies {
     implementation project(':core')
     implementation project(':design')
     implementation project(':podcast:podcast_data')
+    implementation project(':podcast:podcast_feature_detail')
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

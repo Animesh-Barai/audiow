@@ -16,11 +16,10 @@ class PodcastDetailViewModel @Inject constructor(
 
     val podcast = MutableLiveData<Podcast>()
 
-    fun init() {
-        podcastRepository.getAll()
+    fun init(podcastId: Long) {
+        podcastRepository.findById(podcastId)
             .subscribeOn(schedulersProvider.io())
-            .doOnSuccess { Logger.d(it.toString()) }
-            .subscribeBy { podcast.postValue(it.random()) }
+            .subscribeBy { podcast.postValue(it) }
             .registerDisposable()
     }
 
