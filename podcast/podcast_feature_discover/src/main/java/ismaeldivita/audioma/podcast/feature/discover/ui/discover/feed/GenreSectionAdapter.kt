@@ -13,17 +13,14 @@ import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureD
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.GenreSectionAdapter.ViewHolder
 
 internal class GenreSectionAdapter(
-    private val imageLoader: RequestManager
+    private val imageLoader: RequestManager,
+    private val callback: FeedAdapter.FeedCallback
 ) : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
 
     private val podcasts: MutableList<Podcast> = mutableListOf()
 
     override fun setData(data: List<Podcast>) {
-        val diffCallback =
-            PodcastDiffCallback(
-                podcasts,
-                data
-            )
+        val diffCallback = PodcastDiffCallback(podcasts, data)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         podcasts.clear()
         podcasts.addAll(data)
@@ -44,6 +41,7 @@ internal class GenreSectionAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             podcast = podcasts[position]
+            callback = this@GenreSectionAdapter.callback
             executePendingBindings()
         }
     }

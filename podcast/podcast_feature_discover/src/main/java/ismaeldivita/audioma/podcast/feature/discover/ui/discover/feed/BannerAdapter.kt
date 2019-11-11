@@ -21,17 +21,14 @@ import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureD
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.BannerAdapter.ViewHolder
 
 internal class BannerAdapter(
-    private val imageLoader: RequestManager
+    private val imageLoader: RequestManager,
+    private val callback: FeedAdapter.FeedCallback
 ) : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
 
     private val podcasts: MutableList<Podcast> = mutableListOf()
 
     override fun setData(data: List<Podcast>) {
-        val diffCallback =
-            PodcastDiffCallback(
-                podcasts,
-                data
-            )
+        val diffCallback = PodcastDiffCallback(podcasts, data)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         podcasts.clear()
         podcasts.addAll(data)
@@ -52,6 +49,7 @@ internal class BannerAdapter(
     override fun onBindViewHolder(vh: ViewHolder, position: Int) {
         with(vh.binding) {
             podcast = podcasts[position]
+            callback = this@BannerAdapter.callback
             executePendingBindings()
         }
     }
@@ -70,11 +68,10 @@ internal class BannerAdapter(
 
             Palette.from(bitmap).generate { palette ->
                 palette?.getPreferredSwatch(itemView.context)?.let {
-                    binding.viewData =
-                        BannerViewData(
-                            contrastColor = it.titleTextColor,
-                            containerColor = it.rgb
-                        )
+                    binding.viewData = BannerViewData(
+                        contrastColor = it.titleTextColor,
+                        containerColor = it.rgb
+                    )
                 }
             }
         }
@@ -84,11 +81,10 @@ internal class BannerAdapter(
             with(binding) {
                 imageLoader = this@BannerAdapter.imageLoader
                 listener = bitmapListener
-                viewData =
-                    BannerViewData(
-                        contrastColor = context.getThemeColor(R.attr.colorOnSurface),
-                        containerColor = context.getThemeColor(R.attr.colorSurface)
-                    )
+                viewData = BannerViewData(
+                    contrastColor = context.getThemeColor(R.attr.colorOnSurface),
+                    containerColor = context.getThemeColor(R.attr.colorSurface)
+                )
             }
         }
     }

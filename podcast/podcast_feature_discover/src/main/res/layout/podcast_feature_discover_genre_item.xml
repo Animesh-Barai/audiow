@@ -12,16 +12,22 @@
         <variable
             name="imageLoader"
             type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="callback"
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter.FeedCallback" />
     </data>
 
     <LinearLayout
         android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
         android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
+            android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
             app:cardBackgroundColor="?colorSurface"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">

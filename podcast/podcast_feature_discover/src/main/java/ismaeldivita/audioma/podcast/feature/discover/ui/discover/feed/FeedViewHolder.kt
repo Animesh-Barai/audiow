@@ -24,15 +24,17 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
 
     abstract val imageLoader: RequestManager
     abstract val binding: T
+    abstract val callback: FeedAdapter.FeedCallback
 
     class BannerViewHolder(
         override val binding: PodcastFeatureDiscoverBannerBinding,
         override val imageLoader: RequestManager,
+        override val callback: FeedAdapter.FeedCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
     ) : FeedViewHolder<PodcastFeatureDiscoverBannerBinding>(binding.root) {
         init {
             with(binding.podcasts) {
-                adapter = BannerAdapter(imageLoader)
+                adapter = BannerAdapter(imageLoader, callback)
                 setRecycledViewPool(sharedPool)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     .apply {
@@ -49,12 +51,13 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
     class GenreViewHolder(
         override val binding: PodcastFeatureDiscoverGenreBinding,
         override val imageLoader: RequestManager,
+        override val callback: FeedAdapter.FeedCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
     ) : FeedViewHolder<PodcastFeatureDiscoverGenreBinding>(binding.root) {
 
         init {
             with(binding.podcasts) {
-                adapter = GenreSectionAdapter(imageLoader)
+                adapter = GenreSectionAdapter(imageLoader, callback)
                 setRecycledViewPool(sharedPool)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     .apply {
@@ -71,7 +74,7 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
     class HighlightViewHolder(
         override val binding: PodcastFeatureDiscoverHighlightBinding,
         override val imageLoader: RequestManager,
-        private val callback: FeedAdapter.FeedCallback
+        override val callback: FeedAdapter.FeedCallback
     ) : FeedViewHolder<PodcastFeatureDiscoverHighlightBinding>(binding.root) {
 
         data class HighlightViewData(

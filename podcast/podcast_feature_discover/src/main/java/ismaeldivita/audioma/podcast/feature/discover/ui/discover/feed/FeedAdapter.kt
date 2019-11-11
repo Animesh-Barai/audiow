@@ -48,12 +48,14 @@ internal class FeedAdapter(
             R.layout.podcast_feature_discover_genre -> GenreViewHolder(
                 binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
                 imageLoader = imageLoader,
+                callback = callback,
                 sharedPool = genreSharedPool
             )
 
             R.layout.podcast_feature_discover_banner -> BannerViewHolder(
                 binding = DataBindingUtil.inflate(inflater, viewType, parent, false),
                 imageLoader = imageLoader,
+                callback = callback,
                 sharedPool = bannerSharedPool
             )
 
