@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed
+package ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview
 
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable

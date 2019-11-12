@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed
+package ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
 import ismaeldivita.audioma.podcast.data.model.Podcast

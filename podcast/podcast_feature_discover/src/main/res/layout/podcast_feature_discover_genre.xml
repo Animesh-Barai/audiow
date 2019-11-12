@@ -6,7 +6,7 @@
 
         <variable
             name="genreSection"
-            type="ismaeldivita.audioma.podcast.data.model.FeedSection.GenreSection" />
+            type="ismaeldivita.audioma.podcast.data.model.DiscoverItem.GenreSection" />
     </data>
 
 

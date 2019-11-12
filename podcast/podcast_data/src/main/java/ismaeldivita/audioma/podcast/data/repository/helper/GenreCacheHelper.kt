@@ -4,8 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
-import ismaeldivita.audioma.podcast.data.model.FeedSection
+import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.repository.GenreRepository
@@ -15,20 +14,20 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreS
 import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionWrapperEntity
 import javax.inject.Inject
 
-internal class GenreSectionsCacheHelper @Inject constructor(
+internal class GenreCacheHelper @Inject constructor(
     private val feedGenreSectionDAO: FeedGenreSectionDAO,
     private val genreRepository: GenreRepository,
     private val podcastRepository: Repository<Podcast>
-) : FeedCacheHelper {
+) : DiscoverCacheHelper {
 
-    override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
+    override fun getAll(): Single<List<Pair<Int, DiscoverItem>>> =
         feedGenreSectionDAO.getAllGenreSections()
             .flatMap { mapToFeedSection(it) }
 
-    override fun addAll(elements: List<FeedSection>): Completable {
+    override fun addAll(elements: List<DiscoverItem>): Completable {
         val genreSections = elements.mapIndexed { index, section -> index to section }
-            .filter { (_, section) -> section is FeedSection.GenreSection }
-            .map { (order, section) -> order to section as FeedSection.GenreSection }
+            .filter { (_, section) -> section is DiscoverItem.GenreSection }
+            .map { (order, section) -> order to section as DiscoverItem.GenreSection }
 
         val podcasts = genreSections.map { it.second.podcasts }.flatten()
 
@@ -61,7 +60,7 @@ internal class GenreSectionsCacheHelper @Inject constructor(
         getPodcasts(sections)
     ) { genres, podcasts ->
         sections.map { section ->
-            section.section.order to FeedSection.GenreSection(
+            section.section.order to DiscoverItem.GenreSection(
                 genre = genres.first { it.id == section.section.genreId },
                 podcasts = podcasts.filter { podcastDomain ->
                     section.podcasts.any { it.podcastId == podcastDomain.id }

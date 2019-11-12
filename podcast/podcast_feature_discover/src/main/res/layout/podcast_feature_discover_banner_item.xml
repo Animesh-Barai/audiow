@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.BannerAdapter.BannerViewData" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.BannerAdapter.BannerViewData" />
 
         <variable
             name="imageLoader"
@@ -23,7 +23,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter.FeedCallback" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedAdapter.FeedCallback" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

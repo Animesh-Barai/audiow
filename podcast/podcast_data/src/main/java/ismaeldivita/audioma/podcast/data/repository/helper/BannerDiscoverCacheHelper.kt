@@ -3,18 +3,17 @@ package ismaeldivita.audioma.podcast.data.repository.helper
 import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
-import ismaeldivita.audioma.podcast.data.model.FeedSection
+import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedBannerDAO
 import javax.inject.Inject
 
-internal class BannerFeedCacheHelper @Inject constructor(
+internal class BannerDiscoverCacheHelper @Inject constructor(
     private val bannerDAO: FeedBannerDAO,
     private val podcastRepository: Repository<Podcast>
-) : FeedCacheHelper {
+) : DiscoverCacheHelper {
 
-    override fun getAll(): Single<List<Pair<Int, FeedSection>>> =
+    override fun getAll(): Single<List<Pair<Int, DiscoverItem>>> =
         bannerDAO.getAll()
             .flatMap { banners ->
                 podcastRepository.findByIds(
@@ -24,15 +23,15 @@ internal class BannerFeedCacheHelper @Inject constructor(
                         val bannerPodcasts = podcasts.filter {
                             banner.podcasts.map { podcast -> podcast.podcastId }.contains(it.id)
                         }
-                        banner.banner.order to FeedSection.Banner(bannerPodcasts)
+                        banner.banner.order to DiscoverItem.Banner(bannerPodcasts)
                     }
                 }
             }
 
-    override fun addAll(elements: List<FeedSection>): Completable {
+    override fun addAll(elements: List<DiscoverItem>): Completable {
         val banners = elements.mapIndexed { index, section -> index to section }
-            .filter { (_, banner) -> banner is FeedSection.Banner }
-            .map { (order, banner) -> order to banner as FeedSection.Banner }
+            .filter { (_, banner) -> banner is DiscoverItem.Banner }
+            .map { (order, banner) -> order to banner as DiscoverItem.Banner }
 
         return podcastRepository.addAll(banners.map { it.second.podcasts }.flatten())
             .andThen(Completable.fromCallable {

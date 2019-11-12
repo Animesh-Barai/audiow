@@ -12,7 +12,7 @@ import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.FeedAdapter
+import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedAdapter
 import javax.inject.Inject
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>(),

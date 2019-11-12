@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed
+package ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview
 
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -18,7 +18,7 @@ import ismaeldivita.audioma.design.ext.onResourceReady
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverBannerItemBinding
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.BannerAdapter.ViewHolder
+import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.BannerAdapter.ViewHolder
 
 internal class BannerAdapter(
     private val imageLoader: RequestManager,

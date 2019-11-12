@@ -3,42 +3,39 @@ package ismaeldivita.audioma.podcast.data.repository
 import android.text.format.DateUtils
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
-import ismaeldivita.audioma.podcast.data.model.FeedSection
-import ismaeldivita.audioma.podcast.data.repository.helper.FeedCacheHelper
-import ismaeldivita.audioma.podcast.data.repository.helper.GenreSectionsCacheHelper
+import ismaeldivita.audioma.podcast.data.model.DiscoverItem
+import ismaeldivita.audioma.podcast.data.repository.helper.DiscoverCacheHelper
 import javax.inject.Inject
 
-internal class FeedRepository @Inject constructor(
+internal class DiscoverRepository @Inject constructor(
     private val getFeed: GetFeed,
-    private val cacheHelpers: Set<@JvmSuppressWildcards FeedCacheHelper>,
+    private val cacheHelpers: Set<@JvmSuppressWildcards DiscoverCacheHelper>,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider
-) : Repository<FeedSection> {
+) : Repository<DiscoverItem> {
 
     companion object {
         val LAST_UPDATE_KEY = Preferences.Key.Long("feed_last_update")
         const val CACHE_TTL = DateUtils.DAY_IN_MILLIS
     }
 
-    override fun add(element: FeedSection) = throw UnsupportedOperationException()
+    override fun add(element: DiscoverItem) = throw UnsupportedOperationException()
 
     override fun findById(id: Any) = throw UnsupportedOperationException()
 
     override fun findByIds(ids: List<Any>) = throw UnsupportedOperationException()
 
-    override fun remove(element: FeedSection) = throw UnsupportedOperationException()
+    override fun remove(element: DiscoverItem) = throw UnsupportedOperationException()
 
-    override fun addAll(elements: List<FeedSection>) =
+    override fun addAll(elements: List<DiscoverItem>) =
         Completable.merge(cacheHelpers.map { it.addAll(elements) })
 
-    override fun getAll(): Single<List<FeedSection>> =
+    override fun getAll(): Single<List<DiscoverItem>> =
         if (cacheExpired()) {
             getFeed()
                 .flatMap {
@@ -60,7 +57,7 @@ internal class FeedRepository @Inject constructor(
 
     override fun clear(): Completable = Completable.merge(cacheHelpers.map { it.delete() })
 
-    private fun getCache(): Single<List<FeedSection>> =
+    private fun getCache(): Single<List<DiscoverItem>> =
         Single.merge(cacheHelpers.map { it.getAll() })
             .toList()
             .map { cache ->

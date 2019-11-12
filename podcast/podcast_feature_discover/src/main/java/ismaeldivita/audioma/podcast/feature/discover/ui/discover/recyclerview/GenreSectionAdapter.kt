@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed
+package ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverGenreItemBinding
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.feed.GenreSectionAdapter.ViewHolder
+import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.GenreSectionAdapter.ViewHolder
 
 internal class GenreSectionAdapter(
     private val imageLoader: RequestManager,
