@@ -8,8 +8,6 @@ import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastEpisode
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastRss
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.EpisodeXml
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.RssXml
-import ismaeldivita.audioma.podcast.service.util.DateParser
-
 
 internal class RssTypeAdapter : TypeAdapter<ItunesPodcastRss> {
 
@@ -19,7 +17,6 @@ internal class RssTypeAdapter : TypeAdapter<ItunesPodcastRss> {
         value: ItunesPodcastRss,
         overridingXmlElementTagName: String
     ) = throw NotImplementedError()
-
 
     override fun fromXml(reader: XmlReader, config: TikXmlConfig): ItunesPodcastRss {
         val adapter = config.getTypeAdapter(RssXml::class.java)
@@ -40,9 +37,7 @@ internal class RssTypeAdapter : TypeAdapter<ItunesPodcastRss> {
                     audioFileUrl = it.audioFile.url,
                     duration = it.duration,
                     isExplicit = it.explicit,
-                    publicationDate = DateParser.parseRFC822(
-                        it.pubDate
-                    ),
+                    publicationDateRFC822 = it.pubDate,
                     coverImageUrl = it.coverUrl
                 )
             }

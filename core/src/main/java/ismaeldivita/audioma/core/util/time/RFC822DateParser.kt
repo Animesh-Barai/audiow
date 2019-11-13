@@ -1,12 +1,16 @@
-package ismaeldivita.audioma.podcast.service.util
+package ismaeldivita.audioma.core.util.time
 
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.standart.replaceLastOccurrence
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Provider
 
-internal object DateParser {
+class RFC822DateParser @Inject constructor(
+    private val localeProvider: Provider<Locale>
+) {
 
     private val RFC822_MASKS = arrayOf(
         "EEE, dd MMM yy HH:mm:ss z",
@@ -15,14 +19,14 @@ internal object DateParser {
         "dd MMM yy HH:mm z"
     )
 
-    fun parseRFC822(date: String, locale: Locale = Locale.US): Date? {
+    fun parse(date: String): Date? {
         val sDate = date.trim().convertUnsupportedTimeZones()
         var pp: ParsePosition?
         var parsedDate: Date? = null
         var i = 0
 
         while (parsedDate == null && i < RFC822_MASKS.size) {
-            val df = SimpleDateFormat(RFC822_MASKS[i], locale)
+            val df = SimpleDateFormat(RFC822_MASKS[i], localeProvider.get())
             try {
                 pp = ParsePosition(0)
                 parsedDate = df.parse(sDate, pp)

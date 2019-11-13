@@ -6,6 +6,6 @@ data class Episode(
     val audioFileUrl: String,
     val duration: String,
     val isExplicit: Boolean,
-    val publicationDate: String?,
+    val formattedPublicationDate: String?,
     val coverImageUrl: String
 )

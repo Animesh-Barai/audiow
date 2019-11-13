@@ -36,7 +36,7 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
-    internal fun provideFeedBannerDao(database: PodcastDatabase): DiscoverBannerDAO = database.feedBanner()
+    internal fun provideFeedBannerDao(database: PodcastDatabase): DiscoverBannerDAO = database.discoverBanner()
 
     @Provides
     @Singleton
