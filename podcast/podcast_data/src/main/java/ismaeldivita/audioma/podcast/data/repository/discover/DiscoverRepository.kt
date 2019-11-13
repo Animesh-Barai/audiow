@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.repository
+package ismaeldivita.audioma.podcast.data.repository.discover
 
 import android.text.format.DateUtils
 import io.reactivex.Completable
@@ -9,7 +9,6 @@ import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
 import ismaeldivita.audioma.podcast.data.model.DiscoverItem
-import ismaeldivita.audioma.podcast.data.repository.helper.DiscoverCacheHelper
 import javax.inject.Inject
 
 internal class DiscoverRepository @Inject constructor(

@@ -1,11 +1,11 @@
-package ismaeldivita.audioma.podcast.data.storage.database.dao.feed
+package ismaeldivita.audioma.podcast.data.storage.database.dao.discover
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import ismaeldivita.audioma.podcast.data.storage.database.PodcastDatabase
 import ismaeldivita.audioma.podcast.data.storage.database.entity.*
-import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionPodcastsEntity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -32,11 +32,11 @@ class FeedGenreSectionDAOTest {
             listOf(1)
         )
         val genreSectionFeed = mapOf(
-            FeedGenreSectionEntity(
+            DiscoverGenreSectionEntity(
                 1,
                 1
             ) to listOf(
-                FeedGenreSectionPodcastsEntity(
+                DiscoverGenreSectionPodcastsEntity(
                     2,
                     1
                 )

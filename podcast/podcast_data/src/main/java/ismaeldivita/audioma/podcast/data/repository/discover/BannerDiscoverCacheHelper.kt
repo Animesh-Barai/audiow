@@ -1,15 +1,15 @@
-package ismaeldivita.audioma.podcast.data.repository.helper
+package ismaeldivita.audioma.podcast.data.repository.discover
 
 import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Podcast
-import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedBannerDAO
+import ismaeldivita.audioma.podcast.data.storage.database.dao.discover.DiscoverBannerDAO
 import javax.inject.Inject
 
 internal class BannerDiscoverCacheHelper @Inject constructor(
-    private val bannerDAO: FeedBannerDAO,
+    private val bannerDAO: DiscoverBannerDAO,
     private val podcastRepository: Repository<Podcast>
 ) : DiscoverCacheHelper {
 

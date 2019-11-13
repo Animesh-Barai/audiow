@@ -1,18 +1,18 @@
-package ismaeldivita.audioma.podcast.data.storage.database.entity.feed
+package ismaeldivita.audioma.podcast.data.storage.database.entity.discover
 
 import androidx.room.*
 import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 
 internal data class FeedGenreSectionWrapperEntity(
-    @Embedded val section: FeedGenreSectionEntity,
+    @Embedded val section: DiscoverGenreSectionEntity,
 
     @Relation(parentColumn = "genreId", entityColumn = "genreSectionId")
-    val podcasts: List<FeedGenreSectionPodcastsEntity>
+    val podcasts: List<DiscoverGenreSectionPodcastsEntity>
 )
 
 @Entity(
-    tableName = "FEED_GENRE_SECTION",
+    tableName = "DISCOVER_GENRE_SECTION",
     foreignKeys = [
         ForeignKey(
             entity = GenreEntity::class,
@@ -22,13 +22,13 @@ internal data class FeedGenreSectionWrapperEntity(
         )
     ]
 )
-internal data class FeedGenreSectionEntity(
+internal data class DiscoverGenreSectionEntity(
     @PrimaryKey val genreId: Long,
     val order: Int
 )
 
 @Entity(
-    tableName = "FEED_GENRE_SECTION_PODCASTS",
+    tableName = "DISCOVER_GENRE_SECTION_PODCASTS",
     primaryKeys = ["podcastId", "genreSectionId"],
     foreignKeys = [
         ForeignKey(
@@ -37,14 +37,14 @@ internal data class FeedGenreSectionEntity(
             childColumns = ["podcastId"],
             onDelete = ForeignKey.CASCADE
         ), ForeignKey(
-            entity = FeedGenreSectionEntity::class,
+            entity = DiscoverGenreSectionEntity::class,
             parentColumns = ["genreId"],
             childColumns = ["genreSectionId"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
-internal data class FeedGenreSectionPodcastsEntity(
+internal data class DiscoverGenreSectionPodcastsEntity(
     val podcastId: Long,
     val genreSectionId: Long
 )

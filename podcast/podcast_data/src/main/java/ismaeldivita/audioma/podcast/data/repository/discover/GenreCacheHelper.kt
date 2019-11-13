@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.repository.helper
+package ismaeldivita.audioma.podcast.data.repository.discover
 
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -8,20 +8,20 @@ import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.repository.GenreRepository
-import ismaeldivita.audioma.podcast.data.storage.database.dao.feed.FeedGenreSectionDAO
-import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionPodcastsEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.feed.FeedGenreSectionWrapperEntity
+import ismaeldivita.audioma.podcast.data.storage.database.dao.discover.DiscoverGenreSectionDAO
+import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionPodcastsEntity
+import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.FeedGenreSectionWrapperEntity
 import javax.inject.Inject
 
 internal class GenreCacheHelper @Inject constructor(
-    private val feedGenreSectionDAO: FeedGenreSectionDAO,
+    private val discoverGenreSectionDAO: DiscoverGenreSectionDAO,
     private val genreRepository: GenreRepository,
     private val podcastRepository: Repository<Podcast>
 ) : DiscoverCacheHelper {
 
     override fun getAll(): Single<List<Pair<Int, DiscoverItem>>> =
-        feedGenreSectionDAO.getAllGenreSections()
+        discoverGenreSectionDAO.getAllGenreSections()
             .flatMap { mapToFeedSection(it) }
 
     override fun addAll(elements: List<DiscoverItem>): Completable {
@@ -34,12 +34,12 @@ internal class GenreCacheHelper @Inject constructor(
         val entities = genreSections
             .associate { (order, section) ->
                 val sectionEntity =
-                    FeedGenreSectionEntity(
+                    DiscoverGenreSectionEntity(
                         section.genre.id,
                         order
                     )
                 val podcastSectionList = section.podcasts.map { podcast ->
-                    FeedGenreSectionPodcastsEntity(
+                    DiscoverGenreSectionPodcastsEntity(
                         podcast.id,
                         sectionEntity.genreId
                     )
@@ -49,11 +49,11 @@ internal class GenreCacheHelper @Inject constructor(
 
         return podcastRepository.addAll(podcasts)
             .andThen(Completable.fromCallable {
-                feedGenreSectionDAO.insertGenreSections(entities)
+                discoverGenreSectionDAO.insertGenreSections(entities)
             })
     }
 
-    override fun delete() = feedGenreSectionDAO.deleteAll()
+    override fun delete() = discoverGenreSectionDAO.deleteAll()
 
     private fun mapToFeedSection(sections: List<FeedGenreSectionWrapperEntity>) = Singles.zip(
         getGenres(sections),

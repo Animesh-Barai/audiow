@@ -1,10 +1,10 @@
-package ismaeldivita.audioma.podcast.data.storage.database.entity.feed
+package ismaeldivita.audioma.podcast.data.storage.database.entity.discover
 
 import androidx.room.*
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 
 @Entity(
-    tableName = "FEED_HIGHLIGHT",
+    tableName = "DISCOVER_HIGHLIGHT",
     foreignKeys = [
         ForeignKey(
             entity = PodcastEntity::class,
@@ -13,7 +13,7 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
             onDelete = ForeignKey.CASCADE
         )]
 )
-internal data class FeedHighlightEntity(
+internal data class DiscoverHighlightEntity(
     @PrimaryKey
     val id: Long,
     val order: Int

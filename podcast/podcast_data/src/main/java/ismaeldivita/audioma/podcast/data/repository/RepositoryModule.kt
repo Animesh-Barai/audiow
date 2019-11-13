@@ -7,10 +7,11 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
-import ismaeldivita.audioma.podcast.data.repository.helper.BannerDiscoverCacheHelper
-import ismaeldivita.audioma.podcast.data.repository.helper.DiscoverCacheHelper
-import ismaeldivita.audioma.podcast.data.repository.helper.GenreCacheHelper
-import ismaeldivita.audioma.podcast.data.repository.helper.HighlightDiscoverCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.discover.DiscoverRepository
+import ismaeldivita.audioma.podcast.data.repository.discover.BannerDiscoverCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.discover.DiscoverCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.discover.GenreCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.discover.HighlightDiscoverCacheHelper
 import javax.inject.Singleton
 
 @Module

@@ -1,28 +1,28 @@
-package ismaeldivita.audioma.podcast.data.storage.database.entity.feed
+package ismaeldivita.audioma.podcast.data.storage.database.entity.discover
 
 import androidx.room.*
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 
-internal data class FeedBannerWrapperEntity(
-    @Embedded val banner: FeedBannerEntity,
+internal data class DiscoverBannerWrapperEntity(
+    @Embedded val banner: DiscoverBannerEntity,
 
     @Relation(parentColumn = "id", entityColumn = "bannerId")
-    val podcasts: List<FeedBannerPodcastsEntity>
+    val podcasts: List<DiscoverBannerPodcastEntity>
 )
 
-@Entity(tableName = "FEED_BANNER")
-internal data class FeedBannerEntity(
+@Entity(tableName = "DISCOVER_BANNER")
+internal data class DiscoverBannerEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val order: Int
 )
 
 @Entity(
-    tableName = "FEED_BANNER_PODCASTS",
+    tableName = "DISCOVER_BANNER_PODCASTS",
     primaryKeys = ["bannerId", "podcastId"],
     foreignKeys = [
         ForeignKey(
-            entity = FeedBannerEntity::class,
+            entity = DiscoverBannerEntity::class,
             parentColumns = ["id"],
             childColumns = ["bannerId"],
             onDelete = ForeignKey.CASCADE
@@ -34,7 +34,7 @@ internal data class FeedBannerEntity(
         )
     ]
 )
-internal data class FeedBannerPodcastsEntity(
+internal data class DiscoverBannerPodcastEntity(
     val bannerId: Long,
     val podcastId: Long
 )
