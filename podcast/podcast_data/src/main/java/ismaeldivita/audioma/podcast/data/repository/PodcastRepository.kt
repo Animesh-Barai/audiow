@@ -3,14 +3,9 @@ package ismaeldivita.audioma.podcast.data.repository
 import io.reactivex.Completable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
-import ismaeldivita.audioma.podcast.data.model.Artwork
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
-import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastArtworkEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
-import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastWrapperEntity
 import ismaeldivita.audioma.podcast.data.util.toDomain
 import ismaeldivita.audioma.podcast.data.util.toEntity
 import ismaeldivita.audioma.podcast.data.util.toWrapperEntity

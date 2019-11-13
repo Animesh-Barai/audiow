@@ -8,13 +8,11 @@ import io.reactivex.disposables.CompositeDisposable
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.util.reactive.GlobalCompositeDisposable
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.core.util.time.TimeProvider
 import ismaeldivita.audioma.podcast.data.R
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
-import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.SubGenreEntity
 import ismaeldivita.audioma.podcast.data.util.toDomain
 import ismaeldivita.audioma.podcast.data.util.toEntity
