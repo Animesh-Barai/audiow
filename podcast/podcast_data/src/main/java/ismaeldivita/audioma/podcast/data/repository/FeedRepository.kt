@@ -2,6 +2,7 @@ package ismaeldivita.audioma.podcast.data.repository
 
 import io.reactivex.Completable
 import io.reactivex.Maybe
+import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.Feed
@@ -20,11 +21,19 @@ class FeedRepository : Repository<Feed> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onChanged(id: Any): Observable<List<Feed>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun findById(id: Any): Maybe<Feed> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun findByIds(ids: List<Any>): Single<List<Feed>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemChanged(id: Any): Observable<Feed> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -35,4 +44,5 @@ class FeedRepository : Repository<Feed> {
     override fun clear(): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 }

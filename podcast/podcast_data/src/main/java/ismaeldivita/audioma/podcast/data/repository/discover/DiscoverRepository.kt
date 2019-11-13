@@ -2,6 +2,7 @@ package ismaeldivita.audioma.podcast.data.repository.discover
 
 import android.text.format.DateUtils
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
@@ -21,6 +22,14 @@ internal class DiscoverRepository @Inject constructor(
     companion object {
         val LAST_UPDATE_KEY = Preferences.Key.Long("feed_last_update")
         const val CACHE_TTL = DateUtils.DAY_IN_MILLIS
+    }
+
+    override fun onChanged(id: Any): Observable<List<DiscoverItem>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemChanged(id: Any): Observable<DiscoverItem> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun add(element: DiscoverItem) = throw UnsupportedOperationException()

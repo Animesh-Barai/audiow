@@ -1,6 +1,7 @@
 package ismaeldivita.audioma.podcast.data.repository
 
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.Genre
@@ -15,6 +16,14 @@ internal class PodcastRepository @Inject constructor(
     private val dao: PodcastDAO,
     private val genreRepository: Repository<Genre>
 ) : Repository<Podcast> {
+
+    override fun onChanged(id: Any): Observable<List<Podcast>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemChanged(id: Any): Observable<Podcast> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun add(element: Podcast): Completable =
         Completable.fromCallable {
