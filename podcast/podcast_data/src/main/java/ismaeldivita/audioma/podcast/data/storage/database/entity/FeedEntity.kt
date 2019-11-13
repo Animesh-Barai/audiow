@@ -4,7 +4,9 @@ import androidx.room.*
 
 internal data class FeedPodcastWrapper(
     @Embedded val feed: FeedEntity,
-    @Embedded val podcast: PodcastEntity,
+
+    @Relation(parentColumn = "id", entityColumn = "id")
+    val podcast: PodcastEntity,
 
     @Relation(parentColumn = "id", entityColumn = "feedId")
     val episodes: List<FeedEpisodeEntity>
@@ -16,14 +18,14 @@ internal data class FeedPodcastWrapper(
         ForeignKey(
             entity = PodcastEntity::class,
             parentColumns = ["id"],
-            childColumns = ["podcastId"],
+            childColumns = ["id"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
 internal data class FeedEntity(
     @PrimaryKey
-    val podcastId: Long,
+    val id: Long,
     val description: String,
     val language: String
 )
@@ -33,7 +35,7 @@ internal data class FeedEntity(
     foreignKeys = [
         ForeignKey(
             entity = FeedEntity::class,
-            parentColumns = ["podcastId"],
+            parentColumns = ["id"],
             childColumns = ["feedId"],
             onDelete = ForeignKey.CASCADE
         )
