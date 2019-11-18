@@ -13,7 +13,8 @@ import toDomain
 internal fun ItunesPodcastFeed.toEntity(podcastId: Long) = FeedEntity(
     id = podcastId,
     description = description,
-    language = languageIso639
+    language = languageIso639,
+    metadata = FeedEntity.Metadata(lastModified, eTag)
 )
 
 internal fun ItunesPodcastEpisode.toEpisodeEntity(feedId: Long) = FeedEpisodeEntity(

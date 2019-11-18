@@ -24,8 +24,16 @@ internal data class FeedEntity(
     @PrimaryKey
     val id: Long,
     val description: String,
-    val language: String
-)
+    val language: String,
+
+    @Embedded(prefix = "metadata_")
+    val metadata: Metadata = Metadata()
+) {
+    data class Metadata(
+        val lastModified: String? = null,
+        val eTag: String? = null
+    )
+}
 
 @Entity(
     tableName = "FEED_EPISODE",
