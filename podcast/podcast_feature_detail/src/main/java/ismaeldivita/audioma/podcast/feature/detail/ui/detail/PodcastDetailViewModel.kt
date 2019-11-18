@@ -6,20 +6,21 @@ import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
+import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import javax.inject.Inject
 
 class PodcastDetailViewModel @Inject constructor(
-    private val podcastRepository: Repository<Podcast>,
+    private val feedRepository: Repository<Feed>,
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {
 
     val podcast = MutableLiveData<Podcast>()
 
     fun init(podcastId: Long) {
-        podcastRepository.findById(podcastId)
+        feedRepository.findById(podcastId)
             .subscribeOn(schedulersProvider.io())
-            .subscribeBy { podcast.postValue(it) }
+            .subscribeBy { podcast.postValue(it.podcast) }
             .registerDisposable()
     }
 

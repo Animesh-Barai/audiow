@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import ismaeldivita.audioma.podcast.data.storage.database.dao.FeedDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.discover.DiscoverGenreSectionDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
@@ -32,14 +33,18 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
-    internal fun provideFeedGenreDao(database: PodcastDatabase): DiscoverGenreSectionDAO = database.feedGenreSection()
+    internal fun provideDiscoverGenreDao(database: PodcastDatabase): DiscoverGenreSectionDAO = database.feedGenreSection()
 
     @Provides
     @Singleton
-    internal fun provideFeedBannerDao(database: PodcastDatabase): DiscoverBannerDAO = database.discoverBanner()
+    internal fun provideDiscoverBannerDao(database: PodcastDatabase): DiscoverBannerDAO = database.discoverBanner()
 
     @Provides
     @Singleton
-    internal fun provideFeedHighlightDao(database: PodcastDatabase): DiscoverHighlightDAO = database.feedHighlight()
+    internal fun provideDiscoverHighlightDao(database: PodcastDatabase): DiscoverHighlightDAO = database.feedHighlight()
+
+    @Provides
+    @Singleton
+    internal fun provideFeedDao(database: PodcastDatabase): FeedDAO = database.feedDAO()
 
 }

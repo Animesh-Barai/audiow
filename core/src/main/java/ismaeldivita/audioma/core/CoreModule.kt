@@ -11,7 +11,6 @@ import ismaeldivita.audioma.core.util.reactive.ReactiveModule
     includes = [
         AndroidModule::class,
         MonitoringModule::class,
-        ReactiveModule::class,
         PreferencesModule::class,
         UtilModule::class
     ]
