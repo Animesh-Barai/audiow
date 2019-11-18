@@ -27,7 +27,7 @@ internal data class FeedEntity(
     val language: String,
 
     @Embedded(prefix = "metadata_")
-    val metadata: Metadata = Metadata()
+    val metadata: Metadata? = null
 ) {
     data class Metadata(
         val lastModified: String? = null,
@@ -52,7 +52,7 @@ internal data class FeedEpisodeEntity(
     val feedId: Long,
     val title: String,
     val description: String,
-    val duration: String,
+    val duration: String?,
     val isExplicit: Boolean,
     val publicationDateRFC822: String,
     val coverImageUrl: String?

@@ -20,7 +20,7 @@ internal class EpisodeXml {
     var description: String? = null
 
     @PropertyElement(name = "itunes:duration")
-    lateinit var duration: String
+    var duration: String? = null
 
     @PropertyElement(name = "itunes:explicit")
     var explicit: Boolean = false

@@ -10,6 +10,7 @@
         android:allowBackup="true"
         android:label="@string/application_name"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AudiomaTheme.DayNight"
         tools:ignore="GoogleAppIndexingWarning">
 

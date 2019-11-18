@@ -74,8 +74,8 @@ internal class FeedRepository @Inject constructor(
 
                         itunesService.getPodcastRss(
                             rssUrl = podcast.rssUrl,
-                            ifModifiedSince = metadata.lastModified,
-                            ifNoneMatch = metadata.eTag
+                            ifModifiedSince = metadata?.lastModified,
+                            ifNoneMatch = metadata?.eTag
                         ).toMaybe()
                     }
                     .switchIfEmpty(itunesService.getPodcastRss(podcast.rssUrl))
