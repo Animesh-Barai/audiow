@@ -7,16 +7,18 @@ import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEpisodeEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedPodcastWrapper
-import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 
 @Dao
 internal abstract class FeedDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    protected abstract fun insert(feed: FeedEntity)
+    protected abstract fun insert(feed: FeedEntity) : Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insert(episodes: List<FeedEpisodeEntity>)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    protected abstract fun update(feed: FeedEntity)
 
     @Query("SELECT * FROM FEED WHERE id=:id")
     abstract fun findById(id: Long): Maybe<FeedPodcastWrapper>
@@ -34,14 +36,22 @@ internal abstract class FeedDAO {
     abstract fun deleteAll(): Completable
 
     @Transaction
+    open fun upsert(entity: FeedEntity) {
+        val id = insert(entity)
+        if (id == -1L) {
+            update(entity)
+        }
+    }
+
+    @Transaction
     open fun insert(feed: FeedEntity, episodes: List<FeedEpisodeEntity>) {
-        insert(feed)
+        upsert(feed)
         insert(episodes)
     }
 
     @Transaction
     open fun insert(feeds: List<FeedEntity>, episodes: List<FeedEpisodeEntity>) {
-        feeds.forEach(::insert)
+        feeds.forEach(::upsert)
         insert(episodes)
     }
 }

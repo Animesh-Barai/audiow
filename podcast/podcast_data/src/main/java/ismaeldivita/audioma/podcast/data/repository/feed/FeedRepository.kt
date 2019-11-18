@@ -4,16 +4,12 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.Singles
 import io.reactivex.subjects.PublishSubject
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
 import ismaeldivita.audioma.core.util.time.RFC822DateParser
 import ismaeldivita.audioma.podcast.data.model.Feed
-import ismaeldivita.audioma.podcast.data.model.Genre
-import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.FeedDAO
-import toDomain
 import javax.inject.Inject
 import javax.inject.Singleton
 

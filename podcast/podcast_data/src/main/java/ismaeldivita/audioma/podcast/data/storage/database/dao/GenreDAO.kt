@@ -14,7 +14,7 @@ internal abstract class GenreDAO {
     @VisibleForTesting
     protected abstract fun insert(genre: GenreEntity): Long
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun update(genre: GenreEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
