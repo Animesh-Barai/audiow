@@ -24,14 +24,6 @@ internal class DiscoverRepository @Inject constructor(
         private const val CACHE_TTL = DateUtils.DAY_IN_MILLIS
     }
 
-    override fun onChanged(id: Any): Observable<List<Discover>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onItemChanged(id: Any): Observable<Discover> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun add(element: Discover) = throw UnsupportedOperationException()
 
     override fun findById(id: Any) = throw UnsupportedOperationException()

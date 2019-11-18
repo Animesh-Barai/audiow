@@ -17,14 +17,6 @@ internal class PodcastRepository @Inject constructor(
     private val genreRepository: Repository<Genre>
 ) : Repository<Podcast> {
 
-    override fun onChanged(id: Any): Observable<List<Podcast>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onItemChanged(id: Any): Observable<Podcast> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun add(element: Podcast): Completable =
         Completable.fromCallable {
             dao.upsertPodcastWrapperTransaction(element.toWrapperEntity())

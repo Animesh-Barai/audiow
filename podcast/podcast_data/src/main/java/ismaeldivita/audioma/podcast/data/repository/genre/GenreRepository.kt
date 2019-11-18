@@ -28,14 +28,6 @@ internal class GenreRepository @Inject constructor(
     @GlobalCompositeDisposable private val globalDisposable: CompositeDisposable
 ) : Repository<Genre> {
 
-    override fun onChanged(id: Any): Observable<List<Genre>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onItemChanged(id: Any): Observable<Genre> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     companion object {
         private val LAST_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
         private const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS

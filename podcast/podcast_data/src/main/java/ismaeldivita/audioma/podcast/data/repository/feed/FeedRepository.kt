@@ -5,7 +5,9 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
+import io.reactivex.subjects.PublishSubject
 import ismaeldivita.audioma.core.data.repository.Repository
+import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
 import ismaeldivita.audioma.core.util.time.RFC822DateParser
 import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Genre
@@ -13,11 +15,15 @@ import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.FeedDAO
 import toDomain
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class FeedRepository @Inject constructor(
     private val dao: FeedDAO,
     private val dateParser: RFC822DateParser
-) : Repository<Feed> {
+) : Repository<Feed>, RepositoryWatcher<Feed> {
+
+    private val onItemsChangesDispatcher = PublishSubject.create<Unit>()
 
     override fun add(element: Feed) = Completable.fromCallable {
         dao.insert(element.toEntity(), element.episodes.map { it.toEntity(element.podcastId) })
@@ -44,12 +50,17 @@ internal class FeedRepository @Inject constructor(
 
     override fun clear(): Completable = dao.deleteAll()
 
-    override fun onItemChanged(id: Any): Observable<Feed> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemChanged(id: Any): Observable<Feed> = Observable.defer {
+        onChanged()
+            .switchMap { Observable.fromIterable(it) }
+            .filter { it.podcastId == (id as Long) }
+            .distinctUntilChanged()
     }
 
-    override fun onChanged(id: Any): Observable<List<Feed>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onChanged(): Observable<List<Feed>> = Observable.defer {
+        getAll().toObservable()
+            .sample(onItemsChangesDispatcher)
+            .distinctUntilChanged()
     }
 
 }
