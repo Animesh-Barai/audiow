@@ -28,7 +28,7 @@ internal fun ItunesPodcastEpisode.toEpisodeEntity(feedId: Long) = FeedEpisodeEnt
 )
 
 internal fun Feed.toEntity() = FeedEntity(
-    id = podcast.id,
+    id = podcastId,
     description = description,
     language = language
 )
@@ -44,19 +44,7 @@ internal fun Episode.toEntity(feedId: Long) = FeedEpisodeEntity(
     publicationDateRFC822 = publicationDateRFC822
 )
 
-internal fun FeedPodcastWrapper.toPodcastDomain(genreList: List<Genre>) = Podcast(
-    id = podcast.id,
-    title = podcast.title,
-    artistName = podcast.artistName,
-    rssUrl = podcast.rssUrl,
-    artworkList = artworkList.map { Artwork(it.url, it.width, it.height) },
-    primaryGenre = genreList.first { it.id == podcast.primaryGenre },
-    genreList = genreList.filter { genreIds.contains(it.id) },
-    explicit = podcast.explicit
-)
-
 internal fun FeedEpisodeEntity.toDomain(
-    podcast: Podcast,
     dateParser: RFC822DateParser
 ) = Episode(
     title = title,
@@ -64,17 +52,16 @@ internal fun FeedEpisodeEntity.toDomain(
     audioFileUrl = audioFileUrl,
     duration = duration,
     isExplicit = isExplicit,
-    coverImageUrl = coverImageUrl ?: podcast.artwork.url,
+    coverImageUrl = coverImageUrl,
     publicationDate = dateParser.parse(publicationDateRFC822),
     publicationDateRFC822 = publicationDateRFC822
 )
 
 internal fun FeedPodcastWrapper.toDomain(
-    feedPodcast: Podcast,
     dateParser: RFC822DateParser
 ) = Feed(
-    podcast = feedPodcast,
+    podcastId = feed.id,
     description = feed.description,
     language = feed.language,
-    episodes = episodes.map { it.toDomain(feedPodcast, dateParser) }
+    episodes = episodes.map { it.toDomain(dateParser) }
 )

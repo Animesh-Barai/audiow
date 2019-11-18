@@ -5,20 +5,6 @@ import androidx.room.*
 internal data class FeedPodcastWrapper(
     @Embedded val feed: FeedEntity,
 
-    @Relation(parentColumn = "id", entityColumn = "id")
-    val podcast: PodcastEntity,
-
-    @Relation(parentColumn = "id", entityColumn = "podcastIdFk")
-    val artworkList: List<PodcastArtworkEntity>,
-
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "podcastId",
-        entity = PodcastAndGenreMapEntity::class,
-        projection = ["genreId"]
-    )
-    val genreIds: List<Long>,
-
     @Relation(parentColumn = "id", entityColumn = "feedId")
     val episodes: List<FeedEpisodeEntity>
 )

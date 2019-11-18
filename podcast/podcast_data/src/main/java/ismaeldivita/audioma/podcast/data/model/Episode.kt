@@ -10,5 +10,5 @@ data class Episode(
     val isExplicit: Boolean,
     val publicationDateRFC822: String,
     val publicationDate: Date?,
-    val coverImageUrl: String
+    val coverImageUrl: String?
 )

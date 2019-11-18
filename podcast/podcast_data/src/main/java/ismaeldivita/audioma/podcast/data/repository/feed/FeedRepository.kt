@@ -16,43 +16,29 @@ import javax.inject.Inject
 
 internal class FeedRepository @Inject constructor(
     private val dao: FeedDAO,
-    private val genreRepository: Repository<Genre>,
     private val dateParser: RFC822DateParser
 ) : Repository<Feed> {
 
     override fun add(element: Feed) = Completable.fromCallable {
-        dao.insert(element.toEntity(), element.episodes.map { it.toEntity(element.podcast.id) })
+        dao.insert(element.toEntity(), element.episodes.map { it.toEntity(element.podcastId) })
     }
 
     override fun addAll(elements: List<Feed>) = Completable.fromCallable {
         val feedPair = elements.map {
-            it.toEntity() to it.episodes.map { ep -> ep.toEntity(it.podcast.id) }
+            it.toEntity() to it.episodes.map { ep -> ep.toEntity(it.podcastId) }
         }
         dao.insert(feedPair.map { it.first }, feedPair.map { it.second }.flatten())
     }
 
     override fun getAll(): Single<List<Feed>> =
-        Singles.zip(dao.getAllFeeds(), genreRepository.getAll()) { feeds, genreList ->
-            feeds.map { it.toDomain(it.toPodcastDomain(genreList), dateParser) }
-        }
+        dao.getAllFeeds().map { feeds -> feeds.map { it.toDomain(dateParser) } }
 
     override fun findById(id: Any): Maybe<Feed> =
-        dao.findById(id as Long)
-            .flatMap { feed ->
-                genreRepository.getAll().map { genreList ->
-                    feed.toDomain(feed.toPodcastDomain(genreList), dateParser)
-                }.toMaybe()
-            }
+        dao.findById(id as Long).map { it.toDomain(dateParser) }
 
     override fun findByIds(ids: List<Any>): Single<List<Feed>> =
         dao.findByIds(ids.filterIsInstance<Long>())
-            .flatMap { feeds ->
-                genreRepository.getAll().map { genreList ->
-                    feeds.map { feed ->
-                        feed.toDomain(feed.toPodcastDomain(genreList), dateParser)
-                    }
-                }
-            }
+            .map { feeds -> feeds.map { it.toDomain(dateParser) } }
 
     override fun remove(element: Feed): Completable = dao.delete(element.toEntity())
 
