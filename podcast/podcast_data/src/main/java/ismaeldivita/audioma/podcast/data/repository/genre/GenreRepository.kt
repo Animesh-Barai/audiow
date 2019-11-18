@@ -37,8 +37,8 @@ internal class GenreRepository @Inject constructor(
     }
 
     companion object {
-        val LAST_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
-        const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
+        private val LAST_UPDATE_KEY = Preferences.Key.Long("genre_last_update")
+        private const val CACHE_TTL = DateUtils.WEEK_IN_MILLIS
     }
 
     override fun add(element: Genre): Completable = throw UnsupportedOperationException()

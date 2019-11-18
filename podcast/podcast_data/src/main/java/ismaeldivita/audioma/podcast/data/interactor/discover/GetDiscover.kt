@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.interactor.feed
+package ismaeldivita.audioma.podcast.data.interactor.discover
 
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
@@ -6,29 +6,29 @@ import ismaeldivita.audioma.core.interactor.Interactor
 import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts
 import ismaeldivita.audioma.podcast.data.interactor.podcast.GetTopPodcasts
 import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts.*
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem
+import ismaeldivita.audioma.podcast.data.model.Discover
 import javax.inject.Inject
 
-interface GetFeed : Interactor<Unit, Single<List<DiscoverItem>>>
+interface GetDiscover : Interactor<Unit, Single<List<Discover>>>
 
-internal class GetFeedImpl @Inject constructor(
+internal class GetDiscoverImpl @Inject constructor(
     private val genreSectionsFeed: GetPreferredGenrePodcasts,
     private val getTopPodcasts: GetTopPodcasts
-) : GetFeed {
+) : GetDiscover {
 
-    override fun invoke(param: Unit): Single<List<DiscoverItem>> {
+    override fun invoke(param: Unit): Single<List<Discover>> {
         return Singles.zip(
             getTopPodcasts(8),
             genreSectionsFeed(Input(count = 6, limit = 15))
         ) { topPodcasts, topPreferredGenresPodcasts ->
 
-            val banner = DiscoverItem.Banner(topPodcasts.take(5))
+            val banner = Discover.Banner(topPodcasts.take(5))
 
-            val highlights = topPodcasts.drop(5).map { DiscoverItem.Highlight(it) }
+            val highlights = topPodcasts.drop(5).map { Discover.Highlight(it) }
 
             /** Filter the top podcasts from the genre sections to avoid duplicated feed items */
             val filteredGenrePodcasts = topPreferredGenresPodcasts.map { (genre, podcasts) ->
-                DiscoverItem.GenreSection(genre, podcasts.filterNot { topPodcasts.contains(it) })
+                Discover.GenreSection(genre, podcasts.filterNot { topPodcasts.contains(it) })
             }
 
             /**

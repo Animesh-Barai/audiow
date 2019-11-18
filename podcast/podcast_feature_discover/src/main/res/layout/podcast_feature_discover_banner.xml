@@ -6,7 +6,7 @@
 
         <variable
             name="banner"
-            type="ismaeldivita.audioma.podcast.data.model.DiscoverItem.Banner" />
+            type="ismaeldivita.audioma.podcast.data.model.Discover.Banner" />
 
     </data>
 

@@ -4,7 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem
+import ismaeldivita.audioma.podcast.data.model.Discover
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.repository.genre.GenreRepository
@@ -20,14 +20,14 @@ internal class GenreCacheHelper @Inject constructor(
     private val podcastRepository: Repository<Podcast>
 ) : DiscoverCacheHelper {
 
-    override fun getAll(): Single<List<Pair<Int, DiscoverItem>>> =
+    override fun getAll(): Single<List<Pair<Int, Discover>>> =
         discoverGenreSectionDAO.getAllGenreSections()
             .flatMap { mapToFeedSection(it) }
 
-    override fun addAll(elements: List<DiscoverItem>): Completable {
+    override fun addAll(elements: List<Discover>): Completable {
         val genreSections = elements.mapIndexed { index, section -> index to section }
-            .filter { (_, section) -> section is DiscoverItem.GenreSection }
-            .map { (order, section) -> order to section as DiscoverItem.GenreSection }
+            .filter { (_, section) -> section is Discover.GenreSection }
+            .map { (order, section) -> order to section as Discover.GenreSection }
 
         val podcasts = genreSections.map { it.second.podcasts }.flatten()
 
@@ -60,7 +60,7 @@ internal class GenreCacheHelper @Inject constructor(
         getPodcasts(sections)
     ) { genres, podcasts ->
         sections.map { section ->
-            section.section.order to DiscoverItem.GenreSection(
+            section.section.order to Discover.GenreSection(
                 genre = genres.first { it.id == section.section.genreId },
                 podcasts = podcasts.filter { podcastDomain ->
                     section.podcasts.any { it.podcastId == podcastDomain.id }

@@ -2,8 +2,8 @@ package ismaeldivita.audioma.podcast.data.interactor
 
 import dagger.Binds
 import dagger.Module
-import ismaeldivita.audioma.podcast.data.interactor.feed.*
-import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeedImpl
+import ismaeldivita.audioma.podcast.data.interactor.discover.*
+import ismaeldivita.audioma.podcast.data.interactor.discover.GetDiscoverImpl
 import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredFeedGenrePodcastsImpl
 import ismaeldivita.audioma.podcast.data.interactor.genre.GetGenreTree
 import ismaeldivita.audioma.podcast.data.interactor.genre.GetGenreTreeImpl
@@ -19,7 +19,7 @@ import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenresImpl
 internal interface InteractorModule {
 
     @Binds
-    fun bindGetFeed(p: GetFeedImpl): GetFeed
+    fun bindGetFeed(p: GetDiscoverImpl): GetDiscover
 
     @Binds
     fun bindFeedGenreSections(p: GetPreferredFeedGenrePodcastsImpl): GetPreferredGenrePodcasts

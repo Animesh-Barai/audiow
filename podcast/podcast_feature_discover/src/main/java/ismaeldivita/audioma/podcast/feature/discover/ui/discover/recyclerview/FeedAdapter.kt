@@ -11,8 +11,8 @@ import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.standart.exhaustive
 import ismaeldivita.audioma.design.databinding.BindableAdapter
 import ismaeldivita.audioma.podcast.data.model.Artwork
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem.*
+import ismaeldivita.audioma.podcast.data.model.Discover
+import ismaeldivita.audioma.podcast.data.model.Discover.*
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedViewHolder.*
@@ -21,19 +21,19 @@ internal class FeedAdapter(
     private val imageLoader: RequestManager,
     private val callback: FeedCallback
 ) : RecyclerView.Adapter<FeedViewHolder<*>>(),
-    BindableAdapter<List<DiscoverItem>> {
+    BindableAdapter<List<Discover>> {
 
     interface FeedCallback {
         fun onPodcastSelected(podcast: Podcast)
     }
 
-    private val feed: MutableList<DiscoverItem> = mutableListOf()
+    private val feed: MutableList<Discover> = mutableListOf()
     private var glidePreloader: RecyclerView.OnScrollListener? = null
 
     private val genreSharedPool = RecyclerView.RecycledViewPool()
     private val bannerSharedPool = RecyclerView.RecycledViewPool()
 
-    override fun setData(data: List<DiscoverItem>) {
+    override fun setData(data: List<Discover>) {
         feed.clear()
         feed.addAll(data + data + data)
         notifyDataSetChanged()

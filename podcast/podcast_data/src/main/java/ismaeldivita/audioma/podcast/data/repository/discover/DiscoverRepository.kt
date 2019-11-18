@@ -8,42 +8,42 @@ import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.interactor.invoke
 import ismaeldivita.audioma.core.util.time.TimeProvider
-import ismaeldivita.audioma.podcast.data.interactor.feed.GetFeed
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem
+import ismaeldivita.audioma.podcast.data.interactor.discover.GetDiscover
+import ismaeldivita.audioma.podcast.data.model.Discover
 import javax.inject.Inject
 
 internal class DiscoverRepository @Inject constructor(
-    private val getFeed: GetFeed,
+    private val getFeed: GetDiscover,
     private val cacheHelpers: Set<@JvmSuppressWildcards DiscoverCacheHelper>,
     private val preferences: Preferences,
     private val timeProvider: TimeProvider
-) : Repository<DiscoverItem> {
+) : Repository<Discover> {
 
     companion object {
-        val LAST_UPDATE_KEY = Preferences.Key.Long("feed_last_update")
-        const val CACHE_TTL = DateUtils.DAY_IN_MILLIS
+        private val LAST_UPDATE_KEY = Preferences.Key.Long("feed_last_update")
+        private const val CACHE_TTL = DateUtils.DAY_IN_MILLIS
     }
 
-    override fun onChanged(id: Any): Observable<List<DiscoverItem>> {
+    override fun onChanged(id: Any): Observable<List<Discover>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onItemChanged(id: Any): Observable<DiscoverItem> {
+    override fun onItemChanged(id: Any): Observable<Discover> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun add(element: DiscoverItem) = throw UnsupportedOperationException()
+    override fun add(element: Discover) = throw UnsupportedOperationException()
 
     override fun findById(id: Any) = throw UnsupportedOperationException()
 
     override fun findByIds(ids: List<Any>) = throw UnsupportedOperationException()
 
-    override fun remove(element: DiscoverItem) = throw UnsupportedOperationException()
+    override fun remove(element: Discover) = throw UnsupportedOperationException()
 
-    override fun addAll(elements: List<DiscoverItem>) =
+    override fun addAll(elements: List<Discover>) =
         Completable.merge(cacheHelpers.map { it.addAll(elements) })
 
-    override fun getAll(): Single<List<DiscoverItem>> =
+    override fun getAll(): Single<List<Discover>> =
         if (cacheExpired()) {
             getFeed()
                 .flatMap {
@@ -65,7 +65,7 @@ internal class DiscoverRepository @Inject constructor(
 
     override fun clear(): Completable = Completable.merge(cacheHelpers.map { it.delete() })
 
-    private fun getCache(): Single<List<DiscoverItem>> =
+    private fun getCache(): Single<List<Discover>> =
         Single.merge(cacheHelpers.map { it.getAll() })
             .toList()
             .map { cache ->

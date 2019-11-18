@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.podcast.data.model.DiscoverItem
+import ismaeldivita.audioma.podcast.data.model.Discover
 import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
@@ -31,7 +31,7 @@ internal abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindDiscoverRepository(p: DiscoverRepository): Repository<DiscoverItem>
+    internal abstract fun bindDiscoverRepository(p: DiscoverRepository): Repository<Discover>
 
     @Binds
     @Singleton
