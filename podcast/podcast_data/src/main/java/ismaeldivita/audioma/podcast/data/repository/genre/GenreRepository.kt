@@ -59,7 +59,7 @@ internal class GenreRepository @Inject constructor(
                 }
             }
 
-
+    // TODO extract to a class
     private fun fetchFromRemote(): Single<List<Genre>> =
         service.getGenreTree(resources.getString(R.string.country_iso))
             .flatMap { updateDatabase(it.toList()) }

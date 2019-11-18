@@ -3,6 +3,7 @@ package ismaeldivita.audioma.podcast.data.storage.database.dao
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Maybe
+import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEpisodeEntity
@@ -28,6 +29,12 @@ internal abstract class FeedDAO {
 
     @Query("SELECT * FROM FEED")
     abstract fun getAllFeeds(): Single<List<FeedPodcastWrapper>>
+
+    @Query("SELECT * FROM FEED WHERE id=:id")
+    abstract fun onItemChanged(id: Long): Observable<FeedPodcastWrapper>
+
+    @Query("SELECT * FROM FEED")
+    abstract fun onChanged(): Observable<List<FeedPodcastWrapper>>
 
     @Delete
     abstract fun delete(model: FeedEntity): Completable

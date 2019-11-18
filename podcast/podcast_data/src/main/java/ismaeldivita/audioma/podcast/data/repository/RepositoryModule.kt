@@ -4,6 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
 import ismaeldivita.audioma.core.data.repository.Repository
+import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
 import ismaeldivita.audioma.podcast.data.model.Discover
 import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Genre
@@ -36,6 +37,10 @@ internal abstract class RepositoryModule {
     @Binds
     @Singleton
     internal abstract fun bindFeedRepository(p: FeedRepository): Repository<Feed>
+
+    @Binds
+    @Singleton
+    internal abstract fun bindFeedRepositoryWatcher(p: FeedRepository): RepositoryWatcher<Feed>
 
     @Binds
     @IntoSet

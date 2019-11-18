@@ -29,6 +29,7 @@ internal class PodcastRepository @Inject constructor(
 
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
 
+    // TODO fetch from Itunes when empty
     override fun findById(id: Any) =
         genreRepository.getAll()
             .flatMapMaybe { genreList -> dao.findById(id as Long).map { it.toDomain(genreList) } }
