@@ -1,6 +1,6 @@
 package ismaeldivita.audioma.podcast.service.itunes.model
 
-data class ItunesPodcastRss(
+data class ItunesPodcastFeed(
     val description: String,
     val languageIso639: String,
     val episodes: List<ItunesPodcastEpisode>

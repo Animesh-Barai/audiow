@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.repository
+package ismaeldivita.audioma.podcast.data.repository.genre
 
 import android.content.res.Resources
 import android.text.format.DateUtils
@@ -15,8 +15,6 @@ import ismaeldivita.audioma.podcast.data.R
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.SubGenreEntity
-import ismaeldivita.audioma.podcast.data.util.toDomain
-import ismaeldivita.audioma.podcast.data.util.toEntity
 import ismaeldivita.audioma.podcast.service.itunes.ItunesService
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
 import javax.inject.Inject

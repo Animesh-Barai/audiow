@@ -4,7 +4,6 @@ import io.reactivex.Single
 import io.reactivex.rxkotlin.Singles
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.interactor.Interactor
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.storage.database.dao.GenreDAO

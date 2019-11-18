@@ -1,7 +1,7 @@
 package ismaeldivita.audioma.podcast.service.itunes.parser.xml
 
 import com.tickaroo.tikxml.TikXml
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastRss
+import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.typeadapter.RssTypeAdapter
 
 internal object TikXmlProvider {
@@ -10,7 +10,7 @@ internal object TikXmlProvider {
         TikXml.Builder()
                 .exceptionOnUnreadXml(false)
                 .addTypeAdapter(
-                    ItunesPodcastRss::class.java,
+                    ItunesPodcastFeed::class.java,
                     RssTypeAdapter()
                 )
                 .build()

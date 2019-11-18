@@ -3,7 +3,7 @@ package ismaeldivita.audioma.podcast.service.itunes
 import io.reactivex.Single
 import ismaeldivita.audioma.core.util.standart.Tree
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastRss
+import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 import ismaeldivita.audioma.podcast.service.itunes.parser.ConverterRouterFactory
 import ismaeldivita.audioma.podcast.service.itunes.parser.json.Json
@@ -52,7 +52,7 @@ interface ItunesService {
         @Url rssUrl: String,
         @Header("If-Modified-Since") ifModifiedSince: String? = null, // value from "last-modified"
         @Header("If-None-Match") ifNoneMatch: String? = null // value from "ETag"
-    ): Single<ItunesPodcastRss>
+    ): Single<ItunesPodcastFeed>
 
     companion object {
         const val ROOT_GENRE_ID: Long = 26

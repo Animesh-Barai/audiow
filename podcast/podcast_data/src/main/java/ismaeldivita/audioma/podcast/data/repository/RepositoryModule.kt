@@ -12,6 +12,8 @@ import ismaeldivita.audioma.podcast.data.repository.discover.BannerDiscoverCache
 import ismaeldivita.audioma.podcast.data.repository.discover.DiscoverCacheHelper
 import ismaeldivita.audioma.podcast.data.repository.discover.GenreCacheHelper
 import ismaeldivita.audioma.podcast.data.repository.discover.HighlightDiscoverCacheHelper
+import ismaeldivita.audioma.podcast.data.repository.genre.GenreRepository
+import ismaeldivita.audioma.podcast.data.repository.podcast.PodcastRepository
 import javax.inject.Singleton
 
 @Module

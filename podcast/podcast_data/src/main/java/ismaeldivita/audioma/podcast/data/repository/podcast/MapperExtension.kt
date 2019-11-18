@@ -1,18 +1,10 @@
-package ismaeldivita.audioma.podcast.data.util
-
 import ismaeldivita.audioma.podcast.data.model.Artwork
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
-import ismaeldivita.audioma.podcast.data.storage.database.entity.GenreEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastArtworkEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastWrapperEntity
-import ismaeldivita.audioma.podcast.service.itunes.model.ItunesGenre
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
-
-internal fun ItunesGenre.toEntity() = GenreEntity(id = id, name = name)
-
-internal fun GenreEntity.toDomain() = Genre(id = id, name = name)
 
 internal fun ItunesPodcast.toDomain(genres: List<Genre>) = Podcast(
     id = id,
@@ -59,3 +51,4 @@ internal fun Podcast.toWrapperEntity() = PodcastWrapperEntity(
     artworkList = toArtworkEntityList(),
     genreIds = genreList.map { it.id }
 )
+

@@ -3,14 +3,14 @@ package ismaeldivita.audioma.podcast.data.interactor.podcast
 import io.reactivex.Single
 import ismaeldivita.audioma.core.interactor.Interactor
 import ismaeldivita.audioma.core.interactor.invoke
-import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts.*
+import ismaeldivita.audioma.podcast.data.interactor.podcast.GetPreferredGenrePodcasts.Input
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredCountry
 import ismaeldivita.audioma.podcast.data.interactor.user.GetPreferredGenres
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
-import ismaeldivita.audioma.podcast.data.repository.GenreRepository
-import ismaeldivita.audioma.podcast.data.util.toDomain
+import ismaeldivita.audioma.podcast.data.repository.genre.GenreRepository
 import ismaeldivita.audioma.podcast.service.itunes.ItunesService
+import toDomain
 import javax.inject.Inject
 
 interface GetPreferredGenrePodcasts : Interactor<Input, Single<Map<Genre, List<Podcast>>>> {

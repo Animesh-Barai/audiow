@@ -7,7 +7,7 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.DiscoverItem
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
-import ismaeldivita.audioma.podcast.data.repository.GenreRepository
+import ismaeldivita.audioma.podcast.data.repository.genre.GenreRepository
 import ismaeldivita.audioma.podcast.data.storage.database.dao.discover.DiscoverGenreSectionDAO
 import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.discover.DiscoverGenreSectionPodcastsEntity

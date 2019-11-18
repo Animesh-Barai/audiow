@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.podcast.data.repository
+package ismaeldivita.audioma.podcast.data.repository.podcast
 
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -7,9 +7,9 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.Genre
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.PodcastDAO
-import ismaeldivita.audioma.podcast.data.util.toDomain
-import ismaeldivita.audioma.podcast.data.util.toEntity
-import ismaeldivita.audioma.podcast.data.util.toWrapperEntity
+import toDomain
+import toEntity
+import toWrapperEntity
 import javax.inject.Inject
 
 internal class PodcastRepository @Inject constructor(
