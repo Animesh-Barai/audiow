@@ -79,11 +79,20 @@ internal class FeedRepository @Inject constructor(
                         ).toMaybe()
                     }
                     .switchIfEmpty(itunesService.getPodcastRss(podcast.rssUrl))
-            }.flatMapCompletable { feedNetworkModel ->
-                Completable.fromCallable {
-                    dao.insert(
-                        feedNetworkModel.toEntity(id),
-                        feedNetworkModel.episodes.map { it.toEpisodeEntity(id) })
+            }.flatMapCompletable { response ->
+                if (response.isSuccessful) {
+                    val headers = response.headers()
+                    val feedNetworkModel = response.body()!!.copy(
+                        lastModified = headers.get("last-modified"),
+                        eTag = headers.get("ETag")
+                    )
+                    Completable.fromCallable {
+                        dao.insert(
+                            feedNetworkModel.toEntity(id),
+                            feedNetworkModel.episodes.map { it.toEpisodeEntity(id) })
+                    }
+                } else {
+                    Completable.complete()
                 }
             }
 }

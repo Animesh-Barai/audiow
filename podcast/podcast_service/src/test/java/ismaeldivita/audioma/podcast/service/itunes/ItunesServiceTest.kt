@@ -42,7 +42,7 @@ class ItunesServiceTest {
         mockWebServer.enqueue(MockResponse().setBody(episodeResponse))
         service.getPodcastRss("")
             .test()
-            .assertValue { it.episodes.size == 10 }
+            .assertValue { it.body()!!.episodes.size == 10 }
     }
 
 }

@@ -9,6 +9,7 @@ import ismaeldivita.audioma.podcast.service.itunes.parser.ConverterRouterFactory
 import ismaeldivita.audioma.podcast.service.itunes.parser.json.Json
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.Xml
 import okhttp3.OkHttpClient
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.http.*
@@ -52,7 +53,7 @@ interface ItunesService {
         @Url rssUrl: String,
         @Header("If-Modified-Since") ifModifiedSince: String? = null, // value from "last-modified"
         @Header("If-None-Match") ifNoneMatch: String? = null // value from "ETag"
-    ): Single<ItunesPodcastFeed>
+    ): Single<Response<ItunesPodcastFeed>>
 
     companion object {
         const val ROOT_GENRE_ID: Long = 26
