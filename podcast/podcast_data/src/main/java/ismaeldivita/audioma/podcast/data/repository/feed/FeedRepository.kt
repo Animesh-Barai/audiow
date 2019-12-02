@@ -18,8 +18,7 @@ import javax.inject.Singleton
 internal class FeedRepository @Inject constructor(
     private val dao: FeedDAO,
     private val dateParser: RFC822DateParser,
-    private val podcastRepository: Repository<Podcast>,
-    private val itunesService: ItunesService
+    private val feedFetcherHelper: FeedFetcherHelper
 ) : Repository<Feed>, RepositoryWatcher<Feed> {
 
     override fun add(element: Feed) = Completable.fromCallable {
@@ -51,7 +50,7 @@ internal class FeedRepository @Inject constructor(
         val podcastId = id as Long
 
         return Observable.merge(
-            fetchFromRemote(podcastId).toObservable(),
+            feedFetcherHelper(podcastId).toObservable(),
 
             dao.onItemChanged(podcastId)
                 .map { it.toDomain(dateParser) }
@@ -63,36 +62,4 @@ internal class FeedRepository @Inject constructor(
             feedList.map { it.toDomain(dateParser) }
         }
 
-    // TODO extract to a class
-    private fun fetchFromRemote(id: Long): Completable =
-        podcastRepository.findById(id)
-            .toSingle()
-            .flatMap { podcast ->
-                dao.findById(podcast.id).map { it to podcast }
-                    .flatMap { (feedWrapper, podcast) ->
-                        val metadata = feedWrapper.feed.metadata
-
-                        itunesService.getPodcastRss(
-                            rssUrl = podcast.rssUrl,
-                            ifModifiedSince = metadata?.lastModified,
-                            ifNoneMatch = metadata?.eTag
-                        ).toMaybe()
-                    }
-                    .switchIfEmpty(itunesService.getPodcastRss(podcast.rssUrl))
-            }.flatMapCompletable { response ->
-                if (response.isSuccessful) {
-                    val headers = response.headers()
-                    val feedNetworkModel = response.body()!!.copy(
-                        lastModified = headers.get("last-modified"),
-                        eTag = headers.get("ETag")
-                    )
-                    Completable.fromCallable {
-                        dao.insert(
-                            feedNetworkModel.toEntity(id),
-                            feedNetworkModel.episodes.map { it.toEpisodeEntity(id) })
-                    }
-                } else {
-                    Completable.complete()
-                }
-            }
 }

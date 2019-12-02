@@ -8,6 +8,7 @@ import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcast
 import ismaeldivita.audioma.podcast.service.itunes.parser.ConverterRouterFactory
 import ismaeldivita.audioma.podcast.service.itunes.parser.json.Json
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.Xml
+import ismaeldivita.audioma.podcast.service.util.HeaderKey
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -51,8 +52,8 @@ interface ItunesService {
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
     fun getPodcastRss(
         @Url rssUrl: String,
-        @Header("If-Modified-Since") ifModifiedSince: String? = null, // value from "last-modified"
-        @Header("If-None-Match") ifNoneMatch: String? = null // value from "ETag"
+        @Header(HeaderKey.modifiedSince) ifModifiedSince: String? = null,
+        @Header(HeaderKey.noneMatch) ifNoneMatch: String? = null
     ): Single<Response<ItunesPodcastFeed>>
 
     companion object {

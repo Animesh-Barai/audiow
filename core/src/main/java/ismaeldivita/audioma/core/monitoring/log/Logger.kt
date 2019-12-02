@@ -19,21 +19,21 @@ object Logger {
         this.handlers.addAll(handlers)
     }
 
-    fun d(message: String, properties: Map<String, Any> = emptyMap()) =
+    fun d(message: String, properties: Map<String, Any?> = emptyMap()) =
         log(message, properties, DEBUG)
 
-    fun i(message: String, properties: Map<String, Any> = emptyMap()) =
+    fun i(message: String, properties: Map<String, Any?> = emptyMap()) =
         log(message, properties, INFO)
 
 
-    fun w(message: String, properties: Map<String, Any> = emptyMap()) =
+    fun w(message: String, properties: Map<String, Any?> = emptyMap()) =
         log(message, properties, WARN)
 
 
-    fun e(message: String, properties: Map<String, Any> = emptyMap()) =
+    fun e(message: String, properties: Map<String, Any?> = emptyMap()) =
         log(message, properties, ERROR)
 
-    private fun log(message: String, properties: Map<String, Any>, level: Level) {
+    private fun log(message: String, properties: Map<String, Any?>, level: Level) {
         val formattedMessage = formatter.format(
             message,
             properties,
@@ -50,7 +50,7 @@ object Logger {
     internal interface Formatter {
         fun format(
             message: String,
-            properties: Map<String, Any>,
+            properties: Map<String, Any?>,
             level: Level,
             metadata: Metadata
         ): String

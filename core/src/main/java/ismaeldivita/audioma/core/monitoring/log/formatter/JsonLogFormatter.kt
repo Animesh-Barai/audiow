@@ -14,7 +14,7 @@ internal class JsonLogFormatter @Inject constructor() : Logger.Formatter {
 
     override fun format(
         message: String,
-        properties: Map<String, Any>,
+        properties: Map<String, Any?>,
         level: Level,
         metadata: Metadata
     ): String = mapOf(
