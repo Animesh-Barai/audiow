@@ -10,7 +10,7 @@ import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import javax.inject.Inject
 
-class PodcastDetailViewModel @Inject constructor(
+internal class PodcastDetailViewModel @Inject constructor(
     private val podcastRepository: Repository<Podcast>,
     private val feedRepository: Repository<Feed>,
     private val feedWatcher: RepositoryWatcher<Feed>,

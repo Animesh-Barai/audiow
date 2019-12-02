@@ -1,6 +1,5 @@
 package ismaeldivita.audioma.podcast.data.repository.feed
 
-import android.util.Log
 import io.reactivex.Completable
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.monitoring.log.Logger

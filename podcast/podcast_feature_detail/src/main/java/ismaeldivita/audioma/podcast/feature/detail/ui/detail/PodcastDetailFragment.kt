@@ -11,7 +11,7 @@ import ismaeldivita.audioma.core.android.ui.withArgs
 import ismaeldivita.audioma.podcast.feature.detail.R
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailFragmentBinding
 
-class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>() {
+internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>() {
 
     companion object {
         private const val ARGUMENT_PODCAST_ID = "podcast_id"
