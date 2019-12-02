@@ -5,7 +5,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
-import ismaeldivita.audioma.core.monitoring.log.Logger
 import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Podcast
@@ -34,7 +33,7 @@ class PodcastDetailViewModel @Inject constructor(
 
         feedWatcher.onItemChanged(podcastId)
             .subscribeOn(schedulersProvider.io())
-            .subscribeBy { Logger.d(it.toString()) }
+            .subscribeBy {  }
             .registerDisposable()
     }
 

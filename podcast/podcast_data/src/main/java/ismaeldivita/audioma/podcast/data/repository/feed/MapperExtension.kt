@@ -10,7 +10,11 @@ import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastEpisode
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
 import toDomain
 
-internal fun ItunesPodcastFeed.toEntity(podcastId: Long) = FeedEntity(
+internal fun ItunesPodcastFeed.toEntity(
+    podcastId: Long,
+    lastModified: String? = null,
+    eTag: String? = null
+) = FeedEntity(
     id = podcastId,
     description = description,
     language = languageIso639,

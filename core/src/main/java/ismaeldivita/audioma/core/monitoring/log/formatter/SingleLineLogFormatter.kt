@@ -8,9 +8,9 @@ internal class SingleLineLogFormatter @Inject constructor() : Logger.Formatter {
 
     override fun format(
         message: String,
-        properties: Map<String, Any>,
+        properties: Map<String, Any?>,
         level: Logger.Level,
         metadata: Metadata
-    ): String = "${metadata.origin} $message"
+    ): String = "${metadata.origin} $message - $properties"
 
 }
