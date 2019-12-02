@@ -19,17 +19,22 @@ class HomeActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        main_menu.setOnItemSelectedListener { menuId ->
-            val fragment = when (menuId) {
-                R.id.menu_discover -> podcastFragmentProvider.discover()
-                else -> {
-                    supportFragmentManager.fragments.forEach {
-                        fragmentTransactor.remove(it).commit()
+
+        with(main_menu) {
+            setOnItemSelectedListener { menuId ->
+                val fragment = when (menuId) {
+                    R.id.menu_discover -> podcastFragmentProvider.discover()
+                    else -> {
+                        supportFragmentManager.fragments.forEach {
+                            fragmentTransactor.remove(it).commit()
+                        }
+                        null
                     }
-                    null
                 }
+                fragment?.let { fragmentTransactor.replace(it).commit() }
             }
-            fragment?.let { fragmentTransactor.replace(it).commit() }
+
+            setItemSelected(R.id.menu_discover)
         }
     }
 }

@@ -19,19 +19,19 @@ import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureD
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverGenreBinding
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverHighlightBinding
 
-internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
+internal sealed class DiscoverViewHolder<T : ViewDataBinding>(view: View) :
     RecyclerView.ViewHolder(view) {
 
     abstract val imageLoader: RequestManager
     abstract val binding: T
-    abstract val callback: FeedAdapter.FeedCallback
+    abstract val callback: DiscoverAdapter.FeedCallback
 
     class BannerViewHolder(
         override val binding: PodcastFeatureDiscoverBannerBinding,
         override val imageLoader: RequestManager,
-        override val callback: FeedAdapter.FeedCallback,
+        override val callback: DiscoverAdapter.FeedCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
-    ) : FeedViewHolder<PodcastFeatureDiscoverBannerBinding>(binding.root) {
+    ) : DiscoverViewHolder<PodcastFeatureDiscoverBannerBinding>(binding.root) {
         init {
             with(binding.podcasts) {
                 adapter = BannerAdapter(imageLoader, callback)
@@ -51,9 +51,9 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
     class GenreViewHolder(
         override val binding: PodcastFeatureDiscoverGenreBinding,
         override val imageLoader: RequestManager,
-        override val callback: FeedAdapter.FeedCallback,
+        override val callback: DiscoverAdapter.FeedCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
-    ) : FeedViewHolder<PodcastFeatureDiscoverGenreBinding>(binding.root) {
+    ) : DiscoverViewHolder<PodcastFeatureDiscoverGenreBinding>(binding.root) {
 
         init {
             with(binding.podcasts) {
@@ -74,8 +74,8 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
     class HighlightViewHolder(
         override val binding: PodcastFeatureDiscoverHighlightBinding,
         override val imageLoader: RequestManager,
-        override val callback: FeedAdapter.FeedCallback
-    ) : FeedViewHolder<PodcastFeatureDiscoverHighlightBinding>(binding.root) {
+        override val callback: DiscoverAdapter.FeedCallback
+    ) : DiscoverViewHolder<PodcastFeatureDiscoverHighlightBinding>(binding.root) {
 
         data class HighlightViewData(
             @ColorInt val contrastColor: Int,

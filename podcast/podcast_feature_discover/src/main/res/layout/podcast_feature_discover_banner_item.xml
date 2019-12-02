@@ -23,7 +23,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedAdapter.FeedCallback" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.FeedCallback" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

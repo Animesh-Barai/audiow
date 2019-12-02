@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedViewHolder.HighlightViewHolder.HighlightViewData" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverViewHolder.HighlightViewHolder.HighlightViewData" />
 
         <variable
             name="imageLoader"
@@ -23,7 +23,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedAdapter.FeedCallback" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.FeedCallback" />
     </data>
 
     <FrameLayout

@@ -15,12 +15,12 @@ import ismaeldivita.audioma.podcast.data.model.Discover
 import ismaeldivita.audioma.podcast.data.model.Discover.*
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.discover.R
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedViewHolder.*
+import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverViewHolder.*
 
-internal class FeedAdapter(
+internal class DiscoverAdapter(
     private val imageLoader: RequestManager,
     private val callback: FeedCallback
-) : RecyclerView.Adapter<FeedViewHolder<*>>(),
+) : RecyclerView.Adapter<DiscoverViewHolder<*>>(),
     BindableAdapter<List<Discover>> {
 
     interface FeedCallback {
@@ -35,11 +35,11 @@ internal class FeedAdapter(
 
     override fun setData(data: List<Discover>) {
         feed.clear()
-        feed.addAll(data + data + data)
+        feed.addAll(data)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder<*> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder<*> {
         val inflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
@@ -74,7 +74,7 @@ internal class FeedAdapter(
         is GenreSection -> R.layout.podcast_feature_discover_genre
     }
 
-    override fun onBindViewHolder(vh: FeedViewHolder<*>, position: Int) {
+    override fun onBindViewHolder(vh: DiscoverViewHolder<*>, position: Int) {
         val item = feed[position]
 
         when {
@@ -87,7 +87,7 @@ internal class FeedAdapter(
         vh.binding.executePendingBindings()
     }
 
-    override fun onViewAttachedToWindow(holder: FeedViewHolder<*>) {
+    override fun onViewAttachedToWindow(holder: DiscoverViewHolder<*>) {
         holder.itemView.requestApplyInsets()
     }
 

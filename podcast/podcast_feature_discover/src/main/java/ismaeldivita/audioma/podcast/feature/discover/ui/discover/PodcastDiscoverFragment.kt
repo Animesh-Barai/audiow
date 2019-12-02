@@ -12,11 +12,11 @@ import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding
-import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.FeedAdapter
+import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter
 import javax.inject.Inject
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>(),
-    FeedAdapter.FeedCallback {
+    DiscoverAdapter.FeedCallback {
 
     @Inject
     internal lateinit var fragmentTransactor: FragmentTransactor
@@ -34,7 +34,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
             container,
             false
         )
-        val adapter = FeedAdapter(Glide.with(this), this)
+        val adapter = DiscoverAdapter(Glide.with(this), this)
 
         with(binding) {
             lifecycleOwner = this@PodcastDiscoverFragment

@@ -14,7 +14,7 @@ import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.Ge
 
 internal class GenreSectionAdapter(
     private val imageLoader: RequestManager,
-    private val callback: FeedAdapter.FeedCallback
+    private val callback: DiscoverAdapter.FeedCallback
 ) : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
 
     private val podcasts: MutableList<Podcast> = mutableListOf()
