@@ -10,6 +10,7 @@ import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
 import ismaeldivita.audioma.podcast.feature.detail.R
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailFragmentBinding
+import ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter
 
 internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>() {
 
@@ -32,10 +33,12 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
             container,
             false
         )
+        val adapter = FeedAdapter()
 
         with(binding) {
             lifecycleOwner = this@PodcastDetailFragment
             imageLoader = Glide.with(this@PodcastDetailFragment)
+            episodes.adapter = adapter
             vm = viewModel
         }
 
