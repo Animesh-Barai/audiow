@@ -36,7 +36,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fitsSystemWindows="false"
-
+                    android:paddingTop="@dimen/screen_vertical_padding"
+                    android:paddingBottom="@dimen/screen_vertical_padding"
+                    android:paddingStart="@dimen/screen_horizontal_padding"
+                    android:paddingEnd="@dimen/screen_horizontal_padding"
                     app:paddingLeftSystemWindowInsets="@{true}"
                     app:paddingRightSystemWindowInsets="@{true}">
 
@@ -44,9 +47,6 @@
                         android:id="@+id/artist"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/screen_horizontal_padding"
-                        android:layout_marginTop="@dimen/screen_vertical_padding"
-                        android:layout_marginEnd="@dimen/screen_horizontal_padding"
                         android:ellipsize="end"
                         android:lines="1"
                         android:maxLines="1"
@@ -61,8 +61,6 @@
                         android:id="@+id/title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/screen_horizontal_padding"
-                        android:layout_marginEnd="@dimen/screen_horizontal_padding"
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:text="@{vm.podcast.title}"
@@ -76,8 +74,6 @@
                         android:id="@+id/cover"
                         android:layout_width="@dimen/podcast_feature_detail_item_cover"
                         android:layout_height="@dimen/podcast_feature_detail_item_cover"
-                        android:layout_marginTop="@dimen/screen_vertical_padding"
-                        android:layout_marginEnd="@dimen/screen_horizontal_padding"
                         app:crossFade="@{true}"
                         app:imageLoader="@{imageLoader}"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +87,6 @@
                         style="?materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/screen_horizontal_padding"
                         android:layout_marginEnd="@dimen/keyline_4"
                         android:text="@string/podcast_subscribe"
                         android:textSize="12sp"
@@ -99,13 +94,12 @@
                         app:checkedLabel="@string/podcast_subscribed"
                         app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
                         app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
-                        app:layout_constraintBottom_toBottomOf="@id/cover"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/cover"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:uncheckedDrawable="@drawable/ic_bookmark"
                         app:uncheckedLabel="@string/podcast_subscribe" />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,6 +112,7 @@
             android:id="@+id/episodes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:bottomSystemWindowInsetsDecoration="@{true}"
             app:data="@{vm.episodes}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

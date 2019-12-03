@@ -79,17 +79,25 @@ fun horizontalSpaceDecoration(recyclerView: RecyclerView, space: Float, edge: Fl
 @BindingAdapter(
     "horizontalSystemWindowInsetsDecoration",
     "verticalSystemWindowInsetsDecoration",
+    "leftSystemWindowInsetsDecoration",
+    "topSystemWindowInsetsDecoration",
+    "rightSystemWindowInsetsDecoration",
+    "bottomSystemWindowInsetsDecoration",
     requireAll = false
 )
 fun insetDecoration(
     recyclerView: RecyclerView,
     horizontal: Boolean,
-    vertical: Boolean
+    vertical: Boolean,
+    left: Boolean,
+    top: Boolean,
+    right: Boolean,
+    bottom: Boolean
 ) {
     recyclerView.applySystemWindowsDecoration(
-        applyLeft = horizontal,
-        applyTop = vertical,
-        applyRight = horizontal,
-        applyBottom = vertical
+        applyLeft = horizontal || left,
+        applyTop = vertical || top,
+        applyRight = horizontal || right,
+        applyBottom = vertical || bottom
     )
 }
