@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout.VERTICAL
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
@@ -33,12 +35,12 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
             container,
             false
         )
-        val adapter = FeedAdapter()
 
         with(binding) {
             lifecycleOwner = this@PodcastDetailFragment
             imageLoader = Glide.with(this@PodcastDetailFragment)
-            episodes.adapter = adapter
+            episodes.adapter = FeedAdapter()
+            episodes.addItemDecoration(DividerItemDecoration(context, VERTICAL))
             vm = viewModel
         }
 

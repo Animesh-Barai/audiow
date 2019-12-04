@@ -34,6 +34,10 @@ internal class FeedAdapter : RecyclerView.Adapter<FeedAdapter.ViewHolder>(),
         )
     )
 
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        holder.itemView.requestApplyInsets()
+    }
+
     override fun onBindViewHolder(vh: ViewHolder, position: Int) {
         with(vh.binding) {
             episode = episodes[position]

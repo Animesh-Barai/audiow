@@ -14,9 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/keyline_2"
+        android:paddingTop="@dimen/keyline_4"
         android:paddingEnd="@dimen/screen_horizontal_padding"
-        android:paddingBottom="@dimen/keyline_2">
+        android:paddingBottom="@dimen/keyline_4"
+        app:paddingLeftSystemWindowInsets="@{true}"
+        app:paddingRightSystemWindowInsets="@{true}">
 
         <TextView
             android:id="@+id/title"
@@ -36,6 +38,7 @@
             android:id="@+id/publicationDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_2"
             android:maxLines="1"
             android:text="16 Oct 2019"
             android:textAppearance="?textAppearanceCaption"
@@ -47,6 +50,7 @@
             android:id="@+id/separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_2"
             android:text=" - "
             android:textAppearance="?textAppearanceCaption"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +61,7 @@
             android:id="@+id/duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_2"
             android:text="1h 30min"
             android:textAppearance="?textAppearanceCaption"
             app:layout_constraintBottom_toBottomOf="parent"
