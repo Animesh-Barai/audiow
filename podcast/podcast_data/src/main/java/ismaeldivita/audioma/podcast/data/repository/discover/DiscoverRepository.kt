@@ -2,7 +2,6 @@ package ismaeldivita.audioma.podcast.data.repository.discover
 
 import android.text.format.DateUtils
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.preferences.Preferences
 import ismaeldivita.audioma.core.data.repository.Repository

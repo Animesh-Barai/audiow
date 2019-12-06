@@ -52,6 +52,7 @@ internal fun Episode.toEntity(feedId: Long) = FeedEpisodeEntity(
 internal fun FeedEpisodeEntity.toDomain(
     dateParser: RFC822DateParser
 ) = Episode(
+    id = audioFileUrl,
     title = title,
     description = description,
     audioFileUrl = audioFileUrl,

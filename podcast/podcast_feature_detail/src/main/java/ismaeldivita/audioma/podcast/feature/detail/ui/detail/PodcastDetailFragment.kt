@@ -48,6 +48,7 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // TODO handle recreation
         viewModel.init(requireArguments().getLong(ARGUMENT_PODCAST_ID))
     }
 

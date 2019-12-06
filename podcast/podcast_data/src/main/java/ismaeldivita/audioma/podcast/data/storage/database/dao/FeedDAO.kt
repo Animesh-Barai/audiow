@@ -13,7 +13,7 @@ import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedPodcastWrap
 internal abstract class FeedDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    protected abstract fun insert(feed: FeedEntity) : Long
+    protected abstract fun insert(feed: FeedEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insert(episodes: List<FeedEpisodeEntity>)
@@ -35,6 +35,15 @@ internal abstract class FeedDAO {
 
     @Query("SELECT * FROM FEED")
     abstract fun onChanged(): Observable<List<FeedPodcastWrapper>>
+
+    @Query("SELECT * FROM FEED_EPISODE")
+    abstract fun getAllEpisodes(): Single<List<FeedEpisodeEntity>>
+
+    @Query("SELECT * FROM FEED_EPISODE WHERE audioFileUrl IN(:ids)")
+    abstract fun findEpisodesByIds(ids: List<String>): Single<List<FeedEpisodeEntity>>
+
+    @Query("SELECT * FROM FEED_EPISODE WHERE audioFileUrl=:id")
+    abstract fun findEpisodeById(id: String): Maybe<FeedEpisodeEntity>
 
     @Delete
     abstract fun delete(model: FeedEntity): Completable

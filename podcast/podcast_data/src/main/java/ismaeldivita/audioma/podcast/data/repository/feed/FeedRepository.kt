@@ -8,9 +8,7 @@ import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
 import ismaeldivita.audioma.core.util.time.RFC822DateParser
 import ismaeldivita.audioma.podcast.data.model.Feed
-import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.data.storage.database.dao.FeedDAO
-import ismaeldivita.audioma.podcast.service.itunes.ItunesService
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -61,5 +59,4 @@ internal class FeedRepository @Inject constructor(
         dao.onChanged().map { feedList ->
             feedList.map { it.toDomain(dateParser) }
         }
-
 }

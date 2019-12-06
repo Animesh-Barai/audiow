@@ -3,6 +3,7 @@ package ismaeldivita.audioma.podcast.data.model
 import java.util.*
 
 data class Episode(
+    val id: String,
     val title: String,
     val description: String,
     val audioFileUrl: String,

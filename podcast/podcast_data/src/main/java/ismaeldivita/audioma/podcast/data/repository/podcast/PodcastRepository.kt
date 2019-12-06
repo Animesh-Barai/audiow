@@ -1,7 +1,6 @@
 package ismaeldivita.audioma.podcast.data.repository.podcast
 
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.podcast.data.model.Genre

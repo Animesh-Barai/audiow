@@ -47,6 +47,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // TODO handle recreation
         viewModel.init()
     }
 
