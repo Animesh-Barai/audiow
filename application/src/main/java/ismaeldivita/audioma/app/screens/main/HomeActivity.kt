@@ -35,7 +35,9 @@ class HomeActivity : DaggerAppCompatActivity() {
                 fragment?.let { fragmentTransactor.replace(it).commit() }
             }
 
-            setItemSelected(R.id.menu_discover)
+            if (savedInstanceState == null) {
+                setItemSelected(R.id.menu_discover)
+            }
         }
 
         // TODO refactor for player container
