@@ -38,8 +38,7 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
 
         with(binding) {
             lifecycleOwner = this@PodcastDetailFragment
-            imageLoader = Glide.with(this@PodcastDetailFragment)
-            episodes.adapter = FeedAdapter()
+            episodes.adapter = FeedAdapter(Glide.with(this@PodcastDetailFragment))
             episodes.addItemDecoration(DividerItemDecoration(context, VERTICAL))
             vm = viewModel
         }

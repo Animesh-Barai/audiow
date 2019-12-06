@@ -6,117 +6,18 @@
     <data>
 
         <variable
-            name="imageLoader"
-            type="com.bumptech.glide.RequestManager" />
-
-        <variable
             name="vm"
             type="ismaeldivita.audioma.podcast.feature.detail.ui.detail.PodcastDetailViewModel" />
     </data>
 
-    <ismaeldivita.audioma.design.widget.NestedCoordinatorLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episodes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="?android:colorBackground"
-        android:clickable="true"
-        android:focusable="true">
+        app:data="@{vm.feedItems}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:verticalSystemWindowInsetsDecoration="@{true}"
+        tools:listitem="@layout/podcast_feature_detail_episode_item" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:paddingTopSystemWindowInsets="@{true}">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fitsSystemWindows="false"
-                    android:paddingTop="@dimen/screen_vertical_padding"
-                    android:paddingBottom="@dimen/screen_vertical_padding"
-                    android:paddingStart="@dimen/screen_horizontal_padding"
-                    android:paddingEnd="@dimen/screen_horizontal_padding"
-                    app:paddingLeftSystemWindowInsets="@{true}"
-                    app:paddingRightSystemWindowInsets="@{true}">
-
-                    <TextView
-                        android:id="@+id/artist"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:text="@{vm.podcast.artistName}"
-                        android:textAppearance="?textAppearanceOverline"
-                        app:layout_constraintEnd_toStartOf="@id/cover"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Artist name" />
-
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="@{vm.podcast.title}"
-                        android:textAppearance="?textAppearanceHeadline6"
-                        app:layout_constraintEnd_toStartOf="@id/cover"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/artist"
-                        tools:text="Podcast title" />
-
-                    <ImageView
-                        android:id="@+id/cover"
-                        android:layout_width="@dimen/podcast_feature_detail_item_cover"
-                        android:layout_height="@dimen/podcast_feature_detail_item_cover"
-                        app:crossFade="@{true}"
-                        app:imageLoader="@{imageLoader}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:load="@{vm.podcast.artwork.url}"
-                        app:radius="@{@dimen/radius_default}"
-                        tools:background="#FF00FF" />
-
-                    <ismaeldivita.audioma.design.widget.ToggleButton
-                        android:id="@+id/subscribe"
-                        style="?materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/keyline_4"
-                        android:text="@string/podcast_subscribe"
-                        android:textSize="12sp"
-                        app:checkedDrawable="@drawable/ic_check"
-                        app:checkedLabel="@string/podcast_subscribed"
-                        app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
-                        app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/cover"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:uncheckedDrawable="@drawable/ic_bookmark"
-                        app:uncheckedLabel="@string/podcast_subscribe" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/episodes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:bottomSystemWindowInsetsDecoration="@{true}"
-            app:data="@{vm.episodes}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/podcast_feature_detail_episode_item" />
-
-    </ismaeldivita.audioma.design.widget.NestedCoordinatorLayout>
 </layout>

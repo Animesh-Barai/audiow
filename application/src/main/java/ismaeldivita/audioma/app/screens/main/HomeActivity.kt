@@ -4,8 +4,9 @@ import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity
 import ismaeldivita.audioma.app.R
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
+import ismaeldivita.audioma.design.metrics.applySystemWindowsDesign
 import ismaeldivita.audioma.podcast.feature.discover.PodcastDiscoverFragmentFactory
-import kotlinx.android.synthetic.main.activity_home.main_menu
+import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
@@ -35,6 +36,18 @@ class HomeActivity : DaggerAppCompatActivity() {
             }
 
             setItemSelected(R.id.menu_discover)
+        }
+
+        // TODO refactor for player container
+        main_menu.applySystemWindowsDesign(applyBottom = true) { v, inset ->
+            home_fragment_container.dispatchApplyWindowInsets(
+                inset.replaceSystemWindowInsets(
+                    inset.systemWindowInsetLeft,
+                    inset.systemWindowInsetTop,
+                    inset.systemWindowInsetRight,
+                    v.measuredHeight
+                )
+            )
         }
     }
 }
