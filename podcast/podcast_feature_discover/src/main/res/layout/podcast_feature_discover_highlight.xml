@@ -23,7 +23,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.FeedCallback" />
+            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
     </data>
 
     <FrameLayout

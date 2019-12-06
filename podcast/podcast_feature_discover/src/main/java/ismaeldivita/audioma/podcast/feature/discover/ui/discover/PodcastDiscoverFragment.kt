@@ -16,7 +16,7 @@ import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.Di
 import javax.inject.Inject
 
 internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewModel>(),
-    DiscoverAdapter.FeedCallback {
+    DiscoverAdapter.DiscoverCallback {
 
     @Inject
     internal lateinit var fragmentTransactor: FragmentTransactor

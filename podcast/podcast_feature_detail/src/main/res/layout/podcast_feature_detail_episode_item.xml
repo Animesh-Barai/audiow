@@ -8,11 +8,17 @@
         <variable
             name="episode"
             type="ismaeldivita.audioma.podcast.data.model.Episode" />
+
+        <variable
+            name="callback"
+            type="ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter.FeedCallback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{()-> callback.onEpisodeSelected(episode)}"
         android:paddingStart="@dimen/screen_horizontal_padding"
         android:paddingTop="@dimen/keyline_4"
         android:paddingEnd="@dimen/screen_horizontal_padding"

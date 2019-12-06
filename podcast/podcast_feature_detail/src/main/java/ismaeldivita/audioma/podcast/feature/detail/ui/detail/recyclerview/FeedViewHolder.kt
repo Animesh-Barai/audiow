@@ -7,22 +7,29 @@ import com.bumptech.glide.RequestManager
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailEpisodeItemBinding
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailHeaderBinding
 
-sealed class FeedViewHolder<T : ViewDataBinding>(view: View) : RecyclerView.ViewHolder(view) {
+internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
+    RecyclerView.ViewHolder(view) {
 
     abstract val binding: T
+    abstract val callback: FeedAdapter.FeedCallback
 
     class HeaderViewHolder(
         override val binding: PodcastFeatureDetailHeaderBinding,
+        override val callback: FeedAdapter.FeedCallback,
         imageLoader: RequestManager
     ) : FeedViewHolder<PodcastFeatureDetailHeaderBinding>(binding.root) {
-
         init {
             binding.imageLoader = imageLoader
         }
     }
 
     class FeedEpisodeViewHolder(
-        override val binding: PodcastFeatureDetailEpisodeItemBinding
-    ) : FeedViewHolder<PodcastFeatureDetailEpisodeItemBinding>(binding.root)
+        override val binding: PodcastFeatureDetailEpisodeItemBinding,
+        override val callback: FeedAdapter.FeedCallback
+    ) : FeedViewHolder<PodcastFeatureDetailEpisodeItemBinding>(binding.root) {
+        init {
+            binding.callback = callback
+        }
+    }
 
 }

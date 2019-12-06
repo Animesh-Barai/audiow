@@ -19,13 +19,9 @@ import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.Di
 
 internal class DiscoverAdapter(
     private val imageLoader: RequestManager,
-    private val callback: FeedCallback
+    private val callback: DiscoverCallback
 ) : RecyclerView.Adapter<DiscoverViewHolder<*>>(),
     BindableAdapter<List<Discover>> {
-
-    interface FeedCallback {
-        fun onPodcastSelected(podcast: Podcast)
-    }
 
     private val feed: MutableList<Discover> = mutableListOf()
     private var glidePreloader: RecyclerView.OnScrollListener? = null
@@ -130,4 +126,7 @@ internal class DiscoverAdapter(
 
     }
 
+    interface DiscoverCallback {
+        fun onPodcastSelected(podcast: Podcast)
+    }
 }

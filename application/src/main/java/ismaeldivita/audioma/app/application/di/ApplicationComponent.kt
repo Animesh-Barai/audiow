@@ -19,8 +19,7 @@ import javax.inject.Singleton
         BindingModule::class,
         ApplicationModule::class,
 
-        PodcastDataModule::class,
-        PodcastDetailModule::class
+        PodcastDataModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<AudiomaApplication> {

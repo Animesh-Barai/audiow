@@ -8,13 +8,24 @@ import android.widget.LinearLayout.VERTICAL
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
+import ismaeldivita.audioma.core.android.ui.FragmentTransactor
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
+import ismaeldivita.audioma.podcast.data.model.Episode
+import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.detail.R
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailFragmentBinding
 import ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter
+import javax.inject.Inject
 
-internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>() {
+internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>(),
+    FeedAdapter.FeedCallback {
+
+    @Inject
+    internal lateinit var fragmentTransactor: FragmentTransactor
+
+    @Inject
+    lateinit var fragmentFactory: PodcastDetailFragmentFactory
 
     companion object {
         private const val ARGUMENT_PODCAST_ID = "podcast_id"
@@ -36,9 +47,11 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
             false
         )
 
+        val glide = Glide.with(this@PodcastDetailFragment)
+
         with(binding) {
             lifecycleOwner = this@PodcastDetailFragment
-            episodes.adapter = FeedAdapter(Glide.with(this@PodcastDetailFragment))
+            episodes.adapter = FeedAdapter(glide, this@PodcastDetailFragment)
             episodes.addItemDecoration(DividerItemDecoration(context, VERTICAL))
             vm = viewModel
         }
@@ -52,4 +65,12 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
         viewModel.init(requireArguments().getLong(ARGUMENT_PODCAST_ID))
     }
 
+    override fun onEpisodeSelected(episode: Episode) {
+        val podcastId = requireArguments().getLong(ARGUMENT_PODCAST_ID)
+
+        fragmentTransactor
+            .add(fragmentFactory.episode(podcastId, episode.id))
+            .addToBackStack(null)
+            .commit()
+    }
 }

@@ -24,12 +24,12 @@ internal sealed class DiscoverViewHolder<T : ViewDataBinding>(view: View) :
 
     abstract val imageLoader: RequestManager
     abstract val binding: T
-    abstract val callback: DiscoverAdapter.FeedCallback
+    abstract val callback: DiscoverAdapter.DiscoverCallback
 
     class BannerViewHolder(
         override val binding: PodcastFeatureDiscoverBannerBinding,
         override val imageLoader: RequestManager,
-        override val callback: DiscoverAdapter.FeedCallback,
+        override val callback: DiscoverAdapter.DiscoverCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
     ) : DiscoverViewHolder<PodcastFeatureDiscoverBannerBinding>(binding.root) {
         init {
@@ -51,7 +51,7 @@ internal sealed class DiscoverViewHolder<T : ViewDataBinding>(view: View) :
     class GenreViewHolder(
         override val binding: PodcastFeatureDiscoverGenreBinding,
         override val imageLoader: RequestManager,
-        override val callback: DiscoverAdapter.FeedCallback,
+        override val callback: DiscoverAdapter.DiscoverCallback,
         private val sharedPool: RecyclerView.RecycledViewPool
     ) : DiscoverViewHolder<PodcastFeatureDiscoverGenreBinding>(binding.root) {
 
@@ -74,7 +74,7 @@ internal sealed class DiscoverViewHolder<T : ViewDataBinding>(view: View) :
     class HighlightViewHolder(
         override val binding: PodcastFeatureDiscoverHighlightBinding,
         override val imageLoader: RequestManager,
-        override val callback: DiscoverAdapter.FeedCallback
+        override val callback: DiscoverAdapter.DiscoverCallback
     ) : DiscoverViewHolder<PodcastFeatureDiscoverHighlightBinding>(binding.root) {
 
         data class HighlightViewData(

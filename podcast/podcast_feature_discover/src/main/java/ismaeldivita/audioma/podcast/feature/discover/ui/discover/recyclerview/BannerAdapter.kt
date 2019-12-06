@@ -22,7 +22,7 @@ import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.Ba
 
 internal class BannerAdapter(
     private val imageLoader: RequestManager,
-    private val callback: DiscoverAdapter.FeedCallback
+    private val callback: DiscoverAdapter.DiscoverCallback
 ) : RecyclerView.Adapter<ViewHolder>(), BindableAdapter<List<Podcast>> {
 
     private val podcasts: MutableList<Podcast> = mutableListOf()
