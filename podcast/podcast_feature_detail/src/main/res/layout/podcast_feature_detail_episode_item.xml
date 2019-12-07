@@ -17,14 +17,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="@{()-> callback.onEpisodeSelected(episode)}"
+        android:background="?android:colorBackground"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{(v)-> callback.onEpisodeSelected(episode, v)}"
         android:paddingStart="@dimen/screen_horizontal_padding"
         android:paddingTop="@dimen/keyline_4"
         android:paddingEnd="@dimen/screen_horizontal_padding"
         android:paddingBottom="@dimen/keyline_4"
+        android:transitionName="@{episode.id}"
         app:paddingLeftSystemWindowInsets="@{true}"
-        app:paddingRightSystemWindowInsets="@{true}">
+        app:paddingRightSystemWindowInsets="@{true}"
+        tools:ignore="UnusedAttribute">
 
         <TextView
             android:id="@+id/title"

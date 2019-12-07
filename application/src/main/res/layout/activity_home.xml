@@ -19,7 +19,7 @@
         android:elevation="28dp"
         android:paddingStart="@dimen/screen_horizontal_padding"
         android:paddingEnd="@dimen/screen_horizontal_padding"
-        app:layout_behavior="ismaeldivita.audioma.design.coordinator.SmoothScrollBehavior"
+        app:layout_behavior="ismaeldivita.audioma.design.widget.coordinator.SmoothScrollBehavior"
         app:cnb_menuResource="@menu/main_bottom_menu"
         app:cnb_orientationMode="horizontal" />
 

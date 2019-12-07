@@ -1,6 +1,7 @@
 package ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -72,6 +73,6 @@ internal class FeedAdapter(
     }
 
     interface FeedCallback {
-        fun onEpisodeSelected(episode: Episode)
+        fun onEpisodeSelected(episode: Episode, view: View)
     }
 }

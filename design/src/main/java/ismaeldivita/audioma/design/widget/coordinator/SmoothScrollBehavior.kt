@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.design.coordinator
+package ismaeldivita.audioma.design.widget.coordinator
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -12,7 +12,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
-import ismaeldivita.audioma.design.coordinator.SmoothScrollBehavior.State.*
+import ismaeldivita.audioma.design.widget.coordinator.SmoothScrollBehavior.State.*
 
 class SmoothScrollBehavior(
     context: Context,

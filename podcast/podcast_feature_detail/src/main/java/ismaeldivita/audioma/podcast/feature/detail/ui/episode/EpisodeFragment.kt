@@ -33,6 +33,7 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
             container,
             false
         )
+        binding.container.transitionName = requireArguments().getString(ARGUMENT_EPISODE_ID)
         return binding.root
     }
 
