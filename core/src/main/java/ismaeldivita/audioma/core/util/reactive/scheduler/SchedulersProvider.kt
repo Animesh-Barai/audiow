@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.core.util.reactive
+package ismaeldivita.audioma.core.util.reactive.scheduler
 
 import io.reactivex.Scheduler
 

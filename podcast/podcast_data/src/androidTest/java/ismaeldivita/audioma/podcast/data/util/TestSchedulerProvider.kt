@@ -2,7 +2,7 @@ package ismaeldivita.audioma.podcast.data.util
 
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
+import ismaeldivita.audioma.core.util.reactive.scheduler.SchedulersProvider
 
 class TestSchedulerProvider : SchedulersProvider {
 

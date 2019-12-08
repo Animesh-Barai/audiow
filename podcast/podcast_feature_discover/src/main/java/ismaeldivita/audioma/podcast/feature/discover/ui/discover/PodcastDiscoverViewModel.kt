@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
 import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
 import ismaeldivita.audioma.core.data.repository.Repository
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
+import ismaeldivita.audioma.core.util.reactive.scheduler.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.Discover
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

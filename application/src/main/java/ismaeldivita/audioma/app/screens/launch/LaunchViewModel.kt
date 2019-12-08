@@ -6,7 +6,7 @@ import io.reactivex.subjects.PublishSubject
 import ismaeldivita.audioma.core.android.LaunchInitializer
 import ismaeldivita.audioma.core.android.livedata.liveDataOf
 import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
+import ismaeldivita.audioma.core.util.reactive.scheduler.SchedulersProvider
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

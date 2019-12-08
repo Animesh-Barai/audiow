@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:nestedScrollingEnabled="false"
+        android:transitionGroup="false"
         app:data="@{banner.podcasts}"
         app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
         app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"

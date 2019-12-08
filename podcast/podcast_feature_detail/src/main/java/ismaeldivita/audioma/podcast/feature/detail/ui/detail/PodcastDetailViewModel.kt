@@ -5,7 +5,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
 import ismaeldivita.audioma.core.data.repository.Repository
 import ismaeldivita.audioma.core.data.repository.RepositoryWatcher
-import ismaeldivita.audioma.core.util.reactive.SchedulersProvider
+import ismaeldivita.audioma.core.util.reactive.scheduler.SchedulersProvider
 import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedItem
@@ -46,11 +46,16 @@ internal class PodcastDetailViewModel @Inject constructor(
     private fun watchFeedUpdates(podcastId: Long) {
         feedWatcher.onItemChanged(podcastId)
             .subscribeOn(schedulersProvider.io())
-            .subscribeBy {
-                val header = feedItems.value!!.first()
-                val feedEpisodes = it.episodes.map(FeedItem::FeedEpisode).toTypedArray()
-                feedItems.postValue(listOf(header, *feedEpisodes))
-            }
+            .subscribeBy(
+                onNext = {
+                    val header = feedItems.value!!.first()
+                    val feedEpisodes = it.episodes.map(FeedItem::FeedEpisode).toTypedArray()
+                    feedItems.postValue(listOf(header, *feedEpisodes))
+                },
+                onError = {
+                    // TODO
+                }
+            )
             .registerDisposable()
     }
 }

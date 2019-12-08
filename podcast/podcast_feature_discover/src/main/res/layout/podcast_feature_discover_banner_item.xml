@@ -31,13 +31,15 @@
         android:layout_width="@dimen/podcast_feature_discover_banner_item_width"
         android:layout_height="wrap_content"
         android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
+        android:transitionGroup="false"
         app:cardBackgroundColor="@{viewData.containerColor}"
         app:cardCornerRadius="@dimen/radius_default"
         app:cardElevation="@dimen/elevation_surface">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:transitionGroup="false">
 
             <ImageView
                 android:id="@+id/cover"

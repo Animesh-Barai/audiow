@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:transitionGroup="false"
         app:paddingLeftSystemWindowInsets="@{true}"
         app:paddingRightSystemWindowInsets="@{true}">
 
@@ -41,13 +42,15 @@
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
             android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
+            android:transitionGroup="false"
             app:cardBackgroundColor="@{viewData.containerColor}"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:transitionGroup="false">
 
                 <ImageView
                     android:id="@+id/cover"

@@ -6,6 +6,8 @@ import dagger.Provides
 import dagger.multibindings.IntoSet
 import io.reactivex.disposables.CompositeDisposable
 import ismaeldivita.audioma.core.android.ApplicationInitializer
+import ismaeldivita.audioma.core.util.reactive.scheduler.DefaultSchedulersProvider
+import ismaeldivita.audioma.core.util.reactive.scheduler.SchedulersProvider
 import javax.inject.Singleton
 
 @Module(includes = [ReactiveModule.ReactiveBindingModule::class])

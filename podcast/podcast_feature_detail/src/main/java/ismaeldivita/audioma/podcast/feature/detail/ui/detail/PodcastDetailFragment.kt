@@ -5,18 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout.VERTICAL
 import androidx.core.view.children
 import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.*
 import com.bumptech.glide.Glide
-import ismaeldivita.audioma.core.android.livedata.observe
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
@@ -77,33 +72,33 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
     }
 
     override fun onEpisodeSelected(episode: Episode, view: View) {
-        val fragment = fragmentFactory.episode(podcastId, episode.id)
+        val episodeFragment = fragmentFactory.episode(podcastId, episode.id)
 
         currentEpisodeIdTransition = episode.id
 
-        setupSharedElementForTransition(fragment)
+        setupSharedElementTransition(episodeFragment)
         setupExplodeTransition(view)
 
         fragmentTransactor
-            .replace(fragment)
+            .replace(episodeFragment)
             .addToBackStack(null)
             .setReorderingAllowed(true)
-            .addSharedElement(view, episode.id)
+            .addSharedElement(view, view.transitionName)
             .commit()
     }
 
     /**
      * Setup the episode shared element transition to the EpisodeFragment
      *
-     * @param newFragment EpisodeFragment instance
+     * @param episodeFragment EpisodeFragment instance
      */
-    private fun setupSharedElementForTransition(newFragment: Fragment) {
+    private fun setupSharedElementTransition(episodeFragment: Fragment) {
         val sharedElementTransition = ChangeBounds().apply {
             duration = TRANSITION_DURATION
             interpolator = FastOutSlowInInterpolator()
         }
 
-        with(newFragment) {
+        with(episodeFragment) {
             sharedElementEnterTransition = sharedElementTransition
             sharedElementReturnTransition = sharedElementTransition
         }
@@ -137,7 +132,7 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
          * This is necessary since we need to wait the recyclerview load his content to
          * properly perform the shared element return animation
          */
-        postponeEnterTransition(200, TimeUnit.MILLISECONDS)
+        postponeEnterTransition(700, TimeUnit.MILLISECONDS)
 
         /**
          * The exit transition is lost on recreation. So we need to keep the track of the view

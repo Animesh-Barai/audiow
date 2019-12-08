@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:transitionGroup="false">
 
         <TextView
             android:id="@+id/genre_title"
@@ -30,13 +31,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyline_3"
-            android:nestedScrollingEnabled="false"
-            app:setHasFixedSize="@{true}"
-            app:data="@{genreSection.podcasts}"
             android:clipChildren="false"
+            android:transitionGroup="false"
+            app:data="@{genreSection.podcasts}"
             app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
             app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"
-            app:horizontalSystemWindowInsetsDecoration="@{true}" />
+            app:horizontalSystemWindowInsetsDecoration="@{true}"
+            app:setHasFixedSize="@{true}" />
 
     </LinearLayout>
 
