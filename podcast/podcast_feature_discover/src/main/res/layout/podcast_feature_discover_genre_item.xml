@@ -35,6 +35,7 @@
             <ImageView
                 android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
                 android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
+                android:transitionName="@{String.valueOf(podcast.id)}"
                 app:crossFade="@{true}"
                 app:imageLoader="@{imageLoader}"
                 app:load="@{podcast.artwork.url}" />
