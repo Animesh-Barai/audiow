@@ -6,11 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout.VERTICAL
+import androidx.core.view.children
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.*
 import com.bumptech.glide.Glide
+import ismaeldivita.audioma.core.android.livedata.observe
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
@@ -23,30 +29,25 @@ import ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAd
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>(),
     FeedAdapter.FeedCallback {
 
     @Inject
-    internal lateinit var fragmentTransactor: FragmentTransactor
+    lateinit var fragmentTransactor: FragmentTransactor
 
     @Inject
     lateinit var fragmentFactory: PodcastDetailFragmentFactory
 
-    companion object {
-        private const val ARGUMENT_PODCAST_ID = "podcast_id"
-
-        fun newInstance(podcastId: Long) = PodcastDetailFragment().withArgs {
-            putLong(ARGUMENT_PODCAST_ID, podcastId)
-        }
-    }
+    private lateinit var binding: PodcastFeatureDetailFragmentBinding
+    private val podcastId by lazy { requireArguments().getLong(ARGUMENT_PODCAST_ID) }
+    private var currentEpisodeIdTransition: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<PodcastFeatureDetailFragmentBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.podcast_feature_detail_fragment,
             container,
@@ -58,43 +59,30 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
         with(binding) {
             lifecycleOwner = this@PodcastDetailFragment
             episodes.adapter = FeedAdapter(glide, this@PodcastDetailFragment)
-            episodes.addItemDecoration(DividerItemDecoration(context, VERTICAL))
             vm = viewModel
         }
 
-        postponeEnterTransition(200, TimeUnit.MILLISECONDS)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupReturnTransition(savedInstanceState)
+        viewModel.init(podcastId)
+    }
 
-        // TODO handle recreation
-        viewModel.init(requireArguments().getLong(ARGUMENT_PODCAST_ID))
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_EPISODE_ID, currentEpisodeIdTransition)
     }
 
     override fun onEpisodeSelected(episode: Episode, view: View) {
-        val podcastId = requireArguments().getLong(ARGUMENT_PODCAST_ID)
-        val viewRect = Rect()
-        view.getGlobalVisibleRect(viewRect)
+        val fragment = fragmentFactory.episode(podcastId, episode.id)
 
-        exitTransition = SlideExplode().apply {
-            duration = 400
-            interpolator = FastOutSlowInInterpolator()
-            epicenterCallback = object : Transition.EpicenterCallback() {
-                override fun onGetEpicenter(transition: Transition) = viewRect
-            }
-        }
+        currentEpisodeIdTransition = episode.id
 
-        val sharedElementTransition = ChangeBounds().apply {
-            duration = 400
-            interpolator = FastOutSlowInInterpolator()
-        }
-
-        val fragment = fragmentFactory.episode(podcastId, episode.id).apply {
-            sharedElementEnterTransition = sharedElementTransition
-            sharedElementReturnTransition = sharedElementTransition
-        }
+        setupSharedElementForTransition(fragment)
+        setupExplodeTransition(view)
 
         fragmentTransactor
             .replace(fragment)
@@ -102,5 +90,76 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
             .setReorderingAllowed(true)
             .addSharedElement(view, episode.id)
             .commit()
+    }
+
+    /**
+     * Setup the episode shared element transition to the EpisodeFragment
+     *
+     * @param newFragment EpisodeFragment instance
+     */
+    private fun setupSharedElementForTransition(newFragment: Fragment) {
+        val sharedElementTransition = ChangeBounds().apply {
+            duration = TRANSITION_DURATION
+            interpolator = FastOutSlowInInterpolator()
+        }
+
+        with(newFragment) {
+            sharedElementEnterTransition = sharedElementTransition
+            sharedElementReturnTransition = sharedElementTransition
+        }
+    }
+
+    /**
+     * Setup the custom explode exist transition for the current fragment
+     *
+     * @param view view which will be used as the center of the explosion
+     */
+    private fun setupExplodeTransition(view: View) {
+        val viewRect = Rect()
+
+        view.getGlobalVisibleRect(viewRect)
+
+        exitTransition = SlideExplode().apply {
+            duration = TRANSITION_DURATION
+            interpolator = FastOutSlowInInterpolator()
+            epicenterCallback = object : Transition.EpicenterCallback() {
+                override fun onGetEpicenter(transition: Transition) = viewRect
+            }
+        }
+    }
+
+    private fun setupReturnTransition(savedInstanceState: Bundle?) {
+        val episodeIdTransition = savedInstanceState?.getString(STATE_EPISODE_ID)
+
+        /**
+         * Postpone the transition for the return transition from EpisodeFragment
+         *
+         * This is necessary since we need to wait the recyclerview load his content to
+         * properly perform the shared element return animation
+         */
+        postponeEnterTransition(200, TimeUnit.MILLISECONDS)
+
+        /**
+         * The exit transition is lost on recreation. So we need to keep the track of the view
+         * used for the explosion in the savedInstance and update the exit transition with the
+         * new view coordinates as the screen orientation may have changed
+         */
+        if (episodeIdTransition != null) {
+            (binding.episodes)?.doOnPreDraw {
+                binding.episodes.children
+                    .find { v -> v.transitionName == episodeIdTransition }
+                    ?.let { v -> setupExplodeTransition(v) }
+            }
+        }
+    }
+
+    companion object {
+        private const val TRANSITION_DURATION = 300L
+        private const val ARGUMENT_PODCAST_ID = "podcast_id"
+        private const val STATE_EPISODE_ID = "state_episode_id"
+
+        fun newInstance(podcastId: Long) = PodcastDetailFragment().withArgs {
+            putLong(ARGUMENT_PODCAST_ID, podcastId)
+        }
     }
 }

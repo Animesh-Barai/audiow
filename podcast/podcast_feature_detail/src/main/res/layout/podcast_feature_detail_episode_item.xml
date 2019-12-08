@@ -14,79 +14,97 @@
             type="ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter.FeedCallback" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:colorBackground"
-        android:foreground="?attr/selectableItemBackground"
         android:onClick="@{(v)-> callback.onEpisodeSelected(episode, v)}"
-        android:paddingStart="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/keyline_4"
-        android:paddingEnd="@dimen/screen_horizontal_padding"
-        android:paddingBottom="@dimen/keyline_4"
-        android:transitionName="@{episode.id}"
-        app:paddingLeftSystemWindowInsets="@{true}"
-        app:paddingRightSystemWindowInsets="@{true}"
-        tools:ignore="UnusedAttribute">
+        android:orientation="vertical"
+        android:transitionName="@{episode.id}">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/keyline_4"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@{episode.title}"
-            android:textAppearance="?textAppearanceSubtitle2"
-            app:layout_constraintEnd_toStartOf="@id/play"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Podcast title" />
+            android:background="?android:colorBackground"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/keyline_4"
+            android:paddingEnd="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/keyline_4"
+            app:paddingLeftSystemWindowInsets="@{true}"
+            app:paddingRightSystemWindowInsets="@{true}"
+            tools:ignore="UnusedAttribute">
 
-        <TextView
-            android:id="@+id/publicationDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/keyline_2"
-            android:maxLines="1"
-            android:text="16 Oct 2019"
-            android:textAppearance="?textAppearanceCaption"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{episode.title}"
+                android:textAppearance="?textAppearanceSubtitle2"
+                app:layout_constraintEnd_toStartOf="@id/play"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Podcast title" />
 
-        <TextView
-            android:id="@+id/separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/keyline_2"
-            android:text=" - "
-            android:textAppearance="?textAppearanceCaption"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/publicationDate"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            <TextView
+                android:id="@+id/publicationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_2"
+                android:maxLines="1"
+                android:text="16 Oct 2019"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <TextView
-            android:id="@+id/duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/keyline_2"
-            android:text="1h 30min"
-            android:textAppearance="?textAppearanceCaption"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/separator"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            <TextView
+                android:id="@+id/separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_2"
+                android:text=" - "
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/publicationDate"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <ImageView
-            android:id="@+id/play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:src="@drawable/ic_play_circle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_2"
+                android:text="1h 30min"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/separator"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:src="@drawable/ic_play_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--
+            Transition and shared element issues happen when using the divider as
+            ItemDecoration.
+
+            TODO Fix transitions issues and migrate this to ItemDecoration
+        -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </LinearLayout>
 
 </layout>

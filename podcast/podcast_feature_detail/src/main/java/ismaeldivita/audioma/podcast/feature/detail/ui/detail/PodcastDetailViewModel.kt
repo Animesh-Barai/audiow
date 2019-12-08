@@ -21,23 +21,26 @@ internal class PodcastDetailViewModel @Inject constructor(
     val feedItems = MutableLiveData<List<FeedItem>>()
 
     fun init(podcastId: Long) {
-        podcastRepository.findById(podcastId)
-            .subscribeOn(schedulersProvider.io())
-            .flatMap { podcast ->
-                feedRepository.findById(podcastId)
-                    .doOnSuccess { feed ->
-                        val feedEpisodes = feed.episodes.map(FeedItem::FeedEpisode).toTypedArray()
-                        feedItems.postValue(listOf(FeedItem.Header(podcast), *feedEpisodes))
-                    }
-                    .doOnComplete {
-                        feedItems.postValue(listOf(FeedItem.Header(podcast)))
-                    }
-            }
-            .subscribeBy(
-                onComplete = { watchFeedUpdates(podcastId) },
-                onSuccess = { watchFeedUpdates(podcastId) }
-            )
-            .registerDisposable()
+        if (feedItems.value.isNullOrEmpty()) {
+            podcastRepository.findById(podcastId)
+                .subscribeOn(schedulersProvider.io())
+                .flatMap { podcast ->
+                    feedRepository.findById(podcastId)
+                        .doOnSuccess { feed ->
+                            val feedEpisodes =
+                                feed.episodes.map(FeedItem::FeedEpisode).toTypedArray()
+                            feedItems.postValue(listOf(FeedItem.Header(podcast), *feedEpisodes))
+                        }
+                        .doOnComplete {
+                            feedItems.postValue(listOf(FeedItem.Header(podcast)))
+                        }
+                }
+                .subscribeBy(
+                    onComplete = { watchFeedUpdates(podcastId) },
+                    onSuccess = { watchFeedUpdates(podcastId) }
+                )
+                .registerDisposable()
+        }
     }
 
     private fun watchFeedUpdates(podcastId: Long) {

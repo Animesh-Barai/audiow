@@ -12,15 +12,8 @@ import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDet
 
 internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
 
-    companion object {
-        private const val ARGUMENT_PODCAST_ID = "podcast_id"
-        private const val ARGUMENT_EPISODE_ID = "episode_id"
-
-        fun newInstance(podcastId: Long, episodeId: String) = EpisodeFragment().withArgs {
-            putLong(ARGUMENT_PODCAST_ID, podcastId)
-            putString(ARGUMENT_EPISODE_ID, episodeId)
-        }
-    }
+    private val podcastId by lazy { requireArguments().getLong(ARGUMENT_PODCAST_ID) }
+    private val episodeId by lazy { requireArguments().getString(ARGUMENT_EPISODE_ID) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,10 +33,16 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.init(
-            podcastId = requireArguments().getLong(ARGUMENT_PODCAST_ID),
-            episodeId = requireArguments().getString(ARGUMENT_EPISODE_ID)!!
-        )
+        viewModel.init(podcastId, episodeId)
     }
 
+    companion object {
+        private const val ARGUMENT_PODCAST_ID = "podcast_id"
+        private const val ARGUMENT_EPISODE_ID = "episode_id"
+
+        fun newInstance(podcastId: Long, episodeId: String) = EpisodeFragment().withArgs {
+            putLong(ARGUMENT_PODCAST_ID, podcastId)
+            putString(ARGUMENT_EPISODE_ID, episodeId)
+        }
+    }
 }

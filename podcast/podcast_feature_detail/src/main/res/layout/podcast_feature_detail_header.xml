@@ -14,74 +14,85 @@
             type="ismaeldivita.audioma.podcast.data.model.Podcast" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/screen_vertical_padding"
-        android:paddingEnd="@dimen/screen_horizontal_padding"
-        android:paddingBottom="@dimen/screen_vertical_padding"
-        app:paddingLeftSystemWindowInsets="@{true}"
-        app:paddingRightSystemWindowInsets="@{true}">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/artist"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
-            android:text="@{podcast.artistName}"
-            android:textAppearance="?textAppearanceOverline"
-            app:layout_constraintEnd_toStartOf="@id/cover"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Artist name" />
+            android:paddingStart="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/screen_vertical_padding"
+            android:paddingEnd="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/screen_vertical_padding"
+            app:paddingLeftSystemWindowInsets="@{true}"
+            app:paddingRightSystemWindowInsets="@{true}">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@{podcast.title}"
-            android:textAppearance="?textAppearanceHeadline6"
-            app:layout_constraintEnd_toStartOf="@id/cover"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/artist"
-            tools:text="Podcast title" />
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@{podcast.artistName}"
+                android:textAppearance="?textAppearanceOverline"
+                app:layout_constraintEnd_toStartOf="@id/cover"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Artist name" />
 
-        <ImageView
-            android:id="@+id/cover"
-            android:layout_width="@dimen/podcast_feature_detail_item_cover"
-            android:layout_height="@dimen/podcast_feature_detail_item_cover"
-            app:crossFade="@{true}"
-            app:imageLoader="@{imageLoader}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:load="@{podcast.artwork.url}"
-            app:radius="@{@dimen/radius_default}"
-            tools:background="#FF00FF" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{podcast.title}"
+                android:textAppearance="?textAppearanceHeadline6"
+                app:layout_constraintEnd_toStartOf="@id/cover"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/artist"
+                tools:text="Podcast title" />
 
-        <ismaeldivita.audioma.design.widget.ToggleButton
-            android:id="@+id/subscribe"
-            style="?materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/keyline_4"
-            android:text="@string/podcast_subscribe"
-            android:textSize="12sp"
-            app:checkedDrawable="@drawable/ic_check"
-            app:checkedLabel="@string/podcast_subscribed"
-            app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
-            app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/cover"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:uncheckedDrawable="@drawable/ic_bookmark"
-            app:uncheckedLabel="@string/podcast_subscribe" />
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="@dimen/podcast_feature_detail_item_cover"
+                android:layout_height="@dimen/podcast_feature_detail_item_cover"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:load="@{podcast.artwork.url}"
+                app:radius="@{@dimen/radius_default}"
+                tools:background="#FF00FF" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ismaeldivita.audioma.design.widget.ToggleButton
+                android:id="@+id/subscribe"
+                style="?materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:text="@string/podcast_subscribe"
+                android:textSize="12sp"
+                app:checkedDrawable="@drawable/ic_check"
+                app:checkedLabel="@string/podcast_subscribed"
+                app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
+                app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cover"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:uncheckedDrawable="@drawable/ic_bookmark"
+                app:uncheckedLabel="@string/podcast_subscribe" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </LinearLayout>
 
 </layout>
