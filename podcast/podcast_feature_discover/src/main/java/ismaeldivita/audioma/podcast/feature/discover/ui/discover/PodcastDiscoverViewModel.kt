@@ -17,11 +17,13 @@ internal class PodcastDiscoverViewModel @Inject constructor(
     val feed = MutableLiveData<List<Discover>>()
 
     fun init() {
-        feedRepository.getAll()
-            .subscribeOn(schedulersProvider.io())
-            .delay(500, TimeUnit.MILLISECONDS, schedulersProvider.computation())
-            .doOnSuccess { }
-            .subscribeBy { feed.postValue(it) }
-            .registerDisposable()
+        if (feed.value.isNullOrEmpty()) {
+            feedRepository.getAll()
+                .subscribeOn(schedulersProvider.io())
+                .delay(500, TimeUnit.MILLISECONDS, schedulersProvider.computation())
+                .doOnSuccess { }
+                .subscribeBy { feed.postValue(it) }
+                .registerDisposable()
+        }
     }
 }
