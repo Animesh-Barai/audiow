@@ -30,7 +30,7 @@
         android:id="@+id/cardContainer"
         android:layout_width="@dimen/podcast_feature_discover_banner_item_width"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
+        android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
         app:cardBackgroundColor="@{viewData.containerColor}"
         app:cardCornerRadius="@dimen/radius_default"
         app:cardElevation="@dimen/elevation_surface">

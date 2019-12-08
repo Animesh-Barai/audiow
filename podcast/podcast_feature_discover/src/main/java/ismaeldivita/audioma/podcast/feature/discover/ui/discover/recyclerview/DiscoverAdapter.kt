@@ -2,6 +2,7 @@ package ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.ListPreloader
@@ -127,6 +128,6 @@ internal class DiscoverAdapter(
     }
 
     interface DiscoverCallback {
-        fun onPodcastSelected(podcast: Podcast)
+        fun onPodcastSelected(podcast: Podcast, coverView: ImageView)
     }
 }

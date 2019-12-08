@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
@@ -50,7 +51,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
         viewModel.init()
     }
 
-    override fun onPodcastSelected(podcast: Podcast) {
+    override fun onPodcastSelected(podcast: Podcast, coverView: ImageView) {
         fragmentTransactor
             .add(detailFactory.detail(podcast.id))
             .addToBackStack(null)

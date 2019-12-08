@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
-            android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
+            android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
             app:cardBackgroundColor="@{viewData.containerColor}"
             app:cardCornerRadius="@dimen/radius_default"
             app:cardElevation="@dimen/elevation_surface">
