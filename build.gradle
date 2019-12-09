@@ -11,7 +11,7 @@ buildscript {
         liveEvent = '1.0.1'
         kotlinKtx = '1.1.0'
 
-        materialDesign = '1.2.0-alpha01'
+        materialDesign = '1.2.0-alpha02'
         chipNavigationBar = '1.2.0'
         constraintLayout = '2.0.0-beta3'
         palette = '1.0.0'
