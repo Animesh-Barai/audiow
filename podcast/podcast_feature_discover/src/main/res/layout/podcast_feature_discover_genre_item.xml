@@ -22,29 +22,21 @@
         android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
         android:layout_height="wrap_content"
         android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
-        android:orientation="vertical"
-        android:transitionGroup="false">
+        android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
+        <ImageView
+            android:id="@+id/cover"
             android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
-            android:transitionGroup="false"
-            app:cardBackgroundColor="?colorSurface"
-            app:cardCornerRadius="@dimen/radius_default"
-            app:cardElevation="@dimen/elevation_surface">
-
-            <ImageView
-                android:id="@+id/cover"
-                android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
-                android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
-                android:transitionName="@{String.valueOf(podcast.id)}"
-                app:crossFade="@{true}"
-                app:imageLoader="@{imageLoader}"
-                app:load="@{podcast.artwork.url}"
-                app:radius="@{@dimen/radius_default}" />
-
-        </com.google.android.material.card.MaterialCardView>
+            android:transitionName="@{String.valueOf(podcast.id)}"
+            app:crossFade="@{true}"
+            app:foregroundRippleRadius="@{@dimen/radius_default}"
+            app:imageLoader="@{imageLoader}"
+            app:load="@{podcast.artwork.url}"
+            app:radius="@{@dimen/radius_default}"
+            app:roundBackgroundColor="@{@color/color_surface}"
+            app:roundBackgroundRadius="@{@dimen/radius_default}" />
 
         <TextView
             android:layout_width="match_parent"

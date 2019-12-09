@@ -86,13 +86,29 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
         with(detailFragment) {
             sharedElementEnterTransition = sharedElementTransition
             sharedElementReturnTransition = sharedElementTransition
-            enterTransition = Fade()
-            returnTransition = Fade()
+
+            enterTransition = Fade().apply {
+                startDelay = TRANSITION_DURATION
+                duration = TRANSITION_DURATION
+            }
+            returnTransition = Fade().apply {
+                duration = TRANSITION_DURATION
+            }
         }
     }
 
     private fun setupTransition() {
-        exitTransition = Fade()
-        reenterTransition = Fade()
+        exitTransition = Fade().apply {
+            duration = TRANSITION_DURATION
+        }
+
+        reenterTransition = Fade().apply {
+            duration = TRANSITION_DURATION
+            startDelay = TRANSITION_DURATION
+        }
+    }
+
+    companion object {
+        private const val TRANSITION_DURATION = 200L
     }
 }

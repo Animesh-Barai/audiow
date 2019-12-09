@@ -26,76 +26,69 @@
             type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardContainer"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/podcast_feature_discover_banner_item_width"
         android:layout_height="wrap_content"
         android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
-        android:transitionGroup="false"
-        app:cardBackgroundColor="@{viewData.containerColor}"
-        app:cardCornerRadius="@dimen/radius_default"
-        app:cardElevation="@dimen/elevation_surface">
+        app:foregroundRippleRadius="@{@dimen/radius_default}"
+        app:roundBackgroundColor="@{viewData.containerColor}"
+        app:roundBackgroundRadius="@{@dimen/radius_default}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="@dimen/podcast_feature_discover_banner_item_cover"
+            android:layout_height="@dimen/podcast_feature_discover_banner_item_cover"
+            android:layout_marginStart="@dimen/keyline_4"
+            android:layout_marginTop="@dimen/keyline_4"
+            android:layout_marginBottom="@dimen/keyline_4"
+            android:elevation="12dp"
+            android:transitionName="@{String.valueOf(podcast.id)}"
+            app:crossFade="@{true}"
+            app:imageLoader="@{imageLoader}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:listener="@{listener}"
+            app:load="@{podcast.artwork.url}"
+            app:radius="@{@dimen/radius_default}" />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:transitionGroup="false">
+            android:layout_marginStart="@dimen/keyline_4"
+            android:layout_marginEnd="@dimen/keyline_4"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{podcast.artistName}"
+            android:textAppearance="?textAppearanceOverline"
+            android:textColor="@{viewData.contrastColor}"
+            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/cover"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Artist" />
 
-            <ImageView
-                android:id="@+id/cover"
-                android:layout_width="@dimen/podcast_feature_discover_banner_item_cover"
-                android:layout_height="@dimen/podcast_feature_discover_banner_item_cover"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginTop="@dimen/keyline_4"
-                android:layout_marginBottom="@dimen/keyline_4"
-                android:transitionName="@{String.valueOf(podcast.id)}"
-                app:crossFade="@{true}"
-                app:imageLoader="@{imageLoader}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:listener="@{listener}"
-                app:load="@{podcast.artwork.url}"
-                app:radius="@{@dimen/radius_default}" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/keyline_4"
+            android:layout_marginEnd="@dimen/keyline_4"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{podcast.title}"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@{viewData.contrastColor}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/cover"
+            app:layout_constraintTop_toBottomOf="@id/artist"
+            tools:text="Podcast Title" />
 
-            <TextView
-                android:id="@+id/artist"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginEnd="@dimen/keyline_4"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@{podcast.artistName}"
-                android:textAppearance="?textAppearanceOverline"
-                android:textColor="@{viewData.contrastColor}"
-                app:layout_constraintBottom_toTopOf="@id/title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/cover"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Artist" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginEnd="@dimen/keyline_4"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@{podcast.title}"
-                android:textAppearance="?textAppearanceHeadline6"
-                android:textColor="@{viewData.contrastColor}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/cover"
-                app:layout_constraintTop_toBottomOf="@id/artist"
-                tools:text="Podcast Title" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
