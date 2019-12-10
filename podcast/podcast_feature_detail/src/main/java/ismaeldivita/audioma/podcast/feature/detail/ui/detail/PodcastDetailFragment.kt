@@ -127,23 +127,19 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
         val episodeIdTransition = savedInstanceState?.getString(STATE_EPISODE_ID)
 
         /**
-         * Postpone the transition for the return transition from EpisodeFragment
-         *
-         * This is necessary since we need to wait the recyclerview load his content to
-         * properly perform the shared element return animation
-         */
-        postponeEnterTransition(700, TimeUnit.MILLISECONDS)
-
-        /**
          * The exit transition is lost on recreation. So we need to keep the track of the view
          * used for the explosion in the savedInstance and update the exit transition with the
          * new view coordinates as the screen orientation may have changed
          */
         if (episodeIdTransition != null) {
+            postponeEnterTransition()
+
             (binding.episodes)?.doOnPreDraw {
                 binding.episodes.children
                     .find { v -> v.transitionName == episodeIdTransition }
                     ?.let { v -> setupExplodeTransition(v) }
+
+                startPostponedEnterTransition()
             }
         }
     }

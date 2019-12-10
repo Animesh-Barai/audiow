@@ -1,5 +1,6 @@
 package ismaeldivita.audioma.podcast.feature.detail.ui.detail
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
 import ismaeldivita.audioma.core.android.viewmodel.BaseViewModel
@@ -18,42 +19,83 @@ internal class PodcastDetailViewModel @Inject constructor(
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {
 
-    val feedItems = MutableLiveData<List<FeedItem>>()
+    private val header = MutableLiveData<FeedItem.Header>()
+    private val episodes = MutableLiveData<List<FeedItem.FeedEpisode>>()
+
+    val feedItems = MediatorLiveData<List<FeedItem>>().apply {
+        fun updateMediator() {
+            value = listOfNotNull(
+                header.value,
+                *episodes.value?.toTypedArray() ?: emptyArray()
+            )
+        }
+        addSource(header) { updateMediator() }
+        addSource(episodes) { updateMediator() }
+    }
 
     fun init(podcastId: Long) {
         if (feedItems.value.isNullOrEmpty()) {
-            podcastRepository.findById(podcastId)
-                .subscribeOn(schedulersProvider.io())
-                .flatMap { podcast ->
-                    feedRepository.findById(podcastId)
-                        .doOnSuccess { feed ->
-                            val feedEpisodes =
-                                feed.episodes.map(FeedItem::FeedEpisode).toTypedArray()
-                            feedItems.postValue(listOf(FeedItem.Header(podcast), *feedEpisodes))
-                        }
-                        .doOnComplete {
-                            feedItems.postValue(listOf(FeedItem.Header(podcast)))
-                        }
-                }
-                .subscribeBy(
-                    onComplete = { watchFeedUpdates(podcastId) },
-                    onSuccess = { watchFeedUpdates(podcastId) }
-                )
-                .registerDisposable()
+            loadPodcastHeader(podcastId)
         }
     }
 
-    private fun watchFeedUpdates(podcastId: Long) {
+    private fun loadPodcastHeader(podcastId: Long) {
+        podcastRepository.findById(podcastId)
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.main())
+            .subscribeBy(
+                onComplete = {
+                    /**
+                     * TODO
+                     *  There is no cache for this podcast and the network request probably
+                     *  failed. The UI for this scenario should be a RETRY.
+                     */
+                },
+                onSuccess = {
+                    header.value = FeedItem.Header(it)
+                    loadFeed(podcastId)
+                }
+            )
+            .registerDisposable()
+    }
+
+    private fun loadFeed(podcastId: Long) {
+        feedRepository.findById(podcastId)
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.main())
+            .subscribeBy(
+                onComplete = {
+                    // TODO No cache for this feed. Implement skeleton UI loading experience
+                    watchForFeedUpdates(podcastId)
+                },
+                onSuccess = {
+                    updateFeedLiveData(it)
+                    watchForFeedUpdates(podcastId)
+                }
+            )
+            .registerDisposable()
+    }
+
+    private fun updateFeedLiveData(feed: Feed) {
+        // TODO Implement extra FeedItem updates (description, donation button, etc...)
+        episodes.value = feed.episodes.map { FeedItem.FeedEpisode(it) }
+    }
+
+    private fun watchForFeedUpdates(podcastId: Long) {
         feedWatcher.onItemChanged(podcastId)
             .subscribeOn(schedulersProvider.io())
             .subscribeBy(
                 onNext = {
-                    val header = feedItems.value!!.first()
-                    val feedEpisodes = it.episodes.map(FeedItem::FeedEpisode).toTypedArray()
-                    feedItems.postValue(listOf(header, *feedEpisodes))
+                    updateFeedLiveData(it)
                 },
                 onError = {
-                    // TODO
+                    /**
+                     * TODO
+                     *  There is nothing to do here for now. The chain for updates is terminated
+                     *  which is probably indicating there is no internet. A good solution on the
+                     *  future is to listen connectivity status updates and re-subscribe.
+                     *  If the UI does not contain any feed cache a retry should be displayed.
+                     */
                 }
             )
             .registerDisposable()

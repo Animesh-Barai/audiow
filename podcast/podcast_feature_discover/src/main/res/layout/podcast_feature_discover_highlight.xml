@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/screen_horizontal_padding"
             android:layout_marginEnd="@dimen/screen_horizontal_padding"
-            android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
+            android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
             app:foregroundRippleRadius="@{@dimen/radius_default}"
             app:roundBackgroundColor="@{viewData.containerColor}"
             app:roundBackgroundRadius="@{@dimen/radius_default}">
@@ -49,7 +49,6 @@
                 android:layout_marginTop="@dimen/keyline_4"
                 android:layout_marginEnd="@dimen/keyline_4"
                 android:layout_marginBottom="@dimen/keyline_4"
-                android:transitionName="@{String.valueOf(podcast.id)}"
                 app:crossFade="@{true}"
                 app:imageLoader="@{imageLoader}"
                 app:layout_constraintBottom_toBottomOf="parent"

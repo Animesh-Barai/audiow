@@ -128,6 +128,6 @@ internal class DiscoverAdapter(
     }
 
     interface DiscoverCallback {
-        fun onPodcastSelected(podcast: Podcast, coverView: ImageView)
+        fun onPodcastSelected(podcast: Podcast)
     }
 }

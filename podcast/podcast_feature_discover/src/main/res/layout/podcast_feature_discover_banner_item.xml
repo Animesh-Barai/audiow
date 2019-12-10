@@ -29,7 +29,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/podcast_feature_discover_banner_item_width"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onPodcastSelected(podcast, cover)}"
+        android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
         app:foregroundRippleRadius="@{@dimen/radius_default}"
         app:roundBackgroundColor="@{viewData.containerColor}"
         app:roundBackgroundRadius="@{@dimen/radius_default}">
@@ -42,7 +42,6 @@
             android:layout_marginTop="@dimen/keyline_4"
             android:layout_marginBottom="@dimen/keyline_4"
             android:elevation="12dp"
-            android:transitionName="@{String.valueOf(podcast.id)}"
             app:crossFade="@{true}"
             app:imageLoader="@{imageLoader}"
             app:layout_constraintBottom_toBottomOf="parent"

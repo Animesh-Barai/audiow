@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.transition.ChangeBounds
 import androidx.transition.ChangeTransform
 import androidx.transition.Fade
@@ -52,63 +53,21 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
             vm = viewModel
         }
 
-        setupTransition()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postponeEnterTransition(700, TimeUnit.MILLISECONDS)
         viewModel.init()
     }
 
-    override fun onPodcastSelected(podcast: Podcast, coverView: ImageView) {
+    override fun onPodcastSelected(podcast: Podcast) {
         val detailFragment = fragment.detail(podcast.id)
 
-        setupSharedElementTransition(detailFragment)
-
         fragmentTransactor
-            .replace(detailFragment)
+            .add(detailFragment)
             .addToBackStack(null)
-            .setReorderingAllowed(true)
-            .addSharedElement(coverView, coverView.transitionName)
             .commit()
     }
 
-    private fun setupSharedElementTransition(detailFragment: Fragment) {
-        val sharedElementTransition = TransitionSet().apply {
-            ordering = ORDERING_TOGETHER
-            addTransition(ChangeBounds())
-            addTransition(ChangeTransform())
-        }
-
-        with(detailFragment) {
-            sharedElementEnterTransition = sharedElementTransition
-            sharedElementReturnTransition = sharedElementTransition
-
-            enterTransition = Fade().apply {
-                startDelay = TRANSITION_DURATION
-                duration = TRANSITION_DURATION
-            }
-            returnTransition = Fade().apply {
-                duration = TRANSITION_DURATION
-            }
-        }
-    }
-
-    private fun setupTransition() {
-        exitTransition = Fade().apply {
-            duration = TRANSITION_DURATION
-        }
-
-        reenterTransition = Fade().apply {
-            duration = TRANSITION_DURATION
-            startDelay = TRANSITION_DURATION
-        }
-    }
-
-    companion object {
-        private const val TRANSITION_DURATION = 220L
-    }
 }
