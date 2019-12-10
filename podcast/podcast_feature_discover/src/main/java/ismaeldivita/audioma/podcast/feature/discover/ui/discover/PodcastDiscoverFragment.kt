@@ -109,6 +109,6 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
     }
 
     companion object {
-        private const val TRANSITION_DURATION = 200L
+        private const val TRANSITION_DURATION = 220L
     }
 }
