@@ -9,6 +9,6 @@ internal class GetPreferredCountryImpl @Inject constructor() : GetPreferredCount
 
     // TODO Store and fetch this from Firebase.Database or locally preference for guest users
     //  and move to user module
-    override fun invoke(p: Unit): String = "US"
+    override fun invoke(p: Unit): String = "BR"
 
 }

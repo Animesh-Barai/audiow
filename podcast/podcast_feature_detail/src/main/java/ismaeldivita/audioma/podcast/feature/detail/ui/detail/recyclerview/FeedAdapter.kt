@@ -65,7 +65,14 @@ internal class FeedAdapter(
 
         when {
             vh is HeaderViewHolder && item is Header -> vh.binding.podcast = item.podcast
-            vh is FeedEpisodeViewHolder && item is FeedEpisode -> vh.binding.episode = item.episode
+            vh is FeedEpisodeViewHolder && item is FeedEpisode -> {
+                /** Download episode cover beforehand in case the user open the details */
+                imageLoader
+                    .load(item.episode.coverImageUrl)
+                    .submit()
+
+                vh.binding.episode = item.episode
+            }
             else -> Logger.e("View holder and feed item mismatched")
         }.exhaustive
 

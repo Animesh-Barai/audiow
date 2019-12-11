@@ -84,6 +84,7 @@ internal class PodcastDetailViewModel @Inject constructor(
     private fun watchForFeedUpdates(podcastId: Long) {
         feedWatcher.onItemChanged(podcastId)
             .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.main())
             .subscribeBy(
                 onNext = {
                     updateFeedLiveData(it)
