@@ -20,7 +20,6 @@ import ismaeldivita.audioma.podcast.data.model.Podcast
 import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.discover.R
 import ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import ismaeldivita.audioma.podcast.feature.discover.databinding.PodcastFeatureDiscoverFragmentBinding as PodcastFeatureDiscoverFragmentBinding1
 
@@ -69,5 +68,4 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
             .addToBackStack(null)
             .commit()
     }
-
 }

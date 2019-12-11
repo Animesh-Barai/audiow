@@ -14,6 +14,7 @@
         android:id="@+id/podcasts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
         app:data="@{banner.podcasts}"
         app:horizontalSpaceDecoration_edge="@{@dimen/screen_horizontal_padding}"
         app:horizontalSpaceDecoration_space="@{@dimen/keyline_4}"

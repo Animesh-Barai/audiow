@@ -24,18 +24,23 @@
         android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/cover"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
-            app:crossFade="@{true}"
-            app:foregroundRippleRadius="@{@dimen/radius_default}"
-            app:imageLoader="@{imageLoader}"
-            app:load="@{podcast.artwork.url}"
-            app:radius="@{@dimen/radius_default}"
-            app:roundBackgroundColor="@{@color/color_surface}"
-            app:roundBackgroundRadius="@{@dimen/radius_default}" />
+            app:cardBackgroundColor="?colorSurface"
+            app:cardCornerRadius="@dimen/radius_default">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="@dimen/podcast_feature_discover_genre_section_item_cover"
+                android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
+                app:crossFade="@{true}"
+                app:imageLoader="@{imageLoader}"
+                app:load="@{podcast.artwork.url}"
+                app:radius="@{@dimen/radius_default}" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:layout_width="match_parent"
