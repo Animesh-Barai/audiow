@@ -1,18 +1,10 @@
 package ismaeldivita.audioma.podcast.feature.discover.ui.discover
 
 import android.os.Bundle
-import android.transition.TransitionSet.ORDERING_TOGETHER
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.transition.ChangeBounds
-import androidx.transition.ChangeTransform
-import androidx.transition.Fade
-import androidx.transition.TransitionSet
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.FragmentTransactor
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
@@ -29,7 +21,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
     @Inject
     internal lateinit var fragmentTransactor: FragmentTransactor
     @Inject
-    internal lateinit var fragment: PodcastDetailFragmentFactory
+    internal lateinit var fragmentFactory: PodcastDetailFragmentFactory
 
     private lateinit var binding: PodcastFeatureDiscoverFragmentBinding1
 
@@ -61,7 +53,7 @@ internal class PodcastDiscoverFragment : ViewModelFragment<PodcastDiscoverViewMo
     }
 
     override fun onPodcastSelected(podcast: Podcast) {
-        val detailFragment = fragment.detail(podcast.id)
+        val detailFragment = fragmentFactory.detail(podcast.id)
 
         fragmentTransactor
             .add(detailFragment)

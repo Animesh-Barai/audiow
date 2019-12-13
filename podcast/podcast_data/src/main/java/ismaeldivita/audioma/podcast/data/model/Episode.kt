@@ -5,6 +5,7 @@ import java.util.*
 data class Episode(
     val id: String,
     val title: String,
+    val summary: String?,
     val description: String,
     val audioFileUrl: String,
     val duration: String?,

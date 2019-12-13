@@ -33,12 +33,13 @@ internal class RssTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
             episodesXml.map {
                 ItunesPodcastEpisode(
                     title = it.title,
+                    summary = it.summary,
                     description = it.description ?: it.summary ?: it.subtitle.orEmpty(),
                     audioFileUrl = it.audioFile.url,
                     duration = it.duration,
                     isExplicit = it.explicit,
                     publicationDateRFC822 = it.pubDate,
-                    coverImageUrl = it.coverUrl
+                    coverImageUrl = it.image?.href
                 )
             }
 

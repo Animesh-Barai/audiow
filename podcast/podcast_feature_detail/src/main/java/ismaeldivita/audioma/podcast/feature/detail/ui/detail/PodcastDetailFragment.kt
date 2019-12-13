@@ -62,8 +62,8 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupReturnTransition(savedInstanceState)
         viewModel.init(podcastId)
+        setupReturnTransition(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

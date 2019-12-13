@@ -26,6 +26,7 @@
             android:paddingTop="@dimen/screen_vertical_padding"
             android:paddingEnd="@dimen/screen_horizontal_padding"
             android:paddingBottom="@dimen/screen_vertical_padding"
+            android:clipToPadding="false"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}">
 
@@ -58,18 +59,23 @@
                 app:layout_constraintTop_toBottomOf="@id/artist"
                 tools:text="Podcast title" />
 
-            <ImageView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cover"
                 android:layout_width="@dimen/podcast_feature_detail_item_cover"
                 android:layout_height="@dimen/podcast_feature_detail_item_cover"
-                android:transitionName="@{String.valueOf(podcast.id)}"
-                app:crossFade="@{true}"
-                app:imageLoader="@{imageLoader}"
+                app:cardBackgroundColor="?colorSurface"
+                app:cardCornerRadius="@dimen/radius_default"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:load="@{podcast.artwork.url}"
-                app:radius="@{@dimen/radius_default}"
-                tools:background="#FF00FF" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/podcast_feature_detail_item_cover"
+                    android:layout_height="@dimen/podcast_feature_detail_item_cover"
+                    app:crossFade="@{true}"
+                    app:imageLoader="@{imageLoader}"
+                    app:load="@{podcast.artwork.url}" />
+
+            </com.google.android.material.card.MaterialCardView>
 
             <ismaeldivita.audioma.design.widget.ToggleButton
                 android:id="@+id/subscribe"

@@ -1,14 +1,13 @@
 package ismaeldivita.audioma.podcast.data.repository.feed
 
 import ismaeldivita.audioma.core.util.time.RFC822DateParser
-import ismaeldivita.audioma.podcast.data.model.*
+import ismaeldivita.audioma.podcast.data.model.Episode
+import ismaeldivita.audioma.podcast.data.model.Feed
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedEpisodeEntity
 import ismaeldivita.audioma.podcast.data.storage.database.entity.FeedPodcastWrapper
-import ismaeldivita.audioma.podcast.data.storage.database.entity.PodcastEntity
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastEpisode
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
-import toDomain
 
 internal fun ItunesPodcastFeed.toEntity(
     podcastId: Long,
@@ -25,6 +24,7 @@ internal fun ItunesPodcastEpisode.toEpisodeEntity(feedId: Long) = FeedEpisodeEnt
     audioFileUrl = audioFileUrl,
     feedId = feedId,
     title = title,
+    summary = summary,
     description = description,
     duration = duration,
     isExplicit = isExplicit,
@@ -42,6 +42,7 @@ internal fun Episode.toEntity(feedId: Long) = FeedEpisodeEntity(
     audioFileUrl = audioFileUrl,
     feedId = feedId,
     title = title,
+    summary = summary,
     description = description,
     duration = duration,
     isExplicit = isExplicit,
@@ -54,6 +55,7 @@ internal fun FeedEpisodeEntity.toDomain(
 ) = Episode(
     id = audioFileUrl,
     title = title,
+    summary = summary,
     description = description,
     audioFileUrl = audioFileUrl,
     duration = duration,

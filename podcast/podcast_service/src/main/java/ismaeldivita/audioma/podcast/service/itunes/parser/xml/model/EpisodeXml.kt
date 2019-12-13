@@ -31,7 +31,7 @@ internal class EpisodeXml {
     @PropertyElement(name = "itunes:subtitle")
     var subtitle: String? = null
 
-    @PropertyElement(name = "itunes:image")
-    var coverUrl: String? = null
+    @Element(name = "itunes:image")
+    var image: ImageXml? = null
 
 }
