@@ -14,19 +14,20 @@
     </data>
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        android:nestedScrollingEnabled="true">
+        android:nestedScrollingEnabled="true"
+        android:transitionGroup="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mainContainer"
+            android:id="@+id/contentContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="?android:colorBackground"
             android:paddingStart="@dimen/screen_horizontal_padding"
             android:paddingEnd="@dimen/screen_horizontal_padding"
-            android:transitionName="@{vm.episode.id}"
             app:paddingBottomSystemWindowInsets="@{true}"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}"
