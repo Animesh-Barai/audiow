@@ -65,6 +65,17 @@
                 app:layout_constraintTop_toBottomOf="@id/coverContainer" />
 
             <TextView
+                android:id="@+id/summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@{vm.episode.summary}"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <TextView
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +86,7 @@
                 app:htmlTextFormatBreakLine="@{true}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+                app:layout_constraintTop_toBottomOf="@id/summary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
