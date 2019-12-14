@@ -13,21 +13,20 @@
             type="com.bumptech.glide.RequestManager" />
     </data>
 
-    <ScrollView
+    <FrameLayout
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:nestedScrollingEnabled="true"
-        android:transitionGroup="true">
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:colorBackground"
+            android:orientation="vertical"
             android:paddingStart="@dimen/screen_horizontal_padding"
             android:paddingEnd="@dimen/screen_horizontal_padding"
+            android:visibility="visible"
             app:paddingBottomSystemWindowInsets="@{true}"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}"
@@ -37,12 +36,10 @@
                 android:id="@+id/coverContainer"
                 android:layout_width="@dimen/podcast_feature_detail_episode_cover"
                 android:layout_height="@dimen/podcast_feature_detail_episode_cover"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/keyline_7"
                 app:cardBackgroundColor="?colorSurface"
-                app:cardCornerRadius="@dimen/radius_default"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:cardCornerRadius="@dimen/radius_default">
 
                 <ImageView
                     android:layout_width="@dimen/podcast_feature_detail_episode_cover"
@@ -55,40 +52,31 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyline_4"
                 android:gravity="center_horizontal"
                 android:text="@{vm.episode.title}"
-                android:textAppearance="?textAppearanceHeadline6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/coverContainer" />
+                android:textAppearance="?textAppearanceHeadline6" />
 
             <TextView
                 android:id="@+id/summary"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@{vm.episode.summary}"
-                android:textAppearance="?textAppearanceCaption"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+                android:textAppearance="?textAppearanceCaption" />
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyline_4"
                 android:autoLink="web"
                 android:linksClickable="true"
                 app:htmlText="@{vm.episode.description}"
-                app:htmlTextFormatBreakLine="@{true}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/summary" />
+                app:htmlTextFormatBreakLine="@{true}" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        </LinearLayout>
+    </FrameLayout>
 </layout>

@@ -21,7 +21,6 @@ import ismaeldivita.audioma.podcast.feature.detail.PodcastDetailFragmentFactory
 import ismaeldivita.audioma.podcast.feature.detail.R
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailFragmentBinding
 import ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>(),
@@ -76,7 +75,7 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
 
         currentEpisodeIdTransition = episode.id
 
-        setupSharedElementTransition(episodeFragment)
+        setupTransitionForEpisodeFragment(episodeFragment)
         setupExplodeTransition(view)
 
         fragmentTransactor
@@ -92,11 +91,15 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
      *
      * @param episodeFragment EpisodeFragment instance
      */
-    private fun setupSharedElementTransition(episodeFragment: Fragment) {
-        val sharedElementTransition = ChangeBounds().apply {
-            duration = TRANSITION_DURATION
-            interpolator = FastOutSlowInInterpolator()
-        }
+    private fun setupTransitionForEpisodeFragment(episodeFragment: Fragment) {
+        val sharedElementTransition = TransitionSet()
+            .addTransition(ChangeBounds())
+            .addTransition(ChangeTransform())
+            .addTransition(ChangeImageTransform()).apply {
+                duration = TRANSITION_DURATION
+                interpolator = FastOutSlowInInterpolator()
+                excludeChildren(R.id.scroll, true)
+            }
 
         with(episodeFragment) {
             sharedElementEnterTransition = sharedElementTransition
@@ -126,19 +129,24 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
     private fun setupReturnTransition(savedInstanceState: Bundle?) {
         val episodeIdTransition = savedInstanceState?.getString(STATE_EPISODE_ID)
 
+        postponeEnterTransition()
+
         /**
          * The exit transition is lost on recreation. So we need to keep the track of the view
          * used for the explosion in the savedInstance and update the exit transition with the
          * new view coordinates as the screen orientation may have changed
          */
-        if (episodeIdTransition != null) {
-            postponeEnterTransition()
 
+        if (episodeIdTransition != null) {
             (binding.episodes)?.doOnPreDraw {
                 binding.episodes.children
                     .find { v -> v.transitionName == episodeIdTransition }
                     ?.let { v -> setupExplodeTransition(v) }
 
+                startPostponedEnterTransition()
+            }
+        } else {
+            (view?.parent as? ViewGroup)?.doOnPreDraw {
                 startPostponedEnterTransition()
             }
         }

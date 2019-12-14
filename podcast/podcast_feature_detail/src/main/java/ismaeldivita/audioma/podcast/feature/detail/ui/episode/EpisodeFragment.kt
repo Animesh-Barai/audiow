@@ -1,9 +1,11 @@
 package ismaeldivita.audioma.podcast.feature.detail.ui.episode
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
@@ -36,6 +38,7 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
             imageLoader = Glide.with(this@EpisodeFragment)
             vm = viewModel
         }
+
         return binding.root
     }
 
