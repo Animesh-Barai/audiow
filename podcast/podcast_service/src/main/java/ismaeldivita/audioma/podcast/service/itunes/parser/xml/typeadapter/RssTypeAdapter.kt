@@ -8,6 +8,7 @@ import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastEpisode
 import ismaeldivita.audioma.podcast.service.itunes.model.ItunesPodcastFeed
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.EpisodeXml
 import ismaeldivita.audioma.podcast.service.itunes.parser.xml.model.RssXml
+import ismaeldivita.audioma.podcast.service.util.PodcastUtils
 
 internal class RssTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
 
@@ -30,17 +31,19 @@ internal class RssTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
     }
 
     private fun mapEpisodes(episodesXml: List<EpisodeXml>): List<ItunesPodcastEpisode> =
-            episodesXml.map {
-                ItunesPodcastEpisode(
-                    title = it.title,
-                    summary = it.summary,
-                    description = it.description ?: it.summary ?: it.subtitle.orEmpty(),
-                    audioFileUrl = it.audioFile.url,
-                    duration = it.duration,
-                    isExplicit = it.explicit,
-                    publicationDateRFC822 = it.pubDate,
-                    coverImageUrl = it.image?.href
-                )
-            }
+        episodesXml.map {
+            ItunesPodcastEpisode(
+                title = it.title,
+                subtitle = it.subtitle ?: it.summary,
+                description = PodcastUtils.sanitizeDescription(
+                    it.description ?: it.subtitle ?: it.summary.orEmpty()
+                ),
+                audioFileUrl = it.audioFile.url,
+                duration = it.duration,
+                isExplicit = it.explicit,
+                publicationDateRFC822 = it.pubDate,
+                coverImageUrl = it.image?.href
+            )
+        }
 
 }

@@ -51,7 +51,7 @@ internal data class FeedEpisodeEntity(
     val audioFileUrl: String,
     val feedId: Long,
     val title: String,
-    val summary: String?,
+    val subtitle: String?,
     val description: String,
     val duration: String?,
     val isExplicit: Boolean,

@@ -13,10 +13,11 @@
             type="com.bumptech.glide.RequestManager" />
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
         android:background="?android:colorBackground">
 
         <LinearLayout
@@ -34,7 +35,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/coverContainer"
                 android:layout_width="@dimen/podcast_feature_detail_episode_cover"
-                android:layout_height="@dimen/podcast_feature_detail_episode_cover"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/keyline_7"
                 app:cardBackgroundColor="?colorSurface"
@@ -63,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@{vm.episode.summary}"
+                android:text="@{vm.episode.subtitle}"
                 android:textAppearance="?textAppearanceCaption" />
 
             <TextView
@@ -77,5 +78,5 @@
                 app:htmlTextFormatBreakLine="@{true}" />
 
         </LinearLayout>
-    </FrameLayout>
+    </ScrollView>
 </layout>
