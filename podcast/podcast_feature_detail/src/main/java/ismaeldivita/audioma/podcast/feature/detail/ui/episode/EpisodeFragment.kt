@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
@@ -39,12 +38,26 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
             vm = viewModel
         }
 
+        enterAnimation()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(podcastId, episodeId)
+    }
+
+    private fun enterAnimation() {
+        /**
+         * Due the shared element container transition we need to manually animate the content
+         * container to get a Fade
+         **/
+        binding.contentContainer.alpha = 0f
+        ObjectAnimator.ofFloat(binding.contentContainer, View.ALPHA, 0f, 1f).apply {
+            startDelay = 300
+            duration = 400
+        }.start()
     }
 
     companion object {
