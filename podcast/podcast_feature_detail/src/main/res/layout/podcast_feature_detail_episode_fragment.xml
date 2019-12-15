@@ -17,16 +17,14 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true"
-        android:background="?android:colorBackground">
+        android:background="?android:colorBackground"
+        android:nestedScrollingEnabled="true">
 
         <LinearLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/screen_horizontal_padding"
-            android:paddingEnd="@dimen/screen_horizontal_padding"
             app:paddingBottomSystemWindowInsets="@{true}"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}"
@@ -37,7 +35,9 @@
                 android:layout_width="@dimen/podcast_feature_detail_episode_cover"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
                 android:layout_marginTop="@dimen/keyline_7"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 app:cardBackgroundColor="?colorSurface"
                 app:cardCornerRadius="@dimen/radius_default">
 
@@ -54,28 +54,41 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
                 android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 android:gravity="center_horizontal"
                 android:text="@{vm.episode.title}"
                 android:textAppearance="?textAppearanceHeadline6" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_4"
+                android:background="?android:attr/listDivider" />
+
             <TextView
-                android:id="@+id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@{vm.episode.subtitle}"
-                android:textAppearance="?textAppearanceCaption" />
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
+                android:alpha="?alphaEmphasisHigh"
+                android:text="About"
+                android:textAppearance="?textAppearanceHeadline6" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
                 android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
+                android:alpha="?alphaEmphasisMedium"
                 android:autoLink="web"
                 android:linksClickable="true"
-                app:htmlText="@{vm.episode.description}"
-                app:htmlTextFormatBreakLine="@{true}" />
+                android:textAppearance="?textAppearanceBody2"
+                app:htmlText="@{vm.episode.description}" />
 
         </LinearLayout>
     </ScrollView>
