@@ -20,6 +20,7 @@ buildscript {
         roomVersion = '2.2.1'
         mmkvVersion = '1.0.23'
 
+        apacheCommonText = '1.6'
         threetenabp = '1.2.1'
         daggerVersion = '2.24'
 

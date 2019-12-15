@@ -14,6 +14,14 @@ class PodcastUtilsTest {
     }
 
     @Test
+    fun testEncodedCDataTagWithEncodedHtml() {
+        val text = """&lt;![CDATA[&lt;p&gt;foo&lt;/p&gt;]]&gt;"""
+        val expected = """<p>foo</p>"""
+
+        assertEquals(expected, PodcastUtils.sanitizeDescription(text))
+    }
+
+    @Test
     fun testEmpty() {
         val text = ""
         val expected = ""

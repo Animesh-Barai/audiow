@@ -39,6 +39,7 @@ dependencies {
     api "io.reactivex.rxjava2:rxjava:$rxVersion"
     api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    api "org.apache.commons:commons-text:$apacheCommonText"
 
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.tencent:mmkv:$mmkvVersion"
