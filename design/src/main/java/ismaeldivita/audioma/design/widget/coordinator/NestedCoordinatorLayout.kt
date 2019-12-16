@@ -1,4 +1,4 @@
-package ismaeldivita.audioma.design.widget
+package ismaeldivita.audioma.design.widget.coordinator
 
 import android.annotation.SuppressLint
 import android.content.Context

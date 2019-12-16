@@ -68,6 +68,76 @@
                 android:layout_marginBottom="@dimen/keyline_4"
                 android:background="?android:attr/listDivider" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding">
+
+                <TextView
+                    android:id="@+id/addFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Add to favorite"
+                    android:drawableTop="@drawable/ic_heart"
+                    android:drawablePadding="@dimen/keyline_1"
+                    android:onClick="@{()-> true}"
+                    android:padding="@dimen/keyline_1"
+                    android:text="Favorite"
+                    android:textAppearance="?textAppearanceCaption"
+                    android:tooltipText="Add to favorite"
+                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/markPlayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Mark as played"
+                    android:drawableTop="@drawable/ic_check_circle"
+                    android:drawablePadding="@dimen/keyline_1"
+                    android:drawableTint="?android:textColorPrimary"
+                    android:onClick="@{()-> true}"
+                    android:padding="@dimen/keyline_1"
+                    android:text="Played"
+                    android:textAppearance="?textAppearanceCaption"
+                    android:tooltipText="Mark as played"
+                    app:layout_constraintEnd_toStartOf="@id/download"
+                    app:layout_constraintStart_toEndOf="@id/addFavorite"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Download"
+                    android:drawableTop="@drawable/ic_download"
+                    android:drawablePadding="@dimen/keyline_1"
+                    android:drawableTint="?android:textColorPrimary"
+                    android:onClick="@{()-> true}"
+                    android:padding="@dimen/keyline_1"
+                    android:text="Download"
+                    android:textAppearance="?textAppearanceCaption"
+                    android:tooltipText="Download"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/markPlayed"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_4"
+                android:background="?android:attr/listDivider" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

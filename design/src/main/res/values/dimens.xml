@@ -16,8 +16,6 @@
 
     <dimen name="radius_default">4dp</dimen>
 
-    <dimen name="elevation_default_top_app_bar">0dp</dimen>
-
     <dimen name="alpha_emphasis_high">0.87</dimen>
     <dimen name="alpha_emphasis_medium">0.6</dimen>
     <dimen name="alpha_emphasis_disabled">0.38</dimen>

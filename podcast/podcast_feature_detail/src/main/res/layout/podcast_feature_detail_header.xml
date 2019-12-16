@@ -22,11 +22,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
             android:paddingStart="@dimen/screen_horizontal_padding"
             android:paddingTop="@dimen/screen_vertical_padding"
             android:paddingEnd="@dimen/screen_horizontal_padding"
             android:paddingBottom="@dimen/screen_vertical_padding"
-            android:clipToPadding="false"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}">
 

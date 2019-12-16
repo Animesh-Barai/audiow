@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@drawable/bg_bottom_menu"
-        android:elevation="28dp"
+        android:elevation="8dp"
         android:paddingStart="@dimen/screen_horizontal_padding"
         android:paddingEnd="@dimen/screen_horizontal_padding"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
