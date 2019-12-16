@@ -56,17 +56,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/screen_horizontal_padding"
                 android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_4"
                 android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 android:gravity="center_horizontal"
                 android:text="@{vm.episode.title}"
                 android:textAppearance="?textAppearanceHeadline6" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/keyline_4"
-                android:layout_marginBottom="@dimen/keyline_4"
-                android:background="?android:attr/listDivider" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -87,8 +81,7 @@
                     android:text="Favorite"
                     android:textAppearance="?textAppearanceCaption"
                     android:tooltipText="Add to favorite"
-                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
-                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,16 +93,35 @@
                     android:contentDescription="Mark as played"
                     android:drawableTop="@drawable/ic_check_circle"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorPrimary"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Played"
                     android:textAppearance="?textAppearanceCaption"
                     android:tooltipText="Mark as played"
-                    app:layout_constraintEnd_toStartOf="@id/download"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/playNext"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toEndOf="@id/addFavorite"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/playNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Play next"
+                    android:drawableTop="@drawable/ic_plus"
+                    android:drawablePadding="@dimen/keyline_1"
+                    android:onClick="@{()-> true}"
+                    android:padding="@dimen/keyline_1"
+                    android:text="Play next"
+                    android:textAppearance="?textAppearanceCaption"
+                    android:tooltipText="Play next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/download"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/download"
@@ -119,14 +131,13 @@
                     android:contentDescription="Download"
                     android:drawableTop="@drawable/ic_download"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorPrimary"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Download"
                     android:textAppearance="?textAppearanceCaption"
                     android:tooltipText="Download"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/markPlayed"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -134,32 +145,21 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginTop="@dimen/keyline_2"
                 android:layout_marginBottom="@dimen/keyline_4"
                 android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:alpha="?alphaEmphasisHigh"
-                android:text="About"
-                android:textAppearance="?textAppearanceHeadline6" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginTop="@dimen/keyline_4"
                 android:layout_marginEnd="@dimen/screen_horizontal_padding"
                 android:alpha="?alphaEmphasisMedium"
                 android:autoLink="web"
                 android:linksClickable="true"
                 android:textAppearance="?textAppearanceBody2"
                 app:htmlText="@{vm.episode.description}" />
-
         </LinearLayout>
     </ScrollView>
 </layout>
