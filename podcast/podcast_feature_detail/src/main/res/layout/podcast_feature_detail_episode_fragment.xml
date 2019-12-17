@@ -163,12 +163,16 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:autoLink="web"
-                android:linksClickable="true"
+
+                android:background="?android:selectableItemBackground"
+                android:ellipsize="end"
+
+                android:paddingStart="@dimen/screen_horizontal_padding"
+                android:paddingEnd="@dimen/screen_horizontal_padding"
                 android:textAppearance="?textAppearanceBody2"
-                app:htmlText="@{vm.episode.description}" />
+                app:htmlText="@{vm.episode.description}"
+                app:maxLinesCollapse="@{5}" />
+
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -1,14 +1,13 @@
 package ismaeldivita.audioma.design.databinding
 
+import androidx.transition.ChangeBounds
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import ismaeldivita.audioma.design.ext.beginDelayedTransitionOnParent
 
 @BindingAdapter("htmlText")
-fun htmlText(
-    view: TextView,
-    text: String?
-) {
+fun htmlText(view: TextView, text: String?) {
     if (text == null) return
 
     val spannable = HtmlCompat.fromHtml(
@@ -22,4 +21,20 @@ fun htmlText(
     )
 
     view.text = spannable.toString()
+}
+
+@BindingAdapter("maxLinesCollapse")
+fun maxLinesCollapse(
+    view: TextView,
+    lastMaxLines: Int,
+    maxLines: Int
+) {
+    if (maxLines == 0 || lastMaxLines == maxLines) return
+
+    view.maxLines = maxLines
+
+    view.setOnClickListener {
+        view.beginDelayedTransitionOnParent(ChangeBounds())
+        view.maxLines = maxLines.takeIf { it < view.maxLines } ?: Int.MAX_VALUE
+    }
 }
