@@ -18,7 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:colorBackground"
-        android:nestedScrollingEnabled="true">
+        android:nestedScrollingEnabled="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/contentContainer"
@@ -85,17 +87,21 @@
                     android:id="@+id/addFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/keyline_4"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Add to favorite"
-                    android:drawableTop="@drawable/ic_heart"
+                    android:drawableTop="@drawable/podcast_feature_detail_favorite"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorSecondary"
+                    android:drawableTint="@color/color_on_surface"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Favorite"
                     android:textAppearance="?textAppearanceCaption"
+                    android:textColor="@color/color_on_surface"
                     android:tooltipText="Add to favorite"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,40 +109,45 @@
                     android:id="@+id/markPlayed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/keyline_4"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Mark as played"
-                    android:drawableTop="@drawable/ic_check_circle"
+                    android:drawableTop="@drawable/podcast_feature_detail_played"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorSecondary"
+                    android:drawableTint="@color/color_on_surface"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Played"
                     android:textAppearance="?textAppearanceCaption"
+                    android:textColor="@color/color_on_surface"
                     android:tooltipText="Mark as played"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/playNext"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toEndOf="@id/addFavorite"
+
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/playNext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/keyline_4"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Play next"
-                    android:drawableTop="@drawable/ic_plus"
+                    android:drawableTop="@drawable/podcast_feature_detail_play_next"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorSecondary"
+                    android:drawableTint="@color/color_on_surface"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Play next"
                     android:textAppearance="?textAppearanceCaption"
+                    android:textColor="@color/color_on_surface"
                     android:tooltipText="Play next"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toEndOf="@id/download"
+                    app:layout_constraintEnd_toStartOf="@id/download"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@id/markPlayed"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -145,16 +156,19 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Download"
-                    android:drawableTop="@drawable/ic_download"
+                    android:drawableTop="@drawable/podcast_feature_detail_download"
                     android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="?android:textColorSecondary"
+                    android:drawableTint="@color/color_on_surface"
                     android:onClick="@{()-> true}"
                     android:padding="@dimen/keyline_1"
                     android:text="Download"
                     android:textAppearance="?textAppearanceCaption"
+                    android:textColor="@color/color_on_surface"
                     android:tooltipText="Download"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@id/playNext"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,15 +177,15 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:background="?android:selectableItemBackground"
+                android:layout_marginStart="@dimen/screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/screen_horizontal_padding"
+                android:alpha="?alphaEmphasisMedium"
+                android:autoLink="web"
                 android:ellipsize="end"
-
-                android:paddingStart="@dimen/screen_horizontal_padding"
-                android:paddingEnd="@dimen/screen_horizontal_padding"
+                android:linksClickable="true"
                 android:textAppearance="?textAppearanceBody2"
-                app:htmlText="@{vm.episode.description}"
-                app:maxLinesCollapse="@{5}" />
+                android:textIsSelectable="true"
+                app:htmlText="@{vm.episode.description}" />
 
         </LinearLayout>
     </ScrollView>
