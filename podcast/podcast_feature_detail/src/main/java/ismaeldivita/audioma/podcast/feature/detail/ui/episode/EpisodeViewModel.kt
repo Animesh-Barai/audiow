@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 internal class EpisodeViewModel @Inject constructor(
     private val feedRepository: Repository<Feed>,
+    private val podcastRepository: Repository<Podcast>,
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {
 
@@ -26,6 +27,14 @@ internal class EpisodeViewModel @Inject constructor(
             .observeOn(schedulersProvider.main())
             .subscribeBy(onSuccess = {
                 episode.value = it
+            })
+            .registerDisposable()
+
+        podcastRepository.findById(podcastId)
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.main())
+            .subscribeBy(onSuccess = {
+                podcast.value = it
             })
             .registerDisposable()
     }
