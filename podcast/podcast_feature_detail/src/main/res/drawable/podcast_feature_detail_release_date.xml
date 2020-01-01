@@ -3,5 +3,5 @@
     <item
         android:width="@dimen/podcast_feature_detail_episode_toolbar_icon"
         android:height="@dimen/podcast_feature_detail_episode_toolbar_icon"
-        android:drawable="@drawable/ic_plus" />
+        android:drawable="@drawable/ic_calendar" />
 </layer-list>

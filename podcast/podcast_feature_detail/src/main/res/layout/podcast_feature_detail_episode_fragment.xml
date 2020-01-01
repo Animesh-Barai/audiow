@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -22,171 +23,178 @@
         android:overScrollMode="never"
         android:scrollbars="none">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/screen_vertical_padding"
+            android:paddingEnd="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/screen_vertical_padding"
             app:paddingBottomSystemWindowInsets="@{true}"
             app:paddingLeftSystemWindowInsets="@{true}"
             app:paddingRightSystemWindowInsets="@{true}"
             app:paddingTopSystemWindowInsets="@{true}">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginTop="@dimen/screen_vertical_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:layout_marginBottom="@dimen/keyline_2"
-                android:gravity="center_horizontal"
-                android:text="@{vm.episode.title}"
-                android:textAppearance="?textAppearanceHeadline6" />
-
-            <TextView
-                android:id="@+id/artist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:alpha="?alphaEmphasisMedium"
-                android:gravity="center_horizontal"
-                android:text="@{vm.podcast.title}"
-                android:textAppearance="?textAppearanceSubtitle1" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/coverContainer"
                 android:layout_width="@dimen/podcast_feature_detail_episode_cover"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginTop="@dimen/keyline_6"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:layout_marginBottom="@dimen/keyline_6"
                 app:cardBackgroundColor="?colorSurface"
-                app:cardCornerRadius="@dimen/radius_default">
+                app:cardCornerRadius="@dimen/radius_default"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:layout_width="@dimen/podcast_feature_detail_episode_cover"
                     android:layout_height="@dimen/podcast_feature_detail_episode_cover"
+                    android:importantForAccessibility="no"
                     app:crossFade="@{true}"
                     app:imageLoader="@{imageLoader}"
                     app:load="@{vm.episode.coverImageUrl}" />
 
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <TextView
+                android:id="@+id/episodeNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:text="Episode #224"
+                android:textAppearance="?textAppearanceOverline"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintStart_toEndOf="@id/coverContainer"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Episode #224" />
+
+            <TextView
+                android:id="@+id/episodeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_4"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{vm.episode.title}"
+                android:textAppearance="?textAppearanceHeadline6"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintBottom_toTopOf="@id/download"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/coverContainer"
+                app:layout_constraintTop_toBottomOf="@id/episodeNumber"
+                app:layout_constraintVertical_bias="0"
+                tools:text="Episode Title" />
+
+            <ImageView
+                android:id="@+id/addFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:alpha="?alphaEmphasisMedium"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Add to favorite"
+                android:onClick="@{()-> true}"
+                android:padding="@dimen/keyline_1"
+                android:src="@drawable/ic_heart"
+                android:tooltipText="Add to favorite"
+                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
+                app:layout_constraintEnd_toStartOf="@id/download" />
+
+            <ImageView
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="?alphaEmphasisMedium"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Download"
+                android:onClick="@{()-> true}"
+                android:padding="@dimen/keyline_1"
+                android:src="@drawable/ic_download"
+                android:tooltipText="Download"
+                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- TODO use shape theme to apply radius -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/playButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:text="Play"
+                app:cornerRadius="1000dp"
+                app:icon="@drawable/ic_play"
+                app:iconGravity="start"
+                app:iconSize="@dimen/podcast_feature_detail_episode_toolbar_icon"
+                app:iconTint="?colorOnPrimary"
+                app:layout_constraintEnd_toEndOf="@id/coverContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coverContainer" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:max="100"
+                android:progress="65"
+                android:progressDrawable="@drawable/shape_progress_rounded"
+                app:layout_constraintBottom_toTopOf="@id/progressDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/coverContainer"
+                app:layout_constraintTop_toTopOf="@id/playButton"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/progressDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_1"
+                android:text="1h 20min left"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progress" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@id/playButton" />
+
+            <TextView
+                android:id="@+id/about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:layout_marginBottom="@dimen/keyline_6">
-
-                <TextView
-                    android:id="@+id/addFavorite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/keyline_4"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Add to favorite"
-                    android:drawableTop="@drawable/podcast_feature_detail_favorite"
-                    android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="@color/color_on_surface"
-                    android:onClick="@{()-> true}"
-                    android:padding="@dimen/keyline_1"
-                    android:text="Favorite"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:textColor="@color/color_on_surface"
-                    android:tooltipText="Add to favorite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/markPlayed"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/markPlayed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/keyline_4"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Mark as played"
-                    android:drawableTop="@drawable/podcast_feature_detail_played"
-                    android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="@color/color_on_surface"
-                    android:onClick="@{()-> true}"
-                    android:padding="@dimen/keyline_1"
-                    android:text="Played"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:textColor="@color/color_on_surface"
-                    android:tooltipText="Mark as played"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/playNext"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@id/addFavorite"
-
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/playNext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/keyline_4"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Play next"
-                    android:drawableTop="@drawable/podcast_feature_detail_play_next"
-                    android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="@color/color_on_surface"
-                    android:onClick="@{()-> true}"
-                    android:padding="@dimen/keyline_1"
-                    android:text="Play next"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:textColor="@color/color_on_surface"
-                    android:tooltipText="Play next"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/download"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@id/markPlayed"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/download"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Download"
-                    android:drawableTop="@drawable/podcast_feature_detail_download"
-                    android:drawablePadding="@dimen/keyline_1"
-                    android:drawableTint="@color/color_on_surface"
-                    android:onClick="@{()-> true}"
-                    android:padding="@dimen/keyline_1"
-                    android:text="Download"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:textColor="@color/color_on_surface"
-                    android:tooltipText="Download"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@id/playNext"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginTop="@dimen/keyline_4"
+                android:text="About"
+                android:textAppearance="?textAppearanceSubtitle2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/screen_horizontal_padding"
-                android:layout_marginEnd="@dimen/screen_horizontal_padding"
-                android:alpha="?alphaEmphasisMedium"
+                android:layout_marginTop="@dimen/keyline_2"
                 android:autoLink="web"
                 android:ellipsize="end"
                 android:linksClickable="true"
                 android:textAppearance="?textAppearanceBody2"
                 android:textIsSelectable="true"
-                app:htmlText="@{vm.episode.description}" />
+                app:htmlText="@{vm.episode.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </layout>

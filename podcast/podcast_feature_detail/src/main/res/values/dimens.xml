@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="podcast_feature_detail_item_cover">140dp</dimen>
-    <dimen name="podcast_feature_detail_episode_cover">240dp</dimen>
+    <dimen name="podcast_feature_detail_episode_cover">140dp</dimen>
     <dimen name="podcast_feature_detail_episode_toolbar_icon">18dp</dimen>
 </resources>
