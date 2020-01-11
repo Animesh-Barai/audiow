@@ -100,8 +100,9 @@
                 android:padding="@dimen/keyline_1"
                 android:src="@drawable/ic_heart"
                 android:tooltipText="Add to favorite"
-                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
-                app:layout_constraintEnd_toStartOf="@id/download" />
+                app:layout_constraintRight_toLeftOf="@id/download"
+                app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintTop_toTopOf="@id/playButton" />
 
             <ImageView
                 android:id="@+id/download"
@@ -114,8 +115,9 @@
                 android:padding="@dimen/keyline_1"
                 android:src="@drawable/ic_download"
                 android:tooltipText="Download"
-                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/playButton" />
 
             <!-- TODO use shape theme to apply radius -->
             <com.google.android.material.button.MaterialButton
@@ -132,32 +134,6 @@
                 app:layout_constraintEnd_toEndOf="@id/coverContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/coverContainer" />
-
-            <ProgressBar
-                android:id="@+id/progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:max="100"
-                android:progress="65"
-                android:progressDrawable="@drawable/shape_progress_rounded"
-                app:layout_constraintBottom_toTopOf="@id/progressDescription"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/coverContainer"
-                app:layout_constraintTop_toTopOf="@id/playButton"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <TextView
-                android:id="@+id/progressDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/keyline_1"
-                android:text="1h 20min left"
-                android:textAppearance="?textAppearanceCaption"
-                app:layout_constraintBottom_toBottomOf="@id/playButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/progress" />
 
             <View
                 android:id="@+id/divider"
