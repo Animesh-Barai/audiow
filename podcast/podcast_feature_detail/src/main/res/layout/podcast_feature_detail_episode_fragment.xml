@@ -93,28 +93,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/keyline_4"
-                android:alpha="?alphaEmphasisMedium"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Add to favorite"
                 android:onClick="@{()-> true}"
                 android:padding="@dimen/keyline_1"
                 android:src="@drawable/ic_heart"
                 android:tooltipText="Add to favorite"
-                app:layout_constraintRight_toLeftOf="@id/download"
                 app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintRight_toLeftOf="@id/download"
                 app:layout_constraintTop_toTopOf="@id/playButton" />
 
-            <ImageView
+            <ismaeldivita.audioma.design.widget.ProgressImageButton
                 android:id="@+id/download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="?alphaEmphasisMedium"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Download"
-                android:onClick="@{()-> true}"
                 android:padding="@dimen/keyline_1"
-                android:src="@drawable/ic_download"
                 android:tooltipText="Download"
+                app:icon="@drawable/sample_anim"
                 app:layout_constraintBottom_toBottomOf="@id/playButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/playButton" />
@@ -140,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/keyline_4"
-                android:background="?android:attr/listDivider"
+                android:background="?colorDivider"
                 app:layout_constraintTop_toBottomOf="@id/playButton" />
 
             <TextView

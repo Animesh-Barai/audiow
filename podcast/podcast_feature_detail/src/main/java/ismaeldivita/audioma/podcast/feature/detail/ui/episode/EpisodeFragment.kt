@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ismaeldivita.audioma.core.android.ui.ViewModelFragment
 import ismaeldivita.audioma.core.android.ui.withArgs
 import ismaeldivita.audioma.podcast.feature.detail.R
 import ismaeldivita.audioma.podcast.feature.detail.databinding.PodcastFeatureDetailEpisodeFragmentBinding
+import java.util.concurrent.TimeUnit
 
 internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
 
@@ -46,6 +50,15 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(podcastId, episodeId)
+
+        binding.download.setOnClickListener {
+            Observable.interval(2, 1, TimeUnit.SECONDS, Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { binding.download.isActivated = true }
+                .subscribe {
+                    binding.download.setProgress(it.toInt() * 20)
+                }
+        }
     }
 
     private fun enterAnimation() {
