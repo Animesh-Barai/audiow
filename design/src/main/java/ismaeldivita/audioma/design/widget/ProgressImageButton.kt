@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.IntRange
 import ismaeldivita.audioma.design.R
+import ismaeldivita.audioma.design.ext.setProgressAnimate
 
 class ProgressImageButton @JvmOverloads constructor(
     context: Context,
@@ -78,7 +79,7 @@ class ProgressImageButton @JvmOverloads constructor(
             in 0..99 -> {
                 scaleIcon(0.65f)
                 overlay.add(progressView)
-                progressView.progress = progress
+                progressView.setProgressAnimate(progress)
             }
 
             100 -> {

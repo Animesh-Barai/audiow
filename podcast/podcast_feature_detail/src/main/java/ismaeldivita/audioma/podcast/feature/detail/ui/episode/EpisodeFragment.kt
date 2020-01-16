@@ -56,7 +56,7 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { binding.download.isActivated = true }
                 .subscribe {
-                    binding.download.setProgress(it.toInt() * 20)
+                    binding.download.setProgress(it.toInt() * 10)
                 }
         }
     }
