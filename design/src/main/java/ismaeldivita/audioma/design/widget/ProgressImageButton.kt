@@ -10,6 +10,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.IntRange
+import androidx.core.content.res.getDrawableOrThrow
+import androidx.core.content.res.getResourceIdOrThrow
 import ismaeldivita.audioma.design.R
 import ismaeldivita.audioma.design.ext.setProgressAnimate
 
@@ -18,12 +20,18 @@ class ProgressImageButton @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
 
+    private val iconCompletedDrawable: Drawable by lazy {
+        context.getDrawable(iconCompletedRes)
+    }
     private val iconView: ImageView
     private val progressView: ProgressBar
+    private val iconDrawable: Drawable
+    private val iconCompletedRes: Int
 
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.ProgressImageButton)
-        val iconDrawable = a.getDrawable(R.styleable.ProgressImageButton_icon)
+        iconDrawable = a.getDrawableOrThrow(R.styleable.ProgressImageButton_icon)
+        iconCompletedRes = a.getResourceIdOrThrow(R.styleable.ProgressImageButton_iconCompleted)
 
         iconView = ImageView(context).apply {
             scaleType = ImageView.ScaleType.FIT_XY
@@ -74,19 +82,21 @@ class ProgressImageButton @JvmOverloads constructor(
             -1 -> {
                 scaleIcon(1f)
                 overlay.remove(progressView)
+                iconView.setImageDrawable(iconDrawable)
             }
 
             in 0..99 -> {
                 scaleIcon(0.65f)
                 overlay.add(progressView)
                 progressView.setProgressAnimate(progress)
+                iconView.setImageDrawable(iconDrawable)
             }
 
             100 -> {
                 isActivated = false
                 scaleIcon(1f)
                 overlay.remove(progressView)
-                // Add complete drawable overlay
+                iconView.setImageDrawable(iconCompletedDrawable)
             }
         }
     }

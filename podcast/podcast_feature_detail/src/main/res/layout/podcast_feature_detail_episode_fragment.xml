@@ -112,6 +112,7 @@
                 android:padding="@dimen/keyline_1"
                 android:tooltipText="Download"
                 app:icon="@drawable/sample_anim"
+                app:iconCompleted="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="@id/playButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/playButton" />

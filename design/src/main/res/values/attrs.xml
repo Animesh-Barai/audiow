@@ -17,7 +17,8 @@
     </declare-styleable>
 
     <declare-styleable name="ProgressImageButton">
-        <attr name="icon" format="reference"/>
+        <attr name="icon" format="reference" />
+        <attr name="iconCompleted" format="reference" />
     </declare-styleable>
 
 </resources>
