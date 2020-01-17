@@ -111,7 +111,7 @@
                 android:contentDescription="Download"
                 android:padding="@dimen/keyline_1"
                 android:tooltipText="Download"
-                app:icon="@drawable/sample_anim"
+                app:icon="@drawable/avd_download"
                 app:iconCompleted="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="@id/playButton"
                 app:layout_constraintEnd_toEndOf="parent"

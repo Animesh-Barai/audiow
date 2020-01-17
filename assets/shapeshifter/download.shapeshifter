@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "layers": {
+    "vectorLayer": {
+      "id": "26",
+      "name": "download",
+      "type": "vector",
+      "width": 24,
+      "height": 24,
+      "children": [
+        {
+          "id": "10860",
+          "name": "clip",
+          "type": "mask",
+          "pathData": "M 0 0 L 24 0 L 24 22 L 0 22"
+        },
+        {
+          "id": "3",
+          "name": "path",
+          "type": "path",
+          "pathData": "M 21 15 L 21 19 C 21 19.53 20.789 20.039 20.414 20.414 C 20.039 20.789 19.53 21 19 21 L 5 21 C 4.47 21 3.961 20.789 3.586 20.414 C 3.211 20.039 3 19.53 3 19 L 3 15",
+          "fillColor": "#00000000",
+          "strokeColor": "#000000",
+          "strokeWidth": 2,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        },
+        {
+          "id": "10848",
+          "name": "group",
+          "type": "group",
+          "children": [
+            {
+              "id": "14",
+              "name": "path_1",
+              "type": "path",
+              "pathData": "M 7 10 L 12 15 L 17 10",
+              "fillColor": "#00000000",
+              "strokeColor": "#000000",
+              "strokeWidth": 2,
+              "strokeLinecap": "round",
+              "strokeLinejoin": "round"
+            },
+            {
+              "id": "20",
+              "name": "path_2",
+              "type": "path",
+              "pathData": "M 12 15 L 12 3",
+              "fillColor": "#00000000",
+              "strokeColor": "#000000",
+              "strokeWidth": 2,
+              "strokeLinecap": "round",
+              "strokeLinejoin": "round"
+            }
+          ]
+        }
+      ]
+    },
+    "hiddenLayerIds": []
+  },
+  "timeline": {
+    "animation": {
+      "id": "2",
+      "name": "anim",
+      "duration": 2400,
+      "blocks": [
+        {
+          "id": "10849",
+          "layerId": "10848",
+          "propertyName": "translateY",
+          "startTime": 0,
+          "endTime": 800,
+          "interpolator": "ACCELERATE",
+          "type": "number",
+          "fromValue": 0,
+          "toValue": 18
+        },
+        {
+          "id": "11176",
+          "layerId": "10848",
+          "propertyName": "translateY",
+          "startTime": 1000,
+          "endTime": 2000,
+          "interpolator": "FAST_OUT_SLOW_IN",
+          "type": "number",
+          "fromValue": -16,
+          "toValue": 0
+        }
+      ]
+    }
+  }
+}
