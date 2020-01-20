@@ -73,20 +73,51 @@
             <TextView
                 android:id="@+id/episodeTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/keyline_4"
                 android:layout_marginBottom="@dimen/keyline_4"
                 android:ellipsize="end"
-                android:maxLines="3"
                 android:text="@{vm.episode.title}"
                 android:textAppearance="?textAppearanceHeadline6"
                 android:textColor="?colorOnBackground"
-                app:layout_constraintBottom_toTopOf="@id/download"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@id/releaseDate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/coverContainer"
                 app:layout_constraintTop_toBottomOf="@id/episodeNumber"
                 app:layout_constraintVertical_bias="0"
                 tools:text="Episode Title" />
+
+            <TextView
+                android:id="@+id/releaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginBottom="@dimen/keyline_2"
+                android:drawableStart="@drawable/podcast_feature_detail_release_date"
+                android:drawablePadding="@dimen/keyline_2"
+                android:drawableTint="?android:textColorSecondary"
+                android:text="10 January 2019"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toTopOf="@id/duration"
+                app:layout_constraintStart_toEndOf="@id/coverContainer"
+                app:layout_constraintTop_toBottomOf="@id/episodeTitle"
+                app:layout_constraintVertical_bias="1" />
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginTop="@dimen/keyline_2"
+                android:drawableStart="@drawable/podcast_feature_detail_duration"
+                android:drawablePadding="@dimen/keyline_2"
+                android:drawableTint="?android:textColorSecondary"
+                android:text="1h 30min"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
+                app:layout_constraintStart_toEndOf="@id/coverContainer" />
 
             <ImageView
                 android:id="@+id/addFavorite"
