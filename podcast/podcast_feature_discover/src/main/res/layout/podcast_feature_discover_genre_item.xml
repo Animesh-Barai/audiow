@@ -29,7 +29,9 @@
             android:layout_height="@dimen/podcast_feature_discover_genre_section_item_cover"
             android:onClick="@{() -> callback.onPodcastSelected(podcast)}"
             app:cardBackgroundColor="?colorSurface"
-            app:cardCornerRadius="@dimen/radius_default">
+            app:cardCornerRadius="@dimen/radius_default"
+            app:strokeColor="?colorElevationDivider"
+            app:strokeWidth="1dp">
 
             <ImageView
                 android:id="@+id/cover"

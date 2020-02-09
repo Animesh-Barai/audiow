@@ -46,22 +46,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cover"
                     android:layout_width="@dimen/podcast_feature_discover_highlight_cover"
                     android:layout_height="@dimen/podcast_feature_discover_highlight_cover"
                     android:layout_marginTop="@dimen/keyline_4"
                     android:layout_marginEnd="@dimen/keyline_4"
                     android:layout_marginBottom="@dimen/keyline_4"
-                    app:crossFade="@{true}"
-                    app:imageLoader="@{imageLoader}"
+                    app:cardBackgroundColor="?colorSurface"
+                    app:cardCornerRadius="@dimen/radius_default"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:listener="@{listener}"
-                    app:load="@{podcast.artwork.url}"
-                    app:radius="@{@dimen/radius_default}"
-                    tools:background="#FF00FF" />
+                    app:strokeColor="?colorElevationDivider"
+                    app:strokeWidth="1dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:crossFade="@{true}"
+                        app:imageLoader="@{imageLoader}"
+                        app:listener="@{listener}"
+                        app:load="@{podcast.artwork.url}" />
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/artist"
