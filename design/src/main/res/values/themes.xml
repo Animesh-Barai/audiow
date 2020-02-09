@@ -20,7 +20,7 @@
         <item name="colorOnBackground">@color/color_on_background</item>
         <item name="colorOnSurface">@color/color_on_surface</item>
         <item name="colorOnError">@color/color_on_error</item>
-
+        <item name="colorElevationDivider">@color/color_elevation_divider</item>
         <item name="android:ambientShadowAlpha">0.25</item>
         <item name="android:spotShadowAlpha">0.25</item>
 

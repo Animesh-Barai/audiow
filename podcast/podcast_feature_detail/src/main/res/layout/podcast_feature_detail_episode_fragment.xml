@@ -38,131 +38,62 @@
             app:paddingTopSystemWindowInsets="@{true}">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/coverContainer"
-                android:layout_width="@dimen/podcast_feature_detail_episode_cover"
-                android:layout_height="wrap_content"
+                android:id="@+id/cover"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
                 app:cardBackgroundColor="?colorSurface"
                 app:cardCornerRadius="@dimen/radius_default"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:strokeWidth="1dp"
+                app:strokeColor="?colorElevationDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="@dimen/podcast_feature_detail_episode_cover"
-                    android:layout_height="@dimen/podcast_feature_detail_episode_cover"
-                    android:importantForAccessibility="no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     app:crossFade="@{true}"
                     app:imageLoader="@{imageLoader}"
                     app:load="@{vm.episode.coverImageUrl}" />
 
             </com.google.android.material.card.MaterialCardView>
 
-
-            <TextView
-                android:id="@+id/episodeNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:text="Episode #224"
-                android:textAppearance="?textAppearanceOverline"
-                android:textColor="?colorOnBackground"
-                app:layout_constraintStart_toEndOf="@id/coverContainer"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Episode #224" />
-
             <TextView
                 android:id="@+id/episodeTitle"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginBottom="@dimen/keyline_4"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_4"
                 android:ellipsize="end"
-                android:text="@{vm.episode.title}"
+                android:text="@{vm.episode.title.trim()}"
                 android:textAppearance="?textAppearanceHeadline6"
                 android:textColor="?colorOnBackground"
-                app:autoSizeMaxTextSize="20sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toTopOf="@id/releaseDate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/coverContainer"
-                app:layout_constraintTop_toBottomOf="@id/episodeNumber"
-                app:layout_constraintVertical_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cover"
                 tools:text="Episode Title" />
 
             <TextView
                 android:id="@+id/releaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginBottom="@dimen/keyline_2"
-                android:drawableStart="@drawable/podcast_feature_detail_release_date"
-                android:drawablePadding="@dimen/keyline_2"
-                android:drawableTint="?android:textColorSecondary"
+                android:layout_marginTop="@dimen/keyline_1"
                 android:text="10 January 2019"
                 android:textAppearance="?textAppearanceCaption"
-                app:layout_constraintBottom_toTopOf="@id/duration"
-                app:layout_constraintStart_toEndOf="@id/coverContainer"
-                app:layout_constraintTop_toBottomOf="@id/episodeTitle"
-                app:layout_constraintVertical_bias="1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/episodeTitle" />
 
             <TextView
                 android:id="@+id/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/keyline_4"
-                android:layout_marginTop="@dimen/keyline_2"
-                android:drawableStart="@drawable/podcast_feature_detail_duration"
-                android:drawablePadding="@dimen/keyline_2"
-                android:drawableTint="?android:textColorSecondary"
+                android:layout_marginTop="@dimen/keyline_1"
                 android:text="1h 30min"
                 android:textAppearance="?textAppearanceCaption"
-                app:layout_constraintBottom_toBottomOf="@id/coverContainer"
-                app:layout_constraintStart_toEndOf="@id/coverContainer" />
-
-            <ImageView
-                android:id="@+id/addFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/keyline_4"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Add to favorite"
-                android:onClick="@{()-> true}"
-                android:padding="@dimen/keyline_1"
-                android:src="@drawable/ic_heart"
-                android:tooltipText="Add to favorite"
-                app:layout_constraintBottom_toBottomOf="@id/playButton"
-                app:layout_constraintRight_toLeftOf="@id/download"
-                app:layout_constraintTop_toTopOf="@id/playButton" />
-
-            <ismaeldivita.audioma.design.widget.ProgressImageButton
-                android:id="@+id/download"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Download"
-                android:padding="@dimen/keyline_1"
-                android:tooltipText="Download"
-                app:icon="@drawable/avd_download"
-                app:iconCompleted="@drawable/ic_check"
-                app:layout_constraintBottom_toBottomOf="@id/playButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/playButton" />
-
-            <!-- TODO use shape theme to apply radius -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/playButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/keyline_4"
-                android:text="Play"
-                app:cornerRadius="1000dp"
-                app:icon="@drawable/ic_play"
-                app:iconGravity="start"
-                app:iconSize="@dimen/podcast_feature_detail_episode_toolbar_icon"
-                app:iconTint="?colorOnPrimary"
-                app:layout_constraintEnd_toEndOf="@id/coverContainer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/coverContainer" />
+                app:layout_constraintStart_toEndOf="@id/releaseDate"
+                app:layout_constraintTop_toBottomOf="@id/episodeTitle" />
 
             <View
                 android:id="@+id/divider"
@@ -172,14 +103,56 @@
                 android:background="?colorDivider"
                 app:layout_constraintTop_toBottomOf="@id/playButton" />
 
+            <ImageView
+                android:id="@+id/download"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Download"
+                android:onClick="@{()-> true}"
+                android:padding="@dimen/keyline_1"
+                android:src="@drawable/ic_download"
+                android:tooltipText="Download"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/releaseDate" />
+
+            <ImageView
+                android:id="@+id/addFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Add to favorite"
+                android:onClick="@{()-> true}"
+                android:padding="@dimen/keyline_1"
+                android:src="@drawable/ic_heart"
+                android:tooltipText="Add to favorite"
+                app:layout_constraintEnd_toStartOf="@id/download"
+                app:layout_constraintTop_toBottomOf="@id/releaseDate" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/playButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyline_4"
+                android:text="Play"
+                app:cornerRadius="1000dp"
+                app:icon="@drawable/ic_play"
+                app:iconGravity="start"
+                app:iconSize="@dimen/podcast_feature_detail_episode_toolbar_icon"
+                app:iconTint="?colorOnPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/releaseDate" />
+
             <TextView
                 android:id="@+id/about"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyline_4"
                 android:text="About"
                 android:textAppearance="?textAppearanceSubtitle2"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider" />
 

@@ -51,14 +51,14 @@ internal class EpisodeFragment : ViewModelFragment<EpisodeViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(podcastId, episodeId)
 
-        binding.download.setOnClickListener {
-            Observable.interval(2, 1, TimeUnit.SECONDS, Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { binding.download.isActivated = true }
-                .subscribe {
-                    binding.download.setProgress(it.toInt() * 10)
-                }
-        }
+//        binding.download.setOnClickListener {
+//            Observable.interval(2, 1, TimeUnit.SECONDS, Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe { binding.download.isActivated = true }
+//                .subscribe {
+//                    binding.download.setProgress(it.toInt() * 10)
+//                }
+//        }
     }
 
     private fun enterAnimation() {
