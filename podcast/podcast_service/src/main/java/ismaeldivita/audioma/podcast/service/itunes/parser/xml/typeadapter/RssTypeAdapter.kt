@@ -13,10 +13,10 @@ import ismaeldivita.audioma.podcast.service.util.PodcastUtils
 internal class RssTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
 
     override fun toXml(
-        writer: XmlWriter,
-        config: TikXmlConfig,
-        value: ItunesPodcastFeed,
-        overridingXmlElementTagName: String
+            writer: XmlWriter,
+            config: TikXmlConfig,
+            value: ItunesPodcastFeed,
+            overridingXmlElementTagName: String
     ) = throw NotImplementedError()
 
     override fun fromXml(reader: XmlReader, config: TikXmlConfig): ItunesPodcastFeed {
@@ -24,26 +24,26 @@ internal class RssTypeAdapter : TypeAdapter<ItunesPodcastFeed> {
         val rss = adapter.fromXml(reader, config)
 
         return ItunesPodcastFeed(
-            description = rss.detail.description ?: rss.detail.summary.orEmpty(),
-            languageIso639 = rss.detail.language,
-            episodes = mapEpisodes(rss.detail.episodesXml)
+                description = rss.detail.description ?: rss.detail.summary.orEmpty(),
+                languageIso639 = rss.detail.language,
+                episodes = mapEpisodes(rss.detail.episodesXml)
         )
     }
 
     private fun mapEpisodes(episodesXml: List<EpisodeXml>): List<ItunesPodcastEpisode> =
-        episodesXml.map {
-            ItunesPodcastEpisode(
-                title = it.title,
-                subtitle = it.subtitle ?: it.summary,
-                description = PodcastUtils.sanitizeDescription(
-                    it.description ?: it.subtitle ?: it.summary.orEmpty()
-                ),
-                audioFileUrl = it.audioFile.url,
-                duration = it.duration,
-                isExplicit = it.explicit,
-                publicationDateRFC822 = it.pubDate,
-                coverImageUrl = it.image?.href
-            )
-        }
+            episodesXml.map {
+                ItunesPodcastEpisode(
+                        title = PodcastUtils.sanitizeTitle(it.title),
+                        subtitle = it.subtitle ?: it.summary,
+                        description = PodcastUtils.sanitizeDescription(
+                                it.description ?: it.subtitle ?: it.summary.orEmpty()
+                        ),
+                        audioFileUrl = it.audioFile.url,
+                        duration = it.duration,
+                        isExplicit = it.explicit,
+                        publicationDateRFC822 = it.pubDate,
+                        coverImageUrl = it.image?.href
+                )
+            }
 
 }
