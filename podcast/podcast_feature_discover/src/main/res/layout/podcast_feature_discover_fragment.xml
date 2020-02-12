@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.PodcastDiscoverViewModel" />
+            type="audiow.podcast.feature.discover.ui.discover.PodcastDiscoverViewModel" />
 
     </data>
 

@@ -7,7 +7,7 @@
 
         <variable
             name="podcast"
-            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+            type="audiow.podcast.data.model.Podcast" />
 
         <variable
             name="imageLoader"
@@ -15,7 +15,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
+            type="audiow.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
     </data>
 
     <LinearLayout

@@ -7,7 +7,7 @@ android {
     compileSdkVersion defaultCompileSdkVersion
 
     defaultConfig {
-        applicationId "ismaeldivita.audioma"
+        applicationId "audiow.app"
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion
         versionCode 1

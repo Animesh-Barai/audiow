@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="application_name" translatable="false">Audioma</string>
+    <string name="application_name" translatable="false">Audiow</string>
     <string name="country_iso">US</string>
 
     <!-- Common -->

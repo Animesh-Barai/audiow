@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="ismaeldivita.audioma.podcast.feature.detail.ui.detail.PodcastDetailViewModel" />
+            type="audiow.podcast.feature.detail.ui.detail.PodcastDetailViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView

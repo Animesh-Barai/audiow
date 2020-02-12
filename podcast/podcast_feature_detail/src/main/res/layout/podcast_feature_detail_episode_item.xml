@@ -7,11 +7,11 @@
 
         <variable
             name="episode"
-            type="ismaeldivita.audioma.podcast.data.model.Episode" />
+            type="audiow.podcast.data.model.Episode" />
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter.FeedCallback" />
+            type="audiow.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter.FeedCallback" />
     </data>
 
     <LinearLayout

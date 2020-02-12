@@ -7,11 +7,11 @@
 
         <variable
             name="podcast"
-            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+            type="audiow.podcast.data.model.Podcast" />
 
         <variable
             name="viewData"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverViewHolder.HighlightViewHolder.HighlightViewData" />
+            type="audiow.podcast.feature.discover.ui.discover.recyclerview.DiscoverViewHolder.HighlightViewHolder.HighlightViewData" />
 
         <variable
             name="imageLoader"
@@ -23,7 +23,7 @@
 
         <variable
             name="callback"
-            type="ismaeldivita.audioma.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
+            type="audiow.podcast.feature.discover.ui.discover.recyclerview.DiscoverAdapter.DiscoverCallback" />
     </data>
 
     <FrameLayout
@@ -126,7 +126,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title"
                     tools:text="Podcast Genre" />
 
-                <ismaeldivita.audioma.design.widget.ToggleButton
+                <audiow.design.widget.ToggleButton
                     android:id="@+id/subscribe"
                     style="?materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"

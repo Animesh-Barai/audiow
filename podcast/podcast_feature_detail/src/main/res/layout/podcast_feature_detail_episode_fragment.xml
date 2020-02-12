@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="ismaeldivita.audioma.podcast.feature.detail.ui.episode.EpisodeViewModel" />
+            type="audiow.podcast.feature.detail.ui.episode.EpisodeViewModel" />
 
         <variable
             name="imageLoader"

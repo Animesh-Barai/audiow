@@ -11,7 +11,7 @@
 
         <variable
             name="podcast"
-            type="ismaeldivita.audioma.podcast.data.model.Podcast" />
+            type="audiow.podcast.data.model.Podcast" />
     </data>
 
     <LinearLayout
@@ -79,7 +79,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <ismaeldivita.audioma.design.widget.ToggleButton
+            <audiow.design.widget.ToggleButton
                 android:id="@+id/subscribe"
                 style="?materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"

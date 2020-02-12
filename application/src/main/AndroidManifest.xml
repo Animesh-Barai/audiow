@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ismaeldivita.audioma.app">
+    package="audiow.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="ismaeldivita.audioma.app.application.AudiomaApplication"
+        android:name="audiow.application.AudiowApplication"
         android:allowBackup="true"
         android:label="@string/application_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AudiomaTheme.DayNight"
+        android:theme="@style/AudiowTheme.DayNight"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="ismaeldivita.audioma.app.screens.launch.LaunchActivity"
-            android:theme="@style/AudiomaTheme.Launcher">
+            android:name="audiow.application.screens.launch.LaunchActivity"
+            android:theme="@style/AudiowTheme.Launcher">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ismaeldivita.audioma.app.screens.main.HomeActivity"/>
+        <activity android:name="audiow.application.screens.main.HomeActivity"/>
 
     </application>
 
