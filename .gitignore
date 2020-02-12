@@ -6,3 +6,5 @@
 /build
 /captures
 .externalNativeBuild
+
+/application/google-services.json
