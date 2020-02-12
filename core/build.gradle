@@ -41,6 +41,8 @@ dependencies {
     api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     api "org.apache.commons:commons-text:$apacheCommonText"
 
+    implementation "com.google.firebase:firebase-analytics:$firebaseAnalytics"
+
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.tencent:mmkv:$mmkvVersion"
 
