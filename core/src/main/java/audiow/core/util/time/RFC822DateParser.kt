@@ -37,7 +37,9 @@ class RFC822DateParser @Inject constructor(
             }
             i++
         }
-        if (parsedDate == null) Logger.e("Failed to parse RFC822 to Date", mapOf("value" to date))
+        if (parsedDate == null) {
+            Logger.e("RFC822 date parser", mapOf("value" to date))
+        }
         return parsedDate
     }
 
