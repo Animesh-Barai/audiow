@@ -7,13 +7,13 @@ import com.tickaroo.tikxml.annotation.Xml
 internal class AudioXml {
 
     @Attribute
-    lateinit var length: String
+    var length: String? = null
 
     @Attribute
-    lateinit var type: String
+    var type: String? = null
 
     @Attribute
-    lateinit var url: String
+    var url: String? = null
 
 }
 

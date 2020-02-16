@@ -11,7 +11,7 @@ internal object TikXmlProvider {
                 .exceptionOnUnreadXml(false)
                 .addTypeAdapter(
                     ItunesPodcastFeed::class.java,
-                    RssTypeAdapter()
+                    RssTypeAdapter
                 )
                 .build()
     }

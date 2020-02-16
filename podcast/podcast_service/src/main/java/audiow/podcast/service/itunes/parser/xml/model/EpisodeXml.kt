@@ -8,13 +8,13 @@ import com.tickaroo.tikxml.annotation.Xml
 internal class EpisodeXml {
 
     @PropertyElement
-    lateinit var title: String
+    var title: String? = null
 
     @PropertyElement
-    lateinit var pubDate: String
+    var pubDate: String? = null
 
     @Element(name = "enclosure")
-    lateinit var audioFile: AudioXml
+    var audioFile: AudioXml? = null
 
     @PropertyElement
     var description: String? = null
