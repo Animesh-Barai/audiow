@@ -8,6 +8,8 @@ import audiow.podcast.service.itunes.parser.json.model.PodcastJson
 
 internal object PodcastTypeAdapter {
 
+    private const val ERROR_TAG = "Itunes podcast parser"
+
     @FromJson
     fun fromJson(json: List<PodcastJson>): List<ItunesPodcast> =
             json.mapNotNull(PodcastTypeAdapter::fromJson)
@@ -15,17 +17,17 @@ internal object PodcastTypeAdapter {
     @FromJson
     fun fromJson(json: PodcastJson): ItunesPodcast? = try {
         ItunesPodcast(
-                id = json.trackId!!,
-                title = json.trackName!!,
-                artistName = json.artistName!!,
-                rssUrl = json.feedUrl!!,
+                id = requireNotNull(json.trackId) { "$ERROR_TAG - trackId is null" },
+                title = requireNotNull(json.trackName) { "$ERROR_TAG - title is null" },
+                artistName = requireNotNull(json.artistName) { "$ERROR_TAG - artistName is null" },
+                rssUrl = requireNotNull(json.feedUrl) { "$ERROR_TAG - feedUrl is null" },
                 artworkList = json.artworkList,
                 primaryGenreId = getPrimaryGenreId(json),
                 genreListId = json.genreIds,
                 explicit = getExplicit(json)
         )
     } catch (error: Throwable) {
-        Logger.e("Itunes podcast parser", mapOf(
+        Logger.e(error.message ?: ERROR_TAG, mapOf(
                 "id" to json.trackId,
                 "title" to json.trackName,
                 "message" to error.message
@@ -39,10 +41,9 @@ internal object PodcastTypeAdapter {
                     .first { it.second == json.primaryGenreName }
                     .first
 
-
     @SuppressLint("DefaultLocale")
     private fun getExplicit(json: PodcastJson): Boolean =
-            json.trackExplicitness!!
+            requireNotNull(json.trackExplicitness) { "$ERROR_TAG - trackExplicitness is null" }
                     .toUpperCase()
                     // Possible values to explicit are [notExplicit, cleaned, explicit]
                     .contentEquals("EXPLICIT")
