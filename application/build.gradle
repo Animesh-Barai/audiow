@@ -39,6 +39,9 @@ dependencies {
     implementation project(':podcast:podcast_feature_discover')
     implementation project(':podcast:podcast_feature_detail')
 
+    implementation project(':user:user_data')
+    implementation project(':user:user_feature_signin')
+
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
