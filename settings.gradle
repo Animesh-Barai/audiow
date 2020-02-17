@@ -9,3 +9,4 @@ include ':podcast:podcast_feature_discover'
 include ':podcast:podcast_feature_detail'
 
 include ':user:user_data'
+include ':user:user_feature_signin'
