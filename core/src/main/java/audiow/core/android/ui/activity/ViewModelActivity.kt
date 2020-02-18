@@ -7,7 +7,7 @@ import audiow.core.android.viewmodel.ViewModelFactory
 import audiow.core.util.standart.getTypeParameterClass
 import javax.inject.Inject
 
-class ViewModelActivity<VM : ViewModel> : BaseActivity() {
+abstract class ViewModelActivity<VM : ViewModel> : BaseActivity() {
     @Inject
     protected lateinit var viewModelFactory: ViewModelFactory<VM>
 

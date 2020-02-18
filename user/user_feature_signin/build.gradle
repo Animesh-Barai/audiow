@@ -20,7 +20,7 @@ android {
     }
     dataBinding.enabled true
 
-    resourcePrefix 'podcast_feature_detail_'
+    resourcePrefix 'user_feature_signin_'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -31,6 +31,7 @@ android {
 }
 dependencies {
     implementation project(':core')
+    implementation project(':design')
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
