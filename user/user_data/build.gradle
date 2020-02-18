@@ -32,6 +32,8 @@ android {
 dependencies {
     implementation project(':core')
 
+    implementation "com.google.firebase:firebase-auth:$firebaseAuth"
+
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
