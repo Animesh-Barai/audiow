@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import audiow.core.android.ui.ViewModelFragment
-import audiow.core.android.ui.withArgs
+import audiow.core.android.ui.fragment.ViewModelFragment
+import audiow.core.android.ui.fragment.withArgs
 import audiow.podcast.feature.detail.R
 import audiow.podcast.feature.detail.databinding.PodcastFeatureDetailEpisodeFragmentBinding
 import com.bumptech.glide.Glide

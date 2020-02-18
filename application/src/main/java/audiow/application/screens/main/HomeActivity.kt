@@ -3,7 +3,7 @@ package audiow.application.screens.main
 import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity
 import audiow.app.R
-import audiow.core.android.ui.FragmentTransactor
+import audiow.core.android.ui.fragment.FragmentTransactor
 import audiow.design.metrics.applySystemWindowsDesign
 import audiow.podcast.feature.discover.PodcastDiscoverFragmentFactory
 import kotlinx.android.synthetic.main.activity_home.*

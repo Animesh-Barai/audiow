@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import audiow.core.android.ui.FragmentTransactor
-import audiow.core.android.ui.ViewModelFragment
+import audiow.core.android.ui.fragment.FragmentTransactor
+import audiow.core.android.ui.fragment.ViewModelFragment
 import audiow.podcast.data.model.Podcast
 import audiow.podcast.feature.detail.PodcastDetailFragmentFactory
 import audiow.podcast.feature.discover.R

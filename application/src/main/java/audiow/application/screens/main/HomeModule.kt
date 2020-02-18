@@ -3,7 +3,7 @@ package audiow.application.screens.main
 import dagger.Binds
 import dagger.Module
 import audiow.core.android.di.PerActivity
-import audiow.core.android.ui.FragmentTransactor
+import audiow.core.android.ui.fragment.FragmentTransactor
 
 @Module
 abstract class HomeModule {

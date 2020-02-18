@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import audiow.app.R
 import audiow.core.android.di.PerActivity
-import audiow.core.android.ui.FragmentTransactor
+import audiow.core.android.ui.fragment.FragmentTransactor
 import javax.inject.Inject
 
 @PerActivity

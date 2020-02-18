@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.transition.*
 import com.bumptech.glide.Glide
-import audiow.core.android.ui.FragmentTransactor
-import audiow.core.android.ui.ViewModelFragment
-import audiow.core.android.ui.withArgs
+import audiow.core.android.ui.fragment.FragmentTransactor
+import audiow.core.android.ui.fragment.ViewModelFragment
+import audiow.core.android.ui.fragment.withArgs
 import audiow.design.transition.SlideExplode
 import audiow.podcast.data.model.Episode
 import audiow.podcast.feature.detail.PodcastDetailFragmentFactory

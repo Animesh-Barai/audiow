@@ -7,11 +7,13 @@ import audiow.core.android.LaunchInitializer
 import audiow.core.android.livedata.liveDataOf
 import audiow.core.android.viewmodel.BaseViewModel
 import audiow.core.util.reactive.scheduler.SchedulersProvider
+import audiow.user.data.interactor.IsUserLoggedIn
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LaunchViewModel @Inject constructor(
     private val initializers: Set<@JvmSuppressWildcards LaunchInitializer>,
+    private val isUserLoggedIn: IsUserLoggedIn,
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {
 
