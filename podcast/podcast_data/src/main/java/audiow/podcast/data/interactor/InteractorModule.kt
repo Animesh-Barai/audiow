@@ -14,25 +14,32 @@ import audiow.podcast.data.interactor.user.GetPreferredCountry
 import audiow.podcast.data.interactor.user.GetPreferredCountryImpl
 import audiow.podcast.data.interactor.user.GetPreferredGenres
 import audiow.podcast.data.interactor.user.GetPreferredGenresImpl
+import dagger.Reusable
 
 @Module
 internal interface InteractorModule {
 
     @Binds
+    @Reusable
     fun bindGetFeed(p: GetDiscoverImpl): GetDiscover
 
     @Binds
+    @Reusable
     fun bindFeedGenreSections(p: GetPreferredFeedGenrePodcastsImpl): GetPreferredGenrePodcasts
 
     @Binds
+    @Reusable
     fun bindGetTopPodcasts(p: GetTopPodcastsImpl): GetTopPodcasts
 
     @Binds
+    @Reusable
     fun bindGetGenreTree(p: GetGenreTreeImpl): GetGenreTree
 
     @Binds
+    @Reusable
     fun bindGetPrefferedGenres(p: GetPreferredGenresImpl): GetPreferredGenres
 
     @Binds
+    @Reusable
     fun bindGetPreferredCountry(p: GetPreferredCountryImpl): GetPreferredCountry
 }

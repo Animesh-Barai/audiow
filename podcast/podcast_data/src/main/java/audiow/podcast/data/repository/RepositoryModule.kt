@@ -15,33 +15,34 @@ import audiow.podcast.data.repository.feed.EpisodeRepository
 import audiow.podcast.data.repository.feed.FeedRepository
 import audiow.podcast.data.repository.genre.GenreRepository
 import audiow.podcast.data.repository.podcast.PodcastRepository
+import dagger.Reusable
 import javax.inject.Singleton
 
 @Module
 internal abstract class RepositoryModule {
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindGenreRepository(p: GenreRepository): Repository<Genre>
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindPodcastRepository(p: PodcastRepository): Repository<Podcast>
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindDiscoverRepository(p: DiscoverRepository): Repository<Discover>
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindFeedRepository(p: FeedRepository): Repository<Feed>
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindEpisodeRepository(p: EpisodeRepository): Repository<Episode>
 
     @Binds
-    @Singleton
+    @Reusable
     internal abstract fun bindFeedRepositoryWatcher(p: FeedRepository): RepositoryWatcher<Feed>
 
     @Binds
