@@ -17,9 +17,7 @@ class UserRepository @Inject constructor() : Repository<User> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getAll(): Single<List<User>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAll(): Single<List<User>> = Single.just(emptyList())
 
     override fun findById(id: Any): Maybe<User> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

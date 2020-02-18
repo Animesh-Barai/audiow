@@ -6,6 +6,7 @@ import io.reactivex.subjects.PublishSubject
 import audiow.core.common.LaunchInitializer
 import audiow.core.android.livedata.liveDataOf
 import audiow.core.android.viewmodel.BaseViewModel
+import audiow.core.interactor.invoke
 import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.user.data.interactor.IsUserLoggedIn
 import java.util.concurrent.TimeUnit
@@ -37,9 +38,16 @@ class LaunchViewModel @Inject constructor(
                 retrySubject.toFlowable(BackpressureStrategy.DROP)
                     .throttleLatest(1, TimeUnit.SECONDS, schedulersProvider.computation())
             }
+            .andThen(isUserLoggedIn())
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.main())
-            .subscribe { state.value = LaunchState.Initialized }
+            .subscribe { isUserLoggedIn ->
+                state.value = if (isUserLoggedIn) {
+                    LaunchState.Initialized.Home
+                } else {
+                    LaunchState.Initialized.SignIn
+                }
+            }
             .registerDisposable()
     }
 

@@ -2,7 +2,10 @@ package audiow.application.screens.launch
 
 sealed class LaunchState {
 
-    object Initialized : LaunchState()
+    sealed class Initialized : LaunchState() {
+        object SignIn : Initialized()
+        object Home : Initialized()
+    }
 
     object Loading : LaunchState()
 

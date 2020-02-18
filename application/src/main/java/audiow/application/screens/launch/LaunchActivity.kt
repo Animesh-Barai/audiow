@@ -9,6 +9,7 @@ import audiow.application.screens.main.HomeActivity
 import audiow.core.android.livedata.observe
 import audiow.core.android.viewmodel.ViewModelFactory
 import audiow.core.util.standart.exhaustive
+import audiow.user.signin.ui.signin.SignInActivity
 import javax.inject.Inject
 
 class LaunchActivity : DaggerAppCompatActivity() {
@@ -26,9 +27,14 @@ class LaunchActivity : DaggerAppCompatActivity() {
 
         observe(viewModel.state) {
             when (it) {
-                LaunchState.Initialized -> {
+                LaunchState.Initialized.Home -> {
                     finish()
                     startActivity(Intent(this, HomeActivity::class.java))
+                }
+                LaunchState.Initialized.SignIn -> {
+                    finish()
+                    startActivity(Intent(this, HomeActivity::class.java))
+//                    startActivity(Intent(this, SignInActivity::class.java))
                 }
                 LaunchState.Loading -> { }
                 LaunchState.Error -> { }
