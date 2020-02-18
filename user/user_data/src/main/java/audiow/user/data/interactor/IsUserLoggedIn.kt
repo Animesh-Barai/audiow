@@ -12,12 +12,11 @@ internal class IsUserLoggedInImpl @Inject constructor(
     private val userRepository: UserRepository
 ) : IsUserLoggedIn {
 
-    /**
-     *  For now just check if the User repository is not empty.
-     *  TODO Add Firebase check
-     */
-    override fun invoke(p: Unit): Single<Boolean> =
-        userRepository
+    override fun invoke(p: Unit): Single<Boolean> {
+        val containsFirebaseUser = FirebaseAuth.getInstance().currentUser != null
+
+        return userRepository
             .getAll()
-            .map { it.isNotEmpty() }
+            .map { it.isNotEmpty() && containsFirebaseUser }
+    }
 }
