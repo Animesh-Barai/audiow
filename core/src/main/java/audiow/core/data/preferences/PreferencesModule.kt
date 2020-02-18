@@ -3,7 +3,7 @@ package audiow.core.data.preferences
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import audiow.core.data.preferences.mmkv.MmkvInitiliazer
 import audiow.core.data.preferences.mmkv.MmkvPreferences
 import javax.inject.Singleton

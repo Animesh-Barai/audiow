@@ -3,7 +3,7 @@ package audiow.application.screens.launch
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.subjects.PublishSubject
-import audiow.core.android.LaunchInitializer
+import audiow.core.common.LaunchInitializer
 import audiow.core.android.livedata.liveDataOf
 import audiow.core.android.viewmodel.BaseViewModel
 import audiow.core.util.reactive.scheduler.SchedulersProvider

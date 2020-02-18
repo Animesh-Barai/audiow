@@ -1,7 +1,7 @@
 package audiow.podcast.data.initializer
 
 import io.reactivex.Completable
-import audiow.core.android.LaunchInitializer
+import audiow.core.common.LaunchInitializer
 import audiow.podcast.data.repository.genre.GenreRepository
 import javax.inject.Inject
 

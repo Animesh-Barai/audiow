@@ -4,7 +4,7 @@ import android.app.Application
 import android.os.Looper
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import javax.inject.Inject
 
 class ReactiveInitializer @Inject constructor(): ApplicationInitializer {

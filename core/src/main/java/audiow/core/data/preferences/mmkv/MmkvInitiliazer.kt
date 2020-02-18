@@ -2,7 +2,7 @@ package audiow.core.data.preferences.mmkv
 
 import android.app.Application
 import com.tencent.mmkv.MMKV
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import javax.inject.Inject
 
 internal class MmkvInitiliazer @Inject constructor(): ApplicationInitializer {

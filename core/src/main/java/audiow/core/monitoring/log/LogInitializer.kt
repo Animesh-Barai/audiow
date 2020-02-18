@@ -2,7 +2,7 @@ package audiow.core.monitoring.log
 
 import android.app.Application
 import audiow.core.BuildConfig
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import audiow.core.monitoring.log.formatter.JsonLogFormatter
 import audiow.core.monitoring.log.formatter.SingleLineLogFormatter
 import audiow.core.monitoring.log.handler.LogcatHandler

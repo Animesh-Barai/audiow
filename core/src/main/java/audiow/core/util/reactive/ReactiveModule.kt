@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import io.reactivex.disposables.CompositeDisposable
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import audiow.core.util.reactive.scheduler.DefaultSchedulersProvider
 import audiow.core.util.reactive.scheduler.SchedulersProvider
 import javax.inject.Singleton

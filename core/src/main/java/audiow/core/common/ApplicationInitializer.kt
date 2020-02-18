@@ -1,4 +1,4 @@
-package audiow.core.android
+package audiow.core.common
 
 import android.app.Application
 

@@ -3,7 +3,7 @@ package audiow.application
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import audiow.application.di.DaggerApplicationComponent
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import javax.inject.Inject
 
 class AudiowApplication : DaggerApplication() {

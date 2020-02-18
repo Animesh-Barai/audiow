@@ -3,7 +3,7 @@ package audiow.podcast.data
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
-import audiow.core.android.LaunchInitializer
+import audiow.core.common.LaunchInitializer
 import audiow.podcast.data.initializer.PodcastDataInitializer
 import audiow.podcast.data.interactor.InteractorModule
 import audiow.podcast.data.repository.RepositoryModule

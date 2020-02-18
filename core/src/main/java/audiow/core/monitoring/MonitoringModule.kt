@@ -3,7 +3,7 @@ package audiow.core.monitoring
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
-import audiow.core.android.ApplicationInitializer
+import audiow.core.common.ApplicationInitializer
 import audiow.core.monitoring.log.LogInitializer
 
 @Module
