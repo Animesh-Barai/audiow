@@ -8,6 +8,7 @@ import audiow.application.screens.BindingModule
 import audiow.core.CoreModule
 import audiow.podcast.data.PodcastDataModule
 import audiow.user.data.UserDataModule
+import audiow.user.signin.UserSignInModule
 import javax.inject.Singleton
 
 @Singleton
@@ -17,8 +18,11 @@ import javax.inject.Singleton
         CoreModule::class,
         BindingModule::class,
         ApplicationModule::class,
+
         PodcastDataModule::class,
-        UserDataModule::class
+
+        UserDataModule::class,
+        UserSignInModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<AudiowApplication> {
