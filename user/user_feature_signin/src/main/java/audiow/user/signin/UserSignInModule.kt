@@ -1,4 +1,7 @@
 package audiow.user.signin
 
-class UserSignInModule {
-}
+import audiow.user.signin.ui.BindingModule
+import dagger.Module
+
+@Module(includes = [BindingModule::class])
+class UserSignInModule
