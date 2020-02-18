@@ -1,4 +1,4 @@
-package audiow.core.android.ui
+package audiow.core.android.ui.fragment
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction

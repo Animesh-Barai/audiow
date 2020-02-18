@@ -1,4 +1,4 @@
-package audiow.core.android.ui
+package audiow.core.android.ui.fragment
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

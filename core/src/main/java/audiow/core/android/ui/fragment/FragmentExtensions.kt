@@ -1,4 +1,4 @@
-package audiow.core.android.ui
+package audiow.core.android.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
