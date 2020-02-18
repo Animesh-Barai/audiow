@@ -5,8 +5,10 @@ import audiow.user.data.model.User
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import javax.inject.Inject
 
-class UserRepository : Repository<User> {
+class UserRepository @Inject constructor() : Repository<User> {
+
     override fun add(element: User): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -34,4 +36,5 @@ class UserRepository : Repository<User> {
     override fun clear(): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 }

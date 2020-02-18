@@ -2,6 +2,7 @@ package audiow.user.data.interactor
 
 import audiow.core.interactor.Interactor
 import audiow.user.data.repository.UserRepository
+import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Single
 import javax.inject.Inject
 
