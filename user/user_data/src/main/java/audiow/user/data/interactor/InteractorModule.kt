@@ -9,4 +9,6 @@ internal interface InteractorModule {
     @Binds
     fun bindIsUserLoggedIn(isUserLoggedInImpl: IsUserLoggedInImpl): IsUserLoggedIn
 
+    @Binds
+    fun bindSignOut(signOut: SignOutImpl): SignOut
 }
