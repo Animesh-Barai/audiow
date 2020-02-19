@@ -33,8 +33,7 @@ class LaunchActivity : DaggerAppCompatActivity() {
                 }
                 LaunchState.Initialized.SignIn -> {
                     finish()
-                    startActivity(Intent(this, HomeActivity::class.java))
-//                    startActivity(Intent(this, SignInActivity::class.java))
+                    startActivity(Intent(this, SignInActivity::class.java))
                 }
                 LaunchState.Loading -> { }
                 LaunchState.Error -> { }

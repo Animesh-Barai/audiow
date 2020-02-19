@@ -14,11 +14,12 @@ internal class SignOutImpl @Inject constructor(
     private val globalDisposable: CompositeDisposable
 ) : SignOut {
 
-    override fun invoke(p: Unit): Completable =
-        Completable.merge(signOutCallbacks.map { it.onSignOut() })
-            .doOnSubscribe {
-                globalDisposable.clear()
-                FirebaseAuth.getInstance().signOut()
-            }
+    override fun invoke(p: Unit): Completable {
+        /** Dispose all global subscriptions */
+        globalDisposable.clear()
+
+        return Completable.merge(signOutCallbacks.map { it.onSignOut() })
+            .doOnComplete { FirebaseAuth.getInstance().signOut() }
             .onErrorComplete()
+    }
 }
