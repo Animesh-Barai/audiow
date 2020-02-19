@@ -32,6 +32,7 @@ android {
 dependencies {
     implementation project(':core')
 
+    implementation "com.google.android.gms:play-services-auth:$playServicesAuth"
     implementation "com.google.firebase:firebase-auth:$firebaseAuth"
 
     // Dagger
