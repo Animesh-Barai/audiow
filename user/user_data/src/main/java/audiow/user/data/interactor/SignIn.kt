@@ -8,11 +8,12 @@ import javax.inject.Inject
 interface SignIn : Interactor<SignInOptions, Completable>
 
 sealed class SignInOptions {
-    class Google(account: GoogleSignInAccount) : SignInOptions()
+    class Google(val account: GoogleSignInAccount) : SignInOptions()
 }
 
 internal class SignInImpl @Inject constructor() : SignIn {
 
+    // TODO Firebase Auth
     override fun invoke(options: SignInOptions): Completable = Completable.complete()
 
 }
