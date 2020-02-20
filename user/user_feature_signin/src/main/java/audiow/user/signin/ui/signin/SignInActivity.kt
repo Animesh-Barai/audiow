@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import audiow.core.android.livedata.observe
 import audiow.core.android.ui.activity.ViewModelActivity
 import audiow.core.android.ui.activity.finishWithResult
+import audiow.core.common.ApplicationProperties
 import audiow.core.monitoring.log.Logger
 import audiow.core.util.standart.exhaustive
 import audiow.user.signin.R
@@ -14,8 +15,12 @@ import audiow.user.signin.databinding.UserFeatureSigninActivityBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import javax.inject.Inject
 
 class SignInActivity : ViewModelActivity<SignInViewModel>() {
+
+    @Inject
+    lateinit var appProperties: ApplicationProperties
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,7 @@ class SignInActivity : ViewModelActivity<SignInViewModel>() {
 
     private fun startGoogleSignIn() {
         val intent = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(appProperties.googleWebClientId)
             .requestEmail()
             .build()
             .let { GoogleSignIn.getClient(this, it) }

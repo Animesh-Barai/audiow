@@ -4,7 +4,7 @@ import audiow.core.android.livedata.liveEventOf
 import audiow.core.android.viewmodel.BaseViewModel
 import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.user.data.interactor.SignIn
-import audiow.user.data.interactor.SignInOptions
+import audiow.user.data.interactor.SignInType
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -21,11 +21,12 @@ class SignInViewModel @Inject constructor(
     }
 
     fun onGoogleSignIn(account: GoogleSignInAccount) {
-        signIn(SignInOptions.Google(account))
+        signIn(SignInType.Google(account))
             .subscribeOn(schedulers.io())
             .subscribeBy(
                 onComplete = { action.postValue(SignInAction.OnSignIn) },
                 onError = {
+                    val e = it
                     // TODO display error
                 }
             )
