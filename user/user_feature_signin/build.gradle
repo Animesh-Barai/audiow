@@ -35,8 +35,6 @@ dependencies {
 
     implementation project(':user:user_data')
 
-    implementation "com.google.android.gms:play-services-auth:$playServicesAuth"
-
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"

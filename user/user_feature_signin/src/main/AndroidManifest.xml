@@ -3,8 +3,11 @@
 
     <application>
 
-        <activity android:name=".ui.signin.SignInActivity" />
+        <activity
+            android:name=".ui.signin.SignInActivity"
+            android:theme="@style/user_feature_signin_SignIn" />
 
     </application>
+
 </manifest>
 

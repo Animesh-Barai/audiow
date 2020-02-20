@@ -1,5 +1,6 @@
 package audiow.user.signin.ui.signin
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -63,5 +64,7 @@ class SignInActivity : ViewModelActivity<SignInViewModel>() {
 
     companion object {
         private const val RC_GOOGLE_SIGN_IN = 1000
+
+        fun getIntent(context: Context) = Intent(context, SignInActivity::class.java)
     }
 }

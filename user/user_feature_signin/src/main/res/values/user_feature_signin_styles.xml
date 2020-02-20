@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Overriding some Activity transitions as workaround for GoogleSignIn flickering transition -->
+    <style name="user_feature_signin_SignIn" parent="AudiowTheme.DayNight">
+        <item name="android:windowAnimationStyle">@style/user_feature_signin_Animation.Activity
+        </item>
+    </style>
+
+    <style name="user_feature_signin_Animation.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>
