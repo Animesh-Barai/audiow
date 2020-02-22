@@ -50,6 +50,7 @@ internal class SignInImpl @Inject constructor(
                         )
                         emitter.onSuccess(user)
                     } else {
+                        Logger.d("Firebase SignIn", mapOf("message" to result.exception))
                         emitter.onError(result.exception ?: Throwable("Firebase SignIn Failed"))
                     }
                 }

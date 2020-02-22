@@ -56,7 +56,7 @@ class SignInActivity : ViewModelActivity<SignInViewModel>() {
 
         viewModel.onGoogleSignIn(acc)
     } catch (error: Throwable) {
-        Logger.e("Google SignIn Intent", mapOf("message" to error.message))
+        Logger.d("Google SignIn Intent", mapOf("message" to error.message))
     }
 
 
