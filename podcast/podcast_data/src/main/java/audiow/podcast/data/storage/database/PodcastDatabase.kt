@@ -50,5 +50,4 @@ internal abstract class PodcastDatabase : RoomDatabase() {
     abstract fun discoverBanner(): DiscoverBannerDAO
 
     abstract fun feedDAO(): FeedDAO
-
 }

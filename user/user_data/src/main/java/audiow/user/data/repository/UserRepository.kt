@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor() : Repository<User> {
 
-    // TODO
     override fun add(element: User): Completable = Completable.complete()
 
     override fun addAll(elements: List<User>): Completable {
@@ -33,5 +32,4 @@ class UserRepository @Inject constructor() : Repository<User> {
     override fun clear(): Completable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 }

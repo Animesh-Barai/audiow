@@ -35,6 +35,11 @@ dependencies {
     api "com.google.firebase:firebase-auth:$firebaseAuth"
     api "com.google.android.gms:play-services-auth:$playServicesAuth"
 
+    // Room
+    api "androidx.room:room-runtime:$roomVersion"
+    api "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"

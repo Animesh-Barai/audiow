@@ -18,5 +18,4 @@ interface RepositoryModule {
     @Binds
     @IntoSet
     fun bindSignOutCallback(callback: UserSignOutCallback): SignOutCallback
-
 }

@@ -10,5 +10,4 @@ class UserSignOutCallback @Inject constructor(
 ) : SignOutCallback {
 
     override fun onSignOut() = userRepository.clear()
-
 }
