@@ -27,11 +27,24 @@ internal abstract class UserDAO {
     @Query("DELETE FROM User")
     abstract fun deleteAll(): Completable
 
+    @Delete
+    abstract fun delete(entity: UserEntity): Completable
+
     @Transaction
     open fun upsert(entity: UserEntity) {
         val id = insert(entity)
         if (id == -1L) {
             update(entity)
+        }
+    }
+
+    @Transaction
+    open fun upsert(entityList: List<UserEntity>) {
+        entityList.forEach { entity ->
+            val id = insert(entity)
+            if (id == -1L) {
+                update(entity)
+            }
         }
     }
 }
