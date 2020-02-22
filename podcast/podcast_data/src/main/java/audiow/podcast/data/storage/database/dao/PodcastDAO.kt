@@ -18,7 +18,7 @@ internal abstract class PodcastDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insert(podcast: PodcastEntity): Long
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun update(podcast: PodcastEntity)
 
     @Insert

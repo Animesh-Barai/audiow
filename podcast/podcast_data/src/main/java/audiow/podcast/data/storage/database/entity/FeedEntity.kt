@@ -16,7 +16,8 @@ internal data class FeedPodcastWrapper(
             entity = PodcastEntity::class,
             parentColumns = ["id"],
             childColumns = ["id"],
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.CASCADE,
+            deferred = true
         )
     ]
 )
@@ -42,7 +43,8 @@ internal data class FeedEntity(
             entity = FeedEntity::class,
             parentColumns = ["id"],
             childColumns = ["feedId"],
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.CASCADE,
+            deferred = true
         )
     ]
 )

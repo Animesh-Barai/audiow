@@ -23,7 +23,8 @@ internal data class PodcastWrapperEntity(
         entity = GenreEntity::class,
         parentColumns = ["id"],
         childColumns = ["primaryGenre"],
-        onDelete = ForeignKey.CASCADE
+        onDelete = ForeignKey.CASCADE,
+        deferred = true
     )]
 )
 internal data class PodcastEntity(

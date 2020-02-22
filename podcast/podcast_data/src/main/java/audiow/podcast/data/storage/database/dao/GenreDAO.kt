@@ -11,7 +11,6 @@ import audiow.podcast.data.storage.database.entity.*
 internal abstract class GenreDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    @VisibleForTesting
     protected abstract fun insert(genre: GenreEntity): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
