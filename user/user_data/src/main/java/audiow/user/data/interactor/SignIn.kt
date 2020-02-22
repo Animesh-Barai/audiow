@@ -2,6 +2,7 @@ package audiow.user.data.interactor
 
 import audiow.core.data.repository.Repository
 import audiow.core.interactor.Interactor
+import audiow.core.monitoring.log.Logger
 import audiow.core.util.standart.exhaustive
 import audiow.user.data.model.SignInMethod
 import audiow.user.data.model.User
@@ -43,6 +44,7 @@ internal class SignInImpl @Inject constructor(
 
                     if (result.isSuccessful && firebaseUser != null) {
                         val user = User(
+                            id = firebaseUser.uid,
                             name = firebaseUser.displayName.orEmpty(),
                             email = firebaseUser.email.orEmpty(),
                             photoUrl = firebaseUser.photoUrl?.toString(),
