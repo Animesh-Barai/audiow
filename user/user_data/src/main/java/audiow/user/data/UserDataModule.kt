@@ -1,7 +1,8 @@
 package audiow.user.data
 
-import audiow.user.data.firebase.FirebaseModule
+import audiow.user.data.partner.firebase.FirebaseModule
 import audiow.user.data.interactor.InteractorModule
+import audiow.user.data.partner.google.GoogleModule
 import audiow.user.data.repository.RepositoryModule
 import audiow.user.data.storage.DatabaseModule
 import dagger.Module
@@ -11,6 +12,7 @@ import dagger.Module
         RepositoryModule::class,
         InteractorModule::class,
         FirebaseModule::class,
+        GoogleModule::class,
         DatabaseModule::class
     ]
 )

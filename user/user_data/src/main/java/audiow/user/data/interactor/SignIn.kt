@@ -3,6 +3,7 @@ package audiow.user.data.interactor
 import audiow.core.data.repository.Repository
 import audiow.core.interactor.Interactor
 import audiow.core.monitoring.log.Logger
+import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.core.util.standart.exhaustive
 import audiow.user.data.model.SignInMethod
 import audiow.user.data.model.User
@@ -22,7 +23,8 @@ sealed class SignInType {
 
 internal class SignInImpl @Inject constructor(
     private val userRepository: Repository<User>,
-    private val firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth,
+    private val scheduler: SchedulersProvider
 ) : SignIn {
 
     override fun invoke(type: SignInType): Completable {
@@ -31,7 +33,9 @@ internal class SignInImpl @Inject constructor(
             is SignInType.Anonymous -> handleAnonymous(type)
         }.exhaustive
 
-        return handler.flatMapCompletable(userRepository::add)
+        return handler
+            .observeOn(scheduler.io())
+            .flatMapCompletable(userRepository::add)
     }
 
     private fun handleGoogle(type: SignInType.Google): Single<User> =

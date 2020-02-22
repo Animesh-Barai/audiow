@@ -1,4 +1,4 @@
-package audiow.user.data.repository
+package audiow.user.data.repository.user
 
 import audiow.core.common.SignOutCallback
 import audiow.core.data.repository.Repository
