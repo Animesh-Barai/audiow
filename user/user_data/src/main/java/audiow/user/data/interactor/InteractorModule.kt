@@ -18,4 +18,8 @@ internal interface InteractorModule {
     @Binds
     @Reusable
     fun bindSignOut(signOut: SignOutImpl): SignOut
+
+    @Binds
+    @Reusable
+    fun bindGetCurrentUser(getCurrentUser: GetCurrentUserImpl): GetCurrentUser
 }

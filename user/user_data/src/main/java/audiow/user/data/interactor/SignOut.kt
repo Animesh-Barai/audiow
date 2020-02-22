@@ -17,11 +17,9 @@ internal class SignOutImpl @Inject constructor(
 ) : SignOut {
 
     override fun invoke(p: Unit): Completable {
-        /** Dispose all global subscriptions */
         globalDisposable.clear()
+        firebaseAuth.signOut()
 
         return Completable.merge(signOutCallbacks.map { it.onSignOut() })
-            .doOnComplete { firebaseAuth.signOut() }
-            .onErrorComplete()
     }
 }

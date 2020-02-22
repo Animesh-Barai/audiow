@@ -20,14 +20,13 @@ internal class EpisodeViewModel @Inject constructor(
     val podcast = MutableLiveData<Podcast>()
 
     fun init(podcastId: Long, episodeId: String) {
-
         feedRepository.findById(podcastId)
             .map { feed -> feed.episodes.first { it.id == episodeId } }
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.main())
-            .subscribeBy(onSuccess = {
-                episode.value = it
-            })
+            .subscribeBy(
+                onSuccess = { episode.value = it }
+            )
             .registerDisposable()
 
         podcastRepository.findById(podcastId)
