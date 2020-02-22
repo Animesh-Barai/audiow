@@ -6,6 +6,7 @@ import audiow.app.R
 import audiow.core.android.ui.fragment.FragmentTransactor
 import audiow.design.metrics.applySystemWindowsDesign
 import audiow.podcast.feature.discover.PodcastDiscoverFragmentFactory
+import audiow.profile.feature.ui.ProfileFeatureFragmentFactory
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
@@ -17,6 +18,9 @@ class HomeActivity : DaggerAppCompatActivity() {
     @Inject
     internal lateinit var podcastFragmentProvider: PodcastDiscoverFragmentFactory
 
+    @Inject
+    internal lateinit var profileFragmentProvider: ProfileFeatureFragmentFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -25,6 +29,7 @@ class HomeActivity : DaggerAppCompatActivity() {
             setOnItemSelectedListener { menuId ->
                 val fragment = when (menuId) {
                     R.id.menu_discover -> podcastFragmentProvider.discover()
+                    R.id.menu_profile -> profileFragmentProvider.home()
                     else -> {
                         supportFragmentManager.fragments.forEach {
                             fragmentTransactor.remove(it).commit()

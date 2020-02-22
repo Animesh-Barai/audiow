@@ -1,18 +1,14 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion defaultCompileSdkVersion
 
     defaultConfig {
-        applicationId "audiow.app"
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion
-        versionCode 1
-        versionName "0.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,44 +18,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     dataBinding.enabled true
+
+    resourcePrefix 'profile_feature_'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
 
+
+}
 dependencies {
     implementation project(':core')
     implementation project(':design')
 
-    implementation project(':podcast:podcast_data')
-    implementation project(':podcast:podcast_feature_discover')
-    implementation project(':podcast:podcast_feature_detail')
-
-    implementation project(':profile:profile_feature')
-
     implementation project(':user:user_data')
-    implementation project(':user:user_feature_signin')
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
-    // UI
-    implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$chipNavigationBar"
-
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // Test
     testImplementation "junit:junit:$junitVersion"
-
-    androidTestImplementation "androidx.test:core:$androidTest"
-    androidTestImplementation "androidx.test:runner:$androidTest"
-    androidTestImplementation "androidx.test.ext:junit:$androidTest"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidEspresso"
 }

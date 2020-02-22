@@ -56,12 +56,11 @@ internal class SignInImpl @Inject constructor(
                         )
                         emitter.onSuccess(user)
                     } else {
-                        Logger.d("Firebase SignIn", mapOf("message" to result.exception))
-                        emitter.onError(result.exception ?: Throwable("Firebase SignIn Failed"))
+                        Logger.d("Firebase Google SignIn", mapOf("message" to result.exception))
+                        emitter.onError(result.exception ?: Throwable("Firebase Google SignIn"))
                     }
                 }
         }
 
     private fun handleAnonymous(type: SignInType.Anonymous): Single<User> = TODO()
-
 }

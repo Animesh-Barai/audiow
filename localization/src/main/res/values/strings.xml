@@ -10,7 +10,7 @@
     <string name="menu_podcasts">Podcasts</string>
     <string name="menu_discover">Discover</string>
     <string name="menu_search">Search</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_profile">Profile</string>
 
     <!-- Podcast -->
     <string name="podcast_subscribe">subscribe</string>
