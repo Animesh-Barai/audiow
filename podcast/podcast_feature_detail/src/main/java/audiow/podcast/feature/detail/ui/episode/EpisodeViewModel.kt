@@ -1,6 +1,6 @@
 package audiow.podcast.feature.detail.ui.episode
 
-import androidx.lifecycle.MutableLiveData
+import audiow.core.android.livedata.liveDataOf
 import io.reactivex.rxkotlin.subscribeBy
 import audiow.core.android.viewmodel.BaseViewModel
 import audiow.core.data.repository.Repository
@@ -16,8 +16,8 @@ internal class EpisodeViewModel @Inject constructor(
     private val schedulersProvider: SchedulersProvider
 ) : BaseViewModel() {
 
-    val episode = MutableLiveData<Episode>()
-    val podcast = MutableLiveData<Podcast>()
+    val episode = liveDataOf<Episode>()
+    val podcast = liveDataOf<Podcast>()
 
     fun init(podcastId: Long, episodeId: String) {
         feedRepository.findById(podcastId)

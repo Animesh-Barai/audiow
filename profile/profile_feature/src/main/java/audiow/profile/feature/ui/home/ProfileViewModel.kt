@@ -33,6 +33,7 @@ internal class ProfileViewModel @Inject constructor(
     fun onSignOutClicked() {
         signOut()
             .onErrorComplete()
+            .subscribeOn(scheduler.io())
             .subscribe { action.postValue(ProfileAction.OnSignOut) }
             .registerDisposable()
     }
