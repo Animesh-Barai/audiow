@@ -14,8 +14,9 @@ buildscript {
         liveEvent = '1.0.1'
         kotlinKtx = '1.1.0'
 
-        firebaseAnalytics = '17.2.2'
         firebaseAuth = '19.2.0'
+        firebaseAnalytics = '17.2.2'
+        firebaseFirestore = '21.4.0'
 
         materialDesign = '1.2.0-alpha02'
         chipNavigationBar = '1.2.0'

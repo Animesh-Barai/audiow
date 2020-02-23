@@ -18,13 +18,13 @@ class ApplicationModule {
     fun provideApplication(application: AudiowApplication): Application = application
 
     @Provides
-    @Singleton
+    @Reusable
     fun provideResources(application: Application): Resources = application.resources
 
     @Provides
     @Singleton
-    fun provideApplicationProperties(application: Application): ApplicationProperties {
-        val googleWebClientId = application.resources.getString(R.string.default_web_client_id)
+    fun provideApplicationProperties(resources: Resources): ApplicationProperties {
+        val googleWebClientId = resources.getString(R.string.default_web_client_id)
 
         return ApplicationProperties(
             googleWebClientId = googleWebClientId

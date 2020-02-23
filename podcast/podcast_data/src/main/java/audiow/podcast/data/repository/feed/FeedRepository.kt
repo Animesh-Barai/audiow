@@ -10,9 +10,7 @@ import audiow.core.util.time.RFC822DateParser
 import audiow.podcast.data.model.Feed
 import audiow.podcast.data.storage.database.dao.FeedDAO
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 internal class FeedRepository @Inject constructor(
     private val dao: FeedDAO,
     private val dateParser: RFC822DateParser,

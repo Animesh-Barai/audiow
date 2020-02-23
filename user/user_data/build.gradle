@@ -33,6 +33,9 @@ dependencies {
     implementation project(':core')
 
     api "com.google.firebase:firebase-auth:$firebaseAuth"
+    api "com.google.firebase:firebase-firestore:$firebaseFirestore"
+    api "com.google.firebase:firebase-firestore-ktx:$firebaseFirestore"
+
     api "com.google.android.gms:play-services-auth:$playServicesAuth"
 
     // Room
