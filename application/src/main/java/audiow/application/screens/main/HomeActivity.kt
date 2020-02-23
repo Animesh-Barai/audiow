@@ -6,7 +6,7 @@ import audiow.app.R
 import audiow.core.android.ui.fragment.FragmentTransactor
 import audiow.design.metrics.applySystemWindowsDesign
 import audiow.podcast.feature.discover.PodcastDiscoverFragmentFactory
-import audiow.profile.feature.ui.ProfileFeatureFragmentFactory
+import audiow.user.feature.profile.ui.ProfileFeatureFragmentFactory
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 

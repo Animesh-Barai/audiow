@@ -1,4 +1,4 @@
-package audiow.user.signin.ui.signin
+package audiow.user.feature.signin.ui.signin
 
 import audiow.core.android.livedata.liveEventOf
 import audiow.core.android.viewmodel.BaseViewModel

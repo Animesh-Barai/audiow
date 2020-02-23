@@ -9,8 +9,8 @@ import audiow.application.screens.main.HomeModule
 import audiow.core.android.di.PerActivity
 import audiow.podcast.feature.detail.PodcastDetailModule
 import audiow.podcast.feature.discover.PodcastDiscoverModule
-import audiow.profile.feature.ProfileFeatureModule
-import audiow.profile.feature.ui.home.SignOutIntentProvider
+import audiow.user.feature.profile.ProfileFeatureModule
+import audiow.user.feature.profile.ui.home.SignOutIntentProvider
 import dagger.Binds
 
 @Module

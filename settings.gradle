@@ -8,7 +8,6 @@ include ':podcast:podcast_data'
 include ':podcast:podcast_feature_discover'
 include ':podcast:podcast_feature_detail'
 
-include ':profile:profile_feature'
-
 include ':user:user_data'
 include ':user:user_feature_signin'
+include ':user:user_feature_profile'

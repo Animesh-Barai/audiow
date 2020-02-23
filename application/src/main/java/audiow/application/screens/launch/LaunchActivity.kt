@@ -9,7 +9,7 @@ import audiow.application.screens.main.HomeActivity
 import audiow.core.android.livedata.observe
 import audiow.core.android.viewmodel.ViewModelFactory
 import audiow.core.util.standart.exhaustive
-import audiow.user.signin.ui.signin.SignInActivity
+import audiow.user.feature.signin.ui.signin.SignInActivity
 import javax.inject.Inject
 
 class LaunchActivity : DaggerAppCompatActivity() {

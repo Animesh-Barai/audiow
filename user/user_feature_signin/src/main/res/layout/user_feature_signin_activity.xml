@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="audiow.user.signin.ui.signin.SignInViewModel" />
+            type="audiow.user.feature.signin.ui.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,8 +24,8 @@
             android:id="@+id/googleSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Google - SignIn"
             android:onClick="@{() -> vm.onSignInClicked()}"
+            android:text="Google - SignIn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

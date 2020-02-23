@@ -39,10 +39,9 @@ dependencies {
     implementation project(':podcast:podcast_feature_discover')
     implementation project(':podcast:podcast_feature_detail')
 
-    implementation project(':profile:profile_feature')
-
     implementation project(':user:user_data')
     implementation project(':user:user_feature_signin')
+    implementation project(':user:user_feature_profile')
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

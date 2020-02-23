@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="audiow.user.signin">
+    package="audiow.user.feature.signin">
 
     <application>
 

@@ -1,7 +1,7 @@
-package audiow.user.signin.ui
+package audiow.user.feature.signin.ui
 
 import audiow.core.android.di.PerActivity
-import audiow.user.signin.ui.signin.SignInActivity
+import audiow.user.feature.signin.ui.signin.SignInActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -1,4 +1,4 @@
-package audiow.user.signin.ui.signin
+package audiow.user.feature.signin.ui.signin
 
 import android.content.Context
 import android.content.Intent
@@ -9,8 +9,8 @@ import audiow.core.android.ui.activity.ViewModelActivity
 import audiow.core.android.ui.activity.finishWithResult
 import audiow.core.monitoring.log.Logger
 import audiow.core.util.standart.exhaustive
-import audiow.user.signin.R
-import audiow.user.signin.databinding.UserFeatureSigninActivityBinding
+import audiow.user.feature.signin.R
+import audiow.user.feature.signin.databinding.UserFeatureSigninActivityBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException

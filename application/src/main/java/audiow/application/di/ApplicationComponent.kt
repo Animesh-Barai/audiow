@@ -8,7 +8,7 @@ import audiow.application.screens.BindingModule
 import audiow.core.CoreModule
 import audiow.podcast.data.PodcastDataModule
 import audiow.user.data.UserDataModule
-import audiow.user.signin.UserSignInModule
+import audiow.user.feature.signin.UserSignInModule
 import javax.inject.Singleton
 
 @Singleton
