@@ -2,8 +2,6 @@ package audiow.user.data.repository.user
 
 import audiow.core.data.repository.Repository
 import audiow.user.data.model.User
-import audiow.user.data.repository.toDomain
-import audiow.user.data.repository.toEntity
 import audiow.user.data.storage.dao.UserDAO
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -36,4 +34,5 @@ internal class UserRepository @Inject constructor(
     override fun remove(element: User): Completable = userDAO.delete(element.toEntity())
 
     override fun clear(): Completable = userDAO.deleteAll()
+
 }

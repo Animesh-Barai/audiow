@@ -1,4 +1,4 @@
-package audiow.user.data.repository
+package audiow.user.data.repository.user
 
 import audiow.user.data.model.SignInMethod
 import audiow.user.data.model.User
