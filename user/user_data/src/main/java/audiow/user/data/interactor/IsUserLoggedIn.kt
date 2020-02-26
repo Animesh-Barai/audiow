@@ -12,11 +12,12 @@ interface IsUserLoggedIn : Interactor<Unit, Single<Boolean>>
 
 internal class IsUserLoggedInImpl @Inject constructor(
     private val userRepository: UserRepository,
-    private val singOut: SignOut
+    private val singOut: SignOut,
+    private val firebaseAuth: FirebaseAuth
 ) : IsUserLoggedIn {
 
     override fun invoke(p: Unit): Single<Boolean> {
-        val containsFirebaseUser = FirebaseAuth.getInstance().currentUser != null
+        val containsFirebaseUser = firebaseAuth.currentUser != null
 
         return userRepository
             .getAll()
