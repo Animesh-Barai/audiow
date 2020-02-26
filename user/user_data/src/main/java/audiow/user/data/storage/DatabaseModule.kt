@@ -2,6 +2,7 @@ package audiow.user.data.storage
 
 import android.app.Application
 import androidx.room.Room
+import audiow.user.data.storage.dao.SubscriptionDAO
 import audiow.user.data.storage.dao.UserDAO
 import dagger.Module
 import dagger.Provides
@@ -22,4 +23,9 @@ internal class DatabaseModule {
     @Provides
     @Reusable
     internal fun provideGenreDao(database: UserDatabase): UserDAO = database.userDAO()
+
+    @Provides
+    @Reusable
+    internal fun provideSubDao(database: UserDatabase): SubscriptionDAO = database.subscriptionDAO()
+
 }

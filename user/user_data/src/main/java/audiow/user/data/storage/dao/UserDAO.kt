@@ -10,10 +10,10 @@ import io.reactivex.Single
 internal abstract class UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insert(userEntity: UserEntity): Long
+    protected abstract fun insert(userEntity: UserEntity): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun update(userEntity: UserEntity): Completable
+    protected abstract fun update(userEntity: UserEntity): Completable
 
     @Query("SELECT * FROM User")
     abstract fun getAll(): Single<List<UserEntity>>
