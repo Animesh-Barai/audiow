@@ -1,9 +1,7 @@
-package audiow.user.data.storage
+package audiow.user.data.storage.database.dao
 
 import android.app.Application
 import androidx.room.Room
-import audiow.user.data.storage.dao.SubscriptionDAO
-import audiow.user.data.storage.dao.UserDAO
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
