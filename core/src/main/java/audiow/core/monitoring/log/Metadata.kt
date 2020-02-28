@@ -10,7 +10,7 @@ internal class Metadata @Inject constructor(timeProvider: TimeProvider) {
 
     val origin: String = run {
         val element = Throwable().stackTrace[6]
-        "(${element.fileName}:${element.lineNumber})#${element.methodName}"
+        "(${element.fileName}:${element.lineNumber})"
     }
 
 }
