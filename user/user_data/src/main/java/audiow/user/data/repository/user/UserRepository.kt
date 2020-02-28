@@ -2,7 +2,7 @@ package audiow.user.data.repository.user
 
 import audiow.core.data.repository.Repository
 import audiow.user.data.model.User
-import audiow.user.data.storage.dao.UserDAO
+import audiow.user.data.storage.database.dao.UserDAO
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

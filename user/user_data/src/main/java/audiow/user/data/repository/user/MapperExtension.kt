@@ -2,7 +2,7 @@ package audiow.user.data.repository.user
 
 import audiow.user.data.model.SignInMethod
 import audiow.user.data.model.User
-import audiow.user.data.storage.entity.UserEntity
+import audiow.user.data.storage.database.dao.entity.UserEntity
 
 internal fun User.toEntity() = UserEntity(
     id = id,
