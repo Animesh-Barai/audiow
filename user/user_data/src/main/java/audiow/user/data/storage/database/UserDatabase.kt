@@ -1,9 +1,11 @@
-package audiow.user.data.storage.database.dao
+package audiow.user.data.storage.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import audiow.user.data.storage.database.dao.entity.SubscriptionEntity
-import audiow.user.data.storage.database.dao.entity.UserEntity
+import audiow.user.data.storage.database.dao.SubscriptionDAO
+import audiow.user.data.storage.database.dao.UserDAO
+import audiow.user.data.storage.database.entity.SubscriptionEntity
+import audiow.user.data.storage.database.entity.UserEntity
 
 @Database(
     entities = [

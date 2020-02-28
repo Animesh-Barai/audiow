@@ -32,7 +32,6 @@ internal class SubscriptionRepository @Inject constructor(
                     elements.forEach { collection.document(it.id).set(it.toDocument()) }
                 }.ignoreElement()
         )
-
     override fun getAll(): Single<List<Subscription>> =
         subscriptionDAO.getAll()
             .map { subscriptions -> subscriptions.map { it.toDomain() } }

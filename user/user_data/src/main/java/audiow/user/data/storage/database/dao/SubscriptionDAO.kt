@@ -1,7 +1,7 @@
 package audiow.user.data.storage.database.dao
 
 import androidx.room.*
-import audiow.user.data.storage.database.dao.entity.SubscriptionEntity
+import audiow.user.data.storage.database.entity.SubscriptionEntity
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable

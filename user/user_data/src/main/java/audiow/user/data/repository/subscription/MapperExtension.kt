@@ -1,7 +1,7 @@
 package audiow.user.data.repository.subscription
 
 import audiow.user.data.model.Subscription
-import audiow.user.data.storage.database.dao.entity.SubscriptionEntity
+import audiow.user.data.storage.database.entity.SubscriptionEntity
 import audiow.user.data.storage.firestore.document.SubscriptionDocument
 
 internal fun Subscription.toEntity() = SubscriptionEntity(

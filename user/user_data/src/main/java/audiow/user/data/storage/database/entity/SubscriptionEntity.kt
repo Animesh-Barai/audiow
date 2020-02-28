@@ -1,4 +1,4 @@
-package audiow.user.data.storage.database.dao.entity
+package audiow.user.data.storage.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

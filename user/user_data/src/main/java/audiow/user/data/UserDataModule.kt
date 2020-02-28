@@ -4,7 +4,7 @@ import audiow.user.data.partner.firebase.FirebaseModule
 import audiow.user.data.interactor.InteractorModule
 import audiow.user.data.partner.google.GoogleModule
 import audiow.user.data.repository.RepositoryModule
-import audiow.user.data.storage.database.dao.DatabaseModule
+import audiow.user.data.storage.database.DatabaseModule
 import dagger.Module
 
 @Module(
