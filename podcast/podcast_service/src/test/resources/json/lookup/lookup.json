@@ -1,0 +1,45 @@
+{
+  "resultCount": 1,
+  "results": [
+    {
+      "wrapperType": "track",
+      "kind": "podcast",
+      "collectionId": 381816509,
+      "trackId": 381816509,
+      "artistName": "Jovem Nerd",
+      "collectionName": "NerdCast",
+      "trackName": "NerdCast",
+      "collectionCensoredName": "NerdCast",
+      "trackCensoredName": "NerdCast",
+      "collectionViewUrl": "https://podcasts.apple.com/us/podcast/nerdcast/id381816509?uo=4",
+      "feedUrl": "https://jovemnerd.com.br/feed-nerdcast/",
+      "trackViewUrl": "https://podcasts.apple.com/us/podcast/nerdcast/id381816509?uo=4",
+      "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/6b/06/fd/6b06fdbd-07b0-032e-7f4d-ea7c40995278/mza_3169076889313867971.jpg/30x30bb.jpg",
+      "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/6b/06/fd/6b06fdbd-07b0-032e-7f4d-ea7c40995278/mza_3169076889313867971.jpg/60x60bb.jpg",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/6b/06/fd/6b06fdbd-07b0-032e-7f4d-ea7c40995278/mza_3169076889313867971.jpg/100x100bb.jpg",
+      "collectionPrice": 0.00,
+      "trackPrice": 0.00,
+      "trackRentalPrice": 0,
+      "collectionHdPrice": 0,
+      "trackHdPrice": 0,
+      "trackHdRentalPrice": 0,
+      "releaseDate": "2020-02-28T11:01:00Z",
+      "collectionExplicitness": "cleaned",
+      "trackExplicitness": "cleaned",
+      "trackCount": 300,
+      "country": "USA",
+      "currency": "USD",
+      "primaryGenreName": "Society & Culture",
+      "contentAdvisoryRating": "Clean",
+      "artworkUrl600": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/6b/06/fd/6b06fdbd-07b0-032e-7f4d-ea7c40995278/mza_3169076889313867971.jpg/600x600bb.jpg",
+      "genreIds": [
+        "1324",
+        "26"
+      ],
+      "genres": [
+        "Society & Culture",
+        "Podcasts"
+      ]
+    }
+  ]
+}

@@ -47,6 +47,10 @@ interface ItunesService {
         @Query("cc") countryIso: String = "US"
     ): Single<Tree<ItunesGenre>>
 
+    @Json
+    @GET("lookup")
+    fun getPodcastById(@Query("id") podcastId: String): Single<ItunesPodcast>
+
     @Xml
     @GET
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
