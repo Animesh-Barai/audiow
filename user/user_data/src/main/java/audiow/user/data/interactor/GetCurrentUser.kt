@@ -13,6 +13,5 @@ internal class GetCurrentUserImpl @Inject constructor(
 ) : GetCurrentUser {
 
     override fun invoke(p: Unit): Single<User> =
-        userRepository.getAll()
-            .map { it.first() }
+        userRepository.getAll().map { users -> users.first { it.isSelected } }
 }

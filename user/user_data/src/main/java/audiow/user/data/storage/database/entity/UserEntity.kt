@@ -10,5 +10,6 @@ internal data class UserEntity(
     val name: String,
     val email: String?,
     val photoUrl: String?,
-    val signInMethod: String
+    val signInMethod: String,
+    val isSelected: Boolean
 )

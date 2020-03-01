@@ -2,6 +2,7 @@ package audiow.user.data.repository.subscription
 
 import audiow.core.data.repository.Repository
 import audiow.core.interactor.invoke
+import audiow.user.data.interactor.GetCurrentUser
 import audiow.user.data.model.Subscription
 import audiow.user.data.storage.database.dao.SubscriptionDAO
 import audiow.user.data.storage.firestore.interactor.GetPodcastCollection
@@ -12,11 +13,15 @@ import javax.inject.Inject
 
 internal class SubscriptionRepository @Inject constructor(
     private val subscriptionDAO: SubscriptionDAO,
-    private val podcastCollection: GetPodcastCollection
+    private val podcastCollection: GetPodcastCollection,
+    private val getCurrentUser: GetCurrentUser
 ) : Repository<Subscription> {
 
     override fun add(element: Subscription): Completable =
-        Completable.fromCallable { subscriptionDAO.upsert(element.toEntity()) }
+        getCurrentUser()
+            .flatMapCompletable { user ->
+                Completable.fromCallable { subscriptionDAO.upsert(element.toEntity(user.id)) }
+            }
             .andThen(
                 podcastCollection()
                     .doOnSuccess { it.document(element.id).set(element.toDocument()) }
@@ -24,14 +29,18 @@ internal class SubscriptionRepository @Inject constructor(
             )
 
     override fun addAll(elements: List<Subscription>): Completable =
-        Completable.fromCallable {
-            subscriptionDAO.upsert(elements.map { it.toEntity() })
-        }.andThen(
-            podcastCollection()
-                .doOnSuccess { collection ->
-                    elements.forEach { collection.document(it.id).set(it.toDocument()) }
-                }.ignoreElement()
-        )
+        getCurrentUser()
+            .flatMapCompletable { user ->
+                Completable.fromCallable {
+                    subscriptionDAO.upsert(elements.map { it.toEntity(user.id) })
+                }
+            }.andThen(
+                podcastCollection()
+                    .doOnSuccess { collection ->
+                        elements.forEach { collection.document(it.id).set(it.toDocument()) }
+                    }.ignoreElement()
+            )
+
     override fun getAll(): Single<List<Subscription>> =
         subscriptionDAO.getAll()
             .map { subscriptions -> subscriptions.map { it.toDomain() } }
@@ -44,7 +53,10 @@ internal class SubscriptionRepository @Inject constructor(
             .map { subscriptions -> subscriptions.map { it.toDomain() } }
 
     override fun remove(element: Subscription): Completable =
-        subscriptionDAO.delete(element.toEntity())
+        getCurrentUser()
+            .flatMapCompletable { user ->
+                subscriptionDAO.delete(element.toEntity(user.id))
+            }
             .andThen(
                 podcastCollection()
                     .doOnSuccess {

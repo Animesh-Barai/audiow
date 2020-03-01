@@ -52,7 +52,8 @@ internal class SignInImpl @Inject constructor(
                             name = firebaseUser.displayName.orEmpty(),
                             email = firebaseUser.email.orEmpty(),
                             photoUrl = firebaseUser.photoUrl?.toString(),
-                            signInMethod = SignInMethod.GOOGLE
+                            signInMethod = SignInMethod.GOOGLE,
+                            isSelected = true
                         )
                         emitter.onSuccess(user)
                     } else {

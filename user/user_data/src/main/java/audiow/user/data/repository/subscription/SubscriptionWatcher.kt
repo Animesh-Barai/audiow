@@ -3,6 +3,7 @@ package audiow.user.data.repository.subscription
 import audiow.core.data.repository.RepositoryWatcher
 import audiow.core.interactor.invoke
 import audiow.core.monitoring.log.Logger
+import audiow.user.data.interactor.GetCurrentUser
 import audiow.user.data.model.Subscription
 import audiow.user.data.storage.database.dao.SubscriptionDAO
 import audiow.user.data.storage.firestore.interactor.GetSubscriptionsDocuments
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 class SubscriptionWatcher @Inject internal constructor(
     private val getSubscriptionsDocuments: GetSubscriptionsDocuments,
+    private val getCurrentUser: GetCurrentUser,
     private val subscriptionDAO: SubscriptionDAO
 ) : RepositoryWatcher<Subscription> {
 
@@ -43,7 +45,11 @@ class SubscriptionWatcher @Inject internal constructor(
         TODO()
     }
 
-    private fun updateDatabaseCache(subs: List<SubscriptionDocument>) = Completable.fromCallable {
-        subscriptionDAO.updateSubscriptions(subs.map { it.toEntity() })
-    }
+    private fun updateDatabaseCache(subs: List<SubscriptionDocument>) =
+        getCurrentUser()
+            .flatMapCompletable { user ->
+                Completable.fromCallable {
+                    subscriptionDAO.updateSubscriptions(subs.map { it.toEntity(user.id) })
+                }
+            }
 }

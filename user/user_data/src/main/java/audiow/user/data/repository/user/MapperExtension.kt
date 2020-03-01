@@ -9,7 +9,8 @@ internal fun User.toEntity() = UserEntity(
     name = name,
     email = email,
     photoUrl = photoUrl,
-    signInMethod = signInMethod.name
+    signInMethod = signInMethod.name,
+    isSelected = isSelected
 )
 
 internal fun UserEntity.toDomain() = User(
@@ -17,5 +18,6 @@ internal fun UserEntity.toDomain() = User(
     name = name,
     email = email,
     photoUrl = photoUrl,
-    signInMethod = SignInMethod.valueOf(signInMethod)
+    signInMethod = SignInMethod.valueOf(signInMethod),
+    isSelected = isSelected
 )
