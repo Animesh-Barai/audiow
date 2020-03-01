@@ -49,7 +49,7 @@ interface ItunesService {
 
     @Json
     @GET("lookup")
-    fun getPodcastById(@Query("id") podcastId: String): Single<ItunesPodcast>
+    fun getPodcastById(@Query("id") podcastId: Long): Single<ItunesPodcast>
 
     @Xml
     @GET

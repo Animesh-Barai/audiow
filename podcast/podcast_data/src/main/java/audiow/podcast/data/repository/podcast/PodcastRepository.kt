@@ -6,6 +6,7 @@ import audiow.core.data.repository.Repository
 import audiow.podcast.data.model.Genre
 import audiow.podcast.data.model.Podcast
 import audiow.podcast.data.storage.database.dao.PodcastDAO
+import audiow.podcast.service.itunes.ItunesService
 import toDomain
 import toEntity
 import toWrapperEntity
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 internal class PodcastRepository @Inject constructor(
     private val dao: PodcastDAO,
-    private val genreRepository: Repository<Genre>
+    private val genreRepository: Repository<Genre>,
+    private val service: ItunesService
 ) : Repository<Podcast> {
 
     override fun add(element: Podcast): Completable =
@@ -28,10 +30,19 @@ internal class PodcastRepository @Inject constructor(
 
     override fun remove(element: Podcast) = dao.delete(element.toEntity())
 
-    // TODO fetch from Itunes when empty
     override fun findById(id: Any) =
         genreRepository.getAll()
-            .flatMapMaybe { genreList -> dao.findById(id as Long).map { it.toDomain(genreList) } }
+            .flatMapMaybe { genreList ->
+                dao.findById(id as Long)
+                    .map { it.toDomain(genreList) }
+                    /** Get from the API if the cache is empty */
+                    .switchIfEmpty(
+                        service.getPodcastById(id)
+                            .map { it.toDomain(genreList) }
+                            .flatMap { add(it).andThen(Single.just(it)) }
+                            .toMaybe()
+                    )
+            }
 
     override fun findByIds(ids: List<Any>): Single<List<Podcast>> =
         genreRepository.getAll()

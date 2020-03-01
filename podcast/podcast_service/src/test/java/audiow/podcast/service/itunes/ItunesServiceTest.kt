@@ -50,7 +50,7 @@ class ItunesServiceTest {
         val response = IOUtils.fileToString("/json/lookup/lookup.json")
         mockWebServer.enqueue(MockResponse().setBody(response))
 
-        service.getPodcastById("")
+        service.getPodcastById(1)
             .test()
             .assertValue { it.id == 381816509L }
     }
