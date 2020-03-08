@@ -17,7 +17,7 @@ internal class FeedItemDiffCalback(
 
         return when {
             old is FeedItem.Header && new is FeedItem.Header -> {
-                old.podcast.id == old.podcast.id
+                old.podcast.id == new.podcast.id
             }
             old is FeedItem.FeedEpisode && new is FeedItem.FeedEpisode -> {
                 old.episode.audioFileUrl == new.episode.audioFileUrl
@@ -32,13 +32,13 @@ internal class FeedItemDiffCalback(
 
         return when {
             old is FeedItem.Header && new is FeedItem.Header -> {
-                old.podcast.id == old.podcast.id
+                old.podcast.id == new.podcast.id && old.isSubscribed == new.isSubscribed
             }
             old is FeedItem.FeedEpisode && new is FeedItem.FeedEpisode -> {
                 old.episode.title == new.episode.title &&
                         old.episode.coverImageUrl == new.episode.coverImageUrl &&
                         old.episode.duration == new.episode.duration &&
-                        old.episode.publicationDate == old.episode.publicationDate
+                        old.episode.publicationDate == new.episode.publicationDate
             }
             else -> false
         }

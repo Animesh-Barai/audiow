@@ -1,11 +1,13 @@
 package audiow.design.widget
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.core.content.res.getStringOrThrow
+import androidx.databinding.BindingAdapter
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import audiow.design.R
@@ -30,22 +32,20 @@ class ToggleButton @JvmOverloads constructor(
 
     private val checkedLabel: String
     private val uncheckedLabel: String
+    private val uncheckedDrawable: Drawable?
+    private val checkedDrawable: Drawable?
 
-    val onToggleListener: ((@ParameterName("isActive") Boolean) -> Unit)? = null
+    var onToggleListener: ToggleListener? = null
 
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.ToggleButton)
 
-        val checkedDrawable = context.getDrawable(
+        checkedDrawable = context.getDrawable(
             a.getResourceId(R.styleable.ToggleButton_checkedDrawable, -1)
         )
-        val uncheckedDrawable = context.getDrawable(
+        uncheckedDrawable = context.getDrawable(
             a.getResourceId(R.styleable.ToggleButton_uncheckedDrawable, -1)
         )
-        val stateDrawable = StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_selected), checkedDrawable)
-            addState(intArrayOf(), uncheckedDrawable)
-        }
         val confirmationTitle = a.getString(R.styleable.ToggleButton_confirmationTitle)
             ?: resources.getString(R.string.confirmation)
 
@@ -56,8 +56,8 @@ class ToggleButton @JvmOverloads constructor(
         uncheckedLabel = a.getStringOrThrow(R.styleable.ToggleButton_uncheckedLabel)
 
         iconGravity = ICON_GRAVITY_START
-        icon = stateDrawable
-        isSelected = false
+        icon = uncheckedDrawable
+        text = uncheckedLabel
 
         setOnClickListener {
             /**
@@ -86,14 +86,18 @@ class ToggleButton @JvmOverloads constructor(
 
         if (wasSelected == selected) return
 
-        onToggleListener?.invoke(selected)
+        onToggleListener?.onToggleChanged(selected)
+
+        icon = if (selected) checkedDrawable else uncheckedDrawable
 
         val label = if (selected) checkedLabel else uncheckedLabel
-
         if (text != label) {
             (parent as? ViewGroup)?.let { TransitionManager.beginDelayedTransition(it) }
             text = label
         }
     }
 
+    interface ToggleListener {
+        fun onToggleChanged(isSelectable: Boolean)
+    }
 }

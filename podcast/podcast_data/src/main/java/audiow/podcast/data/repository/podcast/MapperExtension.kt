@@ -1,3 +1,5 @@
+import android.annotation.SuppressLint
+import audiow.core.util.standart.sha1
 import audiow.podcast.data.model.Artwork
 import audiow.podcast.data.model.Genre
 import audiow.podcast.data.model.Podcast
@@ -52,3 +54,5 @@ internal fun Podcast.toWrapperEntity() = PodcastWrapperEntity(
     genreIds = genreList.map { it.id }
 )
 
+@SuppressLint("DefaultLocale")
+fun Podcast.toExternalId(): String = rssUrl.trim().sha1().toUpperCase()

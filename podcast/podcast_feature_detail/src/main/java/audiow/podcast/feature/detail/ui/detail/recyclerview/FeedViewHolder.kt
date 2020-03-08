@@ -20,6 +20,7 @@ internal sealed class FeedViewHolder<T : ViewDataBinding>(view: View) :
     ) : FeedViewHolder<PodcastFeatureDetailHeaderBinding>(binding.root) {
         init {
             binding.imageLoader = imageLoader
+            binding.callback = callback
         }
     }
 

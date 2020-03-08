@@ -10,10 +10,14 @@ import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.podcast.data.model.Feed
 import audiow.podcast.data.model.Podcast
 import audiow.podcast.feature.detail.ui.detail.recyclerview.FeedItem
+import audiow.user.data.model.Subscription
+import toExternalId
 import javax.inject.Inject
 
 internal class PodcastDetailViewModel @Inject constructor(
     private val podcastRepository: Repository<Podcast>,
+    private val subscriptionRepository: Repository<Subscription>,
+    private val subscriptionWatcher: RepositoryWatcher<Subscription>,
     private val feedRepository: Repository<Feed>,
     private val feedWatcher: RepositoryWatcher<Feed>,
     private val schedulersProvider: SchedulersProvider
@@ -39,8 +43,36 @@ internal class PodcastDetailViewModel @Inject constructor(
         }
     }
 
+    fun onSubscriptionChanges(isSubscribed: Boolean) {
+        val podcast = header.value!!.podcast
+        val subscription = Subscription(
+            id = podcast.toExternalId(),
+            feedUrl = podcast.rssUrl,
+            itunesId = podcast.id
+        )
+        if (isSubscribed) {
+            subscriptionRepository.add(subscription)
+                .subscribeOn(schedulersProvider.io())
+                .observeOn(schedulersProvider.main())
+                .subscribe()
+                .registerDisposable()
+        } else {
+            subscriptionRepository.remove(subscription)
+                .subscribeOn(schedulersProvider.io())
+                .observeOn(schedulersProvider.main())
+                .subscribe()
+                .registerDisposable()
+        }
+    }
+
     private fun loadPodcastHeader(podcastId: Long) {
         podcastRepository.findById(podcastId)
+            .flatMap { podcast ->
+                subscriptionRepository.findById(podcast.toExternalId())
+                    .map { true }
+                    .defaultIfEmpty(false)
+                    .map { podcast to it }
+            }
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.main())
             .subscribeBy(
@@ -51,11 +83,24 @@ internal class PodcastDetailViewModel @Inject constructor(
                      *  failed. The UI for this scenario should be a RETRY.
                      */
                 },
-                onSuccess = {
-                    header.value = FeedItem.Header(it)
+                onSuccess = { (podcast, isSubscribed) ->
+                    header.value = FeedItem.Header(podcast, isSubscribed)
+                    watchSubscriptionUpdates(podcast)
                     loadFeed(podcastId)
                 }
             )
+            .registerDisposable()
+    }
+
+    private fun watchSubscriptionUpdates(podcast: Podcast) {
+        subscriptionWatcher.onChanged()
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.main())
+            .subscribeBy(onNext = { subscriptions ->
+                header.value = FeedItem.Header(podcast, subscriptions.any {
+                    it.id == podcast.toExternalId()
+                })
+            })
             .registerDisposable()
     }
 

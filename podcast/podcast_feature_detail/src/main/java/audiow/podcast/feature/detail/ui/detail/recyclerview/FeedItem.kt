@@ -5,7 +5,10 @@ import audiow.podcast.data.model.Podcast
 
 sealed class FeedItem {
 
-    class Header(val podcast: Podcast) : FeedItem()
+    class Header(
+        val podcast: Podcast,
+        val isSubscribed: Boolean
+    ) : FeedItem()
 
     class FeedEpisode(val episode: Episode) : FeedItem()
 }

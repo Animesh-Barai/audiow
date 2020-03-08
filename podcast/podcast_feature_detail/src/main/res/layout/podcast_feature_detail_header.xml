@@ -12,6 +12,14 @@
         <variable
             name="podcast"
             type="audiow.podcast.data.model.Podcast" />
+
+        <variable
+            name="isSubscribed"
+            type="Boolean" />
+
+        <variable
+            name="callback"
+            type="audiow.podcast.feature.detail.ui.detail.recyclerview.FeedAdapter.FeedCallback" />
     </data>
 
     <LinearLayout
@@ -91,12 +99,15 @@
                 app:checkedLabel="@string/podcast_subscribed"
                 app:confirmationActionLabel="@string/podcast_unsubscribe_confirmation_action"
                 app:confirmationMessage="@string/podcast_unsubscribe_confirmation_message"
+                app:isSelected="@{isSubscribed}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cover"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:onToggleListener="@{(isSelected)-> callback.onSubscriptionChanged(isSelected)}"
                 app:uncheckedDrawable="@drawable/ic_bookmark"
                 app:uncheckedLabel="@string/podcast_subscribe" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View

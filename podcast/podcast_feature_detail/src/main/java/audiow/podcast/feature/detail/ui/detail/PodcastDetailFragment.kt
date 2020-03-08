@@ -86,6 +86,10 @@ internal class PodcastDetailFragment : ViewModelFragment<PodcastDetailViewModel>
             .commit()
     }
 
+    override fun onSubscriptionChanged(isSubscribed: Boolean) {
+        viewModel.onSubscriptionChanges(isSubscribed)
+    }
+
     /**
      * Setup the episode shared element transition to the EpisodeFragment
      *

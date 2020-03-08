@@ -1,6 +1,7 @@
 package audiow.podcast.data.model
 
 import android.os.Parcelable
+import audiow.core.util.standart.sha1
 import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 

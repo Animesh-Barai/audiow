@@ -64,7 +64,10 @@ internal class FeedAdapter(
         val item = items[position]
 
         when {
-            vh is HeaderViewHolder && item is Header -> vh.binding.podcast = item.podcast
+            vh is HeaderViewHolder && item is Header -> {
+                vh.binding.podcast = item.podcast
+                vh.binding.isSubscribed = item.isSubscribed
+            }
             vh is FeedEpisodeViewHolder && item is FeedEpisode -> vh.binding.episode = item.episode
             else -> Logger.e("View holder and feed item mismatched")
         }.exhaustive
@@ -74,5 +77,6 @@ internal class FeedAdapter(
 
     interface FeedCallback {
         fun onEpisodeSelected(episode: Episode, view: View)
+        fun onSubscriptionChanged(isSubscribed: Boolean)
     }
 }

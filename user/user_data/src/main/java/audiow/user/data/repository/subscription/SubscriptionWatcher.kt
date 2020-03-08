@@ -12,7 +12,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class SubscriptionWatcher @Inject internal constructor(
+internal class SubscriptionWatcher @Inject internal constructor(
     private val getSubscriptionsDocuments: GetSubscriptionsDocuments,
     private val getCurrentUser: GetCurrentUser,
     private val subscriptionDAO: SubscriptionDAO
