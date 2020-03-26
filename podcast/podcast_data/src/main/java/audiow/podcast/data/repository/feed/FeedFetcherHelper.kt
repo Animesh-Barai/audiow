@@ -43,8 +43,8 @@ internal class FeedFetcherHelper @Inject constructor(
                     response.isSuccessful -> {
                         val headers = response.headers()
                         val feedNetworkModel = response.body()!!
-                        val lastModified = headers.get(HeaderKey.lastModified)
-                        val eTag = headers.get(HeaderKey.eTag)
+                        val lastModified = headers.get(HeaderKey.LAST_MODIFIED)
+                        val eTag = headers.get(HeaderKey.E_TAG)
 
                         Logger.d(
                             "Feed updated",

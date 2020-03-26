@@ -56,8 +56,8 @@ interface ItunesService {
     @Headers("Accept: application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml")
     fun getPodcastRss(
         @Url rssUrl: String,
-        @Header(HeaderKey.modifiedSince) ifModifiedSince: String? = null,
-        @Header(HeaderKey.noneMatch) ifNoneMatch: String? = null
+        @Header(HeaderKey.MODIFIED_SINCE) ifModifiedSince: String? = null,
+        @Header(HeaderKey.NONE_MATCH) ifNoneMatch: String? = null
     ): Single<Response<ItunesPodcastFeed>>
 
     companion object {
