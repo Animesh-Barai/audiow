@@ -21,34 +21,34 @@ internal abstract class FeedDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun update(feed: FeedEntity)
 
-    @Query("SELECT * FROM FEED WHERE id=:id")
+    @Query("SELECT * FROM feed WHERE id=:id")
     abstract fun findById(id: Long): Maybe<FeedPodcastWrapper>
 
-    @Query("SELECT * FROM FEED WHERE id IN(:ids)")
+    @Query("SELECT * FROM feed WHERE id IN(:ids)")
     abstract fun findByIds(ids: List<Long>): Single<List<FeedPodcastWrapper>>
 
-    @Query("SELECT * FROM FEED")
+    @Query("SELECT * FROM feed")
     abstract fun getAllFeeds(): Single<List<FeedPodcastWrapper>>
 
-    @Query("SELECT * FROM FEED WHERE id=:id")
+    @Query("SELECT * FROM feed WHERE id=:id")
     abstract fun onItemChanged(id: Long): Observable<FeedPodcastWrapper>
 
-    @Query("SELECT * FROM FEED")
+    @Query("SELECT * FROM feed")
     abstract fun onChanged(): Observable<List<FeedPodcastWrapper>>
 
-    @Query("SELECT * FROM FEED_EPISODE")
+    @Query("SELECT * FROM feed_episode")
     abstract fun getAllEpisodes(): Single<List<FeedEpisodeEntity>>
 
-    @Query("SELECT * FROM FEED_EPISODE WHERE audioFileUrl IN(:ids)")
+    @Query("SELECT * FROM feed_episode WHERE audioFileUrl IN(:ids)")
     abstract fun findEpisodesByIds(ids: List<String>): Single<List<FeedEpisodeEntity>>
 
-    @Query("SELECT * FROM FEED_EPISODE WHERE audioFileUrl=:id")
+    @Query("SELECT * FROM feed_episode WHERE audioFileUrl=:id")
     abstract fun findEpisodeById(id: String): Maybe<FeedEpisodeEntity>
 
     @Delete
     abstract fun delete(model: FeedEntity): Completable
 
-    @Query("DELETE FROM FEED")
+    @Query("DELETE FROM feed")
     abstract fun deleteAll(): Completable
 
     @Transaction

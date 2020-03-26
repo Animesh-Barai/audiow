@@ -16,28 +16,28 @@ internal abstract class SubscriptionDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract fun insertAll(entities: List<SubscriptionEntity>)
 
-    @Query("DELETE FROM Subscription")
+    @Query("DELETE FROM subscription")
     protected abstract fun deleteAllSync()
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun update(entity: SubscriptionEntity): Completable
 
-    @Query("SELECT * FROM Subscription")
+    @Query("SELECT * FROM subscription")
     abstract fun getAll(): Single<List<SubscriptionEntity>>
 
-    @Query("SELECT * FROM Subscription WHERE id=:id")
+    @Query("SELECT * FROM subscription WHERE id=:id")
     abstract fun findById(id: String): Maybe<SubscriptionEntity>
 
-    @Query("SELECT * FROM Subscription WHERE id IN (:ids)")
+    @Query("SELECT * FROM subscription WHERE id IN (:ids)")
     abstract fun findByIds(ids: List<String>): Single<List<SubscriptionEntity>>
 
-    @Query("SELECT * FROM Subscription")
+    @Query("SELECT * FROM subscription")
     abstract fun onChanged(): Observable<List<SubscriptionEntity>>
 
-    @Query("DELETE FROM Subscription")
+    @Query("DELETE FROM subscription")
     abstract fun deleteAll(): Completable
 
-    @Query("DELETE FROM Subscription WHERE id NOT IN (:ids)")
+    @Query("DELETE FROM subscription WHERE id NOT IN (:ids)")
     abstract fun deleteMissingIds(ids: List<String>)
 
     @Delete

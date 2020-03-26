@@ -12,7 +12,7 @@ internal data class FeedGenreSectionWrapperEntity(
 )
 
 @Entity(
-    tableName = "DISCOVER_GENRE_SECTION",
+    tableName = "discover_genre_section",
     foreignKeys = [
         ForeignKey(
             entity = GenreEntity::class,
@@ -28,7 +28,7 @@ internal data class DiscoverGenreSectionEntity(
 )
 
 @Entity(
-    tableName = "DISCOVER_GENRE_SECTION_PODCASTS",
+    tableName = "discover_genre_section_podcasts",
     primaryKeys = ["podcastId", "genreSectionId"],
     foreignKeys = [
         ForeignKey(

@@ -18,7 +18,7 @@ internal data class PodcastWrapperEntity(
 )
 
 @Entity(
-    tableName = "PODCAST",
+    tableName = "podcast",
     foreignKeys = [ForeignKey(
         entity = GenreEntity::class,
         parentColumns = ["id"],
@@ -37,7 +37,7 @@ internal data class PodcastEntity(
 )
 
 @Entity(
-    tableName = "PODCAST_ARTWORK",
+    tableName = "podcast_artwork",
     foreignKeys = [ForeignKey(
         entity = PodcastEntity::class,
         parentColumns = ["id"],
@@ -76,7 +76,7 @@ internal data class PodcastArtworkEntity(
 }
 
 @Entity(
-    tableName = "PODCAST_GENRE",
+    tableName = "podcast_genre",
     primaryKeys = ["podcastId", "genreId"],
     foreignKeys = [ForeignKey(
         entity = PodcastEntity::class,

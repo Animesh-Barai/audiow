@@ -36,7 +36,7 @@ import audiow.podcast.data.storage.database.entity.discover.DiscoverHighlightEnt
 internal abstract class PodcastDatabase : RoomDatabase() {
 
     companion object {
-        const val DATABASE_FILE_NAME = "PODCAST"
+        const val DATABASE_FILE_NAME = "audiow_podcast"
     }
 
     abstract fun genreDAO(): GenreDAO

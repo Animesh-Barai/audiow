@@ -4,7 +4,7 @@ import androidx.room.*
 import audiow.podcast.data.storage.database.entity.PodcastEntity
 
 @Entity(
-    tableName = "DISCOVER_HIGHLIGHT",
+    tableName = "discover_highlight",
     foreignKeys = [
         ForeignKey(
             entity = PodcastEntity::class,

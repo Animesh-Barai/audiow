@@ -17,10 +17,10 @@ internal abstract class DiscoverHighlightDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAll(entities: List<DiscoverHighlightEntity>): Completable
 
-    @Query("SELECT * FROM DISCOVER_HIGHLIGHT")
+    @Query("SELECT * FROM discover_highlight")
     abstract fun getAllHighlights(): Single<List<DiscoverHighlightEntity>>
 
-    @Query("DELETE FROM DISCOVER_HIGHLIGHT")
+    @Query("DELETE FROM discover_highlight")
     abstract fun deleteAll(): Completable
 
 }

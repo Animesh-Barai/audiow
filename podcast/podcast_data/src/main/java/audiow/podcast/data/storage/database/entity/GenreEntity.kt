@@ -2,13 +2,13 @@ package audiow.podcast.data.storage.database.entity
 
 import androidx.room.*
 
-@Entity(tableName = "GENRE")
+@Entity(tableName = "genre")
 internal data class GenreEntity(
         @PrimaryKey val id: Long,
         val name: String
 )
 
-@Entity(tableName = "SUB_GENRE",
+@Entity(tableName = "sub_genre",
         primaryKeys = ["genreId", "subGenreId"],
         foreignKeys = [
             ForeignKey(entity = GenreEntity::class,

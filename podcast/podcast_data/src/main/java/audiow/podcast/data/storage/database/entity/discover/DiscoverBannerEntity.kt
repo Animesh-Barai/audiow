@@ -10,7 +10,7 @@ internal data class DiscoverBannerWrapperEntity(
     val podcasts: List<DiscoverBannerPodcastEntity>
 )
 
-@Entity(tableName = "DISCOVER_BANNER")
+@Entity(tableName = "discover_banner")
 internal data class DiscoverBannerEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -18,7 +18,7 @@ internal data class DiscoverBannerEntity(
 )
 
 @Entity(
-    tableName = "DISCOVER_BANNER_PODCASTS",
+    tableName = "discover_banner_podcasts",
     primaryKeys = ["bannerId", "podcastId"],
     foreignKeys = [
         ForeignKey(

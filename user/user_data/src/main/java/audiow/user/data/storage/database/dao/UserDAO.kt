@@ -9,19 +9,19 @@ import io.reactivex.Single
 @Dao
 internal abstract class UserDAO {
 
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM user")
     abstract fun getAll(): Single<List<UserEntity>>
 
-    @Query("SELECT * FROM User WHERE id=:id")
+    @Query("SELECT * FROM user WHERE id=:id")
     abstract fun findById(id: String): Maybe<UserEntity>
 
-    @Query("SELECT * FROM User WHERE id IN (:ids)")
+    @Query("SELECT * FROM user WHERE id IN (:ids)")
     abstract fun findByIds(ids: List<String>): Single<List<UserEntity>>
 
-    @Query("SELECT * FROM User WHERE isSelected=1")
+    @Query("SELECT * FROM user WHERE isSelected=1")
     abstract fun getSelectedUser(): Single<UserEntity>
 
-    @Query("DELETE FROM User")
+    @Query("DELETE FROM user")
     abstract fun deleteAll(): Completable
 
     @Delete
@@ -33,7 +33,7 @@ internal abstract class UserDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract fun update(userEntity: UserEntity): Completable
 
-    @Query("UPDATE User SET isSelected=0 WHERE isSelected=1")
+    @Query("UPDATE user SET isSelected=0 WHERE isSelected=1")
     protected abstract fun unselectAllUsers()
 
     @Transaction

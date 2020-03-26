@@ -18,7 +18,7 @@ import audiow.user.data.storage.database.entity.UserEntity
 internal abstract class UserDatabase : RoomDatabase() {
 
     companion object {
-        const val DATABASE_FILE_NAME = "USER"
+        const val DATABASE_FILE_NAME = "audiow_user"
     }
 
     abstract fun userDAO(): UserDAO

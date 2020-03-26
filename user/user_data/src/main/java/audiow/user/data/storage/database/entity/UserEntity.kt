@@ -3,7 +3,7 @@ package audiow.user.data.storage.database.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "User")
+@Entity(tableName = "user")
 internal data class UserEntity(
     @PrimaryKey
     val id: String,

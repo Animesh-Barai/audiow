@@ -12,7 +12,7 @@ import audiow.podcast.data.storage.database.entity.PodcastWrapperEntity
 @Dao
 internal abstract class PodcastDAO {
 
-    @Query("SELECT * FROM PODCAST")
+    @Query("SELECT * FROM podcast")
     abstract fun getAll(): Single<List<PodcastWrapperEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -24,22 +24,22 @@ internal abstract class PodcastDAO {
     @Insert
     protected abstract fun insertArtworkList(artworkList: List<PodcastArtworkEntity>)
 
-    @Query("DELETE FROM PODCAST_ARTWORK WHERE podcastIdFk = :podcastId")
+    @Query("DELETE FROM podcast_artwork WHERE podcastIdFk = :podcastId")
     protected abstract fun deleteAllArtworkList(podcastId: Long)
 
     @Insert
     protected abstract fun insertPodcastGenre(podcastGenreList: List<PodcastAndGenreMapEntity>)
 
-    @Query("DELETE FROM PODCAST_GENRE WHERE podcastId = :podcastId")
+    @Query("DELETE FROM podcast_genre WHERE podcastId = :podcastId")
     abstract fun deleteAllGenresRelation(podcastId: Long)
 
-    @Query("SELECT * FROM PODCAST WHERE id=:id")
+    @Query("SELECT * FROM podcast WHERE id=:id")
     abstract fun findById(id: Long): Maybe<PodcastWrapperEntity>
 
-    @Query("SELECT * FROM PODCAST WHERE id IN (:ids)")
+    @Query("SELECT * FROM podcast WHERE id IN (:ids)")
     abstract fun findByIds(ids: List<Long>): Single<List<PodcastWrapperEntity>>
 
-    @Query("DELETE FROM PODCAST")
+    @Query("DELETE FROM podcast")
     abstract fun deleteAll(): Completable
 
     @Delete

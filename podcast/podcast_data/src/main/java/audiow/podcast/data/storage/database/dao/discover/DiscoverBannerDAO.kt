@@ -19,10 +19,10 @@ internal abstract class DiscoverBannerDAO {
     @Insert
     protected abstract fun insertBannerPodcasts(entity: DiscoverBannerPodcastEntity)
 
-    @Query("SELECT * FROM DISCOVER_BANNER")
+    @Query("SELECT * FROM discover_banner")
     abstract fun getAll(): Single<List<DiscoverBannerWrapperEntity>>
 
-    @Query("DELETE FROM DISCOVER_BANNER")
+    @Query("DELETE FROM discover_banner")
     abstract fun deleteAll(): Completable
 
     @Transaction

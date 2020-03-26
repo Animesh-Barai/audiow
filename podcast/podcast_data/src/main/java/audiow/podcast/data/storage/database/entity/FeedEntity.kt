@@ -10,7 +10,7 @@ internal data class FeedPodcastWrapper(
 )
 
 @Entity(
-    tableName = "FEED",
+    tableName = "feed",
     foreignKeys = [
         ForeignKey(
             entity = PodcastEntity::class,
@@ -37,7 +37,7 @@ internal data class FeedEntity(
 }
 
 @Entity(
-    tableName = "FEED_EPISODE",
+    tableName = "feed_episode",
     foreignKeys = [
         ForeignKey(
             entity = FeedEntity::class,
