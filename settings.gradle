@@ -7,6 +7,7 @@ include ':podcast:podcast_service'
 include ':podcast:podcast_data'
 include ':podcast:podcast_feature_discover'
 include ':podcast:podcast_feature_detail'
+include ':podcast:podcast_feature_subscriptions'
 
 include ':user:user_data'
 include ':user:user_feature_signin'
