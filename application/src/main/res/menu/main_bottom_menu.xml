@@ -9,10 +9,6 @@
         android:icon="@drawable/ic_compass"
         android:title="@string/menu_discover" />
     <item
-        android:id="@+id/menu_search"
-        android:icon="@drawable/ic_search"
-        android:title="@string/menu_search" />
-    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_user"
         android:title="@string/menu_profile" />
