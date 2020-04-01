@@ -19,5 +19,4 @@ data class Podcast(
 
     @IgnoredOnParcel
     val artwork = artworkList.maxBy { it.height }!!
-
 }
