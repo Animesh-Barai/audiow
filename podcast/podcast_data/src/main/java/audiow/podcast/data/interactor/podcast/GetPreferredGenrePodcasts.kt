@@ -3,6 +3,7 @@ package audiow.podcast.data.interactor.podcast
 import io.reactivex.Single
 import audiow.core.interactor.Interactor
 import audiow.core.interactor.invoke
+import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.podcast.data.interactor.podcast.GetPreferredGenrePodcasts.Input
 import audiow.podcast.data.interactor.user.GetPreferredCountry
 import audiow.podcast.data.interactor.user.GetPreferredGenres
@@ -21,7 +22,8 @@ internal class GetPreferredFeedGenrePodcastsImpl @Inject constructor(
     private val getPreferredGenres: GetPreferredGenres,
     private val getPreferredCountry: GetPreferredCountry,
     private val genreRepository: GenreRepository,
-    private val itunesService: ItunesService
+    private val itunesService: ItunesService,
+    private val scheduler: SchedulersProvider
 ) : GetPreferredGenrePodcasts {
 
     override fun invoke(input: Input): Single<Map<Genre, List<Podcast>>> =
@@ -42,7 +44,7 @@ internal class GetPreferredFeedGenrePodcastsImpl @Inject constructor(
                     }
                     .map { (podcasts, genres) ->
                         preferredGenre to podcasts.map { it.toDomain(genres) }
-                    }
+                    }.subscribeOn(scheduler.io())
             }
             .toList()
             .map { it.associate { (genre, podcasts) -> genre to podcasts } }

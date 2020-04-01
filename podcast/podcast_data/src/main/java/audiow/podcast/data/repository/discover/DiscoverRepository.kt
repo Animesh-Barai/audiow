@@ -6,16 +6,18 @@ import io.reactivex.Single
 import audiow.core.data.preferences.Preferences
 import audiow.core.data.repository.Repository
 import audiow.core.interactor.invoke
+import audiow.core.util.reactive.scheduler.SchedulersProvider
 import audiow.core.util.time.TimeProvider
 import audiow.podcast.data.interactor.discover.GetDiscover
 import audiow.podcast.data.model.Discover
 import javax.inject.Inject
 
 internal class DiscoverRepository @Inject constructor(
-    private val getFeed: GetDiscover,
+    private val getDiscover: GetDiscover,
     private val cacheHelpers: Set<@JvmSuppressWildcards DiscoverCacheHelper>,
     private val preferences: Preferences,
-    private val timeProvider: TimeProvider
+    private val timeProvider: TimeProvider,
+    private val schedulers: SchedulersProvider
 ) : Repository<Discover> {
 
     companion object {
@@ -32,32 +34,30 @@ internal class DiscoverRepository @Inject constructor(
     override fun remove(element: Discover) = throw UnsupportedOperationException()
 
     override fun addAll(elements: List<Discover>) =
-        Completable.merge(cacheHelpers.map { it.addAll(elements) })
+        Completable.merge(cacheHelpers.map { it.addAll(elements).subscribeOn(schedulers.io()) })
 
     override fun getAll(): Single<List<Discover>> =
-        if (cacheExpired()) {
-            getFeed()
+        getCache()
+            .takeUnless { cacheExpired() }
+            ?: getDiscover()
                 .flatMap {
-                    clear()
-                        .andThen( addAll(it))
-                        .toSingleDefault(it)
+                    clear().andThen(addAll(it)).toSingleDefault(it)
                 }
                 .doOnSuccess {
                     preferences.write(LAST_UPDATE_KEY, timeProvider.getCurrentTimeMillis())
                 }
                 .onErrorResumeNext { error ->
-                    getCache().flatMap {
-                        if (it.isEmpty()) Single.error(error) else Single.just((it))
-                    }
+                    getCache()
+                        .flatMap { if (it.isEmpty()) Single.error(error) else Single.just((it)) }
                 }
-        } else {
-            getCache()
-        }
 
-    override fun clear(): Completable = Completable.merge(cacheHelpers.map { it.delete() })
+
+    override fun clear(): Completable = Completable.merge(
+        cacheHelpers.map { it.delete().subscribeOn(schedulers.io()) }
+    )
 
     private fun getCache(): Single<List<Discover>> =
-        Single.merge(cacheHelpers.map { it.getAll() })
+        Single.merge(cacheHelpers.map { it.getAll().subscribeOn(schedulers.io()) })
             .toList()
             .map { cache ->
                 cache.flatten()
