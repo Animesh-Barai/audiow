@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="podcast"
+            type="audiow.podcast.data.model.Podcast" />
+
+        <variable
+            name="imageLoader"
+            type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="callback"
+            type="audiow.podcast.feature.subscriptions.ui.subscriptions.recyclerview.SubscriptionAdapter.SubscriptionsCallback" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:padding="@dimen/keyline_2">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:crossFade="@{true}"
+            app:imageLoader="@{imageLoader}"
+            app:load="@{podcast.artwork.url}" />
+    </FrameLayout>
+</layout>
